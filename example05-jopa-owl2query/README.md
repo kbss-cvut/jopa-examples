@@ -1,6 +1,6 @@
 # JOPA Example 05 - JOPA + OWL2Query
 
-This example shows how JOPA works with OWL2Query, which provides SPARQL query support for OWLAPI-based ontologies.
+This example shows how JOPA works with OWL2Query, which provides SPARQL-DL query support for OWLAPI-based ontologies.
 
 ### Features
 

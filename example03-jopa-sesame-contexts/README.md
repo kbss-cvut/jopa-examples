@@ -24,11 +24,11 @@ for the whole instance and/or for each attribute separately.
 ##### Descriptors
 
 Descriptors are used to specify contexts for entities. An `EntityDescriptor` specifies context for an entity instance. If
-attribute contexts are not specified explicitly, the entity contexts applies to them as well, i.e. if the entity is context `A`,
+attribute contexts are not specified explicitly, the entity contexts applies to them as well, i.e. if the entity is in context `A`,
 then all its attributes are assumed to be in `A` as well.
 
 Attribute contexts can be specified for entity, for primitive attributes, a `FieldDescriptor` is used. If an attribute is
-also an entity, an `EntityDescriptor` should be used.
+also an entity, an `EntityDescriptor` has to be used.
 
 Setting the context URI to `null` means that the default context will be used.
 

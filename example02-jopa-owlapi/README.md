@@ -10,7 +10,7 @@ Main JOPA features shown in this demo include:
 - Operation cascading,
 - Participation constraints
 
-#### Inferred Field
+#### Inferred Fields
 
 The demo features only a single class in the model, but this class contains an important feature of JOPA - support for inferred fields.
 Such fields are effectively read-only, so their value changes only based on some other knowledge asserted in the storage. In our case,
@@ -18,11 +18,11 @@ the `hasFather` property is an inverse of the `hasChild` property.
 
 The demo uses Pellet for inference, however any other OWLAPI 4-compatible reasoner can be used. Reasoner factory class is specified in `PersistenceFactory`.
 
-#### Cascaded EntityManager operations
+#### Cascaded EntityManager Operations
 
 When a `Jedi` is persisted, his children are persisted as well. This also works when he is removed from the storage. This is because the `children`
 attribute is marked to cascade all operations that happen to the owner instance. Therefore, when a Jedi with children is persisted, the operation is cascaded
-to the children instances as well.
+to the child instances as well.
 
 #### Participation Constraints
 
@@ -40,7 +40,7 @@ Of course, singular fields implicitly express a maximum cardinality of one.
 
 The persistence is set up in `cz.cvut.kbss.jopa.example02.PersistenceFactory`. OWLAPI supports storing ontologies in OWL files with various syntaxes.
 We are using an existing OWL ontology, which defines the object properties we want to use for inference. To be sure that the ontology is not interfered with and
-thus stays reusable, the application copies the ontology into a separate file, which is then used as storage for the application.
+thus stays reusable, the application copies the ontology into a separate file, which is then used as a storage for the application.
 
 
 ## Running the Demo
