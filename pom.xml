@@ -13,6 +13,7 @@
         <module>example03-jopa-sesame-contexts</module>
         <module>example04-jopa-spring</module>
         <module>example05-jopa-owl2query</module>
+        <module>eswc2016</module>
     </modules>
 
     <name>JOPA Examples - parent</name>

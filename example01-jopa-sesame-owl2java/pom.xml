@@ -32,7 +32,7 @@
                 <!-- Generate entity classes from OWL integrity constraints -->
                 <groupId>cz.cvut.kbss.jopa</groupId>
                 <artifactId>jopa-maven-plugin</artifactId>
-                <version>0.6-SNAPSHOT</version>
+                <version>0.7.0</version>
                 <configuration>
                     <package>cz.cvut.kbss.jopa.example01.generated</package>
                     <output-directory>src/main/java/</output-directory>
