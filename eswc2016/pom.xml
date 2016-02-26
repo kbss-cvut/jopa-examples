@@ -145,21 +145,21 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.4.0</version>
                 <executions>
-                    <execution>
-                        <id>npm-module-cleanup</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>compile</phase>
-                        <configuration>
-                            <workingDirectory>src/main/webapp/</workingDirectory>
-                            <executable>rm</executable>
-                            <arguments>
-                                <argument>-Rf</argument>
-                                <argument>node_modules</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
+                    <!--<execution>-->
+                        <!--<id>npm-module-cleanup</id>-->
+                        <!--<goals>-->
+                            <!--<goal>exec</goal>-->
+                        <!--</goals>-->
+                        <!--<phase>compile</phase>-->
+                        <!--<configuration>-->
+                            <!--<workingDirectory>src/main/webapp/</workingDirectory>-->
+                            <!--<executable>rm</executable>-->
+                            <!--<arguments>-->
+                                <!--<argument>-Rf</argument>-->
+                                <!--<argument>node_modules</argument>-->
+                            <!--</arguments>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
                     <execution>
                         <id>ui-build</id>
                         <goals>

@@ -1,0 +1,359 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY voc "http://onto.fel.cvut.cz/ontologies/voc/" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://onto.fel.cvut.cz/ontologies/ufo/ufo-a#"
+     xml:base="http://onto.fel.cvut.cz/ontologies/ufo/ufo-a"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:voc="http://onto.fel.cvut.cz/ontologies/voc/">
+    <owl:Ontology rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/ufo-a"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/voc/has_definition -->
+
+    <owl:AnnotationProperty rdf:about="&voc;has_definition"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/voc/has_example -->
+
+    <owl:AnnotationProperty rdf:about="&voc;has_example"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/voc/has_usage -->
+
+    <owl:AnnotationProperty rdf:about="&voc;has_usage"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/has_event_part -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/has_event_part">
+        <rdfs:subPropertyOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/has_object_part -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/has_object_part">
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+        <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+        <rdfs:subPropertyOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/has_part -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/has_part">
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Entity"/>
+        <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Entity"/>
+        <owl:inverseOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/is_part_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/has_participant -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/has_participant">
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/has_trope -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/has_trope">
+        <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Entity"/>
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Trope"/>
+        <owl:inverseOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/inheres_in"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/inheres_in -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/inheres_in">
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Entity"/>
+        <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Trope"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/is_classified_by -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/is_classified_by">
+        <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Individual"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/is_event_part_of -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/is_event_part_of">
+        <rdfs:subPropertyOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/is_part_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/is_object_part_of -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/is_object_part_of">
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+        <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+        <owl:inverseOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_object_part"/>
+        <rdfs:subPropertyOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/is_part_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/is_part_of -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/is_part_of">
+        <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Entity"/>
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Entity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/is_participant_of -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/is_participant_of">
+        <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/is_participation_of -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/is_participation_of">
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/is_snapshot_of -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/is_snapshot_of">
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Agent -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Agent">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Disposition -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Disposition">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Trope"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Endurant -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Endurant">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Individual"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Entity -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Entity"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Individual -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Individual">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Entity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Object -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Object">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Endurant"/>
+        <voc:has_example xml:lang="en">- An *aircraft* is an object.
+- An *ATC descent procedure* is an object (formal regulation) that describes the course of a descent operation/process (event).</voc:has_example>
+        <voc:has_usage xml:lang="en">- An object *participates in* an event.
+- An object *has part* another object.</voc:has_usage>
+        <voc:has_definition xml:lang="en">Object is any identifiable endurant entity in the ontological sense. Objects participate in events and can have tropes. Theirs state can change over time.</voc:has_definition>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Physical_object -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Physical_object">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Trope -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Trope">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Endurant"/>
+        <voc:has_example xml:lang="en">Examples include:
+ - *function* of a VOR beacon (property of an object), 
+ - *availability* of VOR beacon function (property of a property), 
+ - *efficiency* of a rescue operation (property of an event)</voc:has_example>
+        <voc:has_definition>Trope is a property of some object/event or another trope. The trope CANNOT exist without the object/event it inheres in.</voc:has_definition>
+        <voc:has_usage xml:lang="en">We say that:
+
+A trope *inheres in* an object.</voc:has_usage>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Universal -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Universal">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Entity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/property -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/property">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Entity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/type -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/type">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Trope"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="urn:swrl#x">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#y">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#z">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_object_part"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#z"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_object_part"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#y"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest rdf:resource="&rdf;nil"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_object_part"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#y"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#z"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

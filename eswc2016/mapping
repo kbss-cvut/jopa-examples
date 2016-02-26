@@ -1,1 +1,6 @@
-http://onto.felk.cvut.cz/ontologies/2016/jopa-eswc2016.owl -> ./ic-eswc2016.owl
+http://onto.felk.cvut.cz/ontologies/2016/jopa-eswc2016.owl > ./ic-eswc2016.owl
+http://onto.fel.cvut.cz/ontologies/aviation/documentation > ./documentation.rdf
+http://onto.fel.cvut.cz/ontologies/ufo > ./ufo.rdf
+http://onto.fel.cvut.cz/ontologies/ufo/ufo-a > ./ufo-a.rdf
+http://onto.fel.cvut.cz/ontologies/ufo/ufo-b > ./ufo-b.rdf
+http://onto.fel.cvut.cz/ontologies/ufo/powertypes > ./ufo-powertypes.rdf

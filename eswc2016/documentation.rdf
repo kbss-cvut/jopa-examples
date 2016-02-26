@@ -1,0 +1,700 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY doc "http://onto.fel.cvut.cz/ontologies/documentation/" >
+    <!ENTITY documentation "http://onto.fel.cvut.cz/ontologies/aviation/documentation/" >
+]>
+
+
+<rdf:RDF xmlns="http://onto.fel.cvut.cz/ontologies/aviation/documentation"
+     xml:base="http://onto.fel.cvut.cz/ontologies/aviation/documentation"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:documentation="http://onto.fel.cvut.cz/ontologies/aviation/documentation/"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:doc="http://onto.fel.cvut.cz/ontologies/documentation/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/documentation">
+        <owl:imports rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation/documentation/TODO -->
+
+    <owl:AnnotationProperty rdf:about="&documentation;TODO"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/relates_to -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-safety/relates_to"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/documents -->
+
+    <owl:ObjectProperty rdf:about="&doc;documents">
+        <rdfs:subPropertyOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/relates_to"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/hasAuthor -->
+
+    <owl:ObjectProperty rdf:about="&doc;hasAuthor">
+        <rdfs:subPropertyOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/relates_to"/>
+        <rdfs:domain rdf:resource="&doc;logical_record"/>
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Agent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/hasConsumer -->
+
+    <owl:ObjectProperty rdf:about="&doc;hasConsumer">
+        <rdfs:comment xml:lang="en">This relates an EntityDocumentation object with an Agent which is interested in this type of EntityDocuement.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/relates_to"/>
+        <rdfs:domain rdf:resource="&doc;logical_record"/>
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Agent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/has_documentation_part -->
+
+    <owl:ObjectProperty rdf:about="&doc;has_documentation_part">
+        <rdfs:label xml:lang="cs">má dokumentační část</rdfs:label>
+        <rdfs:label xml:lang="en">has documentation part</rdfs:label>
+        <rdfs:domain rdf:resource="&doc;logical_record"/>
+        <rdfs:range rdf:resource="&doc;logical_record"/>
+        <rdfs:subPropertyOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_object_part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/has_object_value -->
+
+    <owl:ObjectProperty rdf:about="&doc;has_object_value">
+        <rdfs:label xml:lang="cs">má objektovou hodnotu</rdfs:label>
+        <rdfs:label xml:lang="en">has object value</rdfs:label>
+        <rdfs:domain rdf:resource="&doc;answer"/>
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Entity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/has_question -->
+
+    <owl:ObjectProperty rdf:about="&doc;has_question">
+        <rdfs:label xml:lang="cs">má otázku</rdfs:label>
+        <rdfs:label xml:lang="en">has question</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="&doc;has_documentation_part"/>
+        <rdfs:domain rdf:resource="&doc;logical_form"/>
+        <rdfs:range rdf:resource="&doc;question"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/is_realization_of -->
+
+    <owl:ObjectProperty rdf:about="&doc;is_realization_of">
+        <rdfs:label xml:lang="cs">je realizací</rdfs:label>
+        <rdfs:label xml:lang="en">is realization of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentationy/has_answer -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/documentationy/has_answer">
+        <rdfs:label xml:lang="cs">má odpověd</rdfs:label>
+        <rdfs:label xml:lang="en">has answer</rdfs:label>
+        <rdfs:range rdf:resource="&doc;answer"/>
+        <rdfs:domain rdf:resource="&doc;filled_form"/>
+        <rdfs:subPropertyOf rdf:resource="&doc;has_documentation_part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/has_data_value -->
+
+    <owl:DatatypeProperty rdf:about="&doc;has_data_value">
+        <rdfs:label xml:lang="cs">má datovou hodnotu</rdfs:label>
+        <rdfs:label xml:lang="en">has data value</rdfs:label>
+        <rdfs:domain rdf:resource="&doc;answer"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/attribute_type -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-safety/attribute_type">
+        <rdfs:label xml:lang="cs">Typ atributu</rdfs:label>
+        <rdfs:label xml:lang="en">Attribute type</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/power_type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/AtomicStatements -->
+
+    <owl:Class rdf:about="&doc;AtomicStatements">
+        <rdfs:subClassOf rdf:resource="&doc;Statement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/AudioData -->
+
+    <owl:Class rdf:about="&doc;AudioData">
+        <rdfs:subClassOf rdf:resource="&doc;SensoryData"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/ChangeStatement -->
+
+    <owl:Class rdf:about="&doc;ChangeStatement">
+        <rdfs:subClassOf rdf:resource="&doc;FactualStatements"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/CompositeManifestation -->
+
+    <owl:Class rdf:about="&doc;CompositeManifestation">
+        <rdfs:label>CompositeManifestation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_part"/>
+                <owl:someValuesFrom rdf:resource="&doc;logical_record"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <TODO xml:lang="en">physical document</TODO>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/Data -->
+
+    <owl:Class rdf:about="&doc;Data">
+        <rdfs:subClassOf rdf:resource="&doc;logical_record"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/Diagrams -->
+
+    <owl:Class rdf:about="&doc;Diagrams">
+        <rdfs:subClassOf rdf:resource="&doc;Statement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/ExistentialStatement -->
+
+    <owl:Class rdf:about="&doc;ExistentialStatement">
+        <rdfs:subClassOf rdf:resource="&doc;FactualStatements"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/FactualStatements -->
+
+    <owl:Class rdf:about="&doc;FactualStatements">
+        <rdfs:subClassOf rdf:resource="&doc;AtomicStatements"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/ImageData -->
+
+    <owl:Class rdf:about="&doc;ImageData">
+        <rdfs:subClassOf rdf:resource="&doc;SensoryData"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/ImperativeStatement -->
+
+    <owl:Class rdf:about="&doc;ImperativeStatement">
+        <rdfs:subClassOf rdf:resource="&doc;AtomicStatements"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/NaturalLanguage -->
+
+    <owl:Class rdf:about="&doc;NaturalLanguage">
+        <rdfs:subClassOf rdf:resource="&doc;Statement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/NegationStatement -->
+
+    <owl:Class rdf:about="&doc;NegationStatement">
+        <rdfs:subClassOf rdf:resource="&doc;FactualStatements"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/OWL -->
+
+    <owl:Class rdf:about="&doc;OWL">
+        <rdfs:subClassOf rdf:resource="&doc;Structured"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/Relational -->
+
+    <owl:Class rdf:about="&doc;Relational">
+        <rdfs:subClassOf rdf:resource="&doc;Structured"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/RuleStatement -->
+
+    <owl:Class rdf:about="&doc;RuleStatement">
+        <rdfs:subClassOf rdf:resource="&doc;AtomicStatements"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/SensoryData -->
+
+    <owl:Class rdf:about="&doc;SensoryData">
+        <rdfs:subClassOf rdf:resource="&doc;SimpleDocumentation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/SimpleDocumentation -->
+
+    <owl:Class rdf:about="&doc;SimpleDocumentation">
+        <rdfs:subClassOf rdf:resource="&doc;logical_record"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/Statement -->
+
+    <owl:Class rdf:about="&doc;Statement">
+        <rdfs:subClassOf rdf:resource="&doc;SimpleDocumentation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/Structured -->
+
+    <owl:Class rdf:about="&doc;Structured">
+        <rdfs:subClassOf rdf:resource="&doc;Statement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/Tabular -->
+
+    <owl:Class rdf:about="&doc;Tabular">
+        <rdfs:subClassOf rdf:resource="&doc;Structured"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/TropeAttributionStatement -->
+
+    <owl:Class rdf:about="&doc;TropeAttributionStatement">
+        <rdfs:subClassOf rdf:resource="&doc;FactualStatements"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/VideoData -->
+
+    <owl:Class rdf:about="&doc;VideoData">
+        <rdfs:subClassOf rdf:resource="&doc;SensoryData"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/answer -->
+
+    <owl:Class rdf:about="&doc;answer">
+        <rdfs:label xml:lang="cs">Odpověd</rdfs:label>
+        <rdfs:label xml:lang="en">Answer</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&doc;logical_record"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&doc;is_realization_of"/>
+                <owl:someValuesFrom rdf:resource="&doc;question"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/checklist -->
+
+    <owl:Class rdf:about="&doc;checklist">
+        <rdfs:label xml:lang="cs">Kontrolní list</rdfs:label>
+        <rdfs:label xml:lang="en">Checklist</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&doc;logical_form"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/choice_question -->
+
+    <owl:Class rdf:about="&doc;choice_question">
+        <rdfs:label xml:lang="en">Choice question</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&doc;simple_attribute"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/composite_attribute -->
+
+    <owl:Class rdf:about="&doc;composite_attribute">
+        <rdfs:label xml:lang="cs">Složená otázka</rdfs:label>
+        <rdfs:label xml:lang="en">Composite question</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&doc;question"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_object_part"/>
+                <owl:someValuesFrom rdf:resource="&doc;question"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/data_attribute_value -->
+
+    <owl:Class rdf:about="&doc;data_attribute_value">
+        <rdfs:label xml:lang="cs">Datová hodnota atributu</rdfs:label>
+        <rdfs:label xml:lang="en">Data attribute value</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&doc;answer"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&doc;has_data_value"/>
+                        <owl:someValuesFrom rdf:resource="&rdfs;Literal"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&doc;answer"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/document_section -->
+
+    <owl:Class rdf:about="&doc;document_section">
+        <rdfs:label xml:lang="cs">Sekce dokumentu</rdfs:label>
+        <rdfs:label xml:lang="en">Document section</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&doc;logical_record"/>
+        <rdfs:comment xml:lang="en">Any logical record that can be identified by a title/name - e.g. real sections/subsections</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/filled_form -->
+
+    <owl:Class rdf:about="&doc;filled_form">
+        <rdfs:label xml:lang="cs">Vyplněný formulář</rdfs:label>
+        <rdfs:label xml:lang="en">Filled form</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&doc;logical_document"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&doc;is_realization_of"/>
+                <owl:someValuesFrom rdf:resource="&doc;logical_form"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <TODO xml:lang="cs">Form instance</TODO>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/logical_document -->
+
+    <owl:Class rdf:about="&doc;logical_document">
+        <rdfs:label xml:lang="cs">Logický dokument</rdfs:label>
+        <rdfs:label xml:lang="en">Logical document</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&doc;logical_record"/>
+        <rdfs:comment xml:lang="cs">Dokument reprezentuje sadu tvrzení (statementů), která je logicky kompaktní, samonosná a identifikovatelná. 
+
+Příkladem dokumentu je Předpis L13, Dodatek N předpisu L13, nebo Nařízení 376/2014.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/logical_form -->
+
+    <owl:Class rdf:about="&doc;logical_form">
+        <rdfs:label xml:lang="cs">Logický formulář</rdfs:label>
+        <rdfs:label xml:lang="en">Logical form</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&doc;logical_document"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&doc;has_question"/>
+                <owl:someValuesFrom rdf:resource="&doc;question"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="cs">Tato entita označuje informační artefakt s jednoznačnou identifikací, který sdružuje požadavky (otázky), typicky vyplývající z legislativy.
+
+Příklady zahrnují definice checklistů, definice reportovacích formulářů</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/logical_record -->
+
+    <owl:Class rdf:about="&doc;logical_record">
+        <rdfs:label xml:lang="cs">Logický zápis</rdfs:label>
+        <rdfs:label xml:lang="en">Logical record</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&doc;documents"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Entity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/object_attribute_value -->
+
+    <owl:Class rdf:about="&doc;object_attribute_value">
+        <rdfs:label xml:lang="cs">Objektová hodnota atributu</rdfs:label>
+        <rdfs:label xml:lang="en">Object attribute value</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&doc;answer"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&doc;has_object_value"/>
+                        <owl:someValuesFrom rdf:resource="&owl;Thing"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&doc;answer"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/question -->
+
+    <owl:Class rdf:about="&doc;question">
+        <rdfs:label xml:lang="cs">Otázka</rdfs:label>
+        <rdfs:label xml:lang="en">Question</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&doc;logical_record"/>
+        <rdfs:comment xml:lang="cs">Otázka představuje část formuláře, na kterou se očekává vstup od reportéra. Otázka má typ (string, datum, integer, číslo mezi 1 a 5, vyplnění seznamu podotázek atd.).</rdfs:comment>
+        <TODO xml:lang="cs">vztah mezi otázkou a atributem.</TODO>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/regulation_document -->
+
+    <owl:Class rdf:about="&doc;regulation_document">
+        <rdfs:label xml:lang="cs">Regulační dokument</rdfs:label>
+        <rdfs:label xml:lang="en">Regulation document</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&doc;logical_document"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/report -->
+
+    <owl:Class rdf:about="&doc;report">
+        <rdfs:label xml:lang="cs">Zpráva</rdfs:label>
+        <rdfs:label xml:lang="en">Report</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&doc;logical_document"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/short_answer_question -->
+
+    <owl:Class rdf:about="&doc;short_answer_question">
+        <rdfs:label xml:lang="en">Short answer question</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&doc;simple_attribute"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/simple_attribute -->
+
+    <owl:Class rdf:about="&doc;simple_attribute">
+        <rdfs:label xml:lang="cs">Jednoduchá otázka</rdfs:label>
+        <rdfs:label xml:lang="en">Simple question</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&doc;question"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/ae_long_text -->
+
+    <owl:NamedIndividual rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-safety/ae_long_text">
+        <rdf:type rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/attribute_type"/>
+        <rdfs:label xml:lang="cs">Atribut dlouhého textového vstupu</rdfs:label>
+        <rdfs:label xml:lang="en">Long text attribute</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/ae_selection -->
+
+    <owl:NamedIndividual rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-safety/ae_selection">
+        <rdf:type rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/attribute_type"/>
+        <rdfs:label xml:lang="cs">Atribut výběru</rdfs:label>
+        <rdfs:label xml:lang="en">Selection attribute</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/ae_short_text -->
+
+    <owl:NamedIndividual rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-safety/ae_short_text">
+        <rdf:type rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/attribute_type"/>
+        <rdfs:label xml:lang="cs">Atribut krátkého textového vstupu</rdfs:label>
+        <rdfs:label xml:lang="en">Short text attribute</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="urn:swrl#x">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#y">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&doc;question"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#y"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&doc;logical_form"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest rdf:resource="&rdf;nil"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_object_part"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#x"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#y"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+

@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY terms "http://purl.org/dc/terms/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY voc "http://onto.fel.cvut.cz/ontologies/voc/" >
+    <!ENTITY ufo "http://onto.fel.cvut.cz/ontologies/ufo/" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://onto.fel.cvut.cz/ontologies/ufo#"
+     xml:base="http://onto.fel.cvut.cz/ontologies/ufo"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:voc="http://onto.fel.cvut.cz/ontologies/voc/"
+     xmlns:ufo="http://onto.fel.cvut.cz/ontologies/ufo/">
+    <owl:Ontology rdf:about="http://onto.fel.cvut.cz/ontologies/ufo">
+        <owl:imports rdf:resource="&ufo;powertypes"/>
+        <owl:imports rdf:resource="&ufo;ufo-a"/>
+        <owl:imports rdf:resource="&ufo;ufo-b"/>
+        <terms:creator rdf:resource="http://sio2.cz/people/petr-kremen"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/voc/has_definition -->
+
+    <owl:AnnotationProperty rdf:about="&voc;has_definition"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/voc/has_example -->
+
+    <owl:AnnotationProperty rdf:about="&voc;has_example"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/voc/has_usage -->
+
+    <owl:AnnotationProperty rdf:about="&voc;has_usage"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/creator -->
+
+    <owl:AnnotationProperty rdf:about="&terms;creator"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/has_property -->
+
+    <owl:ObjectProperty rdf:about="&ufo;has_property"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/is_performed_by -->
+
+    <owl:ObjectProperty rdf:about="&ufo;is_performed_by">
+        <rdfs:domain rdf:resource="&ufo;Action"/>
+        <rdfs:range rdf:resource="&ufo;Agent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/performs -->
+
+    <owl:ObjectProperty rdf:about="&ufo;performs">
+        <rdfs:label xml:lang="en">performs</rdfs:label>
+        <rdfs:range rdf:resource="&ufo;Action"/>
+        <rdfs:domain rdf:resource="&ufo;Agent"/>
+        <owl:inverseOf rdf:resource="&ufo;is_performed_by"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Action -->
+
+    <owl:Class rdf:about="&ufo;Action">
+        <voc:has_example xml:lang="en">- *Use of deicing equipment* is an action performed by aerodrome staff.
+- An *ATC clearance deviation* is an action performed by a pilot.</voc:has_example>
+        <voc:has_usage xml:lang="en">- An action *is performed by* an agent.</voc:has_usage>
+        <voc:has_definition xml:lang="en">Action is an event performed by an Agent. A single proactive object (agent) is responsible for performing the action.</voc:has_definition>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Agent -->
+
+    <owl:Class rdf:about="&ufo;Agent">
+        <voc:has_usage xml:lang="en">* An agent *performs* an action.
+* An agent *provides* a service.</voc:has_usage>
+        <voc:has_example xml:lang="en">- A *pilot* is an agent who operates the aircraft, communicates with ATC, etc.
+- An *air traffic control organization* is an agent (legal body) that provides services, reacts to other organization requests, etc.</voc:has_example>
+        <voc:has_definition xml:lang="en">Agent is a proactive object. It has its own beliefs, intentions, goals.</voc:has_definition>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Organization -->
+
+    <owl:Class rdf:about="&ufo;Organization">
+        <rdfs:subClassOf rdf:resource="&ufo;Agent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Person -->
+
+    <owl:Class rdf:about="&ufo;Person">
+        <rdfs:subClassOf rdf:resource="&ufo;physical_agent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Physical_object -->
+
+    <owl:Class rdf:about="&ufo;Physical_object"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/atomic_event -->
+
+    <owl:Class rdf:about="&ufo;atomic_event"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/complex_event -->
+
+    <owl:Class rdf:about="&ufo;complex_event"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/physical_agent -->
+
+    <owl:Class rdf:about="&ufo;physical_agent">
+        <rdfs:subClassOf rdf:resource="&ufo;Agent"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+
