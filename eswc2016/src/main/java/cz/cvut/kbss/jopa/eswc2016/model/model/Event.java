@@ -1,6 +1,7 @@
 
 package cz.cvut.kbss.jopa.eswc2016.model.model;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 import cz.cvut.kbss.jopa.CommonVocabulary;
@@ -8,6 +9,7 @@ import cz.cvut.kbss.jopa.eswc2016.model.Vocabulary;
 import cz.cvut.kbss.jopa.model.annotations.Id;
 import cz.cvut.kbss.jopa.model.annotations.OWLAnnotationProperty;
 import cz.cvut.kbss.jopa.model.annotations.OWLClass;
+import cz.cvut.kbss.jopa.model.annotations.OWLDataProperty;
 import cz.cvut.kbss.jopa.model.annotations.OWLObjectProperty;
 import cz.cvut.kbss.jopa.model.annotations.ParticipationConstraint;
 import cz.cvut.kbss.jopa.model.annotations.ParticipationConstraints;
@@ -33,10 +35,22 @@ public class Event {
     @Properties
     protected Map<String, Set<String>> properties;
     @OWLObjectProperty(iri = Vocabulary.s_p_isDocumentedBy)
+    protected Set<report> isDocumentedBy;
+    @OWLDataProperty(iri = Vocabulary.s_p_date_A)
     @ParticipationConstraints({
-        @ParticipationConstraint(owlObjectIRI = Vocabulary.s_c_report, min = 1)
+        @ParticipationConstraint(owlObjectIRI = Vocabulary.s_d_dateTime, min = 1, max = 1)
     })
-    protected Set<Thing> isDocumentedBy;
+    protected Date date;
+    @OWLDataProperty(iri = Vocabulary.s_p_identifier)
+    @ParticipationConstraints({
+        @ParticipationConstraint(owlObjectIRI = Vocabulary.s_d__long, min = 1, max = 1)
+    })
+    protected Long identifier;
+    @OWLDataProperty(iri = Vocabulary.s_p_title_A_A)
+    @ParticipationConstraints({
+        @ParticipationConstraint(owlObjectIRI = Vocabulary.s_d_string, min = 1, max = 1)
+    })
+    protected String title;
 
     public void setName(String name) {
         this.name = name;
@@ -78,12 +92,36 @@ public class Event {
         return properties;
     }
 
-    public void setIsDocumentedBy(Set<Thing> isDocumentedBy) {
+    public void setIsDocumentedBy(Set<report> isDocumentedBy) {
         this.isDocumentedBy = isDocumentedBy;
     }
 
-    public Set<Thing> getIsDocumentedBy() {
+    public Set<report> getIsDocumentedBy() {
         return isDocumentedBy;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setIdentifier(Long identifier) {
+        this.identifier = identifier;
+    }
+
+    public Long getIdentifier() {
+        return identifier;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
 }

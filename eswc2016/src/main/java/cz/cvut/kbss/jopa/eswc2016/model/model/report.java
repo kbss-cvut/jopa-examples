@@ -1,6 +1,7 @@
 
 package cz.cvut.kbss.jopa.eswc2016.model.model;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 import cz.cvut.kbss.jopa.CommonVocabulary;
@@ -8,6 +9,7 @@ import cz.cvut.kbss.jopa.eswc2016.model.Vocabulary;
 import cz.cvut.kbss.jopa.model.annotations.Id;
 import cz.cvut.kbss.jopa.model.annotations.OWLAnnotationProperty;
 import cz.cvut.kbss.jopa.model.annotations.OWLClass;
+import cz.cvut.kbss.jopa.model.annotations.OWLDataProperty;
 import cz.cvut.kbss.jopa.model.annotations.OWLObjectProperty;
 import cz.cvut.kbss.jopa.model.annotations.ParticipationConstraint;
 import cz.cvut.kbss.jopa.model.annotations.ParticipationConstraints;
@@ -33,20 +35,27 @@ public class report {
     @Properties
     protected Map<String, Set<String>> properties;
     @OWLObjectProperty(iri = Vocabulary.s_p_has_documentation_part)
-    @ParticipationConstraints({
-        @ParticipationConstraint(owlObjectIRI = Vocabulary.s_c_logical_record, min = 1)
-    })
-    protected Set<Thing> has_documentation_part;
+    protected Set<logical_record> has_documentation_part;
     @OWLObjectProperty(iri = Vocabulary.s_p_hasAuthor)
     @ParticipationConstraints({
-        @ParticipationConstraint(owlObjectIRI = Vocabulary.s_c_Person, min = 1, max = 1)
+        @ParticipationConstraint(owlObjectIRI = Vocabulary.s_c_Person_A_A_A, max = 1)
     })
-    protected Set<Thing> hasAuthor;
+    protected Person hasAuthor;
     @OWLObjectProperty(iri = Vocabulary.s_p_documents)
     @ParticipationConstraints({
         @ParticipationConstraint(owlObjectIRI = Vocabulary.s_c_Event, min = 1, max = 1)
     })
-    protected Set<Thing> documents;
+    protected Event documents;
+    @OWLDataProperty(iri = Vocabulary.s_p_created)
+    @ParticipationConstraints({
+        @ParticipationConstraint(owlObjectIRI = Vocabulary.s_d_dateTime, max = 1)
+    })
+    protected Date created;
+    @OWLDataProperty(iri = Vocabulary.s_p_identifier)
+    @ParticipationConstraints({
+        @ParticipationConstraint(owlObjectIRI = Vocabulary.s_d__long, min = 1, max = 1)
+    })
+    protected Long identifier;
 
     public void setName(String name) {
         this.name = name;
@@ -88,28 +97,44 @@ public class report {
         return properties;
     }
 
-    public void setHas_documentation_part(Set<Thing> has_documentation_part) {
+    public void setHas_documentation_part(Set<logical_record> has_documentation_part) {
         this.has_documentation_part = has_documentation_part;
     }
 
-    public Set<Thing> getHas_documentation_part() {
+    public Set<logical_record> getHas_documentation_part() {
         return has_documentation_part;
     }
 
-    public void setHasAuthor(Set<Thing> hasAuthor) {
+    public void setHasAuthor(Person hasAuthor) {
         this.hasAuthor = hasAuthor;
     }
 
-    public Set<Thing> getHasAuthor() {
+    public Person getHasAuthor() {
         return hasAuthor;
     }
 
-    public void setDocuments(Set<Thing> documents) {
+    public void setDocuments(Event documents) {
         this.documents = documents;
     }
 
-    public Set<Thing> getDocuments() {
+    public Event getDocuments() {
         return documents;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setIdentifier(Long identifier) {
+        this.identifier = identifier;
+    }
+
+    public Long getIdentifier() {
+        return identifier;
     }
 
 }

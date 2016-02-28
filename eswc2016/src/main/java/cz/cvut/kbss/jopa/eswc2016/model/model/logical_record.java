@@ -36,7 +36,7 @@ public class logical_record {
     @ParticipationConstraints({
         @ParticipationConstraint(owlObjectIRI = Vocabulary.s_c_question, min = 1, max = 1)
     })
-    protected Set<Thing> has_question;
+    protected question has_question;
     @OWLObjectProperty(iri = Vocabulary.s_p_has_answer)
     @ParticipationConstraints({
         @ParticipationConstraint(owlObjectIRI = Vocabulary.s_c_answer, min = 1, max = 1)
@@ -83,11 +83,11 @@ public class logical_record {
         return properties;
     }
 
-    public void setHas_question(Set<Thing> has_question) {
+    public void setHas_question(question has_question) {
         this.has_question = has_question;
     }
 
-    public Set<Thing> getHas_question() {
+    public question getHas_question() {
         return has_question;
     }
 

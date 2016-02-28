@@ -8,6 +8,9 @@ import cz.cvut.kbss.jopa.eswc2016.model.Vocabulary;
 import cz.cvut.kbss.jopa.model.annotations.Id;
 import cz.cvut.kbss.jopa.model.annotations.OWLAnnotationProperty;
 import cz.cvut.kbss.jopa.model.annotations.OWLClass;
+import cz.cvut.kbss.jopa.model.annotations.OWLDataProperty;
+import cz.cvut.kbss.jopa.model.annotations.ParticipationConstraint;
+import cz.cvut.kbss.jopa.model.annotations.ParticipationConstraints;
 import cz.cvut.kbss.jopa.model.annotations.Properties;
 import cz.cvut.kbss.jopa.model.annotations.Types;
 
@@ -29,6 +32,11 @@ public class answer {
     protected String id;
     @Properties
     protected Map<String, Set<String>> properties;
+    @OWLDataProperty(iri = Vocabulary.s_p_has_data_value)
+    @ParticipationConstraints({
+        @ParticipationConstraint(owlObjectIRI = Vocabulary.s_d_string, min = 1, max = 1)
+    })
+    protected String has_data_value;
 
     public void setName(String name) {
         this.name = name;
@@ -68,6 +76,14 @@ public class answer {
 
     public Map<String, Set<String>> getProperties() {
         return properties;
+    }
+
+    public void setHas_data_value(String has_data_value) {
+        this.has_data_value = has_data_value;
+    }
+
+    public String getHas_data_value() {
+        return has_data_value;
     }
 
 }
