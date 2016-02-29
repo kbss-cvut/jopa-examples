@@ -14,6 +14,19 @@ class Util {
         var minute = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes().toString();
         return (day + '-' + month + '-' + year + ' ' + hour + ':' + minute);
     }
+
+    /**
+     * Extracts report key from location header in the specified Ajax response.
+     * @param response Ajax response
+     * @return {string} Report key as string
+     */
+    extractKeyFromLocationHeader(response) {
+        var location = response.headers['location'];
+        if (!location) {
+            return '';
+        }
+        return location.substring(location.lastIndexOf('/') + 1);
+    }
 }
 
 export default new Util();

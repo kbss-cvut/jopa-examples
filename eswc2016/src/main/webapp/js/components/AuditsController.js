@@ -43,8 +43,8 @@ export default class AuditsController extends React.Component {
         Routing.transitionTo('audits/create');
     }
 
-    _removeAudit(key) {
-        Actions.removeAudit(key);
+    _removeAudit(key, callback) {
+        Actions.deleteAudit(key, callback);
     }
 
     render() {

@@ -24,7 +24,7 @@ export default class Audits extends React.Component {
     }
 
     removeAudit() {
-        this.props.actions.remove(this.state.currentAuditKey);
+        this.props.actions.remove(this.state.currentAuditKey, this._hideDeleteDialog.bind(this));
     }
 
     render() {

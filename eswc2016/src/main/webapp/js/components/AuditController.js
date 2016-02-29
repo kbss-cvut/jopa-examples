@@ -33,6 +33,10 @@ export default class AuditController extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        this.unsubscribe();
+    }
+
     _onAuditLoaded(data) {
         if (data.action !== Actions.loadAudit) {
             return;

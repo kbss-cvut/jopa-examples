@@ -4,6 +4,7 @@ var Reflux = require('reflux');
 var request = require('superagent');
 
 var Actions = require('../actions/Actions');
+var Util = require('../util/Util').default;
 
 var audits = null;
 
@@ -38,11 +39,12 @@ var AuditStore = Reflux.createStore({
     },
 
     onCreateAudit: function (audit, onSuccess) {
-        request.post('rest/events').type('json').send(audit).end(function (err) {
+        request.post('rest/events').type('json').send(audit).end(function (err, resp) {
             if (err) {
                 console.log(err);
             } else {
                 this.onLoadAudits(true);
+                this.onLoadAudit(Util.extractKeyFromLocationHeader(resp));
                 if (onSuccess) {
                     onSuccess();
                 }
@@ -50,12 +52,28 @@ var AuditStore = Reflux.createStore({
         }.bind(this));
     },
 
-    onDeleteAudit: function (student) {
-        request.del('rest/events/' + student.key).end(function (err) {
+    onUpdateAudit: function (audit, onSuccess) {
+        request.put('rest/events/' + audit.identifier).type('json').send(audit).end(function (err) {
+            if (err) {
+                console.log(err);
+            } else {
+                this.onLoadAudit(audit.identifier);
+                if (onSuccess) {
+                    onSuccess();
+                }
+            }
+        }.bind(this));
+    },
+
+    onDeleteAudit: function (auditKey, onSuccess) {
+        request.del('rest/events/' + auditKey).end(function (err) {
             if (err) {
                 console.log(err);
             } else {
                 this.onLoadAudits(true);
+                if (onSuccess) {
+                    onSuccess();
+                }
             }
         }.bind(this));
     },
