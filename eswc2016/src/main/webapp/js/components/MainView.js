@@ -1,8 +1,8 @@
 'use strict';
 
 import React from 'react';
-import Data from './Data';
-import Students from './Students';
+import {Nav, Navbar, NavBrand, NavItem} from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap';
 
 export default class MainView extends React.Component {
     constructor() {
@@ -12,12 +12,20 @@ export default class MainView extends React.Component {
     render() {
         return (
             <div>
-                <div className='col-xs-5'>
-                    <Students />
-                </div>
-                <div className='col-xs-7'>
-                    <Data />
-                </div>
+                <header>
+                    <Navbar fluid={true}>
+                        <NavBrand>JOPA ESWC 2016</NavBrand>
+                        <Nav>
+                            <LinkContainer
+                                to='audits'><NavItem>Audits</NavItem></LinkContainer>
+                            <LinkContainer
+                                to='data'><NavItem>Data</NavItem></LinkContainer>
+                        </Nav>
+                    </Navbar>
+                </header>
+                <section style={{height: '100%'}}>
+                    {this.props.children}
+                </section>
             </div>
         );
     }

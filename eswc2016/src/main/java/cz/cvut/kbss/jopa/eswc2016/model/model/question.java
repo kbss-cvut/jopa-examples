@@ -32,6 +32,11 @@ public class question {
     protected String id;
     @Properties
     protected Map<String, Set<String>> properties;
+    @OWLDataProperty(iri = Vocabulary.s_p_identifier)
+    @ParticipationConstraints({
+        @ParticipationConstraint(owlObjectIRI = Vocabulary.s_d__long, min = 1, max = 1)
+    })
+    protected Long identifier;
     @OWLDataProperty(iri = Vocabulary.s_p_has_data_value)
     @ParticipationConstraints({
         @ParticipationConstraint(owlObjectIRI = Vocabulary.s_d_string, min = 1, max = 1)
@@ -76,6 +81,14 @@ public class question {
 
     public Map<String, Set<String>> getProperties() {
         return properties;
+    }
+
+    public void setIdentifier(Long identifier) {
+        this.identifier = identifier;
+    }
+
+    public Long getIdentifier() {
+        return identifier;
     }
 
     public void setHas_data_value(String has_data_value) {

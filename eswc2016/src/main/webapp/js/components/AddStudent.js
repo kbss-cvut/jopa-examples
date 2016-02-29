@@ -26,7 +26,7 @@ export default class AddStudent extends React.Component {
     }
 
     onSubmit() {
-        Actions.saveStudent(this.state);
+        Actions.saveAudit(this.state);
         this.setState({
             firstName: '',
             lastName: '',

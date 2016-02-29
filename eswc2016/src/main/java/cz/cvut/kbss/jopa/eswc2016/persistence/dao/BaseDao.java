@@ -33,7 +33,7 @@ public abstract class BaseDao<T> {
     @Autowired
     private EntityManagerFactory emf;
 
-    public T find(URI uri) {
+    public T find(String uri) {
         Objects.requireNonNull(uri);
         final EntityManager em = entityManager();
         try {
@@ -43,11 +43,11 @@ public abstract class BaseDao<T> {
         }
     }
 
-    protected T findByUri(URI uri, EntityManager em) {
+    protected T findByUri(String uri, EntityManager em) {
         return em.find(type, uri);
     }
 
-    public T findByKey(String key) {
+    public T findByKey(Long key) {
         Objects.requireNonNull(key);
         final EntityManager em = entityManager();
         try {
@@ -57,11 +57,11 @@ public abstract class BaseDao<T> {
         }
     }
 
-    protected T findByKey(String key, EntityManager em) {
+    protected T findByKey(Long key, EntityManager em) {
         try {
             return em.createNativeQuery("SELECT ?x WHERE { ?x <" + Vocabulary.s_p_identifier + "> ?key ;" +
                     "a ?type }", type)
-                     .setParameter("key", key, "en").setParameter("type", typeUri).getSingleResult();
+                     .setParameter("key", key).setParameter("type", typeUri).getSingleResult();
         } catch (NoResultException e) {
             return null;
         }

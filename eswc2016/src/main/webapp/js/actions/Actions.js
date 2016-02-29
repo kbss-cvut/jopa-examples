@@ -6,7 +6,9 @@ var Reflux = require('reflux');
  * Reflux actions, listened to by StudentStore.
  */
 var Actions = Reflux.createActions([
-    'loadStudents', 'saveStudent', 'deleteStudent', 'loadData'
+    'loadAudits', 'loadAudit', 'createAudit', 'updateAudit', 'deleteAudit', 'loadReport', 'saveReport', 'updateReport', 'deleteReport',
+
+    'loadData'
 ]);
 
 module.exports = Actions;

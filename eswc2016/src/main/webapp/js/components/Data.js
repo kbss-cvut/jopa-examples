@@ -4,7 +4,7 @@ import React from 'react';
 import {Panel, Input} from 'react-bootstrap';
 
 import DataStore from '../stores/DataStore';
-import StudentStore from '../stores/StudentStore';
+import AuditStore from '../stores/AuditStore';
 import Actions from '../actions/Actions';
 
 /**
@@ -16,14 +16,16 @@ export default class Data extends React.Component {
         this.state = {data: '', format: 'rdfxml'}
     }
 
+    componentWillMount() {
+        Actions.loadData(this.state.format);
+    }
+
     componentDidMount() {
         this.unsubscribe = DataStore.listen(this.onDataLoaded.bind(this));
-        this.unsubscribeStudents = StudentStore.listen(this.onLoadData.bind(this));
     }
 
     componentWillUnmount() {
         this.unsubscribe();
-        this.unsubscribeStudents();
     }
 
     onDataLoaded(data) {

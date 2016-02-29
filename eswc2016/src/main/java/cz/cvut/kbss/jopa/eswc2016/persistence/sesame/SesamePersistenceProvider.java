@@ -72,7 +72,7 @@ public class SesamePersistenceProvider {
         final EntityManager em = emf.createEntityManager();
         try {
             // The URI doesn't matter, we just need to trigger repository connection initialization
-            em.createNativeQuery("ASK ?x { ?x a <http://example.org> . }", Boolean.class).getSingleResult();
+            em.createNativeQuery("ASK { ?x a <http://example.org> . }", Boolean.class).getSingleResult();
         } finally {
             em.close();
         }
