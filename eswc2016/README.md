@@ -45,5 +45,5 @@ Individual JS files contain some additional explanatory comments.
 - Storage switch
 - Properties, types     **OK**
 - Possible to view raw storage content in UI    **OK**
-- Possible to add/remove unmapped properties in UI
+- Possible to add/remove unmapped properties in UI  **OK**
 - Air safety domain     **OK**
