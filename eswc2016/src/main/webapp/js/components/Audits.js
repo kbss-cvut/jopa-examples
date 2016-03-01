@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {Panel, Button, ButtonToolbar, Table} from 'react-bootstrap';
+import {Panel, Button, Table} from 'react-bootstrap';
 
 import DeleteDialog from './DeleteDialog';
 import Util from '../util/Util';
@@ -74,17 +74,13 @@ class AuditRow extends React.Component {
     }
 
     render() {
-        var audit = this.props.audit,
-            style = {textAlign: 'center'};
+        var audit = this.props.audit;
         return <tr>
             <td>{audit.title}</td>
-            <td style={style}>{Util.formatDate(new Date(audit.date))}</td>
-            <td style={style}>
-                <ButtonToolbar>
-                    <Button bsStyle='info' onClick={this._editAudit.bind(this)}>Edit</Button>
-                    <Button style={{margin: '0 0 0 0.5em'}} bsStyle='warning'
-                            onClick={this._removeAudit.bind(this)}>Remove</Button>
-                </ButtonToolbar>
+            <td className='centered'>{Util.formatDate(new Date(audit.date))}</td>
+            <td className='actions'>
+                <Button bsStyle='info' bsSize='small' onClick={this._editAudit.bind(this)}>Edit</Button>
+                <Button bsStyle='warning' bsSize='small' onClick={this._removeAudit.bind(this)}>Remove</Button>
             </td>
         </tr>;
     }

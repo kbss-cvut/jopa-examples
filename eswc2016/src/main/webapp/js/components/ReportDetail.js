@@ -6,6 +6,7 @@ import assign from 'object-assign';
 
 import BasicAuditInfo from './BasicAuditInfo';
 import ReportRecords from './ReportRecords';
+import Properties from './Properties';
 import Util from '../util/Util';
 
 export default class ReportDetail extends React.Component {
@@ -30,6 +31,8 @@ export default class ReportDetail extends React.Component {
                 {this._renderOriginInfo()}
 
                 <ReportRecords report={report} onChange={this.props.actions.change}/>
+
+                <Properties properties={report.properties} onChange={this.props.actions.change}/>
 
                 <ButtonToolbar>
                     <Button bsStyle='success' onClick={this.props.actions.save}>Save</Button>

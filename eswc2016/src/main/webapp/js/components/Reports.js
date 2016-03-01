@@ -49,7 +49,7 @@ export default class Reports extends React.Component {
     }
 
     _renderReportRows() {
-        var reports = this.props.audit.reports,
+        var reports = this.props.reports,
             rows = [];
         for (var i = 0, len = reports.length; i < len; i++) {
             rows.push(<ReportRow key={report.identifier} report={reports[i]} edit={this.props.actions.editReport}
@@ -74,9 +74,9 @@ class ReportRow extends React.Component {
         return <tr>
             <td>{report.created}</td>
             <td>{report.records ? report.records.length : 0}</td>
-            <td>
-                <Button bsStyle='info' onClick={this._onEditReport.bind(this)}>Edit</Button>
-                <Button bsStyle='warning' onClick={this.onRemoveReport.bind(this)}>Remove</Button>
+            <td className='actions'>
+                <Button bsStyle='info' bsSize='small' onClick={this._onEditReport.bind(this)}>Edit</Button>
+                <Button bsStyle='warning' bsSize='small' onClick={this.onRemoveReport.bind(this)}>Remove</Button>
             </td>
         </tr>;
     }

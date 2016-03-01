@@ -35,3 +35,16 @@
     color: #337ab7;
     font-size: 11px;
 }
+
+td.properties {
+    padding: 0.2em 0.2em 0.2em 0.2em;
+}
+
+td.actions {
+    vertical-align: middle;
+    text-align: center;
+}
+
+td.actions button {
+    margin: 0.2em 0.3em 0.2em 0.3em;
+}

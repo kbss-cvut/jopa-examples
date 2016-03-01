@@ -4,6 +4,7 @@ import React from 'react';
 import {Button, ButtonToolbar, Panel} from 'react-bootstrap';
 import BasicAuditInfo from './BasicAuditInfo';
 import Reports from './Reports';
+import Properties from './Properties';
 
 export default class AuditDetail extends React.Component {
 
@@ -38,6 +39,8 @@ export default class AuditDetail extends React.Component {
                 <BasicAuditInfo audit={audit} onChange={this._onChange.bind(this)}/>
 
                 <Reports reports={audit.reports} actions={reportActions}/>
+
+                <Properties properties={audit.properties} onChange={this.props.actions.change}/>
 
                 <div className='row form-group'>
                     <div className='col-xs-3'>

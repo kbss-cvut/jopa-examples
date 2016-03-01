@@ -1,5 +1,6 @@
 package cz.cvut.kbss.jopa.eswc2016.rest;
 
+import cz.cvut.kbss.jopa.eswc2016.model.dto.ReportDto;
 import cz.cvut.kbss.jopa.eswc2016.model.model.report;
 import cz.cvut.kbss.jopa.eswc2016.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,8 @@ public class ReportController extends BaseController {
     private ReportService reportService;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<report> getReports() {
-        return reportService.findAll();
+    public List<ReportDto> getReports() {
+        return reportService.findAllDtos();
     }
 
     @RequestMapping(value = "/{key}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
