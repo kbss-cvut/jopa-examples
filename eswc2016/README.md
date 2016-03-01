@@ -43,7 +43,7 @@ Individual JS files contain some additional explanatory comments.
 - Inferred attributes, cascading, participation constraints, contexts
 - OWL2Java
 - Storage switch
-- Properties, types
-- Possible to view raw storage content in UI
+- Properties, types     **OK**
+- Possible to view raw storage content in UI    **OK**
 - Possible to add/remove unmapped properties in UI
-- Air safety domain
+- Air safety domain     **OK**

@@ -1,8 +1,8 @@
 'use strict';
 
 import React from 'react';
-import {Input, Button, Panel} from 'react-bootstrap';
-import DateTimePicker from 'kbss-react-bootstrap-datetimepicker';
+import {Button, Panel} from 'react-bootstrap';
+import BasicAuditInfo from './BasicAuditInfo';
 import Reports from './Reports';
 
 export default class AuditDetail extends React.Component {
@@ -17,17 +17,6 @@ export default class AuditDetail extends React.Component {
         this.props.actions.change(change);
     }
 
-    _onDateChange(value) {
-        var change = {
-            date: Number(value)
-        };
-        this.props.actions.change(change);
-    }
-
-    _addReport() {
-
-    }
-
     _editReport(report) {
 
     }
@@ -39,27 +28,14 @@ export default class AuditDetail extends React.Component {
     render() {
         var audit = this.props.audit,
             reportActions = {
-                addReport: this._addReport.bind(this),
+                addReport: this.props.actions.add,
                 editReport: this._editReport.bind(this),
                 removeReport: this._removeReport.bind(this)
             };
 
         return (
             <Panel header='Audit' bsStyle='info'>
-                <div className='row'>
-                    <div className='col-xs-6'>
-                        <Input type='text' label='Title' bsSize='small' value={audit.title}
-                               onChange={this._onChange.bind(this)} name='title'/>
-                    </div>
-                </div>
-                <div className='row form-group'>
-                    <div className='col-xs-6'>
-                        <label className='control-label'>Audit date</label>
-                        <DateTimePicker inputFormat='DD-MM-YY HH:mm:ss' dateTime={audit.date.toString()}
-                                        onChange={this._onDateChange.bind(this)}
-                                        inputProps={{title: 'Audit date', bsSize: 'small'}}/>
-                    </div>
-                </div>
+                <BasicAuditInfo audit={audit} onChange={this._onChange.bind(this)}/>
 
                 <Reports reports={audit.reports} actions={reportActions}/>
 

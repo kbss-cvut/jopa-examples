@@ -8,6 +8,7 @@ import {IndexRoute, Router, Route} from 'react-router';
 import MainView from './components/MainView';
 import AuditsController from './components/AuditsController';
 import AuditController from './components/AuditController';
+import ReportController from './components/ReportController';
 import Data from './components/Data';
 import Routing from './util/Routing';
 
@@ -17,8 +18,8 @@ import Routing from './util/Routing';
  * The application is written using the new ES6 syntax (for the most part).
  */
 class App extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
 
     render() {
@@ -29,6 +30,7 @@ class App extends React.Component {
                     <Route path='audits' component={AuditsController}/>
                     <Route path='audits/create' component={AuditController}/>
                     <Route path='audits/:auditKey' component={AuditController}/>
+                    <Route path='reports/create' component={ReportController}/>
                     <Route path='data' component={Data}/>
                 </Route>
             </Router>);

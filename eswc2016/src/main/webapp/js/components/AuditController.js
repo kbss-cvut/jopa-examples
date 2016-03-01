@@ -9,6 +9,7 @@ import AuditStore from '../stores/AuditStore';
 import AuditDetail from './AuditDetail';
 import Actions from '../actions/Actions';
 import Routing from '../util/Routing';
+import InstanceFactory from '../util/InstanceFactory';
 
 export default class AuditController extends React.Component {
 
@@ -17,10 +18,7 @@ export default class AuditController extends React.Component {
         var isNew = props.params.auditKey ? false : true;
         this.state = {
             new: isNew,
-            audit: isNew ? {
-                isNew: true,
-                date: (Date.now() / 1000) * 1000
-            } : null,
+            audit: isNew ? InstanceFactory.createAudit() : null,
             showMessage: false,
             message: null
         }
@@ -63,6 +61,10 @@ export default class AuditController extends React.Component {
         }
     }
 
+    onAddReport() {
+        Routing.transitionTo('reports/create', {audit: this.state.audit});
+    }
+
     onSaveSuccess() {
         this.setState({showMessage: true, message: 'Save successful.'});
     }
@@ -78,7 +80,8 @@ export default class AuditController extends React.Component {
         var actions = {
             change: this.onChange.bind(this),
             cancel: this.onCancel,
-            save: this.onSave.bind(this)
+            save: this.onSave.bind(this),
+            add: this.onAddReport.bind(this)
         };
         return (
             <div>
