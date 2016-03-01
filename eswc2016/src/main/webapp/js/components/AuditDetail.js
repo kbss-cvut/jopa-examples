@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {Button, Panel} from 'react-bootstrap';
+import {Button, ButtonToolbar, Panel} from 'react-bootstrap';
 import BasicAuditInfo from './BasicAuditInfo';
 import Reports from './Reports';
 
@@ -41,9 +41,11 @@ export default class AuditDetail extends React.Component {
 
                 <div className='row form-group'>
                     <div className='col-xs-3'>
-                        <Button bsStyle='success'
-                                onClick={this.props.actions.save}>{audit.isNew ? 'Create' : 'Save'}</Button>
-                        <Button style={{margin: '0 0 0 0.5em'}} onClick={this.props.actions.cancel}>Cancel</Button>
+                        <ButtonToolbar>
+                            <Button bsStyle='success'
+                                    onClick={this.props.actions.save}>{audit.isNew ? 'Create' : 'Save'}</Button>
+                            <Button onClick={this.props.actions.cancel}>Cancel</Button>
+                        </ButtonToolbar>
                     </div>
                 </div>
             </Panel>

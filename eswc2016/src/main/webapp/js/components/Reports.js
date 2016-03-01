@@ -14,7 +14,7 @@ export default class Reports extends React.Component {
         if (reports && reports.length > 0) {
             content = this._renderReportsTable();
         } else {
-            content = <div className="form-group italics">There are no reports for this audit, yet.</div>;
+            content = <div className="form-group italics">There are no reports, yet.</div>;
         }
         return (
             <Panel header='Reports'>

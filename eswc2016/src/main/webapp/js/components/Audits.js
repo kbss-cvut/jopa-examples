@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {Panel, Button, Table} from 'react-bootstrap';
+import {Panel, Button, ButtonToolbar, Table} from 'react-bootstrap';
 
 import DeleteDialog from './DeleteDialog';
 import Util from '../util/Util';
@@ -80,9 +80,11 @@ class AuditRow extends React.Component {
             <td>{audit.title}</td>
             <td style={style}>{Util.formatDate(new Date(audit.date))}</td>
             <td style={style}>
-                <Button bsStyle='info' onClick={this._editAudit.bind(this)}>Edit</Button>
-                <Button style={{margin: '0 0 0 0.5em'}} bsStyle='warning'
-                        onClick={this._removeAudit.bind(this)}>Remove</Button>
+                <ButtonToolbar>
+                    <Button bsStyle='info' onClick={this._editAudit.bind(this)}>Edit</Button>
+                    <Button style={{margin: '0 0 0 0.5em'}} bsStyle='warning'
+                            onClick={this._removeAudit.bind(this)}>Remove</Button>
+                </ButtonToolbar>
             </td>
         </tr>;
     }

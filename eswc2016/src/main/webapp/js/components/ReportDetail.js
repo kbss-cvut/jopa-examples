@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {Button, Panel, Input} from 'react-bootstrap';
+import {Button, ButtonToolbar, Panel, Input} from 'react-bootstrap';
 import assign from 'object-assign';
 
 import BasicAuditInfo from './BasicAuditInfo';
@@ -16,7 +16,7 @@ export default class ReportDetail extends React.Component {
     _onAuditChange(change) {
         var audit = this.props.report.audit;
         assign(audit, change);
-        this.props.onChange({audit: audit});
+        this.props.actions.change({audit: audit});
     }
 
     render() {
@@ -24,12 +24,17 @@ export default class ReportDetail extends React.Component {
         return (
             <Panel header='Report' bsStyle='info'>
                 <Panel header='Audit info'>
-                    <BasicAuditInfo audit={report.audit} onChange={this._onAuditChange.bind(this)}/>
+                    <BasicAuditInfo audit={report.documents} onChange={this._onAuditChange.bind(this)}/>
                 </Panel>
 
                 {this._renderOriginInfo()}
 
-                <ReportRecords report={report} onChange={this.props.onChange}/>
+                <ReportRecords report={report} onChange={this.props.actions.change}/>
+
+                <ButtonToolbar>
+                    <Button bsStyle='success' onClick={this.props.actions.save}>Save</Button>
+                    <Button onClick={this.props.actions.cancel}>Cancel</Button>
+                </ButtonToolbar>
             </Panel>
         );
     }

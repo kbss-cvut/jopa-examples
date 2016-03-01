@@ -2,19 +2,22 @@
 
 import React from 'react';
 import assign from 'object-assign';
+import {Alert} from 'react-bootstrap';
 
 import Actions from '../actions/Actions';
 import ReportStore from '../stores/ReportStore';
 import Mask from './Mask';
 import ReportDetail from './ReportDetail';
 import InstanceFactory from '../util/InstanceFactory';
+import Routing from '../util/Routing';
 
 export default class ReportController extends React.Component {
     constructor(props) {
         super(props);
         var isNew = !props.params.reportKey;
         this.state = {
-            report: isNew ? InstanceFactory.createReport() : null
+            report: isNew ? InstanceFactory.createReport() : null,
+            showMessage: false
         }
     }
 
@@ -41,12 +44,49 @@ export default class ReportController extends React.Component {
         this.setState({report: report});
     }
 
+    _onSave() {
+        var report = this.state.report;
+        if (report.isNew) {
+            Actions.createReport(report, this.onSaveSuccess.bind(this));
+        } else {
+            Actions.updateReport(report, this.onSaveSuccess.bind(this));
+        }
+    }
+
+    _onCancel() {
+        Routing.transitionTo('reports');
+    }
+
+    onSaveSuccess() {
+        this.setState({showMessage: true, message: 'Save successful.'});
+    }
+
+    _hideMessage() {
+        this.setState({showMessage: false});
+    }
+
     render() {
         var report = this.state.report;
         if (!report) {
             return <Mask />;
         } else {
-            return <ReportDetail report={report} onChange={this._onChange.bind(this)}/>;
+            var actions = {
+                change: this._onChange.bind(this),
+                save: this._onSave.bind(this),
+                cancel: this._onCancel
+            };
+            return <div>
+                <ReportDetail report={report} actions={actions}/>
+                {this._renderMessage()}
+            </div>;
+        }
+    }
+
+    _renderMessage() {
+        if (this.state.showMessage) {
+            return <Alert bsStyle='success' onDismiss={this._hideMessage.bind(this)} dismissAfter={2000}>
+                {this.state.message}
+            </Alert>;
         }
     }
 }

@@ -12,12 +12,12 @@ module.exports = {
     },
 
     createReport: function () {
-        var report = {isNew: true};
+        var report = {isNew: true, has_documentation_part: []};
         var payload = RouterStore.getTransitionPayload('reports/create');
         if (payload && payload.audit) {
-            report.audit = payload.audit;
+            report.documents = payload.audit;
         } else {
-            report.audit = this.createAudit();
+            report.documents = this.createAudit();
         }
         return report;
     }

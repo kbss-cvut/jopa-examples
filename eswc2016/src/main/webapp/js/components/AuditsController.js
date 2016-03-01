@@ -5,6 +5,7 @@ import hashHistory from 'react-router';
 
 import AuditStore from '../stores/AuditStore';
 import Audits from './Audits';
+import Mask from './Mask';
 import Actions from '../actions/Actions';
 import Routing from '../util/Routing';
 
@@ -13,7 +14,7 @@ export default class AuditsController extends React.Component {
     constructor() {
         super();
         this.state = {
-            audits: AuditStore.getAudits() ? AuditStore.getAudits() : []
+            audits: AuditStore.getAudits()
         }
     }
 
@@ -48,6 +49,9 @@ export default class AuditsController extends React.Component {
     }
 
     render() {
+        if (!this.state.audits) {
+            return <Mask/>;
+        }
         var actions = {
             edit: this._editAudit,
             create: this._createAudit,
