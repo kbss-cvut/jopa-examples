@@ -6,13 +6,15 @@ import Actions from '../actions/Actions';
 import Mask from './Mask';
 import ReportStore from '../stores/ReportStore';
 import Reports from './Reports';
+import CreateReportDialog from './CreateReportDialog';
 import Routing from '../util/Routing';
 
 export default class ReportsController extends React.Component {
     constructor() {
         super();
         this.state = {
-            reports: ReportStore.getReports()
+            reports: ReportStore.getReports(),
+            showCreateDialog: false
         }
     }
 
@@ -39,11 +41,24 @@ export default class ReportsController extends React.Component {
     }
 
     _createReport() {
-        Routing.transitionTo('reports/create');
+        this.setState({showCreateDialog: true});
     }
 
     _removeReport(reportKey, callback) {
         Actions.deleteReport(reportKey, callback);
+    }
+
+    _closeCreateDialog() {
+        this.setState({showCreateDialog: false});
+    }
+
+    _onAuditSelected(audit) {
+        this.setState({showCreateDialog: false});
+        if (audit) {
+            Routing.transitionTo('reports/create', {audit: audit});
+        } else {
+            Routing.transitionTo('audits/create');
+        }
     }
 
     render() {
@@ -52,9 +67,13 @@ export default class ReportsController extends React.Component {
         }
         var actions = {
             editReport: this._editReport,
-            addReport: this._createReport,
+            addReport: this._createReport.bind(this),
             removeReport: this._removeReport
         };
-        return <Reports reports={this.state.reports} actions={actions}/>;
+        return (<div>
+            <Reports reports={this.state.reports} actions={actions} panelStyle='info'/>
+            <CreateReportDialog show={this.state.showCreateDialog} onClose={this._closeCreateDialog.bind(this)}
+                                onSelect={this._onAuditSelected.bind(this)}/>
+        </div>);
     }
 }

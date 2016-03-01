@@ -17,7 +17,7 @@ export default class Reports extends React.Component {
             content = <div className="form-group italics">There are no reports, yet.</div>;
         }
         return (
-            <Panel header='Reports'>
+            <Panel header='Reports' bsStyle={this.props.panelStyle ? this.props.panelStyle : 'default'}>
                 <div className='row'>
                     <div className='col-xs-12'>
                         {content}
@@ -33,13 +33,12 @@ export default class Reports extends React.Component {
     }
 
     _renderReportsTable() {
-        var style = {textAlign: 'center'};
         return <Table striped bordered condensed hover>
             <thead>
             <tr>
-                <td className='col-xs-3' style={style}>Date</td>
-                <td className='col-xs-6' style={style}>Records</td>
-                <td className='col-xs-3' style={style}>Actions</td>
+                <td className='col-xs-3 centered'>Date</td>
+                <td className='col-xs-6 centered'>Records</td>
+                <td className='col-xs-3 centered'>Actions</td>
             </tr>
             </thead>
             <tbody>
@@ -72,8 +71,8 @@ class ReportRow extends React.Component {
     render() {
         var report = this.props.report;
         return <tr>
-            <td>{report.created}</td>
-            <td>{report.records ? report.records.length : 0}</td>
+            <td style={{verticalAlign: 'middle'}}>{report.created}</td>
+            <td style={{verticalAlign: 'middle'}}>{report.records ? report.records.length : 0}</td>
             <td className='actions'>
                 <Button bsStyle='info' bsSize='small' onClick={this._onEditReport.bind(this)}>Edit</Button>
                 <Button bsStyle='warning' bsSize='small' onClick={this.onRemoveReport.bind(this)}>Remove</Button>

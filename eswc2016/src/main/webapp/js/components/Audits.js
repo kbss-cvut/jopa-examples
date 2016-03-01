@@ -28,14 +28,13 @@ export default class Audits extends React.Component {
     }
 
     render() {
-        var style = {textAlign: 'center'};
         return (<Panel header='Audits' bsStyle="info">
             <Table striped bordered condensed hover>
                 <thead>
                 <tr>
-                    <td className="col-xs-7" style={style}>Title</td>
-                    <td className="col-xs-3" style={style}>Date</td>
-                    <td className="col-xs-2" style={style}>Actions</td>
+                    <td className="col-xs-7 centered">Title</td>
+                    <td className="col-xs-3 centered">Date</td>
+                    <td className="col-xs-2 centered">Actions</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -76,8 +75,8 @@ class AuditRow extends React.Component {
     render() {
         var audit = this.props.audit;
         return <tr>
-            <td>{audit.title}</td>
-            <td className='centered'>{Util.formatDate(new Date(audit.date))}</td>
+            <td style={{verticalAlign: 'middle'}}>{audit.title}</td>
+            <td className='centered' style={{verticalAlign: 'middle'}}>{Util.formatDate(new Date(audit.date))}</td>
             <td className='actions'>
                 <Button bsStyle='info' bsSize='small' onClick={this._editAudit.bind(this)}>Edit</Button>
                 <Button bsStyle='warning' bsSize='small' onClick={this._removeAudit.bind(this)}>Remove</Button>
