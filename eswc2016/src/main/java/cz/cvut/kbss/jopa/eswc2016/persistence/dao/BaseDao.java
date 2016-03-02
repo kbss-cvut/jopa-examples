@@ -9,6 +9,7 @@ import cz.cvut.kbss.jopa.model.annotations.OWLClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.net.URI;
 import java.util.List;
@@ -31,7 +32,12 @@ public abstract class BaseDao<T> {
     }
 
     @Autowired
-    private EntityManagerFactory emf;
+    @Qualifier("sesameEMF")
+    private EntityManagerFactory sesameEmf;
+
+    @Autowired
+    @Qualifier("owlapiEMF")
+    private EntityManagerFactory owlapiEmf;
 
     public T find(String uri) {
         Objects.requireNonNull(uri);
@@ -162,6 +168,6 @@ public abstract class BaseDao<T> {
     }
 
     protected EntityManager entityManager() {
-        return emf.createEntityManager();
+        return sesameEmf.createEntityManager();
     }
 }

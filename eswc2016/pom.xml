@@ -23,6 +23,7 @@
         <com.fasterxml.jackson.version>2.4.4</com.fasterxml.jackson.version>
         <ch.qos.logback.version>1.1.2</ch.qos.logback.version>
         <org.openrdf.sesame.version>2.8.9</org.openrdf.sesame.version>
+        <pellet.version>2.4.0-SNAPSHOT</pellet.version>
     </properties>
 
     <repositories>
@@ -54,6 +55,23 @@
             <groupId>org.openrdf.sesame</groupId>
             <artifactId>sesame-rio-rdfxml</artifactId>
             <version>${org.openrdf.sesame.version}</version>
+        </dependency>
+
+        <!-- Pellet -->
+        <dependency>
+            <groupId>com.clarkparsia.pellet</groupId>
+            <artifactId>pellet-core</artifactId>
+            <version>${pellet.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.clarkparsia.pellet</groupId>
+            <artifactId>pellet-owlapi</artifactId>
+            <version>${pellet.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.clarkparsia.pellet</groupId>
+            <artifactId>pellet-explanation</artifactId>
+            <version>${pellet.version}</version>
         </dependency>
 
         <!-- Spring -->
