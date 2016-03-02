@@ -6,15 +6,7 @@ import java.util.Map;
 import java.util.Set;
 import cz.cvut.kbss.jopa.CommonVocabulary;
 import cz.cvut.kbss.jopa.eswc2016.model.Vocabulary;
-import cz.cvut.kbss.jopa.model.annotations.Id;
-import cz.cvut.kbss.jopa.model.annotations.OWLAnnotationProperty;
-import cz.cvut.kbss.jopa.model.annotations.OWLClass;
-import cz.cvut.kbss.jopa.model.annotations.OWLDataProperty;
-import cz.cvut.kbss.jopa.model.annotations.OWLObjectProperty;
-import cz.cvut.kbss.jopa.model.annotations.ParticipationConstraint;
-import cz.cvut.kbss.jopa.model.annotations.ParticipationConstraints;
-import cz.cvut.kbss.jopa.model.annotations.Properties;
-import cz.cvut.kbss.jopa.model.annotations.Types;
+import cz.cvut.kbss.jopa.model.annotations.*;
 
 
 /**
@@ -32,16 +24,16 @@ public class report {
     protected Set<String> types;
     @Id(generated = true)
     protected String id;
-    @Properties
+    @Properties(fetchType = FetchType.EAGER)
     protected Map<String, Set<String>> properties;
-    @OWLObjectProperty(iri = Vocabulary.s_p_has_documentation_part)
+    @OWLObjectProperty(iri = Vocabulary.s_p_has_documentation_part, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     protected Set<logical_record> has_documentation_part;
     @OWLObjectProperty(iri = Vocabulary.s_p_hasAuthor)
     @ParticipationConstraints({
         @ParticipationConstraint(owlObjectIRI = Vocabulary.s_c_Person_A_A_A, max = 1)
     })
     protected Person hasAuthor;
-    @OWLObjectProperty(iri = Vocabulary.s_p_documents)
+    @OWLObjectProperty(iri = Vocabulary.s_p_documents, fetch = FetchType.EAGER)
     @ParticipationConstraints({
         @ParticipationConstraint(owlObjectIRI = Vocabulary.s_c_Event, min = 1, max = 1)
     })

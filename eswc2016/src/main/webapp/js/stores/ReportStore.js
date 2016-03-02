@@ -76,7 +76,7 @@ var ReportStore = Reflux.createStore({
                     onSuccess();
                 }
             }
-        });
+        }.bind(this));
     },
 
     getReports: function () {

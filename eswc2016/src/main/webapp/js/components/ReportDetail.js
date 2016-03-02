@@ -53,6 +53,8 @@ export default class ReportDetail extends React.Component {
             text += ' by ' + report.author.firstName + ' ' + report.author.lastName;
         }
         text += '.';
-        return <div className='col-xs-12 italics'>{text}</div>;
+        return <div className='row'>
+            <div className='col-xs-12 italics'>{text}</div>
+        </div>;
     }
 }

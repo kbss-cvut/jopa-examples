@@ -17,4 +17,14 @@ public class EventDao extends BaseDao<Event> {
         entity.setIdentifier(KeyGenerator.generateKey());
         super.persist(entity, em);
     }
+
+    @Override
+    protected Event findByKey(Long key, EntityManager em) {
+        final Event e = super.findByKey(key, em);
+        if (e != null) {
+            // Trigger the lazy field
+            e.getIsDocumentedBy();
+        }
+        return e;
+    }
 }

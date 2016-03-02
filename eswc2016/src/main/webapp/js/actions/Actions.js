@@ -8,6 +8,7 @@ var Reflux = require('reflux');
 var Actions = Reflux.createActions([
     'loadAudits', 'loadAudit', 'createAudit', 'updateAudit', 'deleteAudit',
     'loadReports', 'loadReport', 'createReport', 'updateReport', 'deleteReport',
+    'loadQuestions', 'createQuestion',
 
     'loadData'
 ]);

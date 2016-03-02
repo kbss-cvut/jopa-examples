@@ -2,6 +2,8 @@ package cz.cvut.kbss.jopa.eswc2016.rest;
 
 import cz.cvut.kbss.jopa.eswc2016.model.dto.ReportDto;
 import cz.cvut.kbss.jopa.eswc2016.model.model.report;
+import cz.cvut.kbss.jopa.eswc2016.rest.exception.NotFoundException;
+import cz.cvut.kbss.jopa.eswc2016.rest.exception.ValidationException;
 import cz.cvut.kbss.jopa.eswc2016.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -46,5 +48,27 @@ public class ReportController extends BaseController {
         }
         final HttpHeaders header = RestUtils.createLocationHeader("/{key}", report.getIdentifier());
         return new ResponseEntity<>(header, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/{key}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateReport(@PathVariable("key") Long key, @RequestBody report report) {
+        if (!key.equals(report.getIdentifier())) {
+            throw new ValidationException("Report identifier and the path identifier do not match.");
+        }
+        reportService.update(report);
+        if (LOG.isTraceEnabled()) {
+            LOG.trace("Report {} successfully updated.", report);
+        }
+    }
+
+    @RequestMapping(value = "/{key}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteReport(@PathVariable Long key) {
+        final report toDelete = getReportInternal(key);
+        reportService.remove(toDelete);
+        if (LOG.isTraceEnabled()) {
+            LOG.trace("Report {} deleted.", toDelete);
+        }
     }
 }

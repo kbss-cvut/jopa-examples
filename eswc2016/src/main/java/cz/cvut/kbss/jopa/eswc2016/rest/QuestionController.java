@@ -1,6 +1,7 @@
 package cz.cvut.kbss.jopa.eswc2016.rest;
 
 import cz.cvut.kbss.jopa.eswc2016.model.model.question;
+import cz.cvut.kbss.jopa.eswc2016.rest.exception.NotFoundException;
 import cz.cvut.kbss.jopa.eswc2016.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

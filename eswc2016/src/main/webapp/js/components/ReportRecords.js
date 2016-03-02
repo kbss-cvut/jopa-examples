@@ -3,6 +3,8 @@
 import React from 'react';
 import {Button, ButtonToolbar, Input, Panel, Table} from 'react-bootstrap';
 
+import RecordDetail from './RecordDetail';
+
 export default class ReportRecords extends React.Component {
     constructor(props) {
         super(props);
@@ -46,19 +48,21 @@ export default class ReportRecords extends React.Component {
 
     render() {
         return (
-            <Panel header='Records'>
+            <div>
+                <Panel header='Records'>
 
-                {this._renderRecords()}
+                    {this._renderRecords()}
 
-                <div className='row col-xs-1'>
-                    <Button bsStyle='info' onClick={this._onAddRecord.bind(this)}>Add Record</Button>
-                </div>
-            </Panel>
+                    <div className='row col-xs-1'>
+                        <Button bsStyle='info' onClick={this._onAddRecord.bind(this)}>Add Record</Button>
+                    </div>
+                </Panel>
+                {this._renderRecordDetail()}
+            </div>
         );
     }
 
     _renderRecords() {
-        var records = this.props.report.has_documentation_part;
         if (this._hasNoRecords()) {
             return <div className='italics form-group'>There are no records, yet.</div>;
         }
@@ -85,25 +89,27 @@ export default class ReportRecords extends React.Component {
 
     _renderRecordRows() {
         var records = this.props.report.has_documentation_part,
-            currentRow = this.state.currentRow,
             rows = [];
         if (records) {
             for (var i = 0, len = records.length; i < len; i++) {
-                if (records[i] === currentRow) {
-                    rows.push(<EditedRecordRow key={i} record={records[i]} remove={this._onRemoveRecord.bind(this)}
-                                               cancel={this._onEditCancel.bind(this)}
-                                               save={this._onEditSave.bind(this)}/>);
-                } else {
-                    rows.push(<RecordRow key={i} record={records[i]} edit={this._onEditRecord.bind(this)}
-                                         remove={this._onRemoveRecord.bind(this)}/>);
-                }
+                rows.push(<RecordRow key={i} record={records[i]} edit={this._onEditRecord.bind(this)}
+                                     remove={this._onRemoveRecord.bind(this)}/>);
             }
         }
-        if (currentRow && currentRow.isNew) {
-            rows.push(<EditedRecordRow key='new' record={currentRow} remove={this._onRemoveRecord.bind(this)}
-                                       cancel={this._onEditCancel.bind(this)} save={this._onEditSave.bind(this)}/>);
-        }
         return rows;
+    }
+
+    _renderRecordDetail() {
+        var currentRow = this.state.currentRow;
+        if (!currentRow) {
+            return null;
+        }
+        var actions = {
+            onClose: this._onEditCancel.bind(this),
+            onSave: this._onEditSave.bind(this),
+            onRemove: this._onRemoveRecord.bind(this)
+        };
+        return (<RecordDetail show={true} record={currentRow} actions={actions}/>);
     }
 }
 
@@ -123,74 +129,12 @@ class RecordRow extends React.Component {
     render() {
         var record = this.props.record;
         return (<tr>
-            <td>{record.question.has_data_value}</td>
-            <td>{record.answer.has_data_value}</td>
+            <td>{record.has_question.has_data_value}</td>
+            <td>{record.has_answer.has_data_value}</td>
             <td>
                 <ButtonToolbar>
                     <Button bsStyle='info' onClick={this._onEdit.bind(this)}>Edit</Button>
                     <Button bsStyle='warning' onClick={this._onRemove.bind(this)}>Remove</Button>
-                </ButtonToolbar>
-            </td>
-        </tr>);
-    }
-}
-
-class EditedRecordRow extends React.Component {
-    constructor(props) {
-        super(props);
-        var record = this.props.record;
-        this.state = {
-            question: record.question ? record.question.has_data_value : '',
-            answer: record.answer ? record.answer.has_data_value : ''
-        }
-    }
-
-    componentDidMount() {
-        this.refs.question.getInputDOMNode().focus();
-    }
-
-    _onRemove() {
-        this.props.remove(this.props.record);
-    }
-
-    _onSave() {
-        var record = this.props.record;
-        var fields = ['question', 'answer'];
-        for (var i = 0, len = fields.length; i < len; i++) {
-            if (!record[fields[i]]) {
-                record[fields[i]] = {
-                    has_data_value: this.state[fields[i]]
-                }
-            } else {
-                record[fields[i]].has_data_value = this.state[fields[i]];
-            }
-        }
-        this.props.save(record);
-    }
-
-    _onChange(e) {
-        var change = {};
-        change[e.target.name] = e.target.value;
-        this.setState(change);
-    }
-
-    render() {
-        var removeButton = this.props.record.isNew ? null :
-            <Button bsStyle='warning' onClick={this._onRemove.bind(this)}>Remove</Button>;
-        return (<tr>
-            <td>
-                <Input ref='question' type='textarea' rows={2} value={this.state.question}
-                       onChange={this._onChange.bind(this)} name='question'/>
-            </td>
-            <td>
-                <Input type='textarea' rows={2} value={this.state.answer} onChange={this._onChange.bind(this)}
-                       name='answer'/>
-            </td>
-            <td className='centered' style={{verticalAlign: 'middle'}}>
-                <ButtonToolbar>
-                    <Button bsStyle='success' onClick={this._onSave.bind(this)}>Save</Button>
-                    <Button onClick={this.props.cancel}>Cancel</Button>
-                    {removeButton}
                 </ButtonToolbar>
             </td>
         </tr>);

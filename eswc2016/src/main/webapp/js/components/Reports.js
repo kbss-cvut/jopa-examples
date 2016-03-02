@@ -3,9 +3,28 @@
 import React from 'react';
 import {Button, Table, Panel} from 'react-bootstrap';
 
+import DeleteDialog from './DeleteDialog';
+import Util from '../util/Util';
+
 export default class Reports extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            showDeleteDialog: false,
+            currentReportKey: null
+        }
+    }
+
+    _showDeleteDialog(auditKey) {
+        this.setState({showDeleteDialog: true, currentReportKey: auditKey});
+    }
+
+    _hideDeleteDialog() {
+        this.setState({showDeleteDialog: false});
+    }
+
+    _removeReport() {
+        this.props.actions.removeReport(this.state.currentReportKey, this._hideDeleteDialog.bind(this));
     }
 
     render() {
@@ -17,18 +36,21 @@ export default class Reports extends React.Component {
             content = <div className="form-group italics">There are no reports, yet.</div>;
         }
         return (
-            <Panel header='Reports' bsStyle={this.props.panelStyle ? this.props.panelStyle : 'default'}>
-                <div className='row'>
-                    <div className='col-xs-12'>
-                        {content}
+            <div>
+                <Panel header='Reports' bsStyle={this.props.panelStyle ? this.props.panelStyle : 'default'}>
+                    <div className='row'>
+                        <div className='col-xs-12'>
+                            {content}
+                        </div>
                     </div>
-                </div>
-                <div className='row'>
-                    <div className='col-xs-1'>
-                        <Button bsStyle='info' onClick={this.props.actions.addReport}>Add Report</Button>
+                    <div className='row'>
+                        <div className='col-xs-1'>
+                            <Button bsStyle='info' onClick={this.props.actions.addReport}>Add Report</Button>
+                        </div>
                     </div>
-                </div>
-            </Panel>
+                </Panel>
+                {this._renderDeleteDialog()}
+            </div>
         );
     }
 
@@ -36,8 +58,9 @@ export default class Reports extends React.Component {
         return <Table striped bordered condensed hover>
             <thead>
             <tr>
-                <td className='col-xs-3 centered'>Date</td>
-                <td className='col-xs-6 centered'>Records</td>
+                <td className='col-xs-3 centered'>Audit title</td>
+                <td className='col-xs-3 centered'>Audit date</td>
+                <td className='col-xs-3 centered'>Records</td>
                 <td className='col-xs-3 centered'>Actions</td>
             </tr>
             </thead>
@@ -51,31 +74,38 @@ export default class Reports extends React.Component {
         var reports = this.props.reports,
             rows = [];
         for (var i = 0, len = reports.length; i < len; i++) {
-            rows.push(<ReportRow key={report.identifier} report={reports[i]} edit={this.props.actions.editReport}
-                                 remove={this.props.actions.removeReport}/>);
+            rows.push(<ReportRow key={reports[i].identifier} report={reports[i]} edit={this.props.actions.editReport}
+                                 remove={this._showDeleteDialog.bind(this)}/>);
         }
         return rows;
+    }
+
+    _renderDeleteDialog() {
+        return <DeleteDialog show={this.state.showDeleteDialog} onSubmit={this._removeReport.bind(this)}
+                             onClose={this._hideDeleteDialog.bind(this)}/>;
     }
 }
 
 class ReportRow extends React.Component {
 
     _onEditReport() {
-        this.props.edit(this.props.report);
+        this.props.edit(this.props.report.identifier);
     }
 
     _onRemoveReport() {
-        this.props.remove(this.props.report);
+        this.props.remove(this.props.report.identifier);
     }
 
     render() {
         var report = this.props.report;
         return <tr>
-            <td style={{verticalAlign: 'middle'}}>{report.created}</td>
-            <td style={{verticalAlign: 'middle'}}>{report.records ? report.records.length : 0}</td>
-            <td className='actions'>
+            <td style={{verticalAlign: 'middle'}}>{report.auditTitle}</td>
+            <td className='centered'
+                style={{verticalAlign: 'middle'}}>{Util.formatDate(new Date(report.auditDate))}</td>
+            <td style={{textAlign: 'right', verticalAlign: 'middle'}}>{report.recordCount}</td>
+            <td className='centered' className='actions'>
                 <Button bsStyle='info' bsSize='small' onClick={this._onEditReport.bind(this)}>Edit</Button>
-                <Button bsStyle='warning' bsSize='small' onClick={this.onRemoveReport.bind(this)}>Remove</Button>
+                <Button bsStyle='warning' bsSize='small' onClick={this._onRemoveReport.bind(this)}>Remove</Button>
             </td>
         </tr>;
     }

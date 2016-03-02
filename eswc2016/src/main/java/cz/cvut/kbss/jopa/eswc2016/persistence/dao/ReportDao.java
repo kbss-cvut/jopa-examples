@@ -31,7 +31,7 @@ public class ReportDao extends BaseDao<report> {
             final List<?> reports = em
                     .createNativeQuery("SELECT ?r ?key ?aTitle ?aDate (count(?record) as ?recordCount) WHERE {" +
                             "?r a ?type ;" +
-                            "owl:hasKey ?key ;" +
+                            "?hasKey ?key ;" +
                             "?hasRecord ?record ." +
                             "?r ?documents ?audit ." +
                             "?audit ?hasTitle ?aTitle ." +
@@ -39,6 +39,7 @@ public class ReportDao extends BaseDao<report> {
                             "} GROUP BY ?r ?key ?aTitle ?aDate \n" +
                             "HAVING (?recordCount > 0)")
                     .setParameter("type", URI.create(Vocabulary.s_c_report))
+                    .setParameter("hasKey", URI.create(Vocabulary.s_p_identifier))
                     .setParameter("hasRecord", URI.create(Vocabulary.s_p_has_documentation_part))
                     .setParameter("documents", URI.create(Vocabulary.s_p_documents))
                     .setParameter("hasTitle", URI.create(Vocabulary.s_p_title))
@@ -46,7 +47,7 @@ public class ReportDao extends BaseDao<report> {
             return reports.stream().map(item -> {
                 final Object[] row = (Object[]) item;
                 final ReportDto dto = new ReportDto();
-                dto.setId((String) row[0]);
+                dto.setId(row[0].toString());
                 dto.setIdentifier((Long) row[1]);
                 dto.setAuditTitle((String) row[2]);
                 dto.setAuditDate((Date) row[3]);
