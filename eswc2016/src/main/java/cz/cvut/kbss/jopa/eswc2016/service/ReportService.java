@@ -4,7 +4,9 @@ import com.github.jsonldjava.utils.Obj;
 import cz.cvut.kbss.jopa.eswc2016.model.dto.ReportDto;
 import cz.cvut.kbss.jopa.eswc2016.model.model.report;
 import cz.cvut.kbss.jopa.eswc2016.persistence.dao.BaseDao;
+import cz.cvut.kbss.jopa.eswc2016.persistence.dao.PersonDao;
 import cz.cvut.kbss.jopa.eswc2016.persistence.dao.ReportDao;
+import cz.cvut.kbss.jopa.eswc2016.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,9 @@ public class ReportService extends BaseRepositoryService<report> {
 
     @Autowired
     private ReportDao reportDao;
+
+    @Autowired
+    private PersonDao personDao;
 
     @Override
     protected BaseDao<report> getPrimaryDao() {
@@ -32,6 +37,8 @@ public class ReportService extends BaseRepositoryService<report> {
     public void persist(report instance) {
         Objects.requireNonNull(instance);
         instance.setCreated(new Date());
+        // Normally, we would query the security context here. For the demo purposes, we are using a predefined user
+        instance.setHasAuthor(personDao.findByUsername(Constants.USERNAME));
         super.persist(instance);
     }
 

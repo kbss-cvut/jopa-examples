@@ -39,8 +39,8 @@ Individual JS files contain some additional explanatory comments.
 #### TODO
 
 - Web application (ReactJS) with Spring
-- Querying (SPARQL-DL)
-- Inferred attributes, cascading, participation constraints, contexts
+- Querying (SPARQL-DL)  **OK**
+- Inferred attributes, cascading, participation constraints, contexts   **OK**
 - OWL2Java
 - Storage switch
 - Properties, types     **OK**

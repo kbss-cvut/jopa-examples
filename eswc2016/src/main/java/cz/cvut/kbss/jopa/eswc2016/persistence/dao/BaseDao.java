@@ -16,7 +16,7 @@ import java.util.Objects;
 
 public abstract class BaseDao<T> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(BaseDao.class);
+    protected static final Logger LOG = LoggerFactory.getLogger(BaseDao.class);
 
     protected final Class<T> type;
     protected final URI typeUri;

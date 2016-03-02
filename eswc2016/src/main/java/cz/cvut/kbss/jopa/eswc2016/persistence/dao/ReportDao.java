@@ -3,8 +3,11 @@ package cz.cvut.kbss.jopa.eswc2016.persistence.dao;
 import cz.cvut.kbss.jopa.eswc2016.model.Vocabulary;
 import cz.cvut.kbss.jopa.eswc2016.model.dto.ReportDto;
 import cz.cvut.kbss.jopa.eswc2016.model.model.report;
+import cz.cvut.kbss.jopa.eswc2016.util.Constants;
 import cz.cvut.kbss.jopa.eswc2016.util.KeyGenerator;
+import cz.cvut.kbss.jopa.exceptions.NoResultException;
 import cz.cvut.kbss.jopa.model.EntityManager;
+import cz.cvut.kbss.jopa.model.descriptors.EntityDescriptor;
 import org.springframework.stereotype.Repository;
 
 import java.net.URI;
@@ -20,9 +23,36 @@ public class ReportDao extends BaseDao<report> {
     }
 
     @Override
+    protected report findByUri(String uri, EntityManager em) {
+        return em.find(report.class, uri, getDescriptor());
+    }
+
+    protected report findByKey(Long key, EntityManager em) {
+        try {
+            final Object uri = em.createNativeQuery("SELECT ?x WHERE { ?x <" + Vocabulary.s_p_identifier + "> ?key ;" +
+                    "a ?type }")
+                                 .setParameter("key", key).setParameter("type", typeUri)
+                                 .getSingleResult();
+            return findByUri(uri.toString(), em);
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
     protected void persist(report entity, EntityManager em) {
         entity.setIdentifier(KeyGenerator.generateKey());
-        super.persist(entity, em);
+        em.persist(entity, getDescriptor());
+    }
+
+    private EntityDescriptor getDescriptor() {
+        final EntityDescriptor descriptor = new EntityDescriptor();
+        try {
+            descriptor.addAttributeDescriptor(report.class.getDeclaredField("hasAuthor"), PersonDao.PERSON_DESCRIPTOR);
+        } catch (NoSuchFieldException e) {
+            LOG.error("Unable to set person context for report.", e);
+        }
+        return descriptor;
     }
 
     public List<ReportDto> findAllDtos() {

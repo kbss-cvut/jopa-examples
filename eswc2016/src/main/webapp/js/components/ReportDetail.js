@@ -49,11 +49,11 @@ export default class ReportDetail extends React.Component {
             return null;
         }
         text = 'Created on ' + Util.formatDate(new Date(report.created));
-        if (report.author) {
-            text += ' by ' + report.author.firstName + ' ' + report.author.lastName;
+        if (report.hasAuthor) {
+            text += ' by ' + report.hasAuthor.firstName + ' ' + report.hasAuthor.lastName;
         }
         text += '.';
-        return <div className='row'>
+        return <div className='row form-group'>
             <div className='col-xs-12 italics'>{text}</div>
         </div>;
     }
