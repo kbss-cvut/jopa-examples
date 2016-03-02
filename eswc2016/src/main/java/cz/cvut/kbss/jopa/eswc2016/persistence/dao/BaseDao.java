@@ -1,7 +1,10 @@
 package cz.cvut.kbss.jopa.eswc2016.persistence.dao;
 
+import cz.cvut.kbss.jopa.eswc2016.config.ConfigurationService;
 import cz.cvut.kbss.jopa.eswc2016.model.Vocabulary;
 import cz.cvut.kbss.jopa.eswc2016.persistence.PersistenceException;
+import cz.cvut.kbss.jopa.eswc2016.util.ConfigParam;
+import cz.cvut.kbss.jopa.eswc2016.util.RepositoryType;
 import cz.cvut.kbss.jopa.exceptions.NoResultException;
 import cz.cvut.kbss.jopa.model.EntityManager;
 import cz.cvut.kbss.jopa.model.EntityManagerFactory;
@@ -30,6 +33,9 @@ public abstract class BaseDao<T> {
         }
         this.typeUri = URI.create(owlClass.iri());
     }
+
+    @Autowired
+    private ConfigurationService configurationService;
 
     @Autowired
     @Qualifier("sesameEMF")
@@ -168,6 +174,15 @@ public abstract class BaseDao<T> {
     }
 
     protected EntityManager entityManager() {
-        return sesameEmf.createEntityManager();
+        final RepositoryType repoType = RepositoryType
+                .fromString(configurationService.get(ConfigParam.REPOSITORY_TYPE));
+        switch (repoType) {
+            case SESAME:
+                return sesameEmf.createEntityManager();
+            case OWLAPI:
+                return owlapiEmf.createEntityManager();
+            default:
+                throw new IllegalStateException("Invalid repository type configuration! Value is " + repoType);
+        }
     }
 }
