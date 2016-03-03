@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -184,5 +185,9 @@ public abstract class BaseDao<T> {
             default:
                 throw new IllegalStateException("Invalid repository type configuration! Value is " + repoType);
         }
+    }
+
+    final List<EntityManagerFactory> getAllEntityManagerFactories() {
+        return Arrays.asList(sesameEmf, owlapiEmf);
     }
 }

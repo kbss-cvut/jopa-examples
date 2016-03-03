@@ -22,6 +22,8 @@ export default class MainView extends React.Component {
                                 to='reports'><NavItem>Reports</NavItem></LinkContainer>
                             <LinkContainer
                                 to='data'><NavItem>Data</NavItem></LinkContainer>
+                            <LinkContainer
+                                to='settings'><NavItem>Settings</NavItem></LinkContainer>
                         </Nav>
                     </Navbar>
                 </header>

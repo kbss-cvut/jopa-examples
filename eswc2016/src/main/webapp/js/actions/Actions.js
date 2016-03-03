@@ -10,7 +10,9 @@ var Actions = Reflux.createActions([
     'loadReports', 'loadReport', 'createReport', 'updateReport', 'deleteReport',
     'loadQuestions', 'createQuestion',
 
-    'loadData'
+    'loadData',
+
+    'loadSetting', 'saveSettings'
 ]);
 
 module.exports = Actions;

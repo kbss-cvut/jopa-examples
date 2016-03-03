@@ -62,6 +62,12 @@
             <groupId>com.clarkparsia.pellet</groupId>
             <artifactId>pellet-core</artifactId>
             <version>${pellet.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.httpcomponents</groupId>
+                    <artifactId>httpclient</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.clarkparsia.pellet</groupId>

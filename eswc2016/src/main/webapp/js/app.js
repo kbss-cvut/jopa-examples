@@ -11,6 +11,7 @@ import AuditController from './components/AuditController';
 import ReportsController from './components/ReportsController';
 import ReportController from './components/ReportController';
 import Data from './components/Data';
+import Settings from './components/Settings';
 import Routing from './util/Routing';
 
 /**
@@ -35,6 +36,7 @@ class App extends React.Component {
                     <Route path='reports/create' component={ReportController}/>
                     <Route path='reports/:reportKey' component={ReportController}/>
                     <Route path='data' component={Data}/>
+                    <Route path='settings' component={Settings}/>
                 </Route>
             </Router>);
     }

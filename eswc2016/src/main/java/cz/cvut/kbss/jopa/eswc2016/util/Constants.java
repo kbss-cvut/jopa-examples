@@ -22,4 +22,19 @@ public abstract class Constants {
      * Default ontology language.
      */
     public static final String LANGUAGE = "en";
+
+    /**
+     * Repository URL (physical location) configuration property.
+     */
+    public static final String URL_PROPERTY = "repositoryUrl";
+
+    /**
+     * OntoDriver datasource class configuration property.
+     */
+    public static final String DRIVER_PROPERTY = "driver";
+
+    /**
+     * Ontology logical URI configuration property.
+     */
+    public static final String ONTOLOGY_URI_PROPERTY = "ontologyUri";
 }

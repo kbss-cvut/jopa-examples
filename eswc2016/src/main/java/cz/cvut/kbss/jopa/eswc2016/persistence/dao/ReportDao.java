@@ -81,7 +81,7 @@ public class ReportDao extends BaseDao<report> {
                 dto.setIdentifier((Long) row[1]);
                 dto.setAuditTitle((String) row[2]);
                 dto.setAuditDate((Date) row[3]);
-                dto.setRecordCount((Integer) row[4]);
+                dto.setRecordCount(row[4] != null ? (Integer) row[4] : 0);
                 return dto;
             }).collect(Collectors.toList());
         } finally {

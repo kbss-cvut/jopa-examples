@@ -42,8 +42,9 @@ Individual JS files contain some additional explanatory comments.
 - Querying (SPARQL-DL)  **OK**
 - Inferred attributes, cascading, participation constraints, contexts   **OK**
 - OWL2Java
-- Storage switch
-- Properties, types     **OK**
+- Storage switch    **OK**
+- Properties     **OK**
+- Types
 - Possible to view raw storage content in UI    **OK**
 - Possible to add/remove unmapped properties in UI  **OK**
 - Air safety domain     **OK**
