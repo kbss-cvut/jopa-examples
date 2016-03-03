@@ -30,6 +30,7 @@ public class OwlapiDataProvider {
     private EntityManagerFactory emf;
 
     private OWLOntologyManager manager;
+    private OWLOntology ontology;
     private String repoUrl;
 
     public OWLOntologyManager getManager() {
@@ -39,7 +40,10 @@ public class OwlapiDataProvider {
     public String getData() {
         try {
             // Load on every call, so that we have up-to-date data
-            final OWLOntology ontology = manager.loadOntologyFromOntologyDocument(IRI.create(repoUrl));
+            if (ontology != null) {
+                manager.removeOntology(ontology);
+            }
+            ontology = manager.loadOntologyFromOntologyDocument(IRI.create(repoUrl));
             final ByteArrayOutputStream bos = new ByteArrayOutputStream();
             manager.saveOntology(ontology, bos);
             return bos.toString();

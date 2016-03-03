@@ -1,5 +1,7 @@
 'use strict';
 
+import Constants from '../constants/Constants';
+
 class Util {
     /**
      * Formats the specified date into DD-MM-YY HH:mm
@@ -26,6 +28,18 @@ class Util {
             return '';
         }
         return location.substring(location.lastIndexOf('/') + 1);
+    }
+
+    getClassificationClassName(classification) {
+        for (var key in Constants.RECORD_TYPES) {
+            if (!Constants.RECORD_TYPES.hasOwnProperty(key)) {
+                continue;
+            }
+            if (Constants.RECORD_TYPES[key].value === classification) {
+                return Constants.RECORD_TYPES[key].className;
+            }
+        }
+        return '';
     }
 }
 

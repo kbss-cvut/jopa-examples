@@ -8,6 +8,8 @@ import Mask from './Mask';
 
 import Actions from '../actions/Actions';
 import QuestionStore from '../stores/QuestionStore';
+import Constants from '../constants/Constants';
+import Util from '../util/Util';
 
 export default class RecordDetail extends React.Component {
     constructor(props) {
@@ -17,7 +19,8 @@ export default class RecordDetail extends React.Component {
             questions: QuestionStore.getQuestions(),
             showAddButton: false,
             question: record.has_question ? record.has_question : null,
-            answer: record.has_answer ? record.has_answer : {}
+            answer: record.has_answer ? record.has_answer : {},
+            classification: record.types ? record.types[0] : ''
         }
     }
 
@@ -63,6 +66,12 @@ export default class RecordDetail extends React.Component {
         this.setState({answer: answer});
     }
 
+    _onClassificationChange(e) {
+        var newState = {};
+        newState[e.target.name] = e.target.value;
+        this.setState(newState);
+    }
+
     _onQuestionKeyUp(e) {
         var options = this.refs.question.getCurrentOptions();
         if (options.length === 0 && e.target.value !== '') {
@@ -77,6 +86,7 @@ export default class RecordDetail extends React.Component {
         var record = this.props.record;
         record.has_question = this.state.question;
         record.has_answer = this.state.answer;
+        record.types = [this.state.classification];
         this.props.actions.onSave(record);
     }
 
@@ -85,8 +95,7 @@ export default class RecordDetail extends React.Component {
     }
 
     _addQuestion() {
-        var questions = this.state.questions,
-            questionValue = this.refs.question.state.entryValue,
+        var questionValue = this.refs.question.state.entryValue,
             newQuestion = {
                 has_data_value: questionValue
             };
@@ -125,6 +134,18 @@ export default class RecordDetail extends React.Component {
                                onChange={this._onAnswerChange.bind(this)}/>
                     </div>
                 </div>
+                <div className='row'>
+                    <div className='col-xs-12'>
+                        <Input type='select' name='classification' label='Classification' bsSize='small'
+                               value={this.state.classification} onChange={this._onClassificationChange.bind(this)}
+                               className={'record-classification ' + Util.getClassificationClassName(this.state.classification)}>
+                            <option key='opt_default' value='' disabled defaultValue style={{display: 'none'}}>
+                                -- Select --
+                            </option>
+                            {this._renderClassificationOptions()}
+                        </Input>
+                    </div>
+                </div>
                 {mask}
             </Modal.Body>
             <Modal.Footer>
@@ -145,5 +166,18 @@ export default class RecordDetail extends React.Component {
             </Button>;
         }
         return null;
+    }
+
+    _renderClassificationOptions() {
+        var options = [];
+        for (var key in Constants.RECORD_TYPES) {
+            if (!Constants.RECORD_TYPES.hasOwnProperty(key)) {
+                continue;
+            }
+            var option = Constants.RECORD_TYPES[key];
+            options.push(<option key={option.value} className={option.className}
+                                 value={option.value}>{option.value}</option>);
+        }
+        return options;
     }
 }

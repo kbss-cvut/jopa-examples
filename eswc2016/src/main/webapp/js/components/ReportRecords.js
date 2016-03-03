@@ -1,9 +1,10 @@
 'use strict';
 
 import React from 'react';
-import {Button, ButtonToolbar, Input, Panel, Table} from 'react-bootstrap';
+import {Button, Input, Panel, Table} from 'react-bootstrap';
 
 import RecordDetail from './RecordDetail';
+import Util from '../util/Util';
 
 export default class ReportRecords extends React.Component {
     constructor(props) {
@@ -127,15 +128,15 @@ class RecordRow extends React.Component {
     }
 
     render() {
-        var record = this.props.record;
+        var record = this.props.record,
+            classification = record.types ? record.types[0] : '',
+            className = 'record-classification ' + Util.getClassificationClassName(classification);
         return (<tr>
-            <td>{record.has_question.has_data_value}</td>
-            <td>{record.has_answer.has_data_value}</td>
-            <td>
-                <ButtonToolbar>
-                    <Button bsStyle='info' onClick={this._onEdit.bind(this)}>Edit</Button>
-                    <Button bsStyle='warning' onClick={this._onRemove.bind(this)}>Remove</Button>
-                </ButtonToolbar>
+            <td style={{verticalAlign: 'middle'}} className={className}>{record.has_question.has_data_value}</td>
+            <td style={{verticalAlign: 'middle'}} className={className}>{record.has_answer.has_data_value}</td>
+            <td className={'actions ' + className}>
+                <Button bsStyle='info' bsSize='small' onClick={this._onEdit.bind(this)}>Edit</Button>
+                <Button bsStyle='warning' bsSize='small' onClick={this._onRemove.bind(this)}>Remove</Button>
             </td>
         </tr>);
     }

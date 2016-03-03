@@ -103,7 +103,7 @@ class ReportRow extends React.Component {
             <td className='centered'
                 style={{verticalAlign: 'middle'}}>{Util.formatDate(new Date(report.auditDate))}</td>
             <td style={{textAlign: 'right', verticalAlign: 'middle'}}>{report.recordCount}</td>
-            <td className='centered' className='actions'>
+            <td className='actions'>
                 <Button bsStyle='info' bsSize='small' onClick={this._onEditReport.bind(this)}>Edit</Button>
                 <Button bsStyle='warning' bsSize='small' onClick={this._onRemoveReport.bind(this)}>Remove</Button>
             </td>
