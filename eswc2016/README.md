@@ -38,13 +38,13 @@ Individual JS files contain some additional explanatory comments.
 
 #### TODO
 
-- Web application (ReactJS) with Spring
+- Web application (ReactJS) with Spring     **OK**
 - Querying (SPARQL-DL)  **OK**
 - Inferred attributes, cascading, participation constraints, contexts   **OK**
 - OWL2Java
 - Storage switch    **OK**
 - Properties     **OK**
-- Types
+- Types     **OK**
 - Possible to view raw storage content in UI    **OK**
 - Possible to add/remove unmapped properties in UI  **OK**
 - Air safety domain     **OK**

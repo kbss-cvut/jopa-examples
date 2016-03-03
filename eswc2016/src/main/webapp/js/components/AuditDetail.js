@@ -3,8 +3,10 @@
 import React from 'react';
 import {Button, ButtonToolbar, Panel} from 'react-bootstrap';
 import BasicAuditInfo from './BasicAuditInfo';
-import Reports from './Reports';
+import AuditReports from './AuditReports';
 import Properties from './Properties';
+import Routing from '../util/Routing';
+import Actions from '../actions/Actions';
 
 export default class AuditDetail extends React.Component {
 
@@ -18,12 +20,15 @@ export default class AuditDetail extends React.Component {
         this.props.actions.change(change);
     }
 
-    _editReport(report) {
-
+    _editReport(reportKey) {
+        Routing.transitionTo('reports/' + reportKey);
     }
 
-    _removeReport(report) {
-
+    _removeReport(report, callback) {
+        Actions.deleteReport(report.identifier, function () {
+            callback();
+            Actions.loadAudit(report.documents);
+        });
     }
 
     render() {
@@ -38,7 +43,7 @@ export default class AuditDetail extends React.Component {
             <Panel header='Audit' bsStyle='info'>
                 <BasicAuditInfo audit={audit} onChange={this._onChange.bind(this)}/>
 
-                <Reports reports={audit.reports} actions={reportActions}/>
+                <AuditReports reports={audit.isDocumentedBy} actions={reportActions}/>
 
                 <Properties properties={audit.properties} onChange={this.props.actions.change}/>
 

@@ -1,6 +1,5 @@
 package cz.cvut.kbss.jopa.eswc2016.service;
 
-import com.github.jsonldjava.utils.Obj;
 import cz.cvut.kbss.jopa.eswc2016.model.dto.ReportDto;
 import cz.cvut.kbss.jopa.eswc2016.model.model.report;
 import cz.cvut.kbss.jopa.eswc2016.persistence.dao.BaseDao;

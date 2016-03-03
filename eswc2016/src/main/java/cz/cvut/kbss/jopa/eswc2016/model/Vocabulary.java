@@ -55,7 +55,6 @@ public class Vocabulary {
     public final static String s_p_title = "http://purl.org/dc/terms/title";
     public final static String s_i_educationLevel = "http://purl.org/dc/terms/educationLevel";
     public final static String s_p_msnChatID = "http://xmlns.com/foaf/0.1/msnChatID";
-    public final static String s_p_isDocumentedBy = "http://onto.fel.cvut.cz/ontologies/aviation/documentation/isDocumentedBy";
     public final static String s_p_alternative = "http://purl.org/dc/terms/alternative";
     public final static String s_p_medium = "http://purl.org/dc/terms/medium";
     public final static String s_p_inheres_in = "http://onto.fel.cvut.cz/ontologies/ufo/inheres_in";
@@ -88,6 +87,7 @@ public class Vocabulary {
     public final static String s_c_Document = "http://xmlns.com/foaf/0.1/Document";
     public final static String s_p_birthday = "http://xmlns.com/foaf/0.1/birthday";
     public final static String s_p_relation = "http://purl.org/dc/terms/relation";
+    public final static String s_p_isDocumentedBy = "http://onto.fel.cvut.cz/ontologies/documentation/isDocumentedBy";
     public final static String s_p_bibliographicCitation = "http://purl.org/dc/terms/bibliographicCitation";
     public final static String s_p_knows = "http://xmlns.com/foaf/0.1/knows";
     public final static String s_p_accrualPolicy = "http://purl.org/dc/terms/accrualPolicy";
