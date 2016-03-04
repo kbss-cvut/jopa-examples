@@ -4,9 +4,8 @@ import React from 'react';
 import {Alert, Input, Panel} from 'react-bootstrap';
 
 import Actions from '../actions/Actions';
+import Constants from '../constants/Constants';
 import SettingsStore from '../stores/SettingsStore';
-
-var repositoryTypeParam = 'repositoryType';
 
 export default class Settings extends React.Component {
     constructor(props) {
@@ -19,7 +18,7 @@ export default class Settings extends React.Component {
 
     componentDidMount() {
         this.unsubscribe = SettingsStore.listen(this._onSettingLoaded.bind(this));
-        Actions.loadSetting(repositoryTypeParam);
+        Actions.loadSetting(Constants.REPOSITORY_TYPE_PARAM);
     }
 
     componentWillUnmount() {
@@ -27,13 +26,13 @@ export default class Settings extends React.Component {
     }
 
     _onSettingLoaded(data) {
-        if (data[repositoryTypeParam]) {
+        if (data[Constants.REPOSITORY_TYPE_PARAM]) {
             this.setState(data);
         }
     }
 
     _onRepositoryTypeChange(e) {
-        if (e.target.value === this.state[repositoryTypeParam]) {
+        if (e.target.value === this.state[Constants.REPOSITORY_TYPE_PARAM]) {
             return;
         }
         var change = {};
@@ -61,14 +60,21 @@ export default class Settings extends React.Component {
                     </div>
                     <div className='row'>
                         <div className='col-xs-2'>
-                            <Input type='radio' name={repositoryTypeParam} value='sesame'
-                                   checked={this.state[repositoryTypeParam] === 'sesame'} label='Sesame'
+                            <Input type='radio' name={Constants.REPOSITORY_TYPE_PARAM} value='sesame'
+                                   checked={this.state[Constants.REPOSITORY_TYPE_PARAM] === 'sesame'} label='Sesame'
                                    onChange={this._onRepositoryTypeChange.bind(this)}/>
                         </div>
                         <div className='col-xs-2'>
-                            <Input type='radio' name={repositoryTypeParam} value='owlapi'
-                                   checked={this.state[repositoryTypeParam] === 'owlapi'} label='OWL API'
+                            <Input type='radio' name={Constants.REPOSITORY_TYPE_PARAM} value='owlapi'
+                                   checked={this.state[Constants.REPOSITORY_TYPE_PARAM] === 'owlapi'} label='OWL API'
                                    onChange={this._onRepositoryTypeChange.bind(this)}/>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col-xs-12'>
+                            <Input type='textarea' rows='10'
+                                   value={Constants.STORAGE_INFO[this.state[Constants.REPOSITORY_TYPE_PARAM]]}
+                                   disabled/>
                         </div>
                     </div>
                 </Panel>

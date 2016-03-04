@@ -33,7 +33,7 @@ export default class AuditReports extends React.Component {
         if (reports && reports.length > 0) {
             content = this._renderReportsTable();
         } else {
-            content = <div className="form-group italics">There are no reports, yet.</div>;
+            content = <div className="form-group italics">There are no reports here.</div>;
         }
         return (
             <div>
@@ -103,7 +103,7 @@ class ReportRow extends React.Component {
             <td style={{verticalAlign: 'middle'}}>{Util.formatDate(new Date(report.created))}</td>
             <td className='centered'
                 style={{verticalAlign: 'middle'}}>{author}</td>
-            <td style={{textAlign: 'right', verticalAlign: 'middle'}}>{report.recordCount ? report.recordCount : 0}</td>
+            <td style={{textAlign: 'right', verticalAlign: 'middle'}}>{report.recordCount ? report.recordCount : '?'}</td>
             <td className='actions'>
                 <Button bsStyle='info' bsSize='small' onClick={this._onEditReport.bind(this)}>Edit</Button>
                 <Button bsStyle='warning' bsSize='small' onClick={this._onRemoveReport.bind(this)}>Remove</Button>

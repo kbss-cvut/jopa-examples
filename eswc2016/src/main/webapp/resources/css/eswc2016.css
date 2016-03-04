@@ -94,3 +94,7 @@ ul.autocomplete-results.extended {
 .record-classification.invalid, select.record-classification option.invalid {
     background: rgba(217, 83, 79, 0.2);
 }
+
+.right {
+    float: right;
+}

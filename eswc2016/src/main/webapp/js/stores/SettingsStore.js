@@ -2,11 +2,13 @@
 
 var Reflux = require('reflux');
 var request = require('superagent');
+var assign = require('object-assign');
 
 var Actions = require('../actions/Actions');
 
 var URL = "rest/configuration";
 var PARAM_NAME = "key";
+var config = {};
 
 var SettingsStore = Reflux.createStore({
     init: function () {
@@ -21,6 +23,7 @@ var SettingsStore = Reflux.createStore({
             } else {
                 var data = {};
                 data[setting] = resp.body;
+                assign(config, data);
                 this.trigger(data);
             }
         }.bind(this));
@@ -33,11 +36,13 @@ var SettingsStore = Reflux.createStore({
                 console.log(err);
             } else {
                 Actions.resetStores();
+                assign(config, settings);
+                this.trigger(settings);
                 if (onSuccess) {
                     onSuccess();
                 }
             }
-        });
+        }.bind(this));
     },
 
     _prepareUrl: function (settings) {
@@ -51,6 +56,10 @@ var SettingsStore = Reflux.createStore({
             delimiter = '&';
         }
         return url;
+    },
+
+    getConfig: function () {
+        return config;
     }
 });
 
