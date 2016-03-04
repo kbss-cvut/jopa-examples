@@ -4,7 +4,7 @@ import com.clarkparsia.pellet.owlapiv3.PelletReasonerFactory;
 import cz.cvut.kbss.jopa.eswc2016.persistence.BasePersistenceFactory;
 import cz.cvut.kbss.jopa.model.EntityManagerFactory;
 import cz.cvut.kbss.jopa.model.JOPAPersistenceProperties;
-import cz.cvut.kbss.ontodriver.OntoDriverProperties;
+import cz.cvut.kbss.ontodriver.config.OntoDriverProperties;
 import cz.cvut.kbss.ontodriver.owlapi.config.OwlapiOntoDriverProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
