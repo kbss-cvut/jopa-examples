@@ -210,10 +210,11 @@
 
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <packagingExcludes>
-                        **/js/actions/,**/js/components/,**/js/constants/,**/js/stores/,
+                        **/js/actions/,**/js/components/,**/js/constants/,**/js/stores/,**/js/util/,
                         **/js/app.js,**/js/.bundle.js,node_modules/,
                         package.json,.babelrc
                     </packagingExcludes>
+                    <warName>eswc2016</warName>
                 </configuration>
             </plugin>
         </plugins>

@@ -23,11 +23,11 @@ export default class ReportsController extends React.Component {
     }
 
     componentDidMount() {
-        this.unsubscribe = ReportStore.listen(this._onReportsLoaded.bind(this));
+        this.unsubscribeData = ReportStore.listen(this._onReportsLoaded.bind(this));
     }
 
     componentWillUnmount() {
-        this.unsubscribe();
+        this.unsubscribeData();
     }
 
     _onReportsLoaded(data) {

@@ -22,14 +22,14 @@ export default class ReportController extends React.Component {
     }
 
     componentDidMount() {
-        this.unsubscribe = ReportStore.listen(this._onReportLoaded.bind(this));
+        this.unsubscribeData = ReportStore.listen(this._onReportLoaded.bind(this));
         if (this.props.params.reportKey) {
             Actions.loadReport(this.props.params.reportKey);
         }
     }
 
     componentWillUnmount() {
-        this.unsubscribe();
+        this.unsubscribeData();
     }
 
     _onReportLoaded(data) {

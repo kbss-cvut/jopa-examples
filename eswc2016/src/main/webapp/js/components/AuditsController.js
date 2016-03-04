@@ -23,11 +23,11 @@ export default class AuditsController extends React.Component {
     }
 
     componentDidMount() {
-        this.unsubscribe = AuditStore.listen(this._onAuditsLoaded.bind(this));
+        this.unsubscribeData = AuditStore.listen(this._onAuditsLoaded.bind(this));
     }
 
     componentWillUnmount() {
-        this.unsubscribe();
+        this.unsubscribeData();
     }
 
     _onAuditsLoaded(data) {

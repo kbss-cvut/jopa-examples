@@ -17,12 +17,12 @@ export default class Settings extends React.Component {
     }
 
     componentDidMount() {
-        this.unsubscribe = SettingsStore.listen(this._onSettingLoaded.bind(this));
+        this.unsubscribeData = SettingsStore.listen(this._onSettingLoaded.bind(this));
         Actions.loadSetting(Constants.REPOSITORY_TYPE_PARAM);
     }
 
     componentWillUnmount() {
-        this.unsubscribe();
+        this.unsubscribeData();
     }
 
     _onSettingLoaded(data) {

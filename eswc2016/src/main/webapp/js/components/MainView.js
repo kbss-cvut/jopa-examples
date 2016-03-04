@@ -20,11 +20,11 @@ export default class MainView extends React.Component {
         if (!this.state.storage) {
             Actions.loadSetting(Constants.REPOSITORY_TYPE_PARAM);
         }
-        this.unsubscribe = SettingsStore.listen(this._onSettingLoaded.bind(this));
+        this.unsubscribeData = SettingsStore.listen(this._onSettingLoaded.bind(this));
     }
 
     componentWillUnmount() {
-        this.unsubscribe();
+        this.unsubscribeData();
     }
 
     _onSettingLoaded(data) {

@@ -25,14 +25,14 @@ export default class RecordDetail extends React.Component {
     }
 
     componentDidMount() {
-        this.unsubscribe = QuestionStore.listen(this._onQuestionsLoaded.bind(this));
+        this.unsubscribeData = QuestionStore.listen(this._onQuestionsLoaded.bind(this));
         if (!this.state.questions) {
             Actions.loadQuestions();
         }
     }
 
     componentWillUnmount() {
-        this.unsubscribe();
+        this.unsubscribeData();
     }
 
     _onQuestionsLoaded(data) {

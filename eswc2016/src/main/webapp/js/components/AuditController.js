@@ -25,14 +25,14 @@ export default class AuditController extends React.Component {
     }
 
     componentDidMount() {
-        this.unsubscribe = AuditStore.listen(this._onAuditLoaded.bind(this));
+        this.unsubscribeData = AuditStore.listen(this._onAuditLoaded.bind(this));
         if (!this.state.new) {
             Actions.loadAudit(this.props.params.auditKey);
         }
     }
 
     componentWillUnmount() {
-        this.unsubscribe();
+        this.unsubscribeData();
     }
 
     _onAuditLoaded(data) {

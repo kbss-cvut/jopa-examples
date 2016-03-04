@@ -17,14 +17,14 @@ export default class CreateReportDialog extends React.Component {
     }
 
     componentDidMount() {
-        this.unsubscribe = AuditStore.listen(this._onAuditsLoaded.bind(this));
+        this.unsubscribeData = AuditStore.listen(this._onAuditsLoaded.bind(this));
         if (!this.state.audits) {
             Actions.loadAudits();
         }
     }
 
     componentWillUnmount() {
-        this.unsubscribe();
+        this.unsubscribeData();
     }
 
     _onAuditsLoaded(data) {
