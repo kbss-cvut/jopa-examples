@@ -30,7 +30,7 @@ import org.springframework.core.env.Environment;
 import javax.annotation.PostConstruct;
 
 @Configuration
-@PropertySource("classpath:config.properties")
+@PropertySource("classpath:sesame.properties")
 public class SesameDataProvider {
 
     private static final Logger LOG = LoggerFactory.getLogger(SesameDataProvider.class);

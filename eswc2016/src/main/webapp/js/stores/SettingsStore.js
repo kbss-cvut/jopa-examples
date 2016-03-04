@@ -32,6 +32,7 @@ var SettingsStore = Reflux.createStore({
             if (err) {
                 console.log(err);
             } else {
+                Actions.resetStores();
                 if (onSuccess) {
                     onSuccess();
                 }

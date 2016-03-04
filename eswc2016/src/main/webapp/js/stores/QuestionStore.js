@@ -14,6 +14,11 @@ var QuestionStore = Reflux.createStore({
     init: function () {
         this.listenTo(Actions.loadQuestions, this.onLoadQuestions);
         this.listenTo(Actions.createQuestion, this.onCreateQuestion);
+        this.listenTo(Actions.resetStores, this.onResetStores);
+    },
+
+    onResetStores: function () {
+        questions = null;
     },
 
     onLoadQuestions: function (force) {

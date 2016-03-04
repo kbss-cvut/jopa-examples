@@ -33,6 +33,9 @@ export default class Settings extends React.Component {
     }
 
     _onRepositoryTypeChange(e) {
+        if (e.target.value === this.state[repositoryTypeParam]) {
+            return;
+        }
         var change = {};
         change[e.target.name] = e.target.value;
         this.setState(change);

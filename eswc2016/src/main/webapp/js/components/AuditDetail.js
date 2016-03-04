@@ -32,18 +32,13 @@ export default class AuditDetail extends React.Component {
     }
 
     render() {
-        var audit = this.props.audit,
-            reportActions = {
-                addReport: this.props.actions.add,
-                editReport: this._editReport.bind(this),
-                removeReport: this._removeReport.bind(this)
-            };
+        var audit = this.props.audit;
 
         return (
             <Panel header='Audit' bsStyle='info'>
                 <BasicAuditInfo audit={audit} onChange={this._onChange.bind(this)}/>
 
-                <AuditReports reports={audit.isDocumentedBy} actions={reportActions}/>
+                {this._renderReports()}
 
                 <Properties properties={audit.properties} onChange={this.props.actions.change}/>
 
@@ -58,5 +53,18 @@ export default class AuditDetail extends React.Component {
                 </div>
             </Panel>
         );
+    }
+
+    _renderReports() {
+        var reportActions = {
+            addReport: this.props.actions.add,
+            editReport: this._editReport.bind(this),
+            removeReport: this._removeReport.bind(this)
+        }, audit = this.props.audit;
+        if (!audit.isNew) {
+            return <AuditReports reports={audit.isDocumentedBy} actions={reportActions}/>;
+        } else {
+            return null;
+        }
     }
 }

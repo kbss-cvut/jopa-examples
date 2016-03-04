@@ -14,6 +14,10 @@ var reports = null;
 var ReportStore = Reflux.createStore({
     listenables: [Actions],
 
+    onResetStores: function () {
+        reports = null;
+    },
+
     onLoadReports: function () {
         if (reports) {
             this.trigger({action: Actions.loadReports, reports: reports});

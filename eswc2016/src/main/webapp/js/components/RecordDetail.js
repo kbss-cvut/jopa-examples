@@ -105,9 +105,7 @@ export default class RecordDetail extends React.Component {
     }
 
     render() {
-        var removeButton = this.props.record.isNew ? null :
-                <Button bsStyle='warning' onClick={this._onRemove.bind(this)}>Remove</Button>,
-            mask = this.state.questionIdentifier ? <Mask text='Adding question'/> : null;
+        var mask = this.state.questionIdentifier ? <Mask text='Adding question'/> : null;
         return <Modal show={this.props.show} onHide={this.props.actions.onClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Create record</Modal.Title>
@@ -128,32 +126,11 @@ export default class RecordDetail extends React.Component {
                     </div>
                     <div className='col-xs-2' style={{verticalAlign: 'bottom'}}>{this._renderAddQuestionButton()}</div>
                 </div>
-                <div className='row'>
-                    <div className='col-xs-12'>
-                        <Input type='textarea' label='Answer' bsSize='small' value={this.state.answer.has_data_value}
-                               onChange={this._onAnswerChange.bind(this)}/>
-                    </div>
-                </div>
-                <div className='row'>
-                    <div className='col-xs-12'>
-                        <Input type='select' name='classification' label='Classification' bsSize='small'
-                               value={this.state.classification} onChange={this._onClassificationChange.bind(this)}
-                               className={'record-classification ' + Util.getClassificationClassName(this.state.classification)}>
-                            <option key='opt_default' value='' disabled defaultValue style={{display: 'none'}}>
-                                -- Select --
-                            </option>
-                            {this._renderClassificationOptions()}
-                        </Input>
-                    </div>
-                </div>
+                {this._renderAnswerAndClassification()}
                 {mask}
             </Modal.Body>
             <Modal.Footer>
-                <ButtonToolbar>
-                    <Button bsStyle='success' onClick={this._onSave.bind(this)}>Save</Button>
-                    <Button onClick={this.props.actions.onClose}>Cancel</Button>
-                    {removeButton}
-                </ButtonToolbar>
+                {this._renderButtons()}
             </Modal.Footer>
         </Modal>
     }
@@ -168,6 +145,32 @@ export default class RecordDetail extends React.Component {
         return null;
     }
 
+    _renderAnswerAndClassification() {
+        if (!this.state.question) {
+            return null;
+        }
+        return <div>
+            <div className='row'>
+                <div className='col-xs-12'>
+                    <Input type='textarea' label='Answer' bsSize='small' value={this.state.answer.has_data_value}
+                           onChange={this._onAnswerChange.bind(this)}/>
+                </div>
+            </div>
+            <div className='row'>
+                <div className='col-xs-12'>
+                    <Input type='select' name='classification' label='Classification' bsSize='small'
+                           value={this.state.classification} onChange={this._onClassificationChange.bind(this)}
+                           className={'record-classification ' + Util.getClassificationClassName(this.state.classification)}>
+                        <option key='opt_default' value='' disabled defaultValue style={{display: 'none'}}>
+                            -- Select --
+                        </option>
+                        {this._renderClassificationOptions()}
+                    </Input>
+                </div>
+            </div>
+        </div>;
+    }
+
     _renderClassificationOptions() {
         var options = [];
         for (var key in Constants.RECORD_TYPES) {
@@ -179,5 +182,17 @@ export default class RecordDetail extends React.Component {
                                  value={option.value}>{option.value}</option>);
         }
         return options;
+    }
+
+    _renderButtons() {
+        var removeButton = this.props.record.isNew ? null :
+                <Button bsStyle='warning' onClick={this._onRemove.bind(this)}>Remove</Button>,
+            saveDisabled = !this.state.question || !this.state.answer.has_data_value || this.state.answer.has_data_value === '';
+        return <ButtonToolbar>
+            <Button bsStyle='success' onClick={this._onSave.bind(this)}
+                    disabled={saveDisabled}>Save</Button>
+            <Button onClick={this.props.actions.onClose}>Cancel</Button>
+            {removeButton}
+        </ButtonToolbar>;
     }
 }

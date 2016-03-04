@@ -144,6 +144,7 @@
         <plugins>
             <plugin>
                 <!-- Generate entity classes from OWL integrity constraints -->
+                <!-- run it manually using mvn jopa:owl2java-transform -->
                 <groupId>cz.cvut.kbss.jopa</groupId>
                 <artifactId>jopa-maven-plugin</artifactId>
                 <version>0.7.0</version>
@@ -156,7 +157,7 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <phase>process-classes</phase>
+                        <phase>none</phase>
                         <goals>
                             <goal>owl2java-transform</goal>
                         </goals>
@@ -170,34 +171,34 @@
                 <version>1.4.0</version>
                 <executions>
                     <!--<execution>-->
-                        <!--<id>npm-module-cleanup</id>-->
-                        <!--<goals>-->
-                            <!--<goal>exec</goal>-->
-                        <!--</goals>-->
-                        <!--<phase>compile</phase>-->
-                        <!--<configuration>-->
-                            <!--<workingDirectory>src/main/webapp/</workingDirectory>-->
-                            <!--<executable>rm</executable>-->
-                            <!--<arguments>-->
-                                <!--<argument>-Rf</argument>-->
-                                <!--<argument>node_modules</argument>-->
-                            <!--</arguments>-->
-                        <!--</configuration>-->
+                    <!--<id>npm-module-cleanup</id>-->
+                    <!--<goals>-->
+                    <!--<goal>exec</goal>-->
+                    <!--</goals>-->
+                    <!--<phase>compile</phase>-->
+                    <!--<configuration>-->
+                    <!--<workingDirectory>src/main/webapp/</workingDirectory>-->
+                    <!--<executable>rm</executable>-->
+                    <!--<arguments>-->
+                    <!--<argument>-Rf</argument>-->
+                    <!--<argument>node_modules</argument>-->
+                    <!--</arguments>-->
+                    <!--</configuration>-->
                     <!--</execution>-->
                     <!--<execution>-->
-                        <!--<id>ui-build</id>-->
-                        <!--<goals>-->
-                            <!--<goal>exec</goal>-->
-                        <!--</goals>-->
-                        <!--<phase>compile</phase>-->
-                        <!--<configuration>-->
-                            <!--<workingDirectory>src/main/webapp/</workingDirectory>-->
-                            <!--<executable>npm</executable>-->
-                            <!--<arguments>-->
-                                <!--<argument>run</argument>-->
-                                <!--<argument>build</argument>-->
-                            <!--</arguments>-->
-                        <!--</configuration>-->
+                    <!--<id>ui-build</id>-->
+                    <!--<goals>-->
+                    <!--<goal>exec</goal>-->
+                    <!--</goals>-->
+                    <!--<phase>compile</phase>-->
+                    <!--<configuration>-->
+                    <!--<workingDirectory>src/main/webapp/</workingDirectory>-->
+                    <!--<executable>npm</executable>-->
+                    <!--<arguments>-->
+                    <!--<argument>run</argument>-->
+                    <!--<argument>build</argument>-->
+                    <!--</arguments>-->
+                    <!--</configuration>-->
                     <!--</execution>-->
                 </executions>
             </plugin>

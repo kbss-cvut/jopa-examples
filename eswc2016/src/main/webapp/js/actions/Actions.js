@@ -12,6 +12,8 @@ var Actions = Reflux.createActions([
 
     'loadData',
 
+    'resetStores',
+
     'loadSetting', 'saveSettings'
 ]);
 

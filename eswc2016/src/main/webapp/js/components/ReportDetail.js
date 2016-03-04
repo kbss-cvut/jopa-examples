@@ -15,9 +15,7 @@ export default class ReportDetail extends React.Component {
     }
 
     _onAuditChange(change) {
-        var audit = this.props.report.audit;
-        assign(audit, change);
-        this.props.actions.change({audit: audit});
+        // Do nothing
     }
 
     render() {
@@ -25,7 +23,7 @@ export default class ReportDetail extends React.Component {
         return (
             <Panel header='Report' bsStyle='info'>
                 <Panel header='Audit info'>
-                    <BasicAuditInfo audit={report.documents} onChange={this._onAuditChange.bind(this)}/>
+                    <BasicAuditInfo audit={report.documents} onChange={this._onAuditChange.bind(this)} disabled={true}/>
                 </Panel>
 
                 {this._renderOriginInfo()}

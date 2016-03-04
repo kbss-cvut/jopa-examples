@@ -30,7 +30,7 @@ public class report {
     protected Set<logical_record> has_documentation_part;
     @OWLObjectProperty(iri = Vocabulary.s_p_hasAuthor, fetch = FetchType.EAGER)
     @ParticipationConstraints({
-            @ParticipationConstraint(owlObjectIRI = Vocabulary.s_c_Person_A_A_A, max = 1)
+            @ParticipationConstraint(owlObjectIRI = Vocabulary.s_c_Person_A_A_A, min = 1, max = 1)
     })
     protected Person hasAuthor;
     @OWLObjectProperty(iri = Vocabulary.s_p_documents, fetch = FetchType.EAGER)

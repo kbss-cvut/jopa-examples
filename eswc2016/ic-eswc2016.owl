@@ -1032,7 +1032,8 @@
         <owl:annotatedTarget>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_data_value"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
@@ -1043,8 +1044,7 @@
         <owl:annotatedTarget>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_data_value"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
@@ -1056,15 +1056,14 @@
     <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/logical_record">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_question"/>
-                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/question"/>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentationy/has_answer"/>
+                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/answer"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentationy/has_answer"/>
-                <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/answer"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_question"/>
+                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/question"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1077,7 +1076,8 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentationy/has_answer"/>
-                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/answer"/>
+                <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/answer"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </rdf:Description>
@@ -1110,8 +1110,9 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_question"/>
-                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/question"/>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentationy/has_answer"/>
+                <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/answer"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
@@ -1121,9 +1122,8 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentationy/has_answer"/>
-                <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/answer"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_question"/>
+                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/question"/>
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
@@ -1135,6 +1135,13 @@
     <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/question">
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_data_value"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&terms;identifier"/>
                 <owl:allValuesFrom rdf:resource="&xsd;long"/>
             </owl:Restriction>
@@ -1143,13 +1150,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_data_value"/>
                 <owl:allValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_data_value"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1189,6 +1189,14 @@
     <owl:Axiom>
         <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
         <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/question"/>
+        <owl:annotatedProperty rdf:resource="&owl;hasKey"/>
+        <owl:annotatedTarget rdf:parseType="Collection">
+            <rdf:Description rdf:about="&terms;identifier"/>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/question"/>
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
@@ -1196,14 +1204,6 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;long"/>
             </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/question"/>
-        <owl:annotatedProperty rdf:resource="&owl;hasKey"/>
-        <owl:annotatedTarget rdf:parseType="Collection">
-            <rdf:Description rdf:about="&terms;identifier"/>
         </owl:annotatedTarget>
     </owl:Axiom>
     <owl:Axiom>
@@ -1225,34 +1225,15 @@
     <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/report">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;identifier"/>
-                <owl:allValuesFrom rdf:resource="&xsd;long"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/hasAuthor"/>
                 <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/documents"/>
-                <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;created"/>
-                <owl:allValuesFrom rdf:resource="&xsd;dateTime"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/hasAuthor"/>
                 <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
-                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1264,8 +1245,27 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_documentation_part"/>
-                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/logical_record"/>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/documents"/>
+                <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&terms;identifier"/>
+                <owl:allValuesFrom rdf:resource="&xsd;long"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&terms;created"/>
+                <owl:allValuesFrom rdf:resource="&xsd;dateTime"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/documents"/>
+                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1277,8 +1277,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/documents"/>
-                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_documentation_part"/>
+                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/logical_record"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:hasKey rdf:parseType="Collection">
@@ -1291,9 +1291,19 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;identifier"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;long"/>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/hasAuthor"/>
+                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&terms;created"/>
+                <owl:allValuesFrom rdf:resource="&xsd;dateTime"/>
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
@@ -1311,6 +1321,39 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&terms;identifier"/>
+                <owl:allValuesFrom rdf:resource="&xsd;long"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_documentation_part"/>
+                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/logical_record"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/documents"/>
+                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/documents"/>
                 <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
@@ -1323,42 +1366,9 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;created"/>
-                <owl:allValuesFrom rdf:resource="&xsd;dateTime"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/hasAuthor"/>
-                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/hasAuthor"/>
                 <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
-                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/documents"/>
-                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
@@ -1380,19 +1390,9 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_documentation_part"/>
-                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/logical_record"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&terms;identifier"/>
-                <owl:allValuesFrom rdf:resource="&xsd;long"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;long"/>
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
@@ -1404,16 +1404,8 @@
     <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Event">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;title"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&terms;identifier"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;long"/>
+                <owl:allValuesFrom rdf:resource="&xsd;long"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1425,14 +1417,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;title"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/isDocumentedBy"/>
+                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;identifier"/>
-                <owl:allValuesFrom rdf:resource="&xsd;long"/>
+                <owl:onProperty rdf:resource="&terms;title"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1443,8 +1435,16 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/isDocumentedBy"/>
-                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
+                <owl:onProperty rdf:resource="&terms;identifier"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;long"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&terms;title"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:hasKey rdf:parseType="Collection">
@@ -1457,41 +1457,6 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/isDocumentedBy"/>
-                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;title"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;identifier"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;long"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&terms;date"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;dateTime"/>
@@ -1515,8 +1480,20 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/isDocumentedBy"/>
+                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&terms;identifier"/>
-                <owl:allValuesFrom rdf:resource="&xsd;long"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;long"/>
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
@@ -1526,6 +1503,29 @@
         <owl:annotatedProperty rdf:resource="&owl;hasKey"/>
         <owl:annotatedTarget rdf:parseType="Collection">
             <rdf:Description rdf:about="&terms;identifier"/>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&terms;title"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&terms;identifier"/>
+                <owl:allValuesFrom rdf:resource="&xsd;long"/>
+            </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
     <owl:Axiom>
@@ -1547,27 +1547,13 @@
     <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Person">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&foaf;accountName"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&foaf;lastName"/>
                 <owl:allValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&foaf;lastName"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&foaf;firstName"/>
+                <owl:onProperty rdf:resource="&foaf;accountName"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>
@@ -1580,8 +1566,22 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&foaf;firstName"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&foaf;accountName"/>
                 <owl:allValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&foaf;lastName"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </rdf:Description>
@@ -1591,7 +1591,7 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&foaf;firstName"/>
+                <owl:onProperty rdf:resource="&foaf;lastName"/>
                 <owl:allValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </owl:annotatedTarget>
@@ -1614,7 +1614,29 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&foaf;lastName"/>
+                <owl:onProperty rdf:resource="&foaf;accountName"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&foaf;firstName"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&foaf;accountName"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>
@@ -1627,28 +1649,6 @@
         <owl:annotatedTarget>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&foaf;lastName"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&foaf;accountName"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&foaf;accountName"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>

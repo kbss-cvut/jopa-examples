@@ -14,6 +14,10 @@ var audits = null;
 var AuditStore = Reflux.createStore({
     listenables: [Actions],
 
+    onResetStores: function () {
+        audits = null;
+    },
+
     onLoadAudits: function (force) {
         if (audits && !force) {
             this.trigger(audits);

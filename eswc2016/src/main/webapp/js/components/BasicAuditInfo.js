@@ -26,7 +26,7 @@ export default class BasicAuditInfo extends React.Component {
                 <div className='row'>
                     <div className='col-xs-6'>
                         <Input type='text' label='Title' bsSize='small' value={audit.title}
-                               onChange={this.props.onChange} name='title'/>
+                               onChange={this.props.onChange} name='title' disabled={this.props.disabled}/>
                     </div>
                 </div>
                 <div className='row form-group'>
@@ -34,7 +34,7 @@ export default class BasicAuditInfo extends React.Component {
                         <label className='control-label'>Audit date</label>
                         <DateTimePicker inputFormat='DD-MM-YY HH:mm:ss' dateTime={audit.date.toString()}
                                         onChange={this._onDateChange.bind(this)}
-                                        inputProps={{title: 'Audit date', bsSize: 'small'}}/>
+                                        inputProps={{title: 'Audit date', bsSize: 'small', disabled: this.props.disabled}}/>
                     </div>
                 </div>
             </div>
