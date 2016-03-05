@@ -2,8 +2,7 @@ package cz.cvut.kbss.jopa.eswc2016.persistence.dao;
 
 import cz.cvut.kbss.jopa.eswc2016.model.Vocabulary;
 import cz.cvut.kbss.jopa.eswc2016.model.dto.ReportDto;
-import cz.cvut.kbss.jopa.eswc2016.model.model.report;
-import cz.cvut.kbss.jopa.eswc2016.util.Constants;
+import cz.cvut.kbss.jopa.eswc2016.model.model.Report;
 import cz.cvut.kbss.jopa.eswc2016.util.KeyGenerator;
 import cz.cvut.kbss.jopa.exceptions.NoResultException;
 import cz.cvut.kbss.jopa.model.EntityManager;
@@ -16,18 +15,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class ReportDao extends BaseDao<report> {
+public class ReportDao extends BaseDao<Report> {
 
     public ReportDao() {
-        super(report.class);
+        super(Report.class);
     }
 
     @Override
-    protected report findByUri(String uri, EntityManager em) {
-        return em.find(report.class, uri, getDescriptor());
+    protected Report findByUri(String uri, EntityManager em) {
+        return em.find(Report.class, uri, getDescriptor());
     }
 
-    protected report findByKey(Long key, EntityManager em) {
+    protected Report findByKey(Long key, EntityManager em) {
         try {
             final Object uri = em.createNativeQuery("SELECT ?x WHERE { ?x <" + Vocabulary.s_p_identifier + "> ?key ;" +
                     "a ?type }")
@@ -40,7 +39,7 @@ public class ReportDao extends BaseDao<report> {
     }
 
     @Override
-    protected void persist(report entity, EntityManager em) {
+    protected void persist(Report entity, EntityManager em) {
         entity.setIdentifier(KeyGenerator.generateKey());
         em.persist(entity, getDescriptor());
     }
@@ -48,7 +47,7 @@ public class ReportDao extends BaseDao<report> {
     private EntityDescriptor getDescriptor() {
         final EntityDescriptor descriptor = new EntityDescriptor();
         try {
-            descriptor.addAttributeDescriptor(report.class.getDeclaredField("hasAuthor"), PersonDao.PERSON_DESCRIPTOR);
+            descriptor.addAttributeDescriptor(Report.class.getDeclaredField("hasAuthor"), PersonDao.PERSON_DESCRIPTOR);
         } catch (NoSuchFieldException e) {
             LOG.error("Unable to set person context for report.", e);
         }

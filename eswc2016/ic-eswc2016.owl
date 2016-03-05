@@ -61,6 +61,12 @@
     
 
 
+    <!-- http://krizik.felk.cvut.cz/ontologies/2009/ic.owl#javaClassName -->
+
+    <owl:AnnotationProperty rdf:about="&ic;javaClassName"/>
+    
+
+
     <!-- http://purl.org/dc/elements/1.1/contributor -->
 
     <owl:AnnotationProperty rdf:about="&dc;contributor"/>
@@ -1024,7 +1030,19 @@
                 <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <ic:javaClassName>Answer</ic:javaClassName>
     </rdf:Description>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/answer"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_data_value"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
     <owl:Axiom>
         <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
         <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/answer"/>
@@ -1039,14 +1057,9 @@
     </owl:Axiom>
     <owl:Axiom>
         <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedTarget>Answer</owl:annotatedTarget>
+        <owl:annotatedProperty rdf:resource="&ic;javaClassName"/>
         <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/answer"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_data_value"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
     </owl:Axiom>
     
 
@@ -1062,8 +1075,9 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_question"/>
-                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/question"/>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentationy/has_answer"/>
+                <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/answer"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1075,12 +1089,23 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentationy/has_answer"/>
-                <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/answer"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_question"/>
+                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/question"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <ic:javaClassName>Record</ic:javaClassName>
     </rdf:Description>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/logical_record"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_question"/>
+                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/question"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
     <owl:Axiom>
         <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
         <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/logical_record"/>
@@ -1106,6 +1131,12 @@
     </owl:Axiom>
     <owl:Axiom>
         <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedTarget>Record</owl:annotatedTarget>
+        <owl:annotatedProperty rdf:resource="&ic;javaClassName"/>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/logical_record"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
         <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/logical_record"/>
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
@@ -1116,23 +1147,25 @@
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/logical_record"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_question"/>
-                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/question"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
     
 
 
     <!-- http://onto.fel.cvut.cz/ontologies/documentation/question -->
 
     <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/question">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&terms;identifier"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;long"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_data_value"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_data_value"/>
@@ -1146,23 +1179,17 @@
                 <owl:allValuesFrom rdf:resource="&xsd;long"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_data_value"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;identifier"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;long"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <ic:javaClassName>Question</ic:javaClassName>
         <owl:hasKey rdf:parseType="Collection">
             <rdf:Description rdf:about="&terms;identifier"/>
         </owl:hasKey>
     </rdf:Description>
+    <owl:Axiom>
+        <owl:annotatedTarget>Question</owl:annotatedTarget>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedProperty rdf:resource="&ic;javaClassName"/>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/question"/>
+    </owl:Axiom>
     <owl:Axiom>
         <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
         <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/question"/>
@@ -1172,6 +1199,18 @@
                 <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_data_value"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/question"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&terms;identifier"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;long"/>
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
@@ -1192,18 +1231,6 @@
         <owl:annotatedProperty rdf:resource="&owl;hasKey"/>
         <owl:annotatedTarget rdf:parseType="Collection">
             <rdf:Description rdf:about="&terms;identifier"/>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/question"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;identifier"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;long"/>
-            </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
     <owl:Axiom>
@@ -1225,8 +1252,46 @@
     <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/report">
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/documents"/>
+                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&terms;identifier"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;long"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&terms;created"/>
+                <owl:allValuesFrom rdf:resource="&xsd;dateTime"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&terms;identifier"/>
+                <owl:allValuesFrom rdf:resource="&xsd;long"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/documents"/>
+                <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/hasAuthor"/>
                 <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_documentation_part"/>
+                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/logical_record"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1243,44 +1308,7 @@
                 <owl:onDataRange rdf:resource="&xsd;dateTime"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/documents"/>
-                <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;identifier"/>
-                <owl:allValuesFrom rdf:resource="&xsd;long"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;created"/>
-                <owl:allValuesFrom rdf:resource="&xsd;dateTime"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/documents"/>
-                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;identifier"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;long"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_documentation_part"/>
-                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/logical_record"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <ic:javaClassName>Report</ic:javaClassName>
         <owl:hasKey rdf:parseType="Collection">
             <rdf:Description rdf:about="&terms;identifier"/>
         </owl:hasKey>
@@ -1292,18 +1320,8 @@
         <owl:annotatedTarget>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/hasAuthor"/>
-                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;created"/>
-                <owl:allValuesFrom rdf:resource="&xsd;dateTime"/>
+                <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
@@ -1321,17 +1339,6 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;identifier"/>
-                <owl:allValuesFrom rdf:resource="&xsd;long"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/has_documentation_part"/>
                 <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/logical_record"/>
             </owl:Restriction>
@@ -1343,32 +1350,9 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/documents"/>
-                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/documents"/>
-                <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+                <owl:onProperty rdf:resource="&terms;identifier"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/hasAuthor"/>
-                <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;long"/>
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
@@ -1391,8 +1375,58 @@
         <owl:annotatedTarget>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&terms;identifier"/>
+                <owl:allValuesFrom rdf:resource="&xsd;long"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/documents"/>
+                <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;long"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&terms;created"/>
+                <owl:allValuesFrom rdf:resource="&xsd;dateTime"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedTarget>Report</owl:annotatedTarget>
+        <owl:annotatedProperty rdf:resource="&ic;javaClassName"/>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/hasAuthor"/>
+                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/documents"/>
+                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
@@ -1405,6 +1439,26 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&terms;identifier"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;long"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&terms;title"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&terms;title"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&terms;identifier"/>
                 <owl:allValuesFrom rdf:resource="&xsd;long"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1423,34 +1477,50 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;title"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&terms;date"/>
                 <owl:allValuesFrom rdf:resource="&xsd;dateTime"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
+        <ic:javaClassName>Event</ic:javaClassName>
+        <owl:hasKey rdf:parseType="Collection">
+            <rdf:Description rdf:about="&terms;identifier"/>
+        </owl:hasKey>
+    </rdf:Description>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;identifier"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;long"/>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/isDocumentedBy"/>
+                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
             </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&terms;title"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>
-        </rdfs:subClassOf>
-        <owl:hasKey rdf:parseType="Collection">
-            <rdf:Description rdf:about="&terms;identifier"/>
-        </owl:hasKey>
-    </rdf:Description>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&terms;identifier"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;long"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
     <owl:Axiom>
         <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
         <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
@@ -1476,26 +1546,9 @@
     </owl:Axiom>
     <owl:Axiom>
         <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedTarget>Event</owl:annotatedTarget>
+        <owl:annotatedProperty rdf:resource="&ic;javaClassName"/>
         <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/isDocumentedBy"/>
-                <owl:allValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/documentation/report"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;identifier"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;long"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
     </owl:Axiom>
     <owl:Axiom>
         <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
@@ -1511,9 +1564,8 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;title"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
+                <owl:onProperty rdf:resource="&terms;date"/>
+                <owl:allValuesFrom rdf:resource="&xsd;dateTime"/>
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
@@ -1528,17 +1580,6 @@
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&terms;date"/>
-                <owl:allValuesFrom rdf:resource="&xsd;dateTime"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
     
 
 
@@ -1547,13 +1588,21 @@
     <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Person">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&foaf;lastName"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+                <owl:onProperty rdf:resource="&foaf;firstName"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&foaf;accountName"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&foaf;lastName"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>
@@ -1566,13 +1615,6 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&foaf;firstName"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&foaf;accountName"/>
                 <owl:allValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
@@ -1580,10 +1622,10 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&foaf;lastName"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <ic:javaClassName>Person</ic:javaClassName>
     </rdf:Description>
     <owl:Axiom>
         <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
@@ -1591,17 +1633,6 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&foaf;lastName"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&foaf;firstName"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;string"/>
@@ -1625,7 +1656,19 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&foaf;firstName"/>
+                <owl:onProperty rdf:resource="&foaf;lastName"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&foaf;lastName"/>
                 <owl:allValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </owl:annotatedTarget>
@@ -1648,11 +1691,16 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&foaf;lastName"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
+                <owl:onProperty rdf:resource="&foaf;firstName"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-eswc2016</ic:isIntegrityConstraintFor>
+        <owl:annotatedTarget>Person</owl:annotatedTarget>
+        <owl:annotatedProperty rdf:resource="&ic;javaClassName"/>
+        <owl:annotatedSource rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
     </owl:Axiom>
     
 
@@ -2633,15 +2681,6 @@
         <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#dateT-001"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
-    <rdf:Description rdf:about="&terms;references">
-        <rdfs:label xml:lang="en">References</rdfs:label>
-        <terms:issued rdf:datatype="&xsd;date">2000-07-11</terms:issued>
-        <terms:modified rdf:datatype="&xsd;date">2008-01-14</terms:modified>
-        <rdfs:comment xml:lang="en">A related resource that is referenced, cited, or otherwise pointed to by the described resource.</rdfs:comment>
-        <skos:note xml:lang="en">This term is intended to be used with non-literal values as defined in the DCMI Abstract Model (http://dublincore.org/documents/abstract-model/).  As of December 2007, the DCMI Usage Board is seeking a way to express this intention with a formal range declaration.</skos:note>
-        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#references-003"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
-    </rdf:Description>
     <rdf:Description rdf:about="&terms;replaces">
         <rdfs:label xml:lang="en">Replaces</rdfs:label>
         <terms:issued rdf:datatype="&xsd;date">2000-07-11</terms:issued>
@@ -2649,6 +2688,15 @@
         <rdfs:comment xml:lang="en">A related resource that is supplanted, displaced, or superseded by the described resource.</rdfs:comment>
         <skos:note xml:lang="en">This term is intended to be used with non-literal values as defined in the DCMI Abstract Model (http://dublincore.org/documents/abstract-model/).  As of December 2007, the DCMI Usage Board is seeking a way to express this intention with a formal range declaration.</skos:note>
         <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#replaces-003"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="&terms;references">
+        <rdfs:label xml:lang="en">References</rdfs:label>
+        <terms:issued rdf:datatype="&xsd;date">2000-07-11</terms:issued>
+        <terms:modified rdf:datatype="&xsd;date">2008-01-14</terms:modified>
+        <rdfs:comment xml:lang="en">A related resource that is referenced, cited, or otherwise pointed to by the described resource.</rdfs:comment>
+        <skos:note xml:lang="en">This term is intended to be used with non-literal values as defined in the DCMI Abstract Model (http://dublincore.org/documents/abstract-model/).  As of December 2007, the DCMI Usage Board is seeking a way to express this intention with a formal range declaration.</skos:note>
+        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#references-003"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
     <rdf:Description rdf:about="&terms;subject">
@@ -2701,6 +2749,14 @@
         <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#license-002"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
+    <rdf:Description rdf:about="&terms;valid">
+        <rdfs:label xml:lang="en">Date Valid</rdfs:label>
+        <terms:issued rdf:datatype="&xsd;date">2000-07-11</terms:issued>
+        <terms:modified rdf:datatype="&xsd;date">2008-01-14</terms:modified>
+        <rdfs:comment xml:lang="en">Date (often a range) of validity of a resource.</rdfs:comment>
+        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#valid-003"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
+    </rdf:Description>
     <rdf:Description rdf:about="&terms;isReferencedBy">
         <rdfs:label xml:lang="en">Is Referenced By</rdfs:label>
         <terms:issued rdf:datatype="&xsd;date">2000-07-11</terms:issued>
@@ -2708,14 +2764,6 @@
         <rdfs:comment xml:lang="en">A related resource that references, cites, or otherwise points to the described resource.</rdfs:comment>
         <skos:note xml:lang="en">This term is intended to be used with non-literal values as defined in the DCMI Abstract Model (http://dublincore.org/documents/abstract-model/).  As of December 2007, the DCMI Usage Board is seeking a way to express this intention with a formal range declaration.</skos:note>
         <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#isReferencedBy-003"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
-    </rdf:Description>
-    <rdf:Description rdf:about="&terms;valid">
-        <rdfs:label xml:lang="en">Date Valid</rdfs:label>
-        <terms:issued rdf:datatype="&xsd;date">2000-07-11</terms:issued>
-        <terms:modified rdf:datatype="&xsd;date">2008-01-14</terms:modified>
-        <rdfs:comment xml:lang="en">Date (often a range) of validity of a resource.</rdfs:comment>
-        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#valid-003"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
     <rdf:Description rdf:about="&terms;Jurisdiction">
@@ -2756,13 +2804,6 @@
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
         <rdfs:seeAlso rdf:resource="http://www.iso.org/iso/en/prods-services/iso3166ma/02iso-3166-code-lists/list-en1.html"/>
     </rdf:Description>
-    <rdf:Description rdf:about="&terms;MediaType">
-        <rdfs:label xml:lang="en">Media Type</rdfs:label>
-        <terms:issued rdf:datatype="&xsd;date">2008-01-14</terms:issued>
-        <rdfs:comment xml:lang="en">A file format or physical medium.</rdfs:comment>
-        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#MediaType-001"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
-    </rdf:Description>
     <rdf:Description rdf:about="&terms;dateSubmitted">
         <rdfs:label xml:lang="en">Date Submitted</rdfs:label>
         <terms:issued rdf:datatype="&xsd;date">2002-07-13</terms:issued>
@@ -2770,6 +2811,13 @@
         <rdfs:comment xml:lang="en">Date of submission of the resource.</rdfs:comment>
         <terms:description xml:lang="en">Examples of resources to which a Date Submitted may be relevant are a thesis (submitted to a university department) or an article (submitted to a journal).</terms:description>
         <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#dateSubmitted-002"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="&terms;MediaType">
+        <rdfs:label xml:lang="en">Media Type</rdfs:label>
+        <terms:issued rdf:datatype="&xsd;date">2008-01-14</terms:issued>
+        <rdfs:comment xml:lang="en">A file format or physical medium.</rdfs:comment>
+        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#MediaType-001"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
     <rdf:Description rdf:about="&terms;accrualPeriodicity">
@@ -2804,14 +2852,6 @@
         <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#MethodOfInstruction-001"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
-    <rdf:Description rdf:about="&terms;Agent">
-        <rdfs:label xml:lang="en">Agent</rdfs:label>
-        <terms:issued rdf:datatype="&xsd;date">2008-01-14</terms:issued>
-        <rdfs:comment xml:lang="en">A resource that acts or has the power to act.</rdfs:comment>
-        <terms:description xml:lang="en">Examples of Agent include person, organization, and software agent.</terms:description>
-        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#Agent-001"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
-    </rdf:Description>
     <rdf:Description rdf:about="&terms;identifier">
         <rdfs:label xml:lang="en">Identifier</rdfs:label>
         <terms:issued rdf:datatype="&xsd;date">2008-01-14</terms:issued>
@@ -2821,12 +2861,12 @@
         <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#identifierT-001"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
-    <rdf:Description rdf:about="&terms;LinguisticSystem">
-        <rdfs:label xml:lang="en">Linguistic System</rdfs:label>
+    <rdf:Description rdf:about="&terms;Agent">
+        <rdfs:label xml:lang="en">Agent</rdfs:label>
         <terms:issued rdf:datatype="&xsd;date">2008-01-14</terms:issued>
-        <rdfs:comment xml:lang="en">A system of signs, symbols, sounds, gestures, or rules used in communication.</rdfs:comment>
-        <terms:description xml:lang="en">Examples include written, spoken, sign, and computer languages.</terms:description>
-        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#LinguisticSystem-001"/>
+        <rdfs:comment xml:lang="en">A resource that acts or has the power to act.</rdfs:comment>
+        <terms:description xml:lang="en">Examples of Agent include person, organization, and software agent.</terms:description>
+        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#Agent-001"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
     <rdf:Description rdf:about="&terms;Policy">
@@ -2834,6 +2874,14 @@
         <terms:issued rdf:datatype="&xsd;date">2008-01-14</terms:issued>
         <rdfs:comment xml:lang="en">A plan or course of action by an authority, intended to influence and determine decisions, actions, and other matters.</rdfs:comment>
         <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#Policy-001"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="&terms;LinguisticSystem">
+        <rdfs:label xml:lang="en">Linguistic System</rdfs:label>
+        <terms:issued rdf:datatype="&xsd;date">2008-01-14</terms:issued>
+        <rdfs:comment xml:lang="en">A system of signs, symbols, sounds, gestures, or rules used in communication.</rdfs:comment>
+        <terms:description xml:lang="en">Examples include written, spoken, sign, and computer languages.</terms:description>
+        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#LinguisticSystem-001"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
     <rdf:Description rdf:about="&terms;audience">
@@ -2893,15 +2941,6 @@
         <rdfs:seeAlso rdf:resource="http://lcweb.loc.gov/standards/iso639-2/langhome.html"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
-    <rdf:Description rdf:about="&terms;dateAccepted">
-        <rdfs:label xml:lang="en">Date Accepted</rdfs:label>
-        <terms:issued rdf:datatype="&xsd;date">2002-07-13</terms:issued>
-        <terms:modified rdf:datatype="&xsd;date">2008-01-14</terms:modified>
-        <rdfs:comment xml:lang="en">Date of acceptance of the resource.</rdfs:comment>
-        <terms:description xml:lang="en">Examples of resources to which a Date Accepted may be relevant are a thesis (accepted by a university department) or an article (accepted by a journal).</terms:description>
-        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#dateAccepted-002"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
-    </rdf:Description>
     <rdf:Description rdf:about="&terms;Period">
         <rdfs:label xml:lang="en">DCMI Period</rdfs:label>
         <terms:issued rdf:datatype="&xsd;date">2000-07-11</terms:issued>
@@ -2909,6 +2948,15 @@
         <rdfs:comment xml:lang="en">The set of time intervals defined by their limits according to the DCMI Period Encoding Scheme.</rdfs:comment>
         <rdfs:seeAlso rdf:resource="http://dublincore.org/documents/dcmi-period/"/>
         <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#Period-003"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="&terms;dateAccepted">
+        <rdfs:label xml:lang="en">Date Accepted</rdfs:label>
+        <terms:issued rdf:datatype="&xsd;date">2002-07-13</terms:issued>
+        <terms:modified rdf:datatype="&xsd;date">2008-01-14</terms:modified>
+        <rdfs:comment xml:lang="en">Date of acceptance of the resource.</rdfs:comment>
+        <terms:description xml:lang="en">Examples of resources to which a Date Accepted may be relevant are a thesis (accepted by a university department) or an article (accepted by a journal).</terms:description>
+        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#dateAccepted-002"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
     <rdf:Description rdf:about="&terms;source">
@@ -2947,15 +2995,6 @@
         <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#medium-003"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
-    <rdf:Description rdf:about="&terms;language">
-        <rdfs:label xml:lang="en">Language</rdfs:label>
-        <terms:issued rdf:datatype="&xsd;date">2008-01-14</terms:issued>
-        <terms:modified rdf:datatype="&xsd;date">2008-01-14</terms:modified>
-        <rdfs:comment xml:lang="en">A language of the resource.</rdfs:comment>
-        <terms:description xml:lang="en">Recommended best practice is to use a controlled vocabulary such as RFC 4646 [RFC4646].</terms:description>
-        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#languageT-001"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
-    </rdf:Description>
     <rdf:Description rdf:about="&terms;W3CDTF">
         <rdfs:label xml:lang="en">W3C-DTF</rdfs:label>
         <terms:issued rdf:datatype="&xsd;date">2000-07-11</terms:issued>
@@ -2970,6 +3009,15 @@
         <terms:issued rdf:datatype="&xsd;date">2008-01-14</terms:issued>
         <rdfs:comment xml:lang="en">A statement of any changes in ownership and custody of a resource since its creation that are significant for its authenticity, integrity, and interpretation.</rdfs:comment>
         <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#ProvenanceStatement-001"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="&terms;language">
+        <rdfs:label xml:lang="en">Language</rdfs:label>
+        <terms:issued rdf:datatype="&xsd;date">2008-01-14</terms:issued>
+        <terms:modified rdf:datatype="&xsd;date">2008-01-14</terms:modified>
+        <rdfs:comment xml:lang="en">A language of the resource.</rdfs:comment>
+        <terms:description xml:lang="en">Recommended best practice is to use a controlled vocabulary such as RFC 4646 [RFC4646].</terms:description>
+        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#languageT-001"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
     <rdf:Description rdf:about="&terms;LicenseDocument">
@@ -3131,15 +3179,6 @@
         <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#formatT-001"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
-    <rdf:Description rdf:about="&terms;AgentClass">
-        <rdfs:label xml:lang="en">Agent Class</rdfs:label>
-        <terms:issued rdf:datatype="&xsd;date">2008-01-14</terms:issued>
-        <terms:modified rdf:datatype="&xsd;date">2012-06-14</terms:modified>
-        <rdfs:comment xml:lang="en">A group of agents.</rdfs:comment>
-        <terms:description xml:lang="en">Examples of Agent Class include groups seen as classes, such as students, women, charities, lecturers.</terms:description>
-        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#AgentClass-003"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
-    </rdf:Description>
     <rdf:Description rdf:about="&terms;instructionalMethod">
         <rdfs:label xml:lang="en">Instructional Method</rdfs:label>
         <terms:issued rdf:datatype="&xsd;date">2005-06-13</terms:issued>
@@ -3147,6 +3186,15 @@
         <rdfs:comment xml:lang="en">A process, used to engender knowledge, attitudes and skills, that the described resource is designed to support.</rdfs:comment>
         <terms:description xml:lang="en">Instructional Method will typically include ways of presenting instructional materials or conducting instructional activities, patterns of learner-to-learner and learner-to-instructor interactions, and mechanisms by which group and individual levels of learning are measured.  Instructional methods include all aspects of the instruction and learning processes from planning and implementation through evaluation and feedback.</terms:description>
         <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#instructionalMethod-002"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="&terms;AgentClass">
+        <rdfs:label xml:lang="en">Agent Class</rdfs:label>
+        <terms:issued rdf:datatype="&xsd;date">2008-01-14</terms:issued>
+        <terms:modified rdf:datatype="&xsd;date">2012-06-14</terms:modified>
+        <rdfs:comment xml:lang="en">A group of agents.</rdfs:comment>
+        <terms:description xml:lang="en">Examples of Agent Class include groups seen as classes, such as students, women, charities, lecturers.</terms:description>
+        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#AgentClass-003"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
     <rdf:Description rdf:about="&terms;isReplacedBy">
@@ -3201,6 +3249,14 @@
         <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#hasVersion-003"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
+    <rdf:Description rdf:about="&terms;abstract">
+        <rdfs:label xml:lang="en">Abstract</rdfs:label>
+        <terms:issued rdf:datatype="&xsd;date">2000-07-11</terms:issued>
+        <terms:modified rdf:datatype="&xsd;date">2008-01-14</terms:modified>
+        <rdfs:comment xml:lang="en">A summary of the resource.</rdfs:comment>
+        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#abstract-003"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
+    </rdf:Description>
     <rdf:Description rdf:about="&terms;relation">
         <rdfs:label xml:lang="en">Relation</rdfs:label>
         <terms:modified rdf:datatype="&xsd;date">2008-01-14</terms:modified>
@@ -3209,14 +3265,6 @@
         <terms:description xml:lang="en">Recommended best practice is to identify the related resource by means of a string conforming to a formal identification system. </terms:description>
         <skos:note xml:lang="en">This term is intended to be used with non-literal values as defined in the DCMI Abstract Model (http://dublincore.org/documents/abstract-model/).  As of December 2007, the DCMI Usage Board is seeking a way to express this intention with a formal range declaration.</skos:note>
         <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#relationT-001"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
-    </rdf:Description>
-    <rdf:Description rdf:about="&terms;abstract">
-        <rdfs:label xml:lang="en">Abstract</rdfs:label>
-        <terms:issued rdf:datatype="&xsd;date">2000-07-11</terms:issued>
-        <terms:modified rdf:datatype="&xsd;date">2008-01-14</terms:modified>
-        <rdfs:comment xml:lang="en">A summary of the resource.</rdfs:comment>
-        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#abstract-003"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
     <rdf:Description rdf:about="&terms;alternative">
@@ -3228,14 +3276,6 @@
         <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#alternative-003"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
-    <rdf:Description rdf:about="&terms;title">
-        <rdfs:label xml:lang="en">Title</rdfs:label>
-        <terms:issued rdf:datatype="&xsd;date">2008-01-14</terms:issued>
-        <terms:modified rdf:datatype="&xsd;date">2010-10-11</terms:modified>
-        <rdfs:comment xml:lang="en">A name given to the resource.</rdfs:comment>
-        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#titleT-002"/>
-        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
-    </rdf:Description>
     <rdf:Description rdf:about="&terms;type">
         <rdfs:label xml:lang="en">Type</rdfs:label>
         <terms:modified rdf:datatype="&xsd;date">2008-01-14</terms:modified>
@@ -3243,6 +3283,14 @@
         <terms:description xml:lang="en">Recommended best practice is to use a controlled vocabulary such as the DCMI Type Vocabulary [DCMITYPE]. To describe the file format, physical medium, or dimensions of the resource, use the Format element.</terms:description>
         <rdfs:comment xml:lang="en">The nature or genre of the resource.</rdfs:comment>
         <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#typeT-001"/>
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="&terms;title">
+        <rdfs:label xml:lang="en">Title</rdfs:label>
+        <terms:issued rdf:datatype="&xsd;date">2008-01-14</terms:issued>
+        <terms:modified rdf:datatype="&xsd;date">2010-10-11</terms:modified>
+        <rdfs:comment xml:lang="en">A name given to the resource.</rdfs:comment>
+        <terms:hasVersion rdf:resource="http://dublincore.org/usage/terms/history/#titleT-002"/>
         <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/terms/"/>
     </rdf:Description>
     <rdf:Description rdf:about="&terms;dateCopyrighted">

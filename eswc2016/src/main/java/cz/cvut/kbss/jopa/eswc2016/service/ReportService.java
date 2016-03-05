@@ -1,7 +1,7 @@
 package cz.cvut.kbss.jopa.eswc2016.service;
 
 import cz.cvut.kbss.jopa.eswc2016.model.dto.ReportDto;
-import cz.cvut.kbss.jopa.eswc2016.model.model.report;
+import cz.cvut.kbss.jopa.eswc2016.model.model.Report;
 import cz.cvut.kbss.jopa.eswc2016.persistence.dao.BaseDao;
 import cz.cvut.kbss.jopa.eswc2016.persistence.dao.PersonDao;
 import cz.cvut.kbss.jopa.eswc2016.persistence.dao.ReportDao;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class ReportService extends BaseRepositoryService<report> {
+public class ReportService extends BaseRepositoryService<Report> {
 
     @Autowired
     private ReportDao reportDao;
@@ -26,17 +26,17 @@ public class ReportService extends BaseRepositoryService<report> {
     private PropertiesValidationService propertiesValidation;
 
     @Override
-    protected BaseDao<report> getPrimaryDao() {
+    protected BaseDao<Report> getPrimaryDao() {
         return reportDao;
     }
 
-    public report findByKey(Long key) {
+    public Report findByKey(Long key) {
         Objects.requireNonNull(key);
         return reportDao.findByKey(key);
     }
 
     @Override
-    public void persist(report instance) {
+    public void persist(Report instance) {
         Objects.requireNonNull(instance);
         propertiesValidation.validate(instance.getProperties());
         instance.setCreated(new Date());
@@ -46,7 +46,7 @@ public class ReportService extends BaseRepositoryService<report> {
     }
 
     @Override
-    public void update(report instance) {
+    public void update(Report instance) {
         Objects.requireNonNull(instance);
         propertiesValidation.validate(instance.getProperties());
         super.update(instance);

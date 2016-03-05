@@ -1,6 +1,6 @@
 package cz.cvut.kbss.jopa.eswc2016.rest;
 
-import cz.cvut.kbss.jopa.eswc2016.model.model.question;
+import cz.cvut.kbss.jopa.eswc2016.model.model.Question;
 import cz.cvut.kbss.jopa.eswc2016.rest.exception.NotFoundException;
 import cz.cvut.kbss.jopa.eswc2016.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +20,17 @@ public class QuestionController extends BaseController {
     private QuestionService questionService;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<question> getQuestions() {
+    public List<Question> getQuestions() {
         return questionService.findAll();
     }
 
     @RequestMapping(value = "/{key}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public question getQuestion(@PathVariable("key") Long key) {
+    public Question getQuestion(@PathVariable("key") Long key) {
         return getQuestionInternal(key);
     }
 
-    private question getQuestionInternal(Long key) {
-        final question q = questionService.findByKey(key);
+    private Question getQuestionInternal(Long key) {
+        final Question q = questionService.findByKey(key);
         if (q == null) {
             throw NotFoundException.create("Question", key);
         }
@@ -39,7 +39,7 @@ public class QuestionController extends BaseController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Void> createQuestion(@RequestBody question question) {
+    public ResponseEntity<Void> createQuestion(@RequestBody Question question) {
         questionService.persist(question);
         if (LOG.isTraceEnabled()) {
             LOG.trace("Question " + question + " successfully created.");
@@ -50,8 +50,8 @@ public class QuestionController extends BaseController {
 
     @RequestMapping(value = "/{key}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateQuestion(@PathVariable("key") Long key, @RequestBody question update) {
-        final question original = getQuestionInternal(key);
+    public void updateQuestion(@PathVariable("key") Long key, @RequestBody Question update) {
+        final Question original = getQuestionInternal(key);
         assert original.getId().equals(update.getId());
         questionService.update(update);
         if (LOG.isTraceEnabled()) {

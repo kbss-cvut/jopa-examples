@@ -1,7 +1,7 @@
 package cz.cvut.kbss.jopa.eswc2016.rest;
 
 import cz.cvut.kbss.jopa.eswc2016.model.dto.ReportDto;
-import cz.cvut.kbss.jopa.eswc2016.model.model.report;
+import cz.cvut.kbss.jopa.eswc2016.model.model.Report;
 import cz.cvut.kbss.jopa.eswc2016.rest.exception.NotFoundException;
 import cz.cvut.kbss.jopa.eswc2016.rest.exception.ValidationException;
 import cz.cvut.kbss.jopa.eswc2016.service.ReportService;
@@ -27,12 +27,12 @@ public class ReportController extends BaseController {
     }
 
     @RequestMapping(value = "/{key}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public report getReport(@PathVariable("key") Long key) {
+    public Report getReport(@PathVariable("key") Long key) {
         return getReportInternal(key);
     }
 
-    private report getReportInternal(Long key) {
-        final report r = reportService.findByKey(key);
+    private Report getReportInternal(Long key) {
+        final Report r = reportService.findByKey(key);
         if (r == null) {
             throw NotFoundException.create("Report", key);
         }
@@ -41,7 +41,7 @@ public class ReportController extends BaseController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Void> createReport(@RequestBody report report) {
+    public ResponseEntity<Void> createReport(@RequestBody Report report) {
         reportService.persist(report);
         if (LOG.isTraceEnabled()) {
             LOG.trace("Report {} successfully created.", report.getId());
@@ -52,7 +52,7 @@ public class ReportController extends BaseController {
 
     @RequestMapping(value = "/{key}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateReport(@PathVariable("key") Long key, @RequestBody report report) {
+    public void updateReport(@PathVariable("key") Long key, @RequestBody Report report) {
         if (!key.equals(report.getIdentifier())) {
             throw new ValidationException("Report identifier and the path identifier do not match.");
         }
@@ -65,7 +65,7 @@ public class ReportController extends BaseController {
     @RequestMapping(value = "/{key}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteReport(@PathVariable Long key) {
-        final report toDelete = getReportInternal(key);
+        final Report toDelete = getReportInternal(key);
         reportService.remove(toDelete);
         if (LOG.isTraceEnabled()) {
             LOG.trace("Report {} deleted.", toDelete);

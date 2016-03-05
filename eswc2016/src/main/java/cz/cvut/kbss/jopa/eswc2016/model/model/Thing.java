@@ -31,9 +31,9 @@ public class Thing {
     @Properties
     protected Map<String, Set<String>> properties;
     @OWLObjectProperty(iri = Vocabulary.s_p_isDocumentedBy)
-    protected Set<report> isDocumentedBy;
+    protected Set<Report> isDocumentedBy;
     @OWLObjectProperty(iri = Vocabulary.s_p_has_answer)
-    protected Set<answer> has_answer;
+    protected Set<Answer> has_answer;
 
     public void setName(String name) {
         this.name = name;
@@ -75,19 +75,19 @@ public class Thing {
         return properties;
     }
 
-    public void setIsDocumentedBy(Set<report> isDocumentedBy) {
+    public void setIsDocumentedBy(Set<Report> isDocumentedBy) {
         this.isDocumentedBy = isDocumentedBy;
     }
 
-    public Set<report> getIsDocumentedBy() {
+    public Set<Report> getIsDocumentedBy() {
         return isDocumentedBy;
     }
 
-    public void setHas_answer(Set<answer> has_answer) {
+    public void setHas_answer(Set<Answer> has_answer) {
         this.has_answer = has_answer;
     }
 
-    public Set<answer> getHas_answer() {
+    public Set<Answer> getHas_answer() {
         return has_answer;
     }
 

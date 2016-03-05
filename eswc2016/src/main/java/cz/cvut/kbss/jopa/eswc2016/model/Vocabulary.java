@@ -61,6 +61,7 @@ public class Vocabulary {
     public final static String s_p_has_object_value = "http://onto.fel.cvut.cz/ontologies/documentation/has_object_value";
     public final static String s_i_coverage = "http://purl.org/dc/terms/coverage";
     public final static String s_p_modified = "http://purl.org/dc/terms/modified";
+    public final static String s_p_javaClassName = "http://krizik.felk.cvut.cz/ontologies/2009/ic.owl#javaClassName";
     public final static String s_p_source = "http://purl.org/dc/elements/1.1/source";
     public final static String s_c_SimpleDocumentation = "http://onto.fel.cvut.cz/ontologies/documentation/SimpleDocumentation";
     public final static String s_i_Location = "http://purl.org/dc/terms/Location";
