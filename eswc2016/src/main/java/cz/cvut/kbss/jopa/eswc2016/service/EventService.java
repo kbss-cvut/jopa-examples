@@ -14,6 +14,9 @@ public class EventService extends BaseRepositoryService<Event> {
     @Autowired
     private EventDao eventDao;
 
+    @Autowired
+    private PropertiesValidationService propertiesValidation;
+
     @Override
     protected BaseDao<Event> getPrimaryDao() {
         return eventDao;
@@ -22,5 +25,19 @@ public class EventService extends BaseRepositoryService<Event> {
     public Event findByKey(Long key) {
         Objects.requireNonNull(key);
         return eventDao.findByKey(key);
+    }
+
+    @Override
+    public void persist(Event instance) {
+        Objects.requireNonNull(instance);
+        propertiesValidation.validate(instance.getProperties());
+        super.persist(instance);
+    }
+
+    @Override
+    public void update(Event instance) {
+        Objects.requireNonNull(instance);
+        propertiesValidation.validate(instance.getProperties());
+        super.update(instance);
     }
 }

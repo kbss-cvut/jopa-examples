@@ -2,6 +2,7 @@
 
 import React from 'react';
 import {Button, Input, Panel, Table} from 'react-bootstrap';
+import iri from 'iri';
 
 /**
  * Represents individual's properties not mapped by the object model.
@@ -144,7 +145,8 @@ class EditedPropertyRow extends React.Component {
         var record = this.props.record;
         this.state = {
             property: record.property,
-            value: record.value
+            value: record.value,
+            propertyValid: record.property != null && record.property !== ''
         }
     }
 
@@ -163,6 +165,17 @@ class EditedPropertyRow extends React.Component {
         this.props.save(record);
     }
 
+    _onPropertyChange(e) {
+        var value = e.target.value,
+            property;
+        try {
+            property = new iri.IRI(value);
+            this.setState({property: value, propertyValid: property.isAbsolute()});
+        } catch (ex) {
+            this.setState({property: value, propertyValid: false});
+        }
+    }
+
     _onChange(e) {
         var change = {};
         change[e.target.name] = e.target.value;
@@ -177,7 +190,10 @@ class EditedPropertyRow extends React.Component {
                 <td className='properties'>
                     <div style={{margin: '0 0 -15px 0'}}>
                         <Input ref='property' type='text' bsSize='small' rows={2} value={this.state.property}
-                               onChange={this._onChange.bind(this)} name='property'/>
+                               onChange={this._onPropertyChange.bind(this)} name='property'
+                               bsStyle={!this.state.propertyValid ? 'error' : null} hasFeedback
+                               title={!this.state.property ? 'Property is not valid' : null}
+                        />
                     </div>
                 </td>
                 <td className='properties'>
@@ -188,7 +204,8 @@ class EditedPropertyRow extends React.Component {
                     </div>
                 </td>
                 <td className='actions' style={{verticalAlign: 'middle'}}>
-                    <Button bsStyle='success' bsSize='small' onClick={this._onSave.bind(this)}>Save</Button>
+                    <Button bsStyle='success' bsSize='small' onClick={this._onSave.bind(this)}
+                            disabled={!this.state.propertyValid}>Save</Button>
                     <Button bsSize='small' onClick={this.props.cancel}>Cancel</Button>
                     {removeButton}
                 </td>

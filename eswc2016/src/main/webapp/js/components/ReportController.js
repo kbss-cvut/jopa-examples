@@ -47,9 +47,9 @@ export default class ReportController extends React.Component {
     _onSave() {
         var report = this.state.report;
         if (report.isNew) {
-            Actions.createReport(report, this.onSaveSuccess.bind(this));
+            Actions.createReport(report, this.onSaveSuccess.bind(this), this.onSaveError.bind(this));
         } else {
-            Actions.updateReport(report, this.onSaveSuccess.bind(this));
+            Actions.updateReport(report, this.onSaveSuccess.bind(this), this.onSaveError.bind(this));
         }
     }
 
@@ -58,7 +58,11 @@ export default class ReportController extends React.Component {
     }
 
     onSaveSuccess() {
-        this.setState({showMessage: true, message: 'Save successful.'});
+        this.setState({showMessage: true, message: {type: 'success', text: 'Save successful.'}});
+    }
+
+    onSaveError(error) {
+        this.setState({showMessage: true, message: {type: 'danger', text: error.message}});
     }
 
     _hideMessage() {
@@ -84,8 +88,9 @@ export default class ReportController extends React.Component {
 
     _renderMessage() {
         if (this.state.showMessage) {
-            return <Alert bsStyle='success' onDismiss={this._hideMessage.bind(this)} dismissAfter={2000}>
-                {this.state.message}
+            return <Alert bsStyle={this.state.message.type} onDismiss={this._hideMessage.bind(this)}
+                          dismissAfter={2000}>
+                {this.state.message.text}
             </Alert>;
         }
     }

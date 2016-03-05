@@ -42,10 +42,10 @@ var ReportStore = Reflux.createStore({
         }.bind(this));
     },
 
-    onCreateReport: function (report, onSuccess) {
+    onCreateReport: function (report, onSuccess, onError) {
         request.post(URL).send(report).type('json').end(function (err, resp) {
             if (err) {
-                console.log(err);
+                this._handleError(err, onError);
             } else {
                 var key = Util.extractKeyFromLocationHeader(resp);
                 this.onLoadReports();
@@ -57,10 +57,22 @@ var ReportStore = Reflux.createStore({
         }.bind(this));
     },
 
-    onUpdateReport: function (report, onSuccess) {
+    _handleError: function (err, onError) {
+        if (onError) {
+            try {
+                onError(JSON.parse(err.response.text), err);
+            } catch (e) {
+                console.log(err);
+            }
+        } else {
+            console.log(err);
+        }
+    },
+
+    onUpdateReport: function (report, onSuccess, onError) {
         request.put(URL_WITH_SLASH + report.identifier).send(report).type('json').end(function (err) {
             if (err) {
-                console.log(err);
+                this._handleError(err, onError);
             } else {
                 this.onLoadReport(report.identifier);
                 if (onSuccess) {

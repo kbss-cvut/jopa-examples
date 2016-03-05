@@ -55,9 +55,9 @@ export default class AuditController extends React.Component {
     onSave() {
         var audit = this.state.audit;
         if (audit.isNew) {
-            Actions.createAudit(audit, this.onSaveSuccess.bind(this));
+            Actions.createAudit(audit, this.onSaveSuccess.bind(this), this.onSaveError.bind(this));
         } else {
-            Actions.updateAudit(audit, this.onSaveSuccess.bind(this));
+            Actions.updateAudit(audit, this.onSaveSuccess.bind(this), this.onSaveError.bind(this));
         }
     }
 
@@ -66,7 +66,11 @@ export default class AuditController extends React.Component {
     }
 
     onSaveSuccess() {
-        this.setState({showMessage: true, message: 'Save successful.'});
+        this.setState({showMessage: true, message: {type: 'success', text: 'Save successful.'}});
+    }
+
+    onSaveError(error) {
+        this.setState({showMessage: true, message: {type: 'danger', text: error.message}});
     }
 
     _hideMessage() {
@@ -92,8 +96,9 @@ export default class AuditController extends React.Component {
 
     _renderMessage() {
         if (this.state.showMessage) {
-            return <Alert bsStyle='success' onDismiss={this._hideMessage.bind(this)} dismissAfter={2000}>
-                {this.state.message}
+            return <Alert bsStyle={this.state.message.type} onDismiss={this._hideMessage.bind(this)}
+                          dismissAfter={3000}>
+                {this.state.message.text}
             </Alert>;
         }
     }

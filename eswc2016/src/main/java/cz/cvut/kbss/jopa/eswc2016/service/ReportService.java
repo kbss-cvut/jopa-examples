@@ -22,6 +22,9 @@ public class ReportService extends BaseRepositoryService<report> {
     @Autowired
     private PersonDao personDao;
 
+    @Autowired
+    private PropertiesValidationService propertiesValidation;
+
     @Override
     protected BaseDao<report> getPrimaryDao() {
         return reportDao;
@@ -35,10 +38,18 @@ public class ReportService extends BaseRepositoryService<report> {
     @Override
     public void persist(report instance) {
         Objects.requireNonNull(instance);
+        propertiesValidation.validate(instance.getProperties());
         instance.setCreated(new Date());
         // Normally, we would query the security context here. For the demo purposes, we are using a predefined user
         instance.setHasAuthor(personDao.findByUsername(Constants.USERNAME));
         super.persist(instance);
+    }
+
+    @Override
+    public void update(report instance) {
+        Objects.requireNonNull(instance);
+        propertiesValidation.validate(instance.getProperties());
+        super.update(instance);
     }
 
     public List<ReportDto> findAllDtos() {

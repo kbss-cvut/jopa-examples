@@ -42,10 +42,10 @@ var AuditStore = Reflux.createStore({
         }.bind(this));
     },
 
-    onCreateAudit: function (audit, onSuccess) {
+    onCreateAudit: function (audit, onSuccess, onError) {
         request.post('rest/events').type('json').send(audit).end(function (err, resp) {
             if (err) {
-                console.log(err);
+                this._handleError(err, onError);
             } else {
                 this.onLoadAudits(true);
                 this.onLoadAudit(Util.extractKeyFromLocationHeader(resp));
@@ -56,10 +56,22 @@ var AuditStore = Reflux.createStore({
         }.bind(this));
     },
 
-    onUpdateAudit: function (audit, onSuccess) {
+    _handleError: function (err, onError) {
+        if (onError) {
+            try {
+                onError(JSON.parse(err.response.text), err);
+            } catch (e) {
+                console.log(err);
+            }
+        } else {
+            console.log(err);
+        }
+    },
+
+    onUpdateAudit: function (audit, onSuccess, onError) {
         request.put('rest/events/' + audit.identifier).type('json').send(audit).end(function (err) {
             if (err) {
-                console.log(err);
+                this._handleError(err, onError);
             } else {
                 this.onLoadAudit(audit.identifier);
                 if (onSuccess) {

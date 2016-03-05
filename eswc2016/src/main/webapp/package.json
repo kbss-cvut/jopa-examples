@@ -15,7 +15,8 @@
     "react-router-bootstrap": "~0.19.3",
     "halogen": "~0.1.10",
     "kbss-react-bootstrap-datetimepicker": "https://dev.inbas.cz/dist/kbss-react-bootstrap-datetimepicker-0.0.3.tgz",
-    "react-bootstrap-typeahead": "https://dev.inbas.cz/dist/react-bootstrap-typeahead-0.0.2.tgz"
+    "react-bootstrap-typeahead": "https://dev.inbas.cz/dist/react-bootstrap-typeahead-0.0.2.tgz",
+    "iri": "~1.1.1"
   },
   "devDependencies": {
     "browserify": "^12.0.1",

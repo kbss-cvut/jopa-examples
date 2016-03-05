@@ -23,6 +23,6 @@ module.exports = {
         'NOT Supported:\n - OWL inference (e.g. the isDocumentedBy property, so audit detail shows no reports)\n',
 
         owlapi: 'OWL API storage.\nSupported:\n - inference (Pellet),\n\n' +
-        'NOT Supported:\n - contexts, - SPARQL count (due to OWL2Query engine, so record count in reports is always 0)\n'
+        'NOT Supported:\n - contexts,\n - SPARQL count (due to OWL2Query engine, so record count in reports is always 0)\n'
     }
 };
