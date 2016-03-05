@@ -33,7 +33,7 @@ public class Event {
 
     @Inferred
     @OWLObjectProperty(iri = Vocabulary.s_p_isDocumentedBy)
-    protected Set<report> isDocumentedBy;
+    protected Set<Report> isDocumentedBy;
     @OWLDataProperty(iri = Vocabulary.s_p_date_A)
     @ParticipationConstraints({
         @ParticipationConstraint(owlObjectIRI = Vocabulary.s_d_dateTime, min = 1, max = 1)
@@ -90,11 +90,11 @@ public class Event {
         return properties;
     }
 
-    public void setIsDocumentedBy(Set<report> isDocumentedBy) {
+    public void setIsDocumentedBy(Set<Report> isDocumentedBy) {
         this.isDocumentedBy = isDocumentedBy;
     }
 
-    public Set<report> getIsDocumentedBy() {
+    public Set<Report> getIsDocumentedBy() {
         return isDocumentedBy;
     }
 

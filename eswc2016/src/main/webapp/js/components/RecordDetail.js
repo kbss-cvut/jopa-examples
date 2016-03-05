@@ -51,6 +51,7 @@ export default class RecordDetail extends React.Component {
                         break;
                     }
                 }
+                this.refs.question.selectOption(newState.question);
             }
             this.setState(newState);
         }
