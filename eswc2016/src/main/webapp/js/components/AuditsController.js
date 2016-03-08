@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import hashHistory from 'react-router';
 
 import AuditStore from '../stores/AuditStore';
 import Audits from './Audits';

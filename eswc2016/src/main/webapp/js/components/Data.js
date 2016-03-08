@@ -4,7 +4,6 @@ import React from 'react';
 import {Panel, Input} from 'react-bootstrap';
 
 import DataStore from '../stores/DataStore';
-import AuditStore from '../stores/AuditStore';
 import SettingsStore from '../stores/SettingsStore';
 import Actions from '../actions/Actions';
 import Constants from '../constants/Constants';

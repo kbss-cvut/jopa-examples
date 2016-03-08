@@ -62,16 +62,3 @@ dependencies. By executing `npm start`, a watcher will be started which rebuilds
 The web UI is built with [ReactJS](https://facebook.github.io/react/) and uses its [Flux](https://facebook.github.io/flux/docs/overview.html)
 architecture (modified version, framework [Reflux](https://github.com/reflux/refluxjs)). 
 Individual JS files contain some additional explanatory comments.
-
-#### TODO
-
-- Web application (ReactJS) with Spring     **OK**
-- Querying (SPARQL-DL)  **OK**
-- Inferred attributes, cascading, participation constraints, contexts   **OK**
-- OWL2Java
-- Storage switch    **OK**
-- Properties     **OK**
-- Types     **OK**
-- Possible to view raw storage content in UI    **OK**
-- Possible to add/remove unmapped properties in UI  **OK**
-- Air safety domain     **OK**

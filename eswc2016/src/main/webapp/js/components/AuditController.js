@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import Reflux from 'reflux';
 import {Alert} from 'react-bootstrap';
 import assign from 'object-assign';
 

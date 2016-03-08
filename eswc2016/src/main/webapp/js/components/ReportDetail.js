@@ -2,7 +2,6 @@
 
 import React from 'react';
 import {Button, ButtonToolbar, Panel, Input} from 'react-bootstrap';
-import assign from 'object-assign';
 
 import BasicAuditInfo from './BasicAuditInfo';
 import ReportRecords from './ReportRecords';
