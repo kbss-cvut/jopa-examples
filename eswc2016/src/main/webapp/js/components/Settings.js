@@ -77,6 +77,12 @@ export default class Settings extends React.Component {
                                    disabled/>
                         </div>
                     </div>
+                    <div className='row'>
+                        <div className='col-xs-12'>
+                            More information can be found at <a
+                            href='https://github.com/kbss-cvut/jopa-examples/tree/master/eswc2016'>Github</a>.
+                        </div>
+                    </div>
                 </Panel>
                 {this._renderMessage()}
             </div>
