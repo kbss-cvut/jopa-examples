@@ -2,6 +2,7 @@ package cz.cvut.kbss.jopa.eswc2016.rest.handler;
 
 import cz.cvut.kbss.jopa.eswc2016.rest.exception.NotFoundException;
 import cz.cvut.kbss.jopa.eswc2016.rest.exception.ValidationException;
+import cz.cvut.kbss.jopa.eswc2016.rest.exception.WebServiceIntegrationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -33,5 +34,10 @@ public class RestExceptionHandler {
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<ErrorInfo> invalidReport(HttpServletRequest request, ValidationException e) {
         return new ResponseEntity<>(errorInfo(request, e), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(WebServiceIntegrationException.class)
+    public ResponseEntity<ErrorInfo> invalidReport(HttpServletRequest request, WebServiceIntegrationException e) {
+        return new ResponseEntity<>(errorInfo(request, e), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

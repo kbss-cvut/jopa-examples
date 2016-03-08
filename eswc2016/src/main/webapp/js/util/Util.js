@@ -2,6 +2,8 @@
 
 import Constants from '../constants/Constants';
 
+var VALID_IRI_REGEX = /^http:\/\/.+/;
+
 class Util {
     /**
      * Formats the specified date into DD-MM-YY HH:mm
@@ -40,6 +42,14 @@ class Util {
             }
         }
         return '';
+    }
+
+    /**
+     * This is extremely simplistic IRI validator, which just expects the IRI to contain a 'http://' prefix.
+     * @param iri The IRI to test
+     */
+    isIriValid(iri) {
+        return VALID_IRI_REGEX.test(iri);
     }
 }
 

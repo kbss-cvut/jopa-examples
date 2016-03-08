@@ -14,7 +14,7 @@ var Actions = Reflux.createActions([
 
     'resetStores',
 
-    'loadSetting', 'saveSettings'
+    'loadSetting', 'saveSettings', 'loadProperties'
 ]);
 
 module.exports = Actions;

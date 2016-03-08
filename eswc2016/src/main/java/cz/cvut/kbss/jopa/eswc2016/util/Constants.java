@@ -23,18 +23,7 @@ public abstract class Constants {
      */
     public static final String LANGUAGE = "en";
 
-    /**
-     * Repository URL (physical location) configuration property.
-     */
-    public static final String URL_PROPERTY = "repositoryUrl";
+    public static final String APPLICATION_JSON_LD_TYPE = "application/ld+json";
 
-    /**
-     * OntoDriver datasource class configuration property.
-     */
-    public static final String DRIVER_PROPERTY = "driver";
-
-    /**
-     * Ontology logical URI configuration property.
-     */
-    public static final String ONTOLOGY_URI_PROPERTY = "ontologyUri";
+    public static final String UTF_8_ENCODING = "UTF-8";
 }

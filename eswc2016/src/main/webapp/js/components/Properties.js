@@ -2,7 +2,11 @@
 
 import React from 'react';
 import {Button, Input, Panel, Table} from 'react-bootstrap';
-import iri from 'iri';
+import Typeahead from 'react-bootstrap-typeahead';
+import Actions from '../actions/Actions';
+import OptionsStore from '../stores/OptionsStore';
+import TypeaheadResultList from './TypeaheadResultList';
+import Util from '../util/Util';
 
 /**
  * Represents individual's properties not mapped by the object model.
@@ -13,7 +17,8 @@ export default class Properties extends React.Component {
         this.state = {
             properties: this.props.properties ? this._flattenProperties() : [],
             currentRow: null
-        }
+        };
+        Actions.loadProperties();
     }
 
     _flattenProperties() {
@@ -151,7 +156,7 @@ class EditedPropertyRow extends React.Component {
     }
 
     componentDidMount() {
-        this.refs.property.getInputDOMNode().focus();
+        this.refs.property.focus();
     }
 
     _onRemove() {
@@ -165,15 +170,12 @@ class EditedPropertyRow extends React.Component {
         this.props.save(record);
     }
 
-    _onPropertyChange(e) {
-        var value = e.target.value,
-            property;
-        try {
-            property = new iri.IRI(value);
-            this.setState({property: value, propertyValid: property.isAbsolute()});
-        } catch (ex) {
-            this.setState({property: value, propertyValid: false});
-        }
+    _onPropertyChange(property) {
+        this.setState({property: property.uri, propertyValid: true});
+    }
+
+    _onPropertyKeyUp(e) {
+        this.setState({property: e.target.value, propertyValid: Util.isIriValid(e.target.value)});
     }
 
     _onChange(e) {
@@ -184,22 +186,24 @@ class EditedPropertyRow extends React.Component {
 
     render() {
         var removeButton = this.props.record.isNew ? null :
-            <Button bsStyle='warning' bsSize='small' onClick={this._onRemove.bind(this)}>Remove</Button>;
+                <Button bsStyle='warning' bsSize='small' onClick={this._onRemove.bind(this)}>Remove</Button>,
+            properties = OptionsStore.getProperties();
         return (
             <tr>
                 <td className='properties'>
                     <div style={{margin: '0 0 -15px 0'}}>
-                        <Input ref='property' type='text' bsSize='small' rows={2} value={this.state.property}
-                               onChange={this._onPropertyChange.bind(this)} name='property'
-                               bsStyle={!this.state.propertyValid ? 'error' : null} hasFeedback
-                               title={!this.state.property ? 'Property is not valid' : null}
-                        />
+                        <Typeahead ref='property' className='form-group form-group-sm' formInputOption='uri'
+                                   optionsButton={true} inputProps={{tabIndex: '1'}}
+                                   placeholder='Select property' value={this.state.property}
+                                   onOptionSelected={this._onPropertyChange.bind(this)} filterOption='uri'
+                                   displayOption='uri' options={properties} onKeyUp={this._onPropertyKeyUp.bind(this)}
+                                   customListComponent={TypeaheadResultList}/>
                     </div>
                 </td>
                 <td className='properties'>
                     <div style={{margin: '0 0 -15px 0'}}>
                         <Input type='text' rows={2} bsSize='small' value={this.state.value}
-                               onChange={this._onChange.bind(this)}
+                               onChange={this._onChange.bind(this)} tabIndex='2'
                                name='value'/>
                     </div>
                 </td>
