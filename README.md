@@ -9,5 +9,6 @@ This repository contains some usage examples of the [JOPA framework](https://git
 3. Example03 - JOPA with a native Sesame storage utilizing its contexts to store and access data in different RDF named graphs
 4. Example04 - Full-blown Java web application with Spring, REST services, ReactJS-based UI and JOPA with Sesame native storage
 5. Example05 - JOPA utilizing [OWL2Query](https://kbss.felk.cvut.cz/web/portal/owl2query) - a SPARQL-DL query engine for OWLAPI
+6. eswc2016 - JOPA demo for the ESWC 2016 conference. Running version can be found at [http://onto.fel.cvut.cz/eswc2016/](http://onto.fel.cvut.cz/eswc2016/)
 
 Each example has its own README file with a more detailed description. Note that JOPA requires Java 8.
