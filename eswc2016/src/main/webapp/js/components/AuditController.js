@@ -7,6 +7,7 @@ import assign from 'object-assign';
 import AuditStore from '../stores/AuditStore';
 import AuditDetail from './AuditDetail';
 import Actions from '../actions/Actions';
+import Mask from './Mask';
 import Routing from '../util/Routing';
 import InstanceFactory from '../util/InstanceFactory';
 
@@ -78,7 +79,7 @@ export default class AuditController extends React.Component {
 
     render() {
         if (!this.state.audit) {
-            return null;
+            return <Mask />;
         }
         var actions = {
             change: this.onChange.bind(this),
