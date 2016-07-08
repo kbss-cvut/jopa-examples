@@ -32,12 +32,12 @@
                 <!-- Generate entity classes from OWL integrity constraints -->
                 <groupId>cz.cvut.kbss.jopa</groupId>
                 <artifactId>jopa-maven-plugin</artifactId>
-                <version>0.7.0</version>
+                <version>${jopa.version}</version>
                 <configuration>
                     <package>cz.cvut.kbss.jopa.example01.generated</package>
-                    <output-directory>src/main/java/</output-directory>
+                    <output-directory>${project.basedir}/src/main/java/</output-directory>
                     <ontology-iri>http://krizik.felk.cvut.cz/ontologies/2015/jopa-example01.owl</ontology-iri>
-                    <mapping-file>mapping</mapping-file>
+                    <mapping-file>${project.basedir}/mapping</mapping-file>
                     <context-name>jopa-example01</context-name>
                 </configuration>
                 <executions>
