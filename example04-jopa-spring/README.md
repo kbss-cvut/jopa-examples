@@ -4,8 +4,16 @@ This example shows integration of JOPA with a CDI framework (Spring in this case
 
 ### Features
 
-This example does not show any significant JOPA features. To see such examples, consult the other examples. Instead, this
-demo shows integration of JOPA with CDI frameworks like Spring.
+- Named native queries
+
+This example does not show any other significant JOPA features. To see more features, consult the other examples. This
+demo mainly shows integration of JOPA with CDI frameworks like Spring.
+
+#### Named native queries
+
+The `cz.cvut.kbss.jopa.example04.model.Student` contains a declaration of two named native queries - a _find all_ query and
+a query selecting by a key. The second query shows how parameters can be set in named native queries when used in a DAO.
+See `cz.cvut.kbss.jopa.example04.persistence.dao.StudentDao` for example of the named native query usage.
 
 #### EntityManagerFactory as a Spring Bean
 

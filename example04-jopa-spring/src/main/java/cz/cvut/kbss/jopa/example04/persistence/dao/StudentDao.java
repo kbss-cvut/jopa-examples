@@ -1,11 +1,11 @@
 /**
  * Copyright (C) 2016 Czech Technical University in Prague
- *
+ * <p>
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any
  * later version.
- *
+ * <p>
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
@@ -15,7 +15,6 @@
 package cz.cvut.kbss.jopa.example04.persistence.dao;
 
 import cz.cvut.kbss.jopa.example04.model.Student;
-import cz.cvut.kbss.jopa.example04.model.Vocabulary;
 import cz.cvut.kbss.jopa.exceptions.NoResultException;
 import cz.cvut.kbss.jopa.model.EntityManager;
 import cz.cvut.kbss.jopa.model.EntityManagerFactory;
@@ -24,7 +23,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.net.URI;
 import java.util.List;
 
 @Repository
@@ -42,8 +40,7 @@ public class StudentDao {
     public List<Student> findAll() {
         final EntityManager em = entityManager();
         try {
-            return em.createNativeQuery("SELECT ?x WHERE { ?x a ?type . }", Student.class).setParameter("type",
-                    URI.create(Vocabulary.Student)).getResultList();
+            return em.createNamedQuery("Student.findAll", Student.class).getResultList();
         } finally {
             em.close();
         }
@@ -52,8 +49,8 @@ public class StudentDao {
     public Student findByKey(String key) {
         final EntityManager em = entityManager();
         try {
-            return em.createNativeQuery("SELECT ?x WHERE { ?x ?hasKey ?key . }", Student.class)
-                     .setParameter("hasKey", URI.create(Vocabulary.p_key)).setParameter("key", key, "en").getSingleResult();
+            return em.createNamedQuery("Student.findByKey", Student.class).setParameter("key", key, "en")
+                     .getSingleResult();
         } catch (NoResultException e) {
             LOG.warn("Student with key {} not found.", key);
             return null;
