@@ -8,22 +8,24 @@
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY aviation "http://onto.fel.cvut.cz/ontologies/aviation/" >
     <!ENTITY doc "http://onto.fel.cvut.cz/ontologies/documentation/" >
     <!ENTITY documentation "http://onto.fel.cvut.cz/ontologies/aviation/documentation/" >
 ]>
 
 
-<rdf:RDF xmlns="http://onto.fel.cvut.cz/ontologies/aviation/documentation"
-     xml:base="http://onto.fel.cvut.cz/ontologies/aviation/documentation"
+<rdf:RDF xmlns="&aviation;documentation"
+     xml:base="&aviation;documentation"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:documentation="http://onto.fel.cvut.cz/ontologies/aviation/documentation/"
+     xmlns:documentation="&aviation;documentation/"
      xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
      xmlns:swrl="http://www.w3.org/2003/11/swrl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:doc="http://onto.fel.cvut.cz/ontologies/documentation/"
+     xmlns:aviation="http://onto.fel.cvut.cz/ontologies/aviation/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/documentation">
+    <owl:Ontology rdf:about="&aviation;documentation">
         <owl:imports rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo"/>
     </owl:Ontology>
     
@@ -40,9 +42,15 @@
     
 
 
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation/documentationTODO -->
+
+    <owl:AnnotationProperty rdf:about="&aviation;documentationTODO"/>
+    
+
+
     <!-- http://onto.fel.cvut.cz/ontologies/aviation/documentation/TODO -->
 
-    <owl:AnnotationProperty rdf:about="&documentation;TODO"/>
+    <owl:AnnotationProperty rdf:about="&aviation;documentation/TODO"/>
     
 
 
@@ -123,6 +131,15 @@
         <rdfs:subPropertyOf rdf:resource="&doc;has_documentation_part"/>
         <rdfs:domain rdf:resource="&doc;logical_form"/>
         <rdfs:range rdf:resource="&doc;question"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/documentation/isDocumentedBy -->
+
+    <owl:ObjectProperty rdf:about="&doc;isDocumentedBy">
+        <rdfs:subPropertyOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/relates_to"/>
+        <owl:inverseOf rdf:resource="&doc;documents"/>
     </owl:ObjectProperty>
     
 
@@ -226,7 +243,7 @@
                 <owl:someValuesFrom rdf:resource="&doc;logical_record"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <TODO xml:lang="en">physical document</TODO>
+        <aviation:documentationTODO xml:lang="en">physical document</aviation:documentationTODO>
     </owl:Class>
     
 
@@ -470,7 +487,7 @@
                 <owl:someValuesFrom rdf:resource="&doc;logical_form"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <TODO xml:lang="cs">Form instance</TODO>
+        <aviation:documentationTODO xml:lang="cs">Form instance</aviation:documentationTODO>
     </owl:Class>
     
 
@@ -551,7 +568,7 @@ Příklady zahrnují definice checklistů, definice reportovacích formulářů<
         <rdfs:label xml:lang="en">Question</rdfs:label>
         <rdfs:subClassOf rdf:resource="&doc;logical_record"/>
         <rdfs:comment xml:lang="cs">Otázka představuje část formuláře, na kterou se očekává vstup od reportéra. Otázka má typ (string, datum, integer, číslo mezi 1 a 5, vyplnění seznamu podotázek atd.).</rdfs:comment>
-        <TODO xml:lang="cs">vztah mezi otázkou a atributem.</TODO>
+        <aviation:documentationTODO xml:lang="cs">vztah mezi otázkou a atributem.</aviation:documentationTODO>
     </owl:Class>
     
 

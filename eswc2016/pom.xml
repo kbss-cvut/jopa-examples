@@ -147,7 +147,7 @@
                 <!-- run it manually using mvn jopa:owl2java-transform -->
                 <groupId>cz.cvut.kbss.jopa</groupId>
                 <artifactId>jopa-maven-plugin</artifactId>
-                <version>0.7.2</version>
+                <version>0.8.5</version>
                 <configuration>
                     <package>cz.cvut.kbss.jopa.eswc2016.model</package>
                     <output-directory>src/main/java/</output-directory>
