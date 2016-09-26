@@ -23,7 +23,7 @@
         <com.fasterxml.jackson.version>2.4.4</com.fasterxml.jackson.version>
         <ch.qos.logback.version>1.1.2</ch.qos.logback.version>
         <org.openrdf.sesame.version>2.8.9</org.openrdf.sesame.version>
-        <pellet.version>2.4.0-SNAPSHOT</pellet.version>
+        <pellet.version>2.5.0-SNAPSHOT</pellet.version>
     </properties>
 
     <repositories>
