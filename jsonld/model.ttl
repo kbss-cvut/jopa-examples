@@ -1,0 +1,177 @@
+@prefix : <http://vfn.cz/ontologies/fertililty-saving-study#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://krizik.felk.cvut.cz/ontologies/study-manager> .
+
+<http://krizik.felk.cvut.cz/ontologies/study-manager> rdf:type owl:Ontology .
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://krizik.felk.cvut.cz/ontologies/study-manager/has-admin
+
+<http://krizik.felk.cvut.cz/ontologies/study-manager/has-admin> rdf:type owl:ObjectProperty ;
+                                                                
+                                                                rdfs:subPropertyOf <http://krizik.felk.cvut.cz/ontologies/study-manager/relates-to> .
+
+
+
+###  http://krizik.felk.cvut.cz/ontologies/study-manager/has-author
+
+<http://krizik.felk.cvut.cz/ontologies/study-manager/has-author> rdf:type owl:ObjectProperty ;
+                                                                 
+                                                                 rdfs:subPropertyOf <http://krizik.felk.cvut.cz/ontologies/study-manager/relates-to> .
+
+
+
+###  http://krizik.felk.cvut.cz/ontologies/study-manager/has-last-editor
+
+<http://krizik.felk.cvut.cz/ontologies/study-manager/has-last-editor> rdf:type owl:ObjectProperty ;
+                                                                      
+                                                                      rdfs:subPropertyOf <http://krizik.felk.cvut.cz/ontologies/study-manager/relates-to> .
+
+
+
+###  http://krizik.felk.cvut.cz/ontologies/study-manager/has-member
+
+<http://krizik.felk.cvut.cz/ontologies/study-manager/has-member> rdf:type owl:ObjectProperty ;
+                                                                 
+                                                                 owl:inverseOf <http://krizik.felk.cvut.cz/ontologies/study-manager/is-member-of> ;
+                                                                 
+                                                                 rdfs:subPropertyOf <http://krizik.felk.cvut.cz/ontologies/study-manager/relates-to> .
+
+
+
+###  http://krizik.felk.cvut.cz/ontologies/study-manager/has-participant
+
+<http://krizik.felk.cvut.cz/ontologies/study-manager/has-participant> rdf:type owl:ObjectProperty ;
+                                                                      
+                                                                      rdfs:subPropertyOf <http://krizik.felk.cvut.cz/ontologies/study-manager/relates-to> .
+
+
+
+###  http://krizik.felk.cvut.cz/ontologies/study-manager/is-member-of
+
+<http://krizik.felk.cvut.cz/ontologies/study-manager/is-member-of> rdf:type owl:ObjectProperty ;
+                                                                   
+                                                                   rdfs:subPropertyOf <http://krizik.felk.cvut.cz/ontologies/study-manager/relates-to> .
+
+
+
+###  http://krizik.felk.cvut.cz/ontologies/study-manager/relates-to
+
+<http://krizik.felk.cvut.cz/ontologies/study-manager/relates-to> rdf:type owl:ObjectProperty .
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://krizik.felk.cvut.cz/ontologies/study-manager/key
+
+<http://krizik.felk.cvut.cz/ontologies/study-manager/key> rdf:type owl:DatatypeProperty .
+
+
+
+###  http://purl.org/dc/terms/created
+
+<http://purl.org/dc/terms/created> rdf:type owl:DatatypeProperty .
+
+
+
+###  http://purl.org/dc/terms/modified
+
+<http://purl.org/dc/terms/modified> rdf:type owl:DatatypeProperty .
+
+
+
+###  http://xmlns.com/foaf/0.1/accountName
+
+<http://xmlns.com/foaf/0.1/accountName> rdf:type owl:DatatypeProperty .
+
+
+
+###  http://xmlns.com/foaf/0.1/firstName
+
+<http://xmlns.com/foaf/0.1/firstName> rdf:type owl:DatatypeProperty .
+
+
+
+###  http://xmlns.com/foaf/0.1/lastName
+
+<http://xmlns.com/foaf/0.1/lastName> rdf:type owl:DatatypeProperty .
+
+
+
+###  http://xmlns.com/foaf/0.1/mbox
+
+<http://xmlns.com/foaf/0.1/mbox> rdf:type owl:DatatypeProperty .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://krizik.felk.cvut.cz/ontologies/study-manager/administrator
+
+<http://krizik.felk.cvut.cz/ontologies/study-manager/administrator> rdf:type owl:Class ;
+                                                                    
+                                                                    rdfs:label "Administrator"@en .
+
+
+
+###  http://krizik.felk.cvut.cz/ontologies/study-manager/doctor
+
+<http://krizik.felk.cvut.cz/ontologies/study-manager/doctor> rdf:type owl:Class ;
+                                                             
+                                                             rdfs:label "Doctor"@en .
+
+
+
+###  http://krizik.felk.cvut.cz/ontologies/study-manager/organization
+
+<http://krizik.felk.cvut.cz/ontologies/study-manager/organization> rdf:type owl:Class ;
+                                                                   
+                                                                   rdfs:label "Organization"@en .
+
+
+
+###  http://krizik.felk.cvut.cz/ontologies/study-manager/study
+
+<http://krizik.felk.cvut.cz/ontologies/study-manager/study> rdf:type owl:Class ;
+                                                            
+                                                            rdfs:label "Study"@en .
+
+
+
+###  http://krizik.felk.cvut.cz/ontologies/study-manager/user
+
+<http://krizik.felk.cvut.cz/ontologies/study-manager/user> rdf:type owl:Class ;
+                                                           
+                                                           rdfs:label "User"@en .
+
+
+
+
+###  Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net
+

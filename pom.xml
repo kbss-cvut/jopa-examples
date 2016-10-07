@@ -15,6 +15,7 @@
         <module>example05-jopa-owl2query</module>
         <module>eswc2016</module>
         <module>example06-jopa-mapped-superclass</module>
+        <module>jsonld</module>
     </modules>
 
     <name>JOPA Examples - parent</name>
@@ -25,7 +26,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <jopa.version>0.8.5</jopa.version>
+        <jopa.version>0.8.6</jopa.version>
     </properties>
 
     <repositories>
