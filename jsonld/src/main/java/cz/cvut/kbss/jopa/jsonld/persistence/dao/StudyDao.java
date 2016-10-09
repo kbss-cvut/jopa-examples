@@ -34,4 +34,11 @@ public class StudyDao extends BaseDao<Study> {
                  .forEach(admin -> userDao.persist(admin, em));
         }
     }
+
+    @Override
+    void update(Study entity, EntityManager em) {
+        persistUsersIfNecessary(entity.getAdministrators(), em);
+        persistUsersIfNecessary(entity.getParticipants(), em);
+        super.update(entity, em);
+    }
 }

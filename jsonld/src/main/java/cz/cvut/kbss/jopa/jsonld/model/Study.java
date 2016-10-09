@@ -24,17 +24,17 @@ public class Study extends AbstractEntity {
     @OWLDataProperty(iri = Vocabulary.s_p_modified)
     private Date lastModified;
 
-    @OWLObjectProperty(iri = Vocabulary.s_p_has_last_editor)
+    @OWLObjectProperty(iri = Vocabulary.s_p_has_last_editor, fetch = FetchType.EAGER)
     private User lastModifiedBy;
 
     @ParticipationConstraints(nonEmpty = true)
-    @OWLObjectProperty(iri = Vocabulary.s_p_has_admin)
+    @OWLObjectProperty(iri = Vocabulary.s_p_has_admin, fetch = FetchType.EAGER)
     private Set<User> administrators;
 
     /**
      * Participating doctors.
      */
-    @OWLObjectProperty(iri = Vocabulary.s_p_has_participant)
+    @OWLObjectProperty(iri = Vocabulary.s_p_has_participant, fetch = FetchType.EAGER)
     private Set<User> participants;
 
     public String getName() {
@@ -98,5 +98,14 @@ public class Study extends AbstractEntity {
             this.participants = new HashSet<>();
         }
         participants.add(participant);
+    }
+
+    @Override
+    public String toString() {
+        return "Study{" +
+                "name='" + name + '\'' +
+                ", administrators=" + administrators +
+                ", participants=" + participants +
+                '}';
     }
 }

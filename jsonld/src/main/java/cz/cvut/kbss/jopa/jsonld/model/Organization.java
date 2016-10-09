@@ -11,10 +11,6 @@ import java.util.Set;
 public class Organization extends AbstractEntity implements HasDerivableUri {
 
     @ParticipationConstraints(nonEmpty = true)
-    @OWLDataProperty(iri = Vocabulary.s_p_key)
-    private String key;
-
-    @ParticipationConstraints(nonEmpty = true)
     @OWLAnnotationProperty(iri = Vocabulary.s_p_label)
     private String name;
 
@@ -27,14 +23,6 @@ public class Organization extends AbstractEntity implements HasDerivableUri {
     @Inferred
     @OWLObjectProperty(iri = Vocabulary.s_p_has_member, readOnly = true)
     private Set<User> members;
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
 
     public String getName() {
         return name;
@@ -89,13 +77,13 @@ public class Organization extends AbstractEntity implements HasDerivableUri {
 
         Organization that = (Organization) o;
 
-        return key != null ? key.equals(that.key) : that.key == null;
+        return getKey() != null ? getKey().equals(that.getKey()) : that.getKey() == null;
 
     }
 
     @Override
     public int hashCode() {
-        return key != null ? key.hashCode() : 0;
+        return getKey() != null ? getKey().hashCode() : 0;
     }
 
     @Override

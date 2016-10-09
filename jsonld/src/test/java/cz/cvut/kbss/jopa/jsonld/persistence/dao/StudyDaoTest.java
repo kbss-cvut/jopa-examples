@@ -30,6 +30,7 @@ public class StudyDaoTest extends BaseDaoTestRunner {
     public void setUp() throws Exception {
         this.author = Generator.generateUser();
         author.generateUri();
+        author.setKey(Long.toString(System.currentTimeMillis()));
         final EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -42,15 +43,7 @@ public class StudyDaoTest extends BaseDaoTestRunner {
 
     @Test
     public void persistPersistsUsersWhenTheyDoNotExist() {
-        final Study study = Generator.generateStudy(true);
-        study.setAuthor(author);
-        final User admin = Generator.generateUser();
-        admin.setClinic(Generator.generateOrganization());
-        study.setAdministrators(Collections.singleton(admin));
-
-        for (int i = 0; i < Generator.randomPositiveInt(5, 10); i++) {
-            study.addParticipant(Generator.generateUser());
-        }
+        final Study study = generateStudyWithUsers();
 
         studyDao.persist(study);
 
@@ -63,12 +56,56 @@ public class StudyDaoTest extends BaseDaoTestRunner {
                 assertNotNull(em.find(User.class, expected.getUri()));
             }
             final Study result = studyDao.find(study.getUri());
-            assertEquals(study.getAdministrators().size(), result.getAdministrators().size());
-            assertTrue(study.getAdministrators().containsAll(result.getAdministrators()));
-            assertEquals(study.getParticipants().size(), result.getParticipants().size());
-            assertTrue(study.getParticipants().containsAll(result.getParticipants()));
+            verifyStudyUsers(study, result);
         } finally {
             em.close();
         }
+    }
+
+    private void verifyStudyUsers(Study study, Study result) {
+        assertEquals(study.getAdministrators().size(), result.getAdministrators().size());
+        assertTrue(study.getAdministrators().containsAll(result.getAdministrators()));
+        assertEquals(study.getParticipants().size(), result.getParticipants().size());
+        assertTrue(study.getParticipants().containsAll(result.getParticipants()));
+    }
+
+    private Study generateStudyWithUsers() {
+        final Study study = Generator.generateStudy(true);
+        study.setAuthor(author);
+        final User admin = Generator.generateUser();
+        admin.setClinic(Generator.generateOrganization());
+        study.setAdministrators(Collections.singleton(admin));
+
+        for (int i = 0; i < Generator.randomPositiveInt(5, 10); i++) {
+            study.addParticipant(Generator.generateUser());
+        }
+        return study;
+    }
+
+    @Test
+    public void updatePersistsUsersWhenTheyDoNotExist() {
+        final Study study = generateStudyWithUsers();
+        studyDao.persist(study);
+
+        for (int i = 0; i < Generator.randomPositiveInt(2, 5); i++) {
+            study.addParticipant(Generator.generateUser());
+        }
+        studyDao.update(study);
+
+        final Study result = studyDao.find(study.getUri());
+        verifyStudyUsers(study, result);
+    }
+
+    @Test
+    public void generatesKeyOnPersist() {
+        final Study study = Generator.generateStudy(true);
+        study.setAuthor(author);
+        assertNull(study.getKey());
+        studyDao.persist(study);
+        assertNotNull(study.getKey());
+
+        final Study result = studyDao.findByKey(study.getKey());
+        assertNotNull(result);
+        assertEquals(study.getUri(), result.getUri());
     }
 }

@@ -1,5 +1,8 @@
 package cz.cvut.kbss.jopa.jsonld.persistence.dao;
 
+import cz.cvut.kbss.jopa.exceptions.NoResultException;
+import cz.cvut.kbss.jopa.jsonld.model.AbstractEntity;
+import cz.cvut.kbss.jopa.jsonld.model.Vocabulary;
 import cz.cvut.kbss.jopa.jsonld.model.util.EntityToOwlClassMapper;
 import cz.cvut.kbss.jopa.jsonld.persistence.PersistenceException;
 import cz.cvut.kbss.jopa.model.EntityManager;
@@ -16,7 +19,7 @@ import java.util.Objects;
 /**
  * Base implementation of the generic DAO.
  */
-public abstract class BaseDao<T> {
+public abstract class BaseDao<T extends AbstractEntity> {
 
     static final Logger LOG = LoggerFactory.getLogger(BaseDao.class);
 
@@ -35,14 +38,36 @@ public abstract class BaseDao<T> {
         Objects.requireNonNull(uri);
         final EntityManager em = entityManager();
         try {
-            return findByUri(uri, em);
+            return find(uri, em);
         } finally {
             em.close();
         }
     }
 
-    T findByUri(URI uri, EntityManager em) {
+    T find(URI uri, EntityManager em) {
         return em.find(type, uri);
+    }
+
+    public T findByKey(String key) {
+        Objects.requireNonNull(key);
+        final EntityManager em = entityManager();
+        try {
+            return findByKey(key, em);
+        } finally {
+            em.close();
+        }
+    }
+
+    T findByKey(String key, EntityManager em) {
+        try {
+            return em.createNativeQuery("SELECT ?x WHERE { ?x a ?type; ?hasKey ?key . }", type)
+                     .setParameter("type", typeUri)
+                     .setParameter("hasKey", URI.create(Vocabulary.s_p_key))
+                     .setParameter("key", key, "en")
+                     .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     public List<T> findAll() {
@@ -75,6 +100,7 @@ public abstract class BaseDao<T> {
     }
 
     void persist(T entity, EntityManager em) {
+        entity.setKey(Long.toString(System.currentTimeMillis()));
         em.persist(entity);
     }
 
