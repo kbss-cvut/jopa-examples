@@ -2,7 +2,7 @@ package cz.cvut.kbss.jopa.jsonld.rest;
 
 import cz.cvut.kbss.jopa.jsonld.model.User;
 import cz.cvut.kbss.jopa.jsonld.rest.exception.NotFoundException;
-import cz.cvut.kbss.jopa.jsonld.service.repository.UserRepositoryService;
+import cz.cvut.kbss.jopa.jsonld.service.UserService;
 import cz.cvut.kbss.jsonld.JsonLd;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ public class UserController {
     private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
-    private UserRepositoryService userService;
+    private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET, produces = JsonLd.MEDIA_TYPE)
     public List<User> getUsers() {

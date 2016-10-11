@@ -4,6 +4,7 @@ import cz.cvut.kbss.jopa.model.annotations.*;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @OWLClass(iri = Vocabulary.s_c_study)
@@ -85,6 +86,14 @@ public class Study extends AbstractEntity {
         this.administrators = administrators;
     }
 
+    public void addAdministrator(User admin) {
+        Objects.requireNonNull(admin);
+        if (administrators == null) {
+            this.administrators = new HashSet<>();
+        }
+        administrators.add(admin);
+    }
+
     public Set<User> getParticipants() {
         return participants;
     }
@@ -94,6 +103,7 @@ public class Study extends AbstractEntity {
     }
 
     public void addParticipant(User participant) {
+        Objects.requireNonNull(participant);
         if (participants == null) {
             this.participants = new HashSet<>();
         }

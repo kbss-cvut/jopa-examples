@@ -88,7 +88,7 @@ public class Organization extends AbstractEntity implements HasDerivableUri {
 
     @Override
     public String toString() {
-        return "Clinic{" +
+        return "Organization{" +
                 "name='" + name + '\'' +
                 "} ";
     }

@@ -2,7 +2,7 @@ package cz.cvut.kbss.jopa.jsonld.rest;
 
 import cz.cvut.kbss.jopa.jsonld.model.Organization;
 import cz.cvut.kbss.jopa.jsonld.rest.exception.NotFoundException;
-import cz.cvut.kbss.jopa.jsonld.service.repository.OrganizationRepositoryService;
+import cz.cvut.kbss.jopa.jsonld.service.OrganizationService;
 import cz.cvut.kbss.jsonld.JsonLd;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ public class OrganizationController {
     private static final Logger LOG = LoggerFactory.getLogger(OrganizationController.class);
 
     @Autowired
-    private OrganizationRepositoryService organizationService;
+    private OrganizationService organizationService;
 
     @RequestMapping(method = RequestMethod.GET, produces = JsonLd.MEDIA_TYPE)
     public List<Organization> getOrganizations() {

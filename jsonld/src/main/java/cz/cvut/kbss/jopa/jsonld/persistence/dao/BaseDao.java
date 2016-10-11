@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.URI;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -102,6 +103,21 @@ public abstract class BaseDao<T extends AbstractEntity> {
     void persist(T entity, EntityManager em) {
         entity.setKey(Long.toString(System.currentTimeMillis()));
         em.persist(entity);
+    }
+
+    public void persist(Collection<T> entities) {
+        Objects.requireNonNull(entities);
+        final EntityManager em = entityManager();
+        try {
+            em.getTransaction().begin();
+            entities.forEach(e -> persist(e, em));
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            LOG.error("Error when persisting entities.", e);
+            throw new PersistenceException(e);
+        } finally {
+            em.close();
+        }
     }
 
     public void update(T entity) {

@@ -21,6 +21,8 @@ public interface BaseService<T extends AbstractEntity> {
 
     void persist(T instance);
 
+    void persist(Collection<T> instances);
+
     void update(T instance);
 
     void remove(T instance);

@@ -2,7 +2,7 @@ package cz.cvut.kbss.jopa.jsonld.rest;
 
 import cz.cvut.kbss.jopa.jsonld.model.Study;
 import cz.cvut.kbss.jopa.jsonld.rest.exception.NotFoundException;
-import cz.cvut.kbss.jopa.jsonld.service.repository.StudyRepositoryService;
+import cz.cvut.kbss.jopa.jsonld.service.StudyService;
 import cz.cvut.kbss.jsonld.JsonLd;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ public class StudyController {
     private static final Logger LOG = LoggerFactory.getLogger(StudyController.class);
 
     @Autowired
-    private StudyRepositoryService studyService;
+    private StudyService studyService;
 
     @RequestMapping(method = RequestMethod.GET, produces = JsonLd.MEDIA_TYPE)
     public List<Study> getStudies() {

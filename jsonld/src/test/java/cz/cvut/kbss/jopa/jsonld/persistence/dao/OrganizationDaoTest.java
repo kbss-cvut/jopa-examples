@@ -7,6 +7,8 @@ import cz.cvut.kbss.jopa.model.EntityManagerFactory;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.Assert.*;
@@ -46,5 +48,18 @@ public class OrganizationDaoTest extends BaseDaoTestRunner {
     @Test
     public void findByKeyReturnsNullForUnknownKey() {
         assertNull(organizationDao.findByKey(UUID.randomUUID().toString()));
+    }
+
+    @Test
+    public void persistCollectionPersistsAllItems() {
+        final List<Organization> organizations = new ArrayList<>();
+        for (int i = 0; i < Generator.randomPositiveInt(5, 10); i++) {
+            organizations.add(Generator.generateOrganization());
+        }
+        organizationDao.persist(organizations);
+
+        for (Organization o : organizations) {
+            assertNotNull(organizationDao.find(o.getUri()));
+        }
     }
 }

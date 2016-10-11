@@ -3,10 +3,9 @@ package cz.cvut.kbss.jopa.jsonld.service.repository;
 import cz.cvut.kbss.jopa.jsonld.model.AbstractEntity;
 import cz.cvut.kbss.jopa.jsonld.persistence.dao.BaseDao;
 import cz.cvut.kbss.jopa.jsonld.service.BaseService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.net.URI;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,8 +18,6 @@ import java.util.Objects;
  * @param <T>
  */
 public abstract class BaseRepositoryService<T extends AbstractEntity> implements BaseService<T> {
-
-    protected static final Logger LOG = LoggerFactory.getLogger(BaseRepositoryService.class);
 
     protected abstract BaseDao<T> getPrimaryDao();
 
@@ -50,6 +47,13 @@ public abstract class BaseRepositoryService<T extends AbstractEntity> implements
         Objects.requireNonNull(instance);
         prePersist(instance);
         getPrimaryDao().persist(instance);
+    }
+
+    @Override
+    public void persist(Collection<T> instances) {
+        Objects.requireNonNull(instances);
+        instances.forEach(this::prePersist);
+        getPrimaryDao().persist(instances);
     }
 
     @Override

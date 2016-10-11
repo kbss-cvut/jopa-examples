@@ -38,6 +38,17 @@ public class StudyRepositoryServiceTest extends BaseServiceTestRunner {
     }
 
     @Test
+    public void persistSetsDefaultAuthorWhenStudyAuthorIsMissing() {
+        final Study study = Generator.generateStudy(false);
+        study.setAuthor(null);
+        studyService.persist(study);
+        assertNotNull(study.getAuthor());
+
+        final Study result = studyService.find(study.getUri());
+        assertEquals(study.getAuthor(), result.getAuthor());
+    }
+
+    @Test
     public void updateSetsLastModified() {
         final Study study = Generator.generateStudy(false);
         study.setAuthor(author);
