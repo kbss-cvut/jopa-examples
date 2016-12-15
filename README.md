@@ -12,6 +12,7 @@ This repository contains some usage examples of the [JOPA framework](https://git
 6. **eswc2016** - JOPA demo for the ESWC 2016 conference. Running version can be found at [http://onto.fel.cvut.cz/eswc2016/](http://onto.fel.cvut.cz/eswc2016/)
 7. **Example06** - JOPA showcasing support for mapped superclasses and plain identifier object property values
 8. **JOPA JSON-LD** - JOPA with [JAXB JSON-LD](https://github.com/kbss-cvut/jaxb-jsonld) for Jackson and Spring - serialization/deserialization of POJOs into/from JSON-LD
+9. **Example07** - JOPA demonstrating support for single inheritance and plural data properties.
 
 Each example has its own README file with a more detailed description. Note that JOPA requires Java 8.
 
