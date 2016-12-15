@@ -16,6 +16,7 @@
         <module>eswc2016</module>
         <module>example06-jopa-mapped-superclass</module>
         <module>jsonld</module>
+        <module>example07-jopa-plural-dp-inheritance</module>
     </modules>
 
     <name>JOPA Examples - parent</name>

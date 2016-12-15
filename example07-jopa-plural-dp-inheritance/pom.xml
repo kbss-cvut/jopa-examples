@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>jopa-examples-parent</artifactId>
+        <groupId>cz.cvut.kbss.jopa</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>example-07</artifactId>
+    <name>Example07-JOPA-Plural-DataProperty-Inheritance</name>
+    <description>
+        Demo showcasing JOPA's support for plural data properties and single inheritance.
+    </description>
+
+    <properties>
+        <org.springframework.boot.version>1.4.1.RELEASE</org.springframework.boot.version>
+        <com.fasterxml.jackson.version>2.4.4</com.fasterxml.jackson.version>
+        <ch.qos.logback.version>1.1.2</ch.qos.logback.version>
+        <cz.cvut.kbss.jaxb-jsonld.version>0.0.6</cz.cvut.kbss.jaxb-jsonld.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>cz.cvut.kbss.jopa</groupId>
+            <artifactId>ontodriver-sesame</artifactId>
+            <version>${jopa.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cz.cvut.kbss</groupId>
+            <artifactId>jaxb-jsonld-jackson</artifactId>
+            <version>${cz.cvut.kbss.jaxb-jsonld.version}</version>
+        </dependency>
+
+        <!-- Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${org.springframework.boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${org.springframework.boot.version}</version>
+        </dependency>
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.12</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${ch.qos.logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${ch.qos.logback.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

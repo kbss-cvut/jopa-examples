@@ -1,4 +1,4 @@
-package cz.cvut.kbss.jopa.jsonld.persistence;
+package cz.cvut.kbss.jopa.example07.persistence;
 
 import cz.cvut.kbss.jopa.Persistence;
 import cz.cvut.kbss.jopa.model.EntityManagerFactory;
@@ -20,15 +20,19 @@ import java.util.Map;
 @Configuration
 public class PersistenceFactory {
 
-    public static final String URL_PROPERTY = "repositoryUrl";
-    public static final String DRIVER_PROPERTY = "driver";
+    private static final String URL_PROPERTY = "repositoryUrl";
+    private static final String DRIVER_PROPERTY = "driver";
 
     private static final Map<String, String> PARAMS = initParams();
 
-    @Autowired
-    private Environment environment;
+    private final Environment environment;
 
     private EntityManagerFactory emf;
+
+    @Autowired
+    public PersistenceFactory(Environment environment) {
+        this.environment = environment;
+    }
 
     @Bean
     public EntityManagerFactory getEntityManagerFactory() {
@@ -40,7 +44,7 @@ public class PersistenceFactory {
         final Map<String, String> properties = new HashMap<>(PARAMS);
         properties.put(JOPAPersistenceProperties.ONTOLOGY_PHYSICAL_URI_KEY, environment.getProperty(URL_PROPERTY));
         properties.put(JOPAPersistenceProperties.DATA_SOURCE_CLASS, environment.getProperty(DRIVER_PROPERTY));
-        this.emf = Persistence.createEntityManagerFactory("jsonldPU", properties);
+        this.emf = Persistence.createEntityManagerFactory("example07PU", properties);
     }
 
     @PreDestroy
@@ -53,7 +57,7 @@ public class PersistenceFactory {
     private static Map<String, String> initParams() {
         final Map<String, String> map = new HashMap<>();
         map.put(OntoDriverProperties.ONTOLOGY_LANGUAGE, "en");
-        map.put(JOPAPersistenceProperties.SCAN_PACKAGE, "cz.cvut.kbss.jopa.jsonld.model");
+        map.put(JOPAPersistenceProperties.SCAN_PACKAGE, "cz.cvut.kbss.jopa.example07.model");
         map.put(JOPAPersistenceProperties.JPA_PERSISTENCE_PROVIDER, JOPAPersistenceProvider.class.getName());
         return map;
     }
