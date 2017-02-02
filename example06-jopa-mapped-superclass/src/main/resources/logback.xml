@@ -9,7 +9,15 @@
         </encoder>
     </appender>
 
-    <logger name="cz.cvut.kbss" level="TRACE" additivity="false">
+    <logger name="cz.cvut.kbss.jopa" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="cz.cvut.kbss.ontodriver" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="org.openrdf" level="INFO" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
 

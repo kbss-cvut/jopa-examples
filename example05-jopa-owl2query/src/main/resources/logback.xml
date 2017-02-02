@@ -17,6 +17,14 @@
         <appender-ref ref="STDOUT"/>
     </logger>
 
+    <logger name="org.semanticweb" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="org.apache.jena" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
     <logger name="org.openrdf" level="INFO" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>

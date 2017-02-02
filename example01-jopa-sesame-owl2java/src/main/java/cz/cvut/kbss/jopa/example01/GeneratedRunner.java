@@ -113,7 +113,7 @@ public class GeneratedRunner implements Runner {
         student.setTelephone("xxxxxxxxxxxx-xxxx");
         student.setTypes(types);
         final ConferencePaper paper = new ConferencePaper();
-        paper.setName1("ConferencePaperP");
+        paper.setName("ConferencePaperP");
         student.setIsAuthorOf(Collections.singleton(paper));
         student.setTakesCourse(courses);
         return student;

@@ -13,12 +13,12 @@
 
 <rdf:RDF xmlns="http://krizik.felk.cvut.cz/ontologies/jopa/example01#"
      xml:base="http://krizik.felk.cvut.cz/ontologies/jopa/example01"
-     xmlns:ic="http://krizik.felk.cvut.cz/ontologies/2009/ic.owl#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:example01="http://krizik.felk.cvut.cz/ontologies/jopa/example01#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+     xmlns:ic="http://krizik.felk.cvut.cz/ontologies/2009/ic.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:example01="http://krizik.felk.cvut.cz/ontologies/jopa/example01#">
     <owl:Ontology rdf:about="http://krizik.felk.cvut.cz/ontologies/jopa/example01"/>
     
 
@@ -133,87 +133,13 @@
 
     <!-- http://uob.iodt.ibm.com/univ-bench-dl.owl#ConferencePaper -->
 
-    <owl:Class rdf:about="http://uob.iodt.ibm.com/univ-bench-dl.owl#ConferencePaper">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#name"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#name"/>
-                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    <owl:Axiom>
-        <rdfs:comment>jopa-example01</rdfs:comment>
-        <owl:annotatedSource rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#ConferencePaper"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#name"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-example01</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#ConferencePaper"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#name"/>
-                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
+    <owl:Class rdf:about="http://uob.iodt.ibm.com/univ-bench-dl.owl#ConferencePaper"/>
     
 
 
     <!-- http://uob.iodt.ibm.com/univ-bench-dl.owl#Course -->
 
-    <owl:Class rdf:about="http://uob.iodt.ibm.com/univ-bench-dl.owl#Course">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#name"/>
-                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#name"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-example01</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#Course"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#name"/>
-                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <rdfs:comment>jopa-example01</rdfs:comment>
-        <owl:annotatedSource rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#Course"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#name"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
+    <owl:Class rdf:about="http://uob.iodt.ibm.com/univ-bench-dl.owl#Course"/>
     
 
 
@@ -222,19 +148,6 @@
     <owl:Class rdf:about="http://uob.iodt.ibm.com/univ-bench-dl.owl#UndergraduateStudent">
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#isAuthorOf"/>
-                <owl:allValuesFrom rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#ConferencePaper"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#lastName"/>
-                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#takesCourse"/>
                 <owl:onClass rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#Course"/>
                 <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
@@ -242,28 +155,9 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#firstName"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#telephone"/>
-                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#emailAddress"/>
                 <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#lastName"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -275,14 +169,20 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#firstName"/>
+                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#telephone"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#telephone"/>
                 <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#emailAddress"/>
+                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#lastName"/>
                 <owl:allValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -294,8 +194,34 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#telephone"/>
+                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#isAuthorOf"/>
+                <owl:allValuesFrom rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#ConferencePaper"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#emailAddress"/>
                 <owl:allValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#firstName"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#lastName"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#firstName"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -316,9 +242,31 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#takesCourse"/>
-                <owl:onClass rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#Course"/>
-                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#telephone"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-example01</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#UndergraduateStudent"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#telephone"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-example01</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#UndergraduateStudent"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#emailAddress"/>
+                <owl:allValuesFrom rdf:resource="&xsd;string"/>
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
@@ -339,7 +287,31 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#telephone"/>
+                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#emailAddress"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-example01</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#UndergraduateStudent"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#firstName"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <ic:isIntegrityConstraintFor>jopa-example01</ic:isIntegrityConstraintFor>
+        <owl:annotatedSource rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#UndergraduateStudent"/>
+        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#lastName"/>
                 <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;string"/>
             </owl:Restriction>
@@ -373,32 +345,9 @@
         <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
         <owl:annotatedTarget>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#telephone"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-example01</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#UndergraduateStudent"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#lastName"/>
-                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-example01</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#UndergraduateStudent"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#firstName"/>
-                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
+                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#takesCourse"/>
+                <owl:onClass rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#Course"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:minQualifiedCardinality>
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
@@ -414,32 +363,9 @@
             </owl:Restriction>
         </owl:annotatedTarget>
     </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-example01</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#UndergraduateStudent"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#emailAddress"/>
-                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
-    <owl:Axiom>
-        <ic:isIntegrityConstraintFor>jopa-example01</ic:isIntegrityConstraintFor>
-        <owl:annotatedSource rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#UndergraduateStudent"/>
-        <owl:annotatedProperty rdf:resource="&rdfs;subClassOf"/>
-        <owl:annotatedTarget>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://uob.iodt.ibm.com/univ-bench-dl.owl#emailAddress"/>
-                <owl:allValuesFrom rdf:resource="&xsd;string"/>
-            </owl:Restriction>
-        </owl:annotatedTarget>
-    </owl:Axiom>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
 
