@@ -1,11 +1,11 @@
 /**
  * Copyright (C) 2016 Czech Technical University in Prague
- *
+ * <p>
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any
  * later version.
- *
+ * <p>
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
@@ -17,10 +17,10 @@ package cz.cvut.kbss.jopa.example04.persistence.sesame;
 import cz.cvut.kbss.jopa.example04.model.Student;
 import cz.cvut.kbss.jopa.model.EntityManager;
 import cz.cvut.kbss.jopa.model.EntityManagerFactory;
-import org.openrdf.repository.Repository;
-import org.openrdf.repository.RepositoryException;
-import org.openrdf.repository.config.RepositoryConfigException;
-import org.openrdf.repository.manager.RepositoryProvider;
+import org.eclipse.rdf4j.repository.Repository;
+import org.eclipse.rdf4j.repository.RepositoryException;
+import org.eclipse.rdf4j.repository.config.RepositoryConfigException;
+import org.eclipse.rdf4j.repository.manager.RepositoryProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,7 +68,7 @@ public class SesamePersistenceProvider {
      * Force JOPA to initialize the storage so that we don't have to initialize it ourselves.
      * <p>
      * If we were to initialize the storage, we would have to create appropriate {@link
-     * org.openrdf.repository.config.RepositoryConfig} for the repo, so we rather let JOPA do it for us.
+     * org.eclipse.rdf4j.repository.config.RepositoryConfig} for the repo, so we rather let JOPA do it for us.
      */
     private void forceRepoInitialization() {
         final EntityManager em = emf.createEntityManager();

@@ -1,11 +1,11 @@
 /**
  * Copyright (C) 2016 Czech Technical University in Prague
- *
+ * <p>
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any
  * later version.
- *
+ * <p>
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
@@ -14,19 +14,20 @@
  */
 package cz.cvut.kbss.jopa.eswc2016.persistence.dao;
 
-import com.github.jsonldjava.sesame.SesameJSONLDWriter;
 import cz.cvut.kbss.jopa.eswc2016.config.ConfigurationService;
 import cz.cvut.kbss.jopa.eswc2016.persistence.owlapi.OwlapiDataProvider;
 import cz.cvut.kbss.jopa.eswc2016.service.DataFormat;
 import cz.cvut.kbss.jopa.eswc2016.util.ConfigParam;
 import cz.cvut.kbss.jopa.eswc2016.util.RepositoryType;
-import org.openrdf.repository.Repository;
-import org.openrdf.repository.RepositoryConnection;
-import org.openrdf.repository.RepositoryException;
-import org.openrdf.rio.RDFHandler;
-import org.openrdf.rio.RDFHandlerException;
-import org.openrdf.rio.rdfxml.util.RDFXMLPrettyWriter;
-import org.openrdf.rio.turtle.TurtleWriter;
+import org.eclipse.rdf4j.repository.Repository;
+import org.eclipse.rdf4j.repository.RepositoryConnection;
+import org.eclipse.rdf4j.repository.RepositoryException;
+import org.eclipse.rdf4j.rio.RDFFormat;
+import org.eclipse.rdf4j.rio.RDFHandler;
+import org.eclipse.rdf4j.rio.RDFHandlerException;
+import org.eclipse.rdf4j.rio.rdfjson.RDFJSONWriter;
+import org.eclipse.rdf4j.rio.rdfxml.util.RDFXMLPrettyWriter;
+import org.eclipse.rdf4j.rio.turtle.TurtleWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,7 +80,7 @@ public class DataDao {
     private RDFHandler getHandler(DataFormat format, OutputStream os) {
         switch (format) {
             case JSON:
-                return new SesameJSONLDWriter(os);
+                return new RDFJSONWriter(os, RDFFormat.RDFJSON);
             case RDFXML:
                 return new RDFXMLPrettyWriter(os);
             case TURTLE:

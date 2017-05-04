@@ -4,6 +4,7 @@ import cz.cvut.kbss.jopa.jsonld.model.Organization;
 import cz.cvut.kbss.jopa.jsonld.model.Study;
 import cz.cvut.kbss.jopa.jsonld.model.User;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.Random;
 
@@ -27,6 +28,7 @@ public class Generator {
 
     public static Study generateStudy(boolean setAttributes) {
         final Study study = new Study();
+        study.setAdministrators(Collections.singleton(generateUser()));
         study.setName("Study" + RAND.nextInt());
         if (setAttributes) {
             study.setCreated(new Date());

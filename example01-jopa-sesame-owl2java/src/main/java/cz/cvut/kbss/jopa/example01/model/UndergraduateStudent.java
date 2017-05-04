@@ -1,11 +1,11 @@
 /**
  * Copyright (C) 2016 Czech Technical University in Prague
- *
+ * <p>
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation, either version 3 of the License, or (at your option) any
  * later version.
- *
+ * <p>
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
@@ -15,6 +15,8 @@
 package cz.cvut.kbss.jopa.example01.model;
 
 import cz.cvut.kbss.jopa.model.annotations.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.util.Set;
@@ -22,112 +24,144 @@ import java.util.Set;
 @OWLClass(iri = "http://uob.iodt.ibm.com/univ-bench-dl.owl#UndergraduateStudent")
 public class UndergraduateStudent {
 
-	@Id
-	private URI uri;
+    private static final Logger LOG = LoggerFactory.getLogger(UndergraduateStudent.class);
 
-	@OWLDataProperty(iri = "http://uob.iodt.ibm.com/univ-bench-dl.owl#firstName")
-	private String firstName;
+    @Id
+    private URI uri;
 
-	@OWLDataProperty(iri = "http://uob.iodt.ibm.com/univ-bench-dl.owl#lastName")
-	private String lastName;
+    @OWLDataProperty(iri = "http://uob.iodt.ibm.com/univ-bench-dl.owl#firstName")
+    private String firstName;
 
-	@OWLDataProperty(iri = "http://uob.iodt.ibm.com/univ-bench-dl.owl#emailAddress")
-	private String email;
+    @OWLDataProperty(iri = "http://uob.iodt.ibm.com/univ-bench-dl.owl#lastName")
+    private String lastName;
 
-	@OWLDataProperty(iri = "http://uob.iodt.ibm.com/univ-bench-dl.owl#telephone")
-	private String telephone;
+    @OWLDataProperty(iri = "http://uob.iodt.ibm.com/univ-bench-dl.owl#emailAddress")
+    private String email;
 
-	@OWLObjectProperty(iri = "http://uob.iodt.ibm.com/univ-bench-dl.owl#takesCourse", fetch = FetchType.LAZY)
-	private Set<Course> courses;
+    @OWLDataProperty(iri = "http://uob.iodt.ibm.com/univ-bench-dl.owl#telephone")
+    private String telephone;
 
-	@OWLObjectProperty(iri = "http://uob.iodt.ibm.com/univ-bench-dl.owl#isAuthorOf", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	private Set<ConferencePaper> papers;
+    @OWLObjectProperty(iri = "http://uob.iodt.ibm.com/univ-bench-dl.owl#takesCourse", fetch = FetchType.LAZY)
+    private Set<Course> courses;
 
-	@Types
-	private Set<String> types;
+    @OWLObjectProperty(iri = "http://uob.iodt.ibm.com/univ-bench-dl.owl#isAuthorOf", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private Set<ConferencePaper> papers;
 
-	public UndergraduateStudent() {
-	}
+    @Types
+    private Set<String> types;
 
-	public UndergraduateStudent(URI uri) {
-		this.uri = uri;
-	}
+    public UndergraduateStudent() {
+    }
 
-	public URI getUri() {
-		return uri;
-	}
+    public UndergraduateStudent(URI uri) {
+        this.uri = uri;
+    }
 
-	public void setUri(URI uri) {
-		this.uri = uri;
-	}
+    public URI getUri() {
+        return uri;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public void setUri(URI uri) {
+        this.uri = uri;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getTelephone() {
-		return telephone;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
+    public String getTelephone() {
+        return telephone;
+    }
 
-	public Set<Course> getCourses() {
-		return courses;
-	}
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
 
-	public void setCourses(Set<Course> courses) {
-		this.courses = courses;
-	}
+    public Set<Course> getCourses() {
+        return courses;
+    }
 
-	public Set<ConferencePaper> getPapers() {
-		return papers;
-	}
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
+    }
 
-	public void setPapers(Set<ConferencePaper> papers) {
-		this.papers = papers;
-	}
+    public Set<ConferencePaper> getPapers() {
+        return papers;
+    }
 
-	public Set<String> getTypes() {
-		return types;
-	}
+    public void setPapers(Set<ConferencePaper> papers) {
+        this.papers = papers;
+    }
 
-	public void setTypes(Set<String> types) {
-		this.types = types;
-	}
+    public Set<String> getTypes() {
+        return types;
+    }
 
-	@Override
-	public String toString() {
-		return "UndergraduateStudent{" +
-				"uri=" + uri +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", email='" + email + '\'' +
-				", telephone='" + telephone + '\'' +
-				", courses=" + courses +
-				", papers=" + papers +
-				", types=" + types +
-				'}';
-	}
+    public void setTypes(Set<String> types) {
+        this.types = types;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        LOG.info("prePersist called.");
+    }
+
+    @PostPersist
+    public void postPersist() {
+        LOG.info("postPersist called.");
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        LOG.info("preUpdate called.");
+    }
+
+    @PostUpdate
+    private void postUpdate() {
+        LOG.info("postUpdate called. It can be private.");
+    }
+
+    @PostLoad
+    void postLoad() {
+        LOG.info("postLoad called. It can be package-private.");
+    }
+
+    @PreRemove
+    protected void preRemove() {
+        LOG.info("preRemove called. It can be protected.");
+    }
+
+    @Override
+    public String toString() {
+        return "UndergraduateStudent{" +
+                "uri=" + uri +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", courses=" + courses +
+                ", papers=" + papers +
+                ", types=" + types +
+                '}';
+    }
 }

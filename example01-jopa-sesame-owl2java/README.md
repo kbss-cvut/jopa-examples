@@ -3,7 +3,11 @@
 This project is a basic example of JOPA usage. It uses a Sesame in-memory storage and a small model based on the UOBM ontology 
 ([https://www.cs.ox.ac.uk/isg/tools/UOBMGenerator/](https://www.cs.ox.ac.uk/isg/tools/UOBMGenerator/)).
 
-There are two setups for this demo:
+### Features
+
+* Generated object model,
+* Manually written object model,
+* Entity lifecycle listeners.
 
 ### Generated Model
 
@@ -25,6 +29,14 @@ but the attributes are, with the exception of annotation properties and @Propert
 The model can be found in the `cz.cvut.kbss.jopa.example01.model` package and the demo can be run by starting the 
 `cz.cvut.kbss.jopa.example01.Example` class.
 
+
+### Entity Lifecycle Listeners
+
+Similarly to JPA 2, JOPA enables declaration of listeners which are called at significant points in the lifecycle of an entity.
+The `cz.cvut.kbss.jopa.example01.model.UndergraduateStudent` entity declares such listeners. In this case, the listeners
+just log some messages, but additional logic can be put in them.
+The semantics of the listeners corresponds to their semantics declared in the 
+[JPA 2.1 specification](http://download.oracle.com/otndocs/jcp/persistence-2_1-fr-eval-spec/index.html).
 
 ## Persistence Setup
 

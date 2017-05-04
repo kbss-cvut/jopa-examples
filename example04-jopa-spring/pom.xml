@@ -22,7 +22,7 @@
         <!-- Have to use older version for compatibility with Sesame -->
         <com.fasterxml.jackson.version>2.2.1</com.fasterxml.jackson.version>
         <ch.qos.logback.version>1.1.2</ch.qos.logback.version>
-        <org.openrdf.sesame.version>2.8.9</org.openrdf.sesame.version>
+        <org.eclipse.rdf4j.version>2.2</org.eclipse.rdf4j.version>
     </properties>
 
     <dependencies>
@@ -33,14 +33,14 @@
         </dependency>
 
         <dependency>
-            <groupId>org.openrdf.sesame</groupId>
-            <artifactId>sesame-rio-rdfjson</artifactId>
-            <version>${org.openrdf.sesame.version}</version>
+            <groupId>org.eclipse.rdf4j</groupId>
+            <artifactId>rdf4j-rio-rdfjson</artifactId>
+            <version>${org.eclipse.rdf4j.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.openrdf.sesame</groupId>
-            <artifactId>sesame-rio-rdfxml</artifactId>
-            <version>${org.openrdf.sesame.version}</version>
+            <groupId>org.eclipse.rdf4j</groupId>
+            <artifactId>rdf4j-rio-rdfxml</artifactId>
+            <version>${org.eclipse.rdf4j.version}</version>
         </dependency>
 
         <!-- Spring -->
