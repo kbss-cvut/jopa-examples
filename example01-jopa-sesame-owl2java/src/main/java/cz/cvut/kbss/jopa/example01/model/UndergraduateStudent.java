@@ -18,6 +18,7 @@ import cz.cvut.kbss.jopa.model.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.Field;
 import java.net.URI;
 import java.util.Set;
 
@@ -163,5 +164,13 @@ public class UndergraduateStudent {
                 ", papers=" + papers +
                 ", types=" + types +
                 '}';
+    }
+
+    public static Field getCoursesField() {
+        try {
+            return UndergraduateStudent.class.getDeclaredField("courses");
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

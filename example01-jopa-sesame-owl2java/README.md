@@ -7,7 +7,8 @@ This project is a basic example of JOPA usage. It uses a Sesame in-memory storag
 
 * Generated object model,
 * Manually written object model,
-* Entity lifecycle listeners.
+* Entity lifecycle listeners,
+* Language tag specification.
 
 ### Generated Model
 
@@ -37,6 +38,14 @@ The `cz.cvut.kbss.jopa.example01.model.UndergraduateStudent` entity declares suc
 just log some messages, but additional logic can be put in them.
 The semantics of the listeners corresponds to their semantics declared in the 
 [JPA 2.1 specification](http://download.oracle.com/otndocs/jcp/persistence-2_1-fr-eval-spec/index.html).
+
+
+### Language Tag Specification
+
+JOPA allows language tag to be dynamically specified for whole entities or their attributes. The language tag is then applied
+to String-based values (data and annotation properties). Check out the `cz.cvut.kbss.jopa.example01.ManualRunner.java` class,
+in which both English and Czech names of courses are used. By default, the persistence unit uses English, but descriptors allow
+to override this setting per entity or per individual attributes (so various languages can be combined in one entity).
 
 ## Persistence Setup
 
