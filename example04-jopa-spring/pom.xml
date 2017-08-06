@@ -18,9 +18,9 @@
     <packaging>war</packaging>
 
     <properties>
-        <org.springframework.version>4.1.5.RELEASE</org.springframework.version>
+        <org.springframework.version>4.3.9.RELEASE</org.springframework.version>
         <!-- Have to use older version for compatibility with Sesame -->
-        <com.fasterxml.jackson.version>2.2.1</com.fasterxml.jackson.version>
+        <com.fasterxml.jackson.version>2.8.9</com.fasterxml.jackson.version>
         <ch.qos.logback.version>1.1.2</ch.qos.logback.version>
         <org.eclipse.rdf4j.version>2.2</org.eclipse.rdf4j.version>
     </properties>
@@ -30,6 +30,12 @@
             <groupId>cz.cvut.kbss.jopa</groupId>
             <artifactId>ontodriver-sesame</artifactId>
             <version>${jopa.version}</version>
+        </dependency>
+        <!-- Declarative transactions integration for JOPA -->
+        <dependency>
+            <groupId>com.github.ledsoft</groupId>
+            <artifactId>jopa-spring-transaction</artifactId>
+            <version>0.0.2</version>
         </dependency>
 
         <dependency>

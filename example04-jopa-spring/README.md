@@ -5,6 +5,7 @@ This example shows integration of JOPA with a CDI framework (Spring in this case
 ### Features
 
 - Named native queries
+- Spring integration
 
 This example does not show any other significant JOPA features. To see more features, consult the other examples. This
 demo mainly shows integration of JOPA with CDI frameworks like Spring.
@@ -27,8 +28,10 @@ Class `cz.cvut.kbss.jopa.example04.persistence.dao.StudentDao` shows usage of th
 is requested, used to perform persistence logic and then discarded. The `try-finally` pattern ensures that the entity manager is always
 closed correctly.
 
-It is important to note that since JOPA is not a JPA implementation, declarative transaction demarcation in Spring (`@Transactional`)
-is not supported and transactions have to be managed manually. See for example `persist` in `StudentDao`.
+#### Declarative Transactions
+
+Thanks to the [JOPA-Spring-transaction](https://github.com/ledsoft/jopa-spring-transaction) library, it is possible to use
+declarative transaction demarcation (`@Transactional`) with JOPA. See `StudentDao` for an example.
 
 ## Persistence Setup
 

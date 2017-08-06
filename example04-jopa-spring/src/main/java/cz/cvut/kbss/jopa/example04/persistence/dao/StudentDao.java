@@ -17,11 +17,11 @@ package cz.cvut.kbss.jopa.example04.persistence.dao;
 import cz.cvut.kbss.jopa.example04.model.Student;
 import cz.cvut.kbss.jopa.exceptions.NoResultException;
 import cz.cvut.kbss.jopa.model.EntityManager;
-import cz.cvut.kbss.jopa.model.EntityManagerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,62 +30,43 @@ public class StudentDao {
 
     private static final Logger LOG = LoggerFactory.getLogger(StudentDao.class);
 
+    // Notice that we are using Autowired instead of PersistenceContext, which is tightly coupled with traditional JPA
     @Autowired
-    private EntityManagerFactory emf;
+    private EntityManager em;
 
-    private EntityManager entityManager() {
-        return emf.createEntityManager();
-    }
-
+    @Transactional("txManager")
     public List<Student> findAll() {
-        final EntityManager em = entityManager();
-        try {
-            return em.createNamedQuery("Student.findAll", Student.class).getResultList();
-        } finally {
-            em.close();
-        }
+        return em.createNamedQuery("Student.findAll", Student.class).getResultList();
     }
 
+    @Transactional("txManager")
     public Student findByKey(String key) {
-        final EntityManager em = entityManager();
         try {
             return em.createNamedQuery("Student.findByKey", Student.class).setParameter("key", key, "en")
                      .getSingleResult();
         } catch (NoResultException e) {
             LOG.warn("Student with key {} not found.", key);
             return null;
-        } finally {
-            em.close();
         }
     }
 
+    @Transactional("txManager")
     public void persist(Student student) {
         assert student != null;
         assert student.getUri() != null;
 
-        final EntityManager em = entityManager();
-        try {
-            em.getTransaction().begin();
-            em.persist(student);
-            em.getTransaction().commit();
-        } finally {
-            em.close();
-        }
+        em.persist(student);
+
         LOG.debug("Student {} persisted.", student);
     }
 
+    @Transactional("txManager")
     public void delete(Student student) {
         assert student != null;
 
-        final EntityManager em = entityManager();
-        try {
-            em.getTransaction().begin();
-            final Student toRemove = em.merge(student);
-            em.remove(toRemove);
-            em.getTransaction().commit();
-        } finally {
-            em.close();
-        }
+        final Student toRemove = em.merge(student);
+        em.remove(toRemove);
+
         LOG.debug("Student {} deleted.", student);
     }
 }
