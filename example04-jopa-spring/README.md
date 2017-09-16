@@ -31,7 +31,7 @@ closed correctly.
 #### Declarative Transactions
 
 Thanks to the [JOPA-Spring-transaction](https://github.com/ledsoft/jopa-spring-transaction) library, it is possible to use
-declarative transaction demarcation (`@Transactional`) with JOPA. See `StudentDao` for an example.
+declarative transaction demarcation (`@Transactional`) with JOPA. See `StudentService` for an example.
 
 ## Persistence Setup
 

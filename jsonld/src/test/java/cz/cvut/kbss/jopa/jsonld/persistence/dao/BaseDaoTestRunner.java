@@ -17,6 +17,15 @@ public abstract class BaseDaoTestRunner {
     @Autowired
     private PlatformTransactionManager txManager;
 
+    /**
+     * Since JOPA does not understand SPARQL queries, any DAO method using a query will not be able to see uncommitted
+     * transactional changes. So the whole test cannot run in a single transaction, as is common in regular Spring testing.
+     * <p>
+     * Instead, we need to perform methods which change the state of the storage in transactions, so that the changes are
+     * really committed into the storage.
+     *
+     * @param procedure Code to execute
+     */
     public void executeInTransaction(Runnable procedure) {
         TestUtils.executeInTransaction(txManager, procedure);
     }

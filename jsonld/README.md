@@ -182,6 +182,21 @@ Notice how the Dr. House's organization membership references the previously dec
 The persistence is set up in `cz.cvut.kbss.jopa.jsonld.persistence.PersistenceFactory`. We are using a native Sesame repository, stored in `/tmp`.
 Of course, this setup can be changed. Target location is in `config.properties`.
 
+### Declarative Transactions
+
+This demo makes use of the [JOPA-Spring-transaction](https://github.com/ledsoft/jopa-spring-transaction) library, 
+which enables JOPA to be used together with Spring's declarative transactions. See the services for usage example.
+To make the transactions work, it is necessary to instantiate the `JopaTransactionManager` and `DelegatingEntityManager` Spring beans.
+See `cz.cvut.kbss.jopa.jsonld.config.PersistenceConfig` for reference.
+
+
+### Declarative Transactions in Tests
+
+Since JOPA does not understand SPARQL queries, uncommitted changes are not visible to queries during transaction. Therefore, 
+the whole tests cannot be executed in one transaction, as is common in Spring applications. Instead, methods modifying
+the state of the repository must be executed using the Spring's `TransactionTemplate`. See 
+`cz.cvut.kbss.jopa.jsonld.persistence.dao.BaseDaoTestRunner` for example and an explanation. 
+
 ## Running the Demo
 
 To run the demo, `mvn spring-boot:run` can be used.
