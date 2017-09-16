@@ -33,8 +33,12 @@ public class StudentController {
 
     private static final Logger LOG = LoggerFactory.getLogger(StudentController.class);
 
+    private final StudentRepositoryService studentService;
+
     @Autowired
-    private StudentRepositoryService studentService;
+    public StudentController(StudentRepositoryService studentService) {
+        this.studentService = studentService;
+    }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Student> getStudents() {

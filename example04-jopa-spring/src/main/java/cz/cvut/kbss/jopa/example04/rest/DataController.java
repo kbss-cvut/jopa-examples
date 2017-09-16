@@ -25,8 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/data")
 public class DataController {
 
+    private final DataRepositoryService dataService;
+
     @Autowired
-    private DataRepositoryService dataService;
+    public DataController(DataRepositoryService dataService) {
+        this.dataService = dataService;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String getData(@RequestParam(value = "format", required = false, defaultValue = "rdfxml") String format) {

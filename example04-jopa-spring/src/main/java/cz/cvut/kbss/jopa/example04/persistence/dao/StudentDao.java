@@ -30,8 +30,12 @@ public class StudentDao {
     private static final Logger LOG = LoggerFactory.getLogger(StudentDao.class);
 
     // Notice that we are using Autowired instead of PersistenceContext, which is tightly coupled with traditional JPA
+    private final EntityManager em;
+
     @Autowired
-    private EntityManager em;
+    public StudentDao(EntityManager em) {
+        this.em = em;
+    }
 
     public List<Student> findAll() {
         return em.createNamedQuery("Student.findAll", Student.class).getResultList();

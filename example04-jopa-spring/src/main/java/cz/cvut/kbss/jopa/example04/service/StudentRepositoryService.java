@@ -26,8 +26,12 @@ import java.util.Objects;
 @Service
 public class StudentRepositoryService {
 
+    private final StudentDao studentDao;
+
     @Autowired
-    private StudentDao studentDao;
+    public StudentRepositoryService(StudentDao studentDao) {
+        this.studentDao = studentDao;
+    }
 
     @Transactional
     public List<Student> findAll() {

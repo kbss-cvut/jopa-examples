@@ -23,8 +23,12 @@ import java.util.Objects;
 @Service
 public class DataRepositoryService {
 
+    private final DataDao dataDao;
+
     @Autowired
-    private DataDao dataDao;
+    public DataRepositoryService(DataDao dataDao) {
+        this.dataDao = dataDao;
+    }
 
     public String getRepositoryData(String format) {
         Objects.requireNonNull(format);
