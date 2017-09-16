@@ -21,7 +21,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,12 +33,10 @@ public class StudentDao {
     @Autowired
     private EntityManager em;
 
-    @Transactional("txManager")
     public List<Student> findAll() {
         return em.createNamedQuery("Student.findAll", Student.class).getResultList();
     }
 
-    @Transactional("txManager")
     public Student findByKey(String key) {
         try {
             return em.createNamedQuery("Student.findByKey", Student.class).setParameter("key", key, "en")
@@ -50,7 +47,6 @@ public class StudentDao {
         }
     }
 
-    @Transactional("txManager")
     public void persist(Student student) {
         assert student != null;
         assert student.getUri() != null;
@@ -60,7 +56,6 @@ public class StudentDao {
         LOG.debug("Student {} persisted.", student);
     }
 
-    @Transactional("txManager")
     public void delete(Student student) {
         assert student != null;
 

@@ -18,6 +18,7 @@ import cz.cvut.kbss.jopa.example04.model.Student;
 import cz.cvut.kbss.jopa.example04.persistence.dao.StudentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -28,10 +29,12 @@ public class StudentRepositoryService {
     @Autowired
     private StudentDao studentDao;
 
+    @Transactional
     public List<Student> findAll() {
         return studentDao.findAll();
     }
 
+    @Transactional
     public Student findByKey(String key) {
         if (key == null || key.isEmpty()) {
             return null;
@@ -39,6 +42,7 @@ public class StudentRepositoryService {
         return studentDao.findByKey(key);
     }
 
+    @Transactional
     public void persist(Student student) {
         Objects.requireNonNull(student);
         student.setKey(Long.toString(System.currentTimeMillis()));
@@ -46,6 +50,7 @@ public class StudentRepositoryService {
         studentDao.persist(student);
     }
 
+    @Transactional
     public void delete(Student student) {
         Objects.requireNonNull(student);
         studentDao.delete(student);

@@ -3,6 +3,7 @@ package cz.cvut.kbss.jopa.jsonld.service.repository;
 import cz.cvut.kbss.jopa.jsonld.model.AbstractEntity;
 import cz.cvut.kbss.jopa.jsonld.persistence.dao.BaseDao;
 import cz.cvut.kbss.jopa.jsonld.service.BaseService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.net.URI;
 import java.util.Collection;
@@ -21,6 +22,7 @@ public abstract class BaseRepositoryService<T extends AbstractEntity> implements
 
     protected abstract BaseDao<T> getPrimaryDao();
 
+    @Transactional
     @Override
     public List<T> findAll() {
         final List<T> result = getPrimaryDao().findAll();
@@ -28,6 +30,7 @@ public abstract class BaseRepositoryService<T extends AbstractEntity> implements
         return result;
     }
 
+    @Transactional
     @Override
     public T find(URI uri) {
         final T result = getPrimaryDao().find(uri);
@@ -35,6 +38,7 @@ public abstract class BaseRepositoryService<T extends AbstractEntity> implements
         return result;
     }
 
+    @Transactional
     @Override
     public T findByKey(String key) {
         final T result = getPrimaryDao().findByKey(key);
@@ -42,6 +46,7 @@ public abstract class BaseRepositoryService<T extends AbstractEntity> implements
         return result;
     }
 
+    @Transactional
     @Override
     public void persist(T instance) {
         Objects.requireNonNull(instance);
@@ -49,6 +54,7 @@ public abstract class BaseRepositoryService<T extends AbstractEntity> implements
         getPrimaryDao().persist(instance);
     }
 
+    @Transactional
     @Override
     public void persist(Collection<T> instances) {
         Objects.requireNonNull(instances);
@@ -56,6 +62,7 @@ public abstract class BaseRepositoryService<T extends AbstractEntity> implements
         getPrimaryDao().persist(instances);
     }
 
+    @Transactional
     @Override
     public void update(T instance) {
         Objects.requireNonNull(instance);
@@ -63,11 +70,13 @@ public abstract class BaseRepositoryService<T extends AbstractEntity> implements
         getPrimaryDao().update(instance);
     }
 
+    @Transactional
     @Override
     public void remove(T instance) {
         getPrimaryDao().remove(instance);
     }
 
+    @Transactional
     @Override
     public boolean exists(URI uri) {
         return getPrimaryDao().exists(uri);

@@ -7,6 +7,8 @@ import cz.cvut.kbss.jopa.jsonld.persistence.dao.UserDao;
 import cz.cvut.kbss.jopa.jsonld.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.annotation.PostConstruct;
 import java.net.URI;
@@ -18,10 +20,17 @@ public class UserRepositoryService extends BaseRepositoryService<User> implement
     private static final URI DEFAULT_USER_URI = URI
             .create(Vocabulary.ONTOLOGY_IRI_study_manager + "/System+Administrator");
 
-    @Autowired
-    private UserDao userDao;
+    private final PlatformTransactionManager txManager;
+
+    private final UserDao userDao;
 
     private User defaultUser;
+
+    @Autowired
+    public UserRepositoryService(UserDao userDao, PlatformTransactionManager txManager) {
+        this.userDao = userDao;
+        this.txManager = txManager;
+    }
 
     @Override
     protected BaseDao<User> getPrimaryDao() {
@@ -39,15 +48,19 @@ public class UserRepositoryService extends BaseRepositoryService<User> implement
     }
 
     @PostConstruct
-    private void initDefaultUser() {
-        if (!userDao.exists(DEFAULT_USER_URI)) {
-            this.defaultUser = new User();
-            defaultUser.setUri(DEFAULT_USER_URI);
-            defaultUser.setFirstName("System");
-            defaultUser.setLastName("Administrator");
-            userDao.persist(defaultUser);
-        } else {
-            this.defaultUser = userDao.find(DEFAULT_USER_URI);
-        }
+    public void initDefaultUser() {
+        this.defaultUser = new TransactionTemplate(txManager).execute(transactionStatus -> {
+            final User user;
+            if (!userDao.exists(DEFAULT_USER_URI)) {
+                user = new User();
+                user.setUri(DEFAULT_USER_URI);
+                user.setFirstName("System");
+                user.setLastName("Administrator");
+                userDao.persist(user);
+            } else {
+                user = userDao.find(DEFAULT_USER_URI);
+            }
+            return user;
+        });
     }
 }

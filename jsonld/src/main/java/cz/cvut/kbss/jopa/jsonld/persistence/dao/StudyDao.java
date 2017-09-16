@@ -2,9 +2,7 @@ package cz.cvut.kbss.jopa.jsonld.persistence.dao;
 
 import cz.cvut.kbss.jopa.jsonld.model.Study;
 import cz.cvut.kbss.jopa.jsonld.model.User;
-import cz.cvut.kbss.jopa.model.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -12,33 +10,33 @@ import java.util.Collection;
 @Component
 public class StudyDao extends BaseDao<Study> {
 
-    @Autowired
-    private UserDao userDao;
+    private final UserDao userDao;
 
-    public StudyDao() {
+    @Autowired
+    public StudyDao(UserDao userDao) {
         super(Study.class);
+        this.userDao = userDao;
     }
 
     @Override
-    void persist(Study entity, EntityManager em) {
-        persistUsersIfNecessary(entity.getAdministrators(), em);
-        persistUsersIfNecessary(entity.getParticipants(), em);
+    public void persist(Study entity) {
+        persistUsersIfNecessary(entity.getAdministrators());
+        persistUsersIfNecessary(entity.getParticipants());
         assert entity.getAuthor() != null;
-        assert userDao.exists(entity.getAuthor().getUri(), em);
-        super.persist(entity, em);
+        super.persist(entity);
     }
 
-    private void persistUsersIfNecessary(Collection<User> users, EntityManager em) {
+    private void persistUsersIfNecessary(Collection<User> users) {
         if (users != null && !users.isEmpty()) {
-            users.stream().filter(admin -> !userDao.exists(admin.getUri(), em))
-                 .forEach(admin -> userDao.persist(admin, em));
+            users.stream().filter(admin -> !userDao.exists(admin.getUri()))
+                 .forEach(userDao::persist);
         }
     }
 
     @Override
-    void update(Study entity, EntityManager em) {
-        persistUsersIfNecessary(entity.getAdministrators(), em);
-        persistUsersIfNecessary(entity.getParticipants(), em);
-        super.update(entity, em);
+    public void update(Study entity) {
+        persistUsersIfNecessary(entity.getAdministrators());
+        persistUsersIfNecessary(entity.getParticipants());
+        super.update(entity);
     }
 }

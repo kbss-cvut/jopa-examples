@@ -3,7 +3,6 @@ package cz.cvut.kbss.jopa.jsonld.persistence.dao;
 import cz.cvut.kbss.jopa.jsonld.environment.Generator;
 import cz.cvut.kbss.jopa.jsonld.model.Organization;
 import cz.cvut.kbss.jopa.model.EntityManager;
-import cz.cvut.kbss.jopa.model.EntityManagerFactory;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,26 +18,23 @@ public class OrganizationDaoTest extends BaseDaoTestRunner {
     private OrganizationDao organizationDao;
 
     @Autowired
-    private EntityManagerFactory emf;
+    private EntityManager em;
 
     @Test
     public void persistGeneratesKey() {
         final Organization organization = Generator.generateOrganization();
-        organizationDao.persist(organization);
-        assertNotNull(organization.getKey());
+        executeInTransaction(() -> {
+            organizationDao.persist(organization);
+            assertNotNull(organization.getKey());
+        });
 
-        final EntityManager em = emf.createEntityManager();
-        try {
-            assertNotNull(em.find(Organization.class, organization.getUri()));
-        } finally {
-            em.close();
-        }
+        assertNotNull(em.find(Organization.class, organization.getUri()));
     }
 
     @Test
     public void findByKeyFindsInstanceWithSpecifiedKey() {
         final Organization organization = Generator.generateOrganization();
-        organizationDao.persist(organization);
+        executeInTransaction(() -> organizationDao.persist(organization));
 
         final Organization result = organizationDao.findByKey(organization.getKey());
         assertNotNull(result);
@@ -56,10 +52,7 @@ public class OrganizationDaoTest extends BaseDaoTestRunner {
         for (int i = 0; i < Generator.randomPositiveInt(5, 10); i++) {
             organizations.add(Generator.generateOrganization());
         }
-        organizationDao.persist(organizations);
-
-        for (Organization o : organizations) {
-            assertNotNull(organizationDao.find(o.getUri()));
-        }
+        executeInTransaction(() -> organizationDao.persist(organizations));
+        organizations.forEach(o -> assertNotNull(organizationDao.find(o.getUri())));
     }
 }

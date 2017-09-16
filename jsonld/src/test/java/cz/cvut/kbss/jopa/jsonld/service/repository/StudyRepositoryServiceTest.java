@@ -69,7 +69,7 @@ public class StudyRepositoryServiceTest extends BaseServiceTestRunner {
         studyService.persist(study);
 
         final User newAuthor = Generator.generateUser();
-        userDao.persist(newAuthor);
+        executeInTransaction(() -> userDao.persist(newAuthor));
 
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Study author cannot be changed.");

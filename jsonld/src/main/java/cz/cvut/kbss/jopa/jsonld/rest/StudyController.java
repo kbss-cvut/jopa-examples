@@ -20,8 +20,12 @@ public class StudyController {
 
     private static final Logger LOG = LoggerFactory.getLogger(StudyController.class);
 
+    private final StudyService studyService;
+
     @Autowired
-    private StudyService studyService;
+    public StudyController(StudyService studyService) {
+        this.studyService = studyService;
+    }
 
     @RequestMapping(method = RequestMethod.GET, produces = JsonLd.MEDIA_TYPE)
     public List<Study> getStudies() {

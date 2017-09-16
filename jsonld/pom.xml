@@ -14,10 +14,10 @@
     <description>Example usage of a JOPA model with JSON-LD serialization.</description>
 
     <properties>
-        <org.springframework.boot.version>1.4.1.RELEASE</org.springframework.boot.version>
+        <org.springframework.boot.version>1.5.6.RELEASE</org.springframework.boot.version>
         <com.fasterxml.jackson.version>2.4.4</com.fasterxml.jackson.version>
         <ch.qos.logback.version>1.1.2</ch.qos.logback.version>
-        <cz.cvut.kbss.jaxb-jsonld.version>0.0.7</cz.cvut.kbss.jaxb-jsonld.version>
+        <cz.cvut.kbss.jb4jsonld.version>0.1.0</cz.cvut.kbss.jb4jsonld.version>
     </properties>
 
     <dependencies>
@@ -28,9 +28,20 @@
         </dependency>
 
         <dependency>
-            <groupId>cz.cvut.kbss</groupId>
-            <artifactId>jaxb-jsonld-jackson</artifactId>
-            <version>${cz.cvut.kbss.jaxb-jsonld.version}</version>
+            <groupId>com.github.ledsoft</groupId>
+            <artifactId>jopa-spring-transaction</artifactId>
+            <version>0.0.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-tx</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>cz.cvut.kbss.jsonld</groupId>
+            <artifactId>jb4jsonld-jackson</artifactId>
+            <version>${cz.cvut.kbss.jb4jsonld.version}</version>
         </dependency>
 
         <!-- Spring Boot -->
@@ -43,6 +54,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${org.springframework.boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>4.3.10.RELEASE</version>
         </dependency>
 
         <!-- Logging -->

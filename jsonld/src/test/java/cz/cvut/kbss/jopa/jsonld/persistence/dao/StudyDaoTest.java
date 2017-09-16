@@ -4,7 +4,6 @@ import cz.cvut.kbss.jopa.jsonld.environment.Generator;
 import cz.cvut.kbss.jopa.jsonld.model.Study;
 import cz.cvut.kbss.jopa.jsonld.model.User;
 import cz.cvut.kbss.jopa.model.EntityManager;
-import cz.cvut.kbss.jopa.model.EntityManagerFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +14,13 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-
 public class StudyDaoTest extends BaseDaoTestRunner {
 
     @Autowired
     private StudyDao studyDao;
 
     @Autowired
-    private EntityManagerFactory emf;
+    private EntityManager em;
 
     private User author;
 
@@ -31,35 +29,23 @@ public class StudyDaoTest extends BaseDaoTestRunner {
         this.author = Generator.generateUser();
         author.generateUri();
         author.setKey(Long.toString(System.currentTimeMillis()));
-        final EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-            em.persist(author);
-            em.getTransaction().commit();
-        } finally {
-            em.close();
-        }
+        executeInTransaction(() -> em.persist(author));
     }
 
     @Test
     public void persistPersistsUsersWhenTheyDoNotExist() {
         final Study study = generateStudyWithUsers();
 
-        studyDao.persist(study);
+        executeInTransaction(() -> studyDao.persist(study));
 
         final List<User> expectedUsers = new ArrayList<>();
         expectedUsers.addAll(study.getAdministrators());
         expectedUsers.addAll(study.getParticipants());
-        final EntityManager em = emf.createEntityManager();
-        try {
-            for (User expected : expectedUsers) {
-                assertNotNull(em.find(User.class, expected.getUri()));
-            }
-            final Study result = studyDao.find(study.getUri());
-            verifyStudyUsers(study, result);
-        } finally {
-            em.close();
+        for (User expected : expectedUsers) {
+            assertNotNull(em.find(User.class, expected.getUri()));
         }
+        final Study result = studyDao.find(study.getUri());
+        verifyStudyUsers(study, result);
     }
 
     private void verifyStudyUsers(Study study, Study result) {
@@ -85,12 +71,12 @@ public class StudyDaoTest extends BaseDaoTestRunner {
     @Test
     public void updatePersistsUsersWhenTheyDoNotExist() {
         final Study study = generateStudyWithUsers();
-        studyDao.persist(study);
+        executeInTransaction(() -> studyDao.persist(study));
 
         for (int i = 0; i < Generator.randomPositiveInt(2, 5); i++) {
             study.addParticipant(Generator.generateUser());
         }
-        studyDao.update(study);
+        executeInTransaction(() -> studyDao.update(study));
 
         final Study result = studyDao.find(study.getUri());
         verifyStudyUsers(study, result);
@@ -101,7 +87,7 @@ public class StudyDaoTest extends BaseDaoTestRunner {
         final Study study = Generator.generateStudy(true);
         study.setAuthor(author);
         assertNull(study.getKey());
-        studyDao.persist(study);
+        executeInTransaction(() -> studyDao.persist(study));
         assertNotNull(study.getKey());
 
         final Study result = studyDao.findByKey(study.getKey());

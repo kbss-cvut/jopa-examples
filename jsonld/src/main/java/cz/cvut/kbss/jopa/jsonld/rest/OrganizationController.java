@@ -20,8 +20,12 @@ public class OrganizationController {
 
     private static final Logger LOG = LoggerFactory.getLogger(OrganizationController.class);
 
+    private final OrganizationService organizationService;
+
     @Autowired
-    private OrganizationService organizationService;
+    public OrganizationController(OrganizationService organizationService) {
+        this.organizationService = organizationService;
+    }
 
     @RequestMapping(method = RequestMethod.GET, produces = JsonLd.MEDIA_TYPE)
     public List<Organization> getOrganizations() {

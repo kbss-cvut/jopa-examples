@@ -1,6 +1,6 @@
-# JSON-LD - JOPA + JAXB-JSON-LD Jackson
+# JSON-LD - JOPA + JB4JSON-LD Jackson
 
-This example showcases usage of JOPA model and Jackson integration of the [JAXB-JSON-LD](https://github.com/kbss-cvut/jaxb-jsonld-jackson) library.
+This example showcases usage of JOPA model and Jackson integration of the [JB4JSON-LD](https://github.com/kbss-cvut/jb4jsonld-jackson) library.
 
 ### Features
 
@@ -10,11 +10,11 @@ This example showcases usage of JOPA model and Jackson integration of the [JAXB-
 
 ### JSON-LD Support
 
-[JAXB JSON-LD](https://github.com/kbss-cvut/jaxb-jsonld) is a library for serialization and deserialization of POJOs into/from JSON-LD.
+[JB4JSON-LD](https://github.com/kbss-cvut/jb4jsonld) is a library for serialization and deserialization of POJOs into/from JSON-LD.
 
 It simplifies publishing data processed by business applications in Linked-Data format.
 
-The [JAXB JSON-LD Jackson](https://github.com/kbss-cvut/jaxb-jsonld-jackson) integration enables seamless integration of 
+The [JB4JSON-LD Jackson](https://github.com/kbss-cvut/jb4jsonld-jackson) integration enables seamless integration of 
 the JSON-LD support in any application using [Jackson](https://github.com/FasterXML/jackson) as serialization/deserialization library.
 
 This demo showcases easy integration of both technologies with Spring.
@@ -119,7 +119,7 @@ this feature by default.
 
 #### Deserialization
 
-JAXB JSON-LD is internally using [jsonld-java](https://github.com/jsonld-java/jsonld-java) and can thus handle any
+_JB4JSON-LD_ is internally using [jsonld-java](https://github.com/jsonld-java/jsonld-java) and can thus handle any
 of the JSON-LD formats supported by this library (compacted, expanded, flattened). 
 It can also handle reference serialization through IRIs described in the previous section.
 

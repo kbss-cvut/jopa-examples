@@ -12,8 +12,12 @@ import java.util.Date;
 @Service
 public class OrganizationRepositoryService extends BaseRepositoryService<Organization> implements OrganizationService {
 
+    private final OrganizationDao organizationDao;
+
     @Autowired
-    private OrganizationDao organizationDao;
+    public OrganizationRepositoryService(OrganizationDao organizationDao) {
+        this.organizationDao = organizationDao;
+    }
 
     @Override
     protected BaseDao<Organization> getPrimaryDao() {

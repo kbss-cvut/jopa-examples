@@ -13,11 +13,15 @@ import java.util.Date;
 @Service
 public class StudyRepositoryService extends BaseRepositoryService<Study> implements StudyService {
 
-    @Autowired
-    private StudyDao studyDao;
+    private final StudyDao studyDao;
+
+    private final UserService userService;
 
     @Autowired
-    private UserService userService;
+    public StudyRepositoryService(StudyDao studyDao, UserService userService) {
+        this.studyDao = studyDao;
+        this.userService = userService;
+    }
 
     @Override
     protected BaseDao<Study> getPrimaryDao() {

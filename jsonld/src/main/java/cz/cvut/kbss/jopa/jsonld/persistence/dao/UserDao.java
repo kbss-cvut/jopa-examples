@@ -1,33 +1,33 @@
 package cz.cvut.kbss.jopa.jsonld.persistence.dao;
 
 import cz.cvut.kbss.jopa.jsonld.model.User;
-import cz.cvut.kbss.jopa.model.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserDao extends DerivableUriDao<User> {
 
+    private final OrganizationDao organizationDao;
+
     @Autowired
-    private OrganizationDao organizationDao;
-
-    public UserDao() {
+    public UserDao(OrganizationDao organizationDao) {
         super(User.class);
+        this.organizationDao = organizationDao;
     }
 
     @Override
-    void persist(User entity, EntityManager em) {
-        if (entity.getClinic() != null && !organizationDao.exists(entity.getClinic().getUri(), em)) {
-            organizationDao.persist(entity.getClinic(), em);
+    public void persist(User entity) {
+        if (entity.getClinic() != null && !organizationDao.exists(entity.getClinic().getUri())) {
+            organizationDao.persist(entity.getClinic());
         }
-        super.persist(entity, em);
+        super.persist(entity);
     }
 
     @Override
-    void update(User entity, EntityManager em) {
-        if (entity.getClinic() != null && !organizationDao.exists(entity.getClinic().getUri(), em)) {
-            organizationDao.persist(entity.getClinic(), em);
+    public void update(User entity) {
+        if (entity.getClinic() != null && !organizationDao.exists(entity.getClinic().getUri())) {
+            organizationDao.persist(entity.getClinic());
         }
-        super.update(entity, em);
+        super.update(entity);
     }
 }
