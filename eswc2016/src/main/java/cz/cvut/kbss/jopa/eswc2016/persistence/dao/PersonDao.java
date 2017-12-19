@@ -71,7 +71,7 @@ public class PersonDao extends BaseDao<Person> {
             return em.createNativeQuery("SELECT DISTINCT ?p WHERE { ?p ?hasUsername ?username .}", Person.class)
                      .setParameter("hasUsername", URI.create(Vocabulary.s_p_accountName))
                      .setParameter("username", username, Constants.LANGUAGE)
-                     .addContext(Constants.PERSONS_CONTEXT)
+                     .setDescriptor(new EntityDescriptor(Constants.PERSONS_CONTEXT))
                      .getSingleResult();
         } catch (NoResultException e) {
             return null;
