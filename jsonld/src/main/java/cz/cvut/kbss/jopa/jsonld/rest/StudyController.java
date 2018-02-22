@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,12 +28,12 @@ public class StudyController {
         this.studyService = studyService;
     }
 
-    @RequestMapping(method = RequestMethod.GET, produces = JsonLd.MEDIA_TYPE)
+    @RequestMapping(method = RequestMethod.GET, produces = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
     public List<Study> getStudies() {
         return studyService.findAll();
     }
 
-    @RequestMapping(value = "/{key}", method = RequestMethod.GET, produces = JsonLd.MEDIA_TYPE)
+    @RequestMapping(value = "/{key}", method = RequestMethod.GET, produces = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
     public Study getStudy(@PathVariable(name = "key") String key) {
         final Study study = studyService.findByKey(key);
         if (study == null) {
@@ -41,7 +42,7 @@ public class StudyController {
         return study;
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = JsonLd.MEDIA_TYPE)
+    @RequestMapping(method = RequestMethod.POST, consumes = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Void> createStudy(@RequestBody Study study) {
         studyService.persist(study);
         LOG.trace("Study {} successfully persisted.", study);
@@ -50,7 +51,7 @@ public class StudyController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{key}", method = RequestMethod.PUT, consumes = JsonLd.MEDIA_TYPE)
+    @RequestMapping(value = "/{key}", method = RequestMethod.PUT, consumes = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateStudy(@PathVariable(name = "key") String key, @RequestBody Study study) {
         if (!key.equals(study.getKey())) {

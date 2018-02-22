@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,12 +28,12 @@ public class OrganizationController {
         this.organizationService = organizationService;
     }
 
-    @RequestMapping(method = RequestMethod.GET, produces = JsonLd.MEDIA_TYPE)
+    @RequestMapping(method = RequestMethod.GET, produces = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
     public List<Organization> getOrganizations() {
         return organizationService.findAll();
     }
 
-    @RequestMapping(value = "/{key}", method = RequestMethod.GET, produces = JsonLd.MEDIA_TYPE)
+    @RequestMapping(value = "/{key}", method = RequestMethod.GET, produces = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
     public Organization getOrganization(@PathVariable(name = "key") String key) {
         final Organization organization = organizationService.findByKey(key);
         if (organization == null) {
@@ -41,7 +42,7 @@ public class OrganizationController {
         return organization;
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = JsonLd.MEDIA_TYPE)
+    @RequestMapping(method = RequestMethod.POST, consumes = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Void> createOrganization(@RequestBody Organization organization) {
         organizationService.persist(organization);
         LOG.trace("Organization {} successfully persisted.", organization);
@@ -50,7 +51,7 @@ public class OrganizationController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{key}", method = RequestMethod.PUT, consumes = JsonLd.MEDIA_TYPE)
+    @RequestMapping(value = "/{key}", method = RequestMethod.PUT, consumes = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateOrganization(@PathVariable(name = "key") String key, @RequestBody Organization organization) {
         if (!key.equals(organization.getKey())) {

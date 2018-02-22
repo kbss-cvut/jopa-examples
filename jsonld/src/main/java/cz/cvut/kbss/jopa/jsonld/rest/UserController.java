@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,12 +28,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(method = RequestMethod.GET, produces = JsonLd.MEDIA_TYPE)
+    @RequestMapping(method = RequestMethod.GET, produces = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
     public List<User> getUsers() {
         return userService.findAll();
     }
 
-    @RequestMapping(value = "/{key}", method = RequestMethod.GET, produces = JsonLd.MEDIA_TYPE)
+    @RequestMapping(value = "/{key}", method = RequestMethod.GET, produces = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
     public User getUser(@PathVariable(name = "key") String key) {
         final User user = userService.findByKey(key);
         if (user == null) {
@@ -41,7 +42,7 @@ public class UserController {
         return user;
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = JsonLd.MEDIA_TYPE)
+    @RequestMapping(method = RequestMethod.POST, consumes = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Void> createUser(@RequestBody User user) {
         userService.persist(user);
         LOG.trace("User {} successfully persisted.", user);
@@ -50,7 +51,7 @@ public class UserController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{key}", method = RequestMethod.PUT, consumes = JsonLd.MEDIA_TYPE)
+    @RequestMapping(value = "/{key}", method = RequestMethod.PUT, consumes = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateUser(@PathVariable(name = "key") String key, @RequestBody User user) {
         if (!key.equals(user.getKey())) {

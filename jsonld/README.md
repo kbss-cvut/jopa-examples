@@ -6,7 +6,8 @@ This example showcases usage of JOPA model and Jackson integration of the [JB4JS
 
 * Spring boot application with REST services,
 * Publishing data in JSON-LD,
-* Consuming data in JSON-LD.
+* Consuming data in JSON-LD,
+* REST API supporting both JSON and JSON-LD.
 
 ### JSON-LD Support
 
@@ -102,7 +103,9 @@ Some examples of the JSON-LD serialization follow. The resulting JSON-LD is vali
         "http://xmlns.com/foaf/0.1/mbox": "FirstName-1787715414.LastName1404380669@jopaexample.org",
         "http://xmlns.com/foaf/0.1/firstName": "FirstName-1787715414",
         "http://xmlns.com/foaf/0.1/lastName": "LastName1404380669",
-        "http://krizik.felk.cvut.cz/ontologies/study-manager/is-member-of": "http://krizik.felk.cvut.cz/ontologies/study-manager/Organization-902851551",
+        "http://krizik.felk.cvut.cz/ontologies/study-manager/is-member-of": {
+          "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/Organization-902851551"
+        },
         "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/FirstName-1787715414+LastName1404380669",
         "http://krizik.felk.cvut.cz/ontologies/study-manager/key": "1476113644176"
       }
@@ -163,7 +166,9 @@ As an example, the following JSON-LD can be passed to the application to create 
         "http://xmlns.com/foaf/0.1/mbox": "Greg.House@jopaexample.org",
         "http://xmlns.com/foaf/0.1/firstName": "Greg",
         "http://xmlns.com/foaf/0.1/lastName": "House",
-        "http://krizik.felk.cvut.cz/ontologies/study-manager/is-member-of": "http://krizik.felk.cvut.cz/ontologies/study-manager/Organization-PrincetonPlainsboro",
+        "http://krizik.felk.cvut.cz/ontologies/study-manager/is-member-of": {
+           "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/Organization-PrincetonPlainsboro"
+        },
         "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/Greg+House",
         "http://krizik.felk.cvut.cz/ontologies/study-manager/key": "1476113644168"
       }
@@ -175,6 +180,12 @@ As an example, the following JSON-LD can be passed to the application to create 
 ```
 
 Notice how the Dr. House's organization membership references the previously declared Princeton Plainsboro hospital.
+
+### JSON and JSON-LD
+
+The REST API of this application is configured to support both JSON and JSON-LD. To do so, two `ObjectMapper`s have to be created.
+One contains the JSON-LD module, the other has regular configuration. Two `HttpMessageConverters` are then registered, one supporting
+only JSON-LD (it has to be registered first) and the other supporting any other media type. The actual configuration can be found in `RestConfig`.
 
 
 ## Persistence Setup
