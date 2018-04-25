@@ -3,6 +3,7 @@ package cz.cvut.kbss.jopa.jsonld.config;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import cz.cvut.kbss.jsonld.ConfigParam;
 import cz.cvut.kbss.jsonld.JsonLd;
 import cz.cvut.kbss.jsonld.jackson.JsonLdModule;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +25,9 @@ public class RestConfig extends WebMvcConfigurerAdapter {
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         // Here we register the JSON-LD serialization/deserialization module
-        objectMapper.registerModule(new JsonLdModule());
+        final JsonLdModule module = new JsonLdModule();
+        module.configure(ConfigParam.SCAN_PACKAGE, "cz.cvut.kbss.jopa.jsonld");
+        objectMapper.registerModule(module);
         return objectMapper;
     }
 
