@@ -17,7 +17,7 @@
     </description>
 
     <properties>
-        <pellet.version>2.4.0-SNAPSHOT</pellet.version>
+        <com.github.galigator.openllet.version>2.6.4</com.github.galigator.openllet.version>
     </properties>
 
     <dependencies>
@@ -28,21 +28,16 @@
             <version>${jopa.version}</version>
         </dependency>
 
-        <!-- Pellet -->
+        <!-- Openllet Reasoner -->
         <dependency>
-            <groupId>com.clarkparsia.pellet</groupId>
-            <artifactId>pellet-core</artifactId>
-            <version>${pellet.version}</version>
+            <groupId>com.github.galigator.openllet</groupId>
+            <artifactId>openllet-owlapi</artifactId>
+            <version>${com.github.galigator.openllet.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.clarkparsia.pellet</groupId>
-            <artifactId>pellet-owlapi</artifactId>
-            <version>${pellet.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.clarkparsia.pellet</groupId>
-            <artifactId>pellet-explanation</artifactId>
-            <version>${pellet.version}</version>
+            <groupId>com.github.galigator.openllet</groupId>
+            <artifactId>openllet-explanation</artifactId>
+            <version>${com.github.galigator.openllet.version}</version>
         </dependency>
 
         <!-- JUnit for result verification -->

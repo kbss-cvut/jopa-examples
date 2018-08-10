@@ -14,10 +14,10 @@
     <description>Example usage of a JOPA model with JSON-LD serialization.</description>
 
     <properties>
-        <org.springframework.boot.version>1.5.6.RELEASE</org.springframework.boot.version>
+        <org.springframework.boot.version>2.0.4.RELEASE</org.springframework.boot.version>
         <com.fasterxml.jackson.version>2.8.1</com.fasterxml.jackson.version>
-        <ch.qos.logback.version>1.1.2</ch.qos.logback.version>
-        <cz.cvut.kbss.jb4jsonld.version>0.2.1</cz.cvut.kbss.jb4jsonld.version>
+        <ch.qos.logback.version>1.2.3</ch.qos.logback.version>
+        <cz.cvut.kbss.jb4jsonld.version>0.3.4</cz.cvut.kbss.jb4jsonld.version>
     </properties>
 
     <dependencies>
@@ -30,7 +30,7 @@
         <dependency>
             <groupId>com.github.ledsoft</groupId>
             <artifactId>jopa-spring-transaction</artifactId>
-            <version>0.0.3</version>
+            <version>0.0.4</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework</groupId>
@@ -58,7 +58,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <version>4.3.10.RELEASE</version>
+            <version>5.0.8.RELEASE</version>
         </dependency>
 
         <!-- Logging -->
@@ -88,7 +88,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>4.2.1.RELEASE</version>
+            <version>5.0.8.RELEASE</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -117,6 +117,11 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.0</version>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

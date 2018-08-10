@@ -21,7 +21,7 @@ public class Organization extends AbstractEntity implements HasDerivableUri {
     private Date dateCreated;
 
     @Inferred
-    @OWLObjectProperty(iri = Vocabulary.s_p_has_member, readOnly = true)
+    @OWLObjectProperty(iri = Vocabulary.s_p_has_member)
     private Set<User> members;
 
     public String getName() {
