@@ -35,7 +35,7 @@
                 <version>${cz.cvut.kbss.jopa.version}</version>
                 <configuration>
                     <package>cz.cvut.kbss.jopa.example01.generated</package>
-                    <output-directory>${project.basedir}/src/main/java/</output-directory>
+                    <output-directory>${project.basedir}/src/main/generated-sources</output-directory>
                     <ontology-iri>http://krizik.felk.cvut.cz/ontologies/2015/jopa-example01.owl</ontology-iri>
                     <mapping-file>${project.basedir}/mapping</mapping-file>
                     <context-name>jopa-example01</context-name>
@@ -46,6 +46,26 @@
                         <goals>
                             <goal>owl2java-transform</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Add generated sources to classpath -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/generated-sources</source>
+                            </sources>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
