@@ -21,8 +21,6 @@
     <properties>
         <org.springframework.version>4.1.5.RELEASE</org.springframework.version>
         <com.fasterxml.jackson.version>2.4.4</com.fasterxml.jackson.version>
-        <ch.qos.logback.version>1.2.3</ch.qos.logback.version>
-        <org.eclipse.rdf4j.version>2.2</org.eclipse.rdf4j.version>
         <com.github.galigator.openllet.version>2.6.4</com.github.galigator.openllet.version>
     </properties>
 
@@ -38,12 +36,12 @@
         <dependency>
             <groupId>cz.cvut.kbss.jopa</groupId>
             <artifactId>ontodriver-sesame</artifactId>
-            <version>${jopa.version}</version>
+            <version>${cz.cvut.kbss.jopa.version}</version>
         </dependency>
         <dependency>
             <groupId>cz.cvut.kbss.jopa</groupId>
             <artifactId>ontodriver-owlapi</artifactId>
-            <version>${jopa.version}</version>
+            <version>${cz.cvut.kbss.jopa.version}</version>
         </dependency>
 
         <dependency>

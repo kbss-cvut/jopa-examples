@@ -27,19 +27,21 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <jopa.version>0.10.4</jopa.version>
+        <cz.cvut.kbss.jopa.version>0.10.4</cz.cvut.kbss.jopa.version>
+        <org.eclipse.rdf4j.version>2.3.1</org.eclipse.rdf4j.version>
+        <ch.qos.logback.version>1.2.3</ch.qos.logback.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>cz.cvut.kbss.jopa</groupId>
             <artifactId>jopa-api</artifactId>
-            <version>${jopa.version}</version>
+            <version>${cz.cvut.kbss.jopa.version}</version>
         </dependency>
         <dependency>
             <groupId>cz.cvut.kbss.jopa</groupId>
             <artifactId>jopa-impl</artifactId>
-            <version>${jopa.version}</version>
+            <version>${cz.cvut.kbss.jopa.version}</version>
         </dependency>
 
         <dependency>

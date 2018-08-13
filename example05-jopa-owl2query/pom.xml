@@ -25,7 +25,7 @@
         <dependency>
             <groupId>cz.cvut.kbss.jopa</groupId>
             <artifactId>ontodriver-owlapi</artifactId>
-            <version>${jopa.version}</version>
+            <version>${cz.cvut.kbss.jopa.version}</version>
         </dependency>
 
         <!-- Openllet Reasoner -->

@@ -16,7 +16,6 @@
     <properties>
         <org.springframework.boot.version>2.0.4.RELEASE</org.springframework.boot.version>
         <com.fasterxml.jackson.version>2.8.1</com.fasterxml.jackson.version>
-        <ch.qos.logback.version>1.2.3</ch.qos.logback.version>
         <cz.cvut.kbss.jb4jsonld.version>0.3.4</cz.cvut.kbss.jb4jsonld.version>
     </properties>
 
@@ -24,7 +23,7 @@
         <dependency>
             <groupId>cz.cvut.kbss.jopa</groupId>
             <artifactId>ontodriver-sesame</artifactId>
-            <version>${jopa.version}</version>
+            <version>${cz.cvut.kbss.jopa.version}</version>
         </dependency>
 
         <dependency>
@@ -99,7 +98,7 @@
                 <!-- Generates vocabulary from the specified ontology -->
                 <groupId>cz.cvut.kbss.jopa</groupId>
                 <artifactId>jopa-maven-plugin</artifactId>
-                <version>${jopa.version}</version>
+                <version>${cz.cvut.kbss.jopa.version}</version>
                 <configuration>
                     <package>cz.cvut.kbss.jopa.jsonld.model</package>
                     <output-directory>${project.basedir}/src/main/generated-sources</output-directory>
