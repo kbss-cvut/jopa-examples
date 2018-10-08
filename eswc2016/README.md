@@ -63,4 +63,4 @@ The web UI is built with [ReactJS](https://facebook.github.io/react/) and uses i
 architecture (modified version, framework [Reflux](https://github.com/reflux/refluxjs)). 
 Individual JS files contain some additional explanatory comments.
 
-The demo is also deployed and available at [http://onto.fel.cvut.cz/eswc2016/](http://onto.fel.cvut.cz/eswc2016/).
+The demo is also deployed and available at [http://kbss.felk.cvut.cz/jopa-eswc-demo/](http://kbss.felk.cvut.cz/jopa-eswc-demo/).

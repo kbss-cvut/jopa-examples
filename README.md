@@ -11,7 +11,7 @@ This repository contains some usage examples of the [JOPA framework](https://git
 Declarative transactions included.
 5. **Example05** - JOPA utilizing [OWL2Query](https://kbss.felk.cvut.cz/web/portal/owl2query) - a SPARQL-DL query engine for OWLAPI.
 6. **eswc2016** - JOPA demo for the ESWC 2016 conference. Running version can be found at 
-[http://onto.fel.cvut.cz/eswc2016/](http://onto.fel.cvut.cz/eswc2016/).
+[http://kbss.felk.cvut.cz/jopa-eswc-demo/](http://kbss.felk.cvut.cz/jopa-eswc-demo/).
 7. **Example06** - JOPA showcasing support for mapped superclasses and plain identifier object property values.
 8. **JOPA JSON-LD** - JOPA with [JB4JSON-LD](https://github.com/kbss-cvut/jb4jsonld) for Jackson and Spring - 
 serialization/deserialization of POJOs into/from JSON-LD. Also showcases declarative transaction support for JOPA and Spring.
