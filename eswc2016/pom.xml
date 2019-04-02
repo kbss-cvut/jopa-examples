@@ -115,16 +115,6 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.12</version>
         </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${ch.qos.logback.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${ch.qos.logback.version}</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -134,7 +124,7 @@
                 <!-- run it manually using mvn jopa:owl2java-transform -->
                 <groupId>cz.cvut.kbss.jopa</groupId>
                 <artifactId>jopa-maven-plugin</artifactId>
-                <version>0.10.4</version>
+                <version>${cz.cvut.kbss.jopa.version}</version>
                 <configuration>
                     <package>cz.cvut.kbss.jopa.eswc2016.model</package>
                     <output-directory>src/main/java/</output-directory>

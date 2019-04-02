@@ -1,7 +1,7 @@
 package cz.cvut.kbss.jopa.example07.model;
 
-import cz.cvut.kbss.jopa.CommonVocabulary;
 import cz.cvut.kbss.jopa.model.annotations.*;
+import cz.cvut.kbss.jopa.vocabulary.RDFS;
 
 import java.util.Collections;
 import java.util.Date;
@@ -15,7 +15,7 @@ public abstract class Report extends AbstractEntity {
     private Integer key;
 
     @ParticipationConstraints(nonEmpty = true)
-    @OWLAnnotationProperty(iri = CommonVocabulary.RDFS_LABEL)
+    @OWLAnnotationProperty(iri = RDFS.LABEL)
     private String name;
 
     @OWLAnnotationProperty(iri = Vocabulary.p_comment)
