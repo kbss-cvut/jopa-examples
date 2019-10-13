@@ -17,14 +17,6 @@
     </description>
     <packaging>war</packaging>
 
-    <properties>
-        <org.springframework.version>5.1.9.RELEASE</org.springframework.version>
-        <!-- Have to use older version for compatibility with Sesame -->
-        <com.fasterxml.jackson.version>2.9.9</com.fasterxml.jackson.version>
-        <ch.qos.logback.version>1.2.3</ch.qos.logback.version>
-        <org.eclipse.rdf4j.version>2.5.5</org.eclipse.rdf4j.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>cz.cvut.kbss.jopa</groupId>
@@ -35,7 +27,7 @@
         <dependency>
             <groupId>com.github.ledsoft</groupId>
             <artifactId>jopa-spring-transaction</artifactId>
-            <version>0.0.3</version>
+            <version>0.0.6</version>
         </dependency>
 
         <dependency>
@@ -88,24 +80,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${com.fasterxml.jackson.version}</version>
-        </dependency>
-
-        <!-- Logging -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.28</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${ch.qos.logback.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${ch.qos.logback.version}</version>
+            <version>2.9.9</version>
         </dependency>
     </dependencies>
 
@@ -151,7 +126,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
+                <version>3.2.3</version>
                 <configuration>
 
                     <failOnMissingWebXml>false</failOnMissingWebXml>

@@ -15,10 +15,6 @@
         Demo showcasing access to Jena TDB storage from JOPA and usage of polymorphism in the object model.
     </description>
 
-    <properties>
-        <org.springframework.boot.version>2.1.8.RELEASE</org.springframework.boot.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>cz.cvut.kbss.jopa</groupId>
@@ -35,7 +31,7 @@
         <dependency>
             <groupId>com.github.ledsoft</groupId>
             <artifactId>jopa-spring-transaction</artifactId>
-            <version>0.0.6</version>
+            <version>${com.github.ledsoft.jopa-spring-transactions.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework</groupId>
@@ -63,7 +59,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <version>5.1.9.RELEASE</version>
+            <version>${org.springframework.version}</version>
         </dependency>
     </dependencies>
 

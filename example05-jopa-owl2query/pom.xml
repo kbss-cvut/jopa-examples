@@ -16,10 +16,6 @@
         JOPA with OWL2Query for query answering on an ontology managed by OWLAPI.
     </description>
 
-    <properties>
-        <com.github.galigator.openllet.version>2.6.4</com.github.galigator.openllet.version>
-    </properties>
-
     <dependencies>
         <!-- OWL2Query is already included as a dependency of OWLAPI OntoDriver -->
         <dependency>
