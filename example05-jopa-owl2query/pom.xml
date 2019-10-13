@@ -60,6 +60,7 @@
                     <arguments>
                         <argument>ontology.owl</argument>
                     </arguments>
+                    <cleanupDaemonThreads>false</cleanupDaemonThreads>
                 </configuration>
             </plugin>
         </plugins>

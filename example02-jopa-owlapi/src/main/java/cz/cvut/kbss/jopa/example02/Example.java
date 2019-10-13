@@ -79,8 +79,7 @@ public class Example {
     private void cleanup(Jedi father) {
         LOG.debug("Cleaning up...");
         em.getTransaction().begin();
-        em.merge(father);
-        em.remove(father);
+        em.remove(em.getReference(Jedi.class, father.getUri()));
         em.getTransaction().commit();
     }
 }

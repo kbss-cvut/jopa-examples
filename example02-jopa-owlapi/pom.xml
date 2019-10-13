@@ -48,12 +48,13 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.4.0</version>
+                <version>1.6.0</version>
                 <configuration>
                     <mainClass>cz.cvut.kbss.jopa.example02.Example</mainClass>
                     <arguments>
                         <argument>ontology.owl</argument>
                     </arguments>
+                    <cleanupDaemonThreads>false</cleanupDaemonThreads>
                 </configuration>
             </plugin>
         </plugins>
