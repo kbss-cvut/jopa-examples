@@ -16,10 +16,25 @@ Declarative transactions included.
 8. **JOPA JSON-LD** - JOPA with [JB4JSON-LD](https://github.com/kbss-cvut/jb4jsonld) for Jackson and Spring - 
 serialization/deserialization of POJOs into/from JSON-LD. Also showcases declarative transaction support for JOPA and Spring.
 9. **Example07** - JOPA demonstrating support for single inheritance and plural data properties.
+10. **Example08** - JOPA using the Jena OntoDriver and demonstrating support for polymorphism in the object model. 
+It is a Spring Boot application, uses declarative transactions and JSON-LD.
 
 Each example has its own README file with a more detailed description. Note that JOPA requires Java 8.
 
-#### Additional Example
+#### Additional Examples
+
+##### Reporting Tool
 
 An example of a more complex application using JOPA as its persistence provider can be found at 
 [https://github.com/kbss-cvut/reporting-tool](https://github.com/kbss-cvut/reporting-tool).
+
+##### TermIt
+
+TermIt is a Spring-based web application. It uses declarative transactions, heavily relies on repository contexts, and its 
+REST services consume/produce JSON-LD. JOPA is used as a persistence provider.
+
+It is the most complex JOPA-based application developed by us to-date.
+
+Sources are available on GitHub:
+* Backend: [https://github.com/kbss-cvut/termit](https://github.com/kbss-cvut/termit)
+* Frontend: [https://github.com/kbss-cvut/termit-ui](https://github.com/kbss-cvut/termit-ui)
