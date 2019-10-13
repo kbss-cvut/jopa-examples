@@ -14,21 +14,22 @@
  */
 package cz.cvut.kbss.jopa.example06.model;
 
-import cz.cvut.kbss.jopa.CommonVocabulary;
 import cz.cvut.kbss.jopa.model.annotations.*;
+import cz.cvut.kbss.jopa.vocabulary.DC;
+import cz.cvut.kbss.jopa.vocabulary.RDFS;
 
 @MappedSuperclass
 public abstract class Report extends AbstractEntity {
 
     @ParticipationConstraints(nonEmpty = true)
-    @OWLAnnotationProperty(iri = CommonVocabulary.RDFS_LABEL)
+    @OWLAnnotationProperty(iri = RDFS.LABEL)
     private String headline;
 
     @ParticipationConstraints(nonEmpty = true)
     @OWLObjectProperty(iri = Vocabulary.hasAuthor, fetch = FetchType.EAGER)
     private Person author;
 
-    @OWLAnnotationProperty(iri = CommonVocabulary.DC_DESCRIPTION)
+    @OWLAnnotationProperty(iri = DC.Elements.DESCRIPTION)
     private String summary;
 
     public String getHeadline() {

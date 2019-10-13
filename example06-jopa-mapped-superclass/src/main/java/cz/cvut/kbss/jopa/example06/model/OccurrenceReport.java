@@ -14,8 +14,9 @@
  */
 package cz.cvut.kbss.jopa.example06.model;
 
-import cz.cvut.kbss.jopa.CommonVocabulary;
-import cz.cvut.kbss.jopa.model.annotations.*;
+import cz.cvut.kbss.jopa.model.annotations.OWLClass;
+import cz.cvut.kbss.jopa.model.annotations.OWLDataProperty;
+import cz.cvut.kbss.jopa.model.annotations.OWLObjectProperty;
 
 import java.net.URI;
 import java.util.Date;

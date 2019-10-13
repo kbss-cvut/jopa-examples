@@ -17,7 +17,6 @@
 
     <properties>
         <org.springframework.boot.version>1.4.1.RELEASE</org.springframework.boot.version>
-        <cz.cvut.kbss.jb4jsonld.version>0.3.4</cz.cvut.kbss.jb4jsonld.version>
     </properties>
 
     <dependencies>
@@ -43,13 +42,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${org.springframework.boot.version}</version>
-        </dependency>
-
-        <!-- Logging -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.12</version>
         </dependency>
     </dependencies>
 

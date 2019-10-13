@@ -1,6 +1,8 @@
 package cz.cvut.kbss.jopa.jsonld.model;
 
 import cz.cvut.kbss.jopa.model.annotations.*;
+import cz.cvut.kbss.jopa.vocabulary.DC;
+import cz.cvut.kbss.jopa.vocabulary.RDFS;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -11,11 +13,11 @@ import java.util.Set;
 public class Study extends AbstractEntity {
 
     @ParticipationConstraints(nonEmpty = true)
-    @OWLAnnotationProperty(iri = Vocabulary.s_p_label)
+    @OWLAnnotationProperty(iri = RDFS.LABEL)
     private String name;
 
     @ParticipationConstraints(nonEmpty = true)
-    @OWLDataProperty(iri = Vocabulary.s_p_created)
+    @OWLDataProperty(iri = DC.Terms.CREATED)
     private Date created;
 
     @ParticipationConstraints(nonEmpty = true)

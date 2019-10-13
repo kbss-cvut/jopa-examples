@@ -51,7 +51,7 @@ public class TestPersistenceFactory {
 
     static Map<String, String> getDefaultProperties() {
         final Map<String, String> properties = new HashMap<>();
-        properties.put(OntoDriverProperties.ONTOLOGY_LANGUAGE, "en");
+        properties.put(JOPAPersistenceProperties.LANG, "en");
         properties.put(JOPAPersistenceProperties.SCAN_PACKAGE, "cz.cvut.kbss.jopa.jsonld.model");
         properties.put(SesameOntoDriverProperties.SESAME_USE_VOLATILE_STORAGE, Boolean.TRUE.toString());
         properties.put(SesameOntoDriverProperties.SESAME_USE_INFERENCE, Boolean.FALSE.toString());
