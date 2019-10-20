@@ -42,7 +42,7 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <phase>process-classes</phase>
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>owl2java-transform</goal>
                         </goals>
