@@ -36,7 +36,7 @@
         <com.github.ledsoft.jopa-spring-transactions.version>0.0.7</com.github.ledsoft.jopa-spring-transactions.version>
 
         <org.springframework.version>5.2.0.RELEASE</org.springframework.version>
-        <org.springframework.boot.version>2.1.9.RELEASE</org.springframework.boot.version>
+        <org.springframework.boot.version>2.2.0.RELEASE</org.springframework.boot.version>
     </properties>
 
     <dependencies>
