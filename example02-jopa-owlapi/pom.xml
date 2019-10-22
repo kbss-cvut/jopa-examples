@@ -17,10 +17,6 @@
         JOPA + OWLAPI in action. Using Pellet for inference.
     </description>
 
-    <properties>
-        <com.github.galigator.openllet.version>2.6.4</com.github.galigator.openllet.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>cz.cvut.kbss.jopa</groupId>
@@ -48,12 +44,13 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.4.0</version>
+                <version>1.6.0</version>
                 <configuration>
                     <mainClass>cz.cvut.kbss.jopa.example02.Example</mainClass>
                     <arguments>
                         <argument>ontology.owl</argument>
                     </arguments>
+                    <cleanupDaemonThreads>false</cleanupDaemonThreads>
                 </configuration>
             </plugin>
         </plugins>

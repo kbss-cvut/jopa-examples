@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2016 Czech Technical University in Prague
+ * Copyright (C) 2019 Czech Technical University in Prague
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -79,8 +79,7 @@ public class Example {
     private void cleanup(Jedi father) {
         LOG.debug("Cleaning up...");
         em.getTransaction().begin();
-        em.merge(father);
-        em.remove(father);
+        em.remove(em.getReference(Jedi.class, father.getUri()));
         em.getTransaction().commit();
     }
 }

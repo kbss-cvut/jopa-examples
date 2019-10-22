@@ -17,6 +17,7 @@
         <module>example06-jopa-mapped-superclass</module>
         <module>jsonld</module>
         <module>example07-jopa-plural-dp-inheritance</module>
+        <module>example08-jena-polymorphism</module>
     </modules>
 
     <name>JOPA Examples - parent</name>
@@ -27,9 +28,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <cz.cvut.kbss.jopa.version>0.12.1</cz.cvut.kbss.jopa.version>
-        <org.eclipse.rdf4j.version>2.5.0</org.eclipse.rdf4j.version>
+        <cz.cvut.kbss.jopa.version>0.13.1</cz.cvut.kbss.jopa.version>
+        <cz.cvut.kbss.jb4jsonld.version>0.4.0</cz.cvut.kbss.jb4jsonld.version>
+        <org.eclipse.rdf4j.version>2.5.5</org.eclipse.rdf4j.version>
         <ch.qos.logback.version>1.2.3</ch.qos.logback.version>
+        <com.github.galigator.openllet.version>2.6.4</com.github.galigator.openllet.version>
+        <com.github.ledsoft.jopa-spring-transactions.version>0.0.6</com.github.ledsoft.jopa-spring-transactions.version>
+
+        <org.springframework.version>5.1.9.RELEASE</org.springframework.version>
+        <org.springframework.boot.version>2.1.9.RELEASE</org.springframework.boot.version>
     </properties>
 
     <dependencies>
@@ -45,6 +52,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.28</version>
+        </dependency>
+        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${ch.qos.logback.version}</version>
@@ -56,7 +68,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>3.8.0</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -77,12 +89,12 @@
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjtools</artifactId>
-                        <version>1.9.2</version>
+                        <version>1.9.4</version>
                     </dependency>
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjrt</artifactId>
-                        <version>1.9.2</version>
+                        <version>1.9.4</version>
                     </dependency>
                 </dependencies>
                 <executions>

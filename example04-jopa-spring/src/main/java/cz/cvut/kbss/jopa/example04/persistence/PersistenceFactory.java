@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2016 Czech Technical University in Prague
+ * Copyright (C) 2019 Czech Technical University in Prague
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -18,7 +18,6 @@ import cz.cvut.kbss.jopa.Persistence;
 import cz.cvut.kbss.jopa.model.EntityManagerFactory;
 import cz.cvut.kbss.jopa.model.JOPAPersistenceProperties;
 import cz.cvut.kbss.jopa.model.JOPAPersistenceProvider;
-import cz.cvut.kbss.ontodriver.config.OntoDriverProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -62,12 +61,13 @@ public class PersistenceFactory {
 
     @PreDestroy
     private void close() {
-        emf.close();
+        if (emf.isOpen()) {
+            emf.close();
+        }
     }
 
     private static Map<String, String> initParams() {
         final Map<String, String> map = new HashMap<>();
-        map.put(OntoDriverProperties.ONTOLOGY_LANGUAGE, "en");
         map.put(JOPAPersistenceProperties.SCAN_PACKAGE, "cz.cvut.kbss.jopa.example04.model");
         map.put(JOPAPersistenceProperties.JPA_PERSISTENCE_PROVIDER, JOPAPersistenceProvider.class.getName());
         return map;

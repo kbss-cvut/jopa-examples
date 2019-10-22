@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2016 Czech Technical University in Prague
+ * Copyright (C) 2019 Czech Technical University in Prague
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -16,7 +16,6 @@ package cz.cvut.kbss.jopa.example06;
 
 import cz.cvut.kbss.jopa.example06.model.Person;
 import cz.cvut.kbss.jopa.model.EntityManager;
-import cz.cvut.kbss.jopa.model.PersistenceProperties;
 
 public class Example {
 
