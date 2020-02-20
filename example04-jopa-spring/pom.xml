@@ -5,7 +5,7 @@
     <parent>
         <artifactId>jopa-examples-parent</artifactId>
         <groupId>cz.cvut.kbss.jopa</groupId>
-        <version>0.13.2</version>
+        <version>0.13.5</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -80,7 +80,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.10.0</version>
+            <version>2.9.9</version>
         </dependency>
     </dependencies>
 
@@ -91,21 +91,6 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.4.0</version>
                 <executions>
-                    <!--<execution>-->
-                        <!--<id>npm-module-cleanup</id>-->
-                        <!--<goals>-->
-                            <!--<goal>exec</goal>-->
-                        <!--</goals>-->
-                        <!--<phase>compile</phase>-->
-                        <!--<configuration>-->
-                            <!--<workingDirectory>src/main/webapp/</workingDirectory>-->
-                            <!--<executable>rm</executable>-->
-                            <!--<arguments>-->
-                                <!--<argument>-Rf</argument>-->
-                                <!--<argument>node_modules</argument>-->
-                            <!--</arguments>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
                     <execution>
                         <id>ui-build</id>
                         <goals>

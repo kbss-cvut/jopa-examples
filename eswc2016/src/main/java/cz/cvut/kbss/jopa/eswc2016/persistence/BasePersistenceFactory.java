@@ -58,7 +58,7 @@ public abstract class BasePersistenceFactory {
         final Map<String, String> params = new HashMap<>();
         // View transactional changes during transaction
         params.put(OntoDriverProperties.USE_TRANSACTIONAL_ONTOLOGY, Boolean.TRUE.toString());
-        params.put(OntoDriverProperties.ONTOLOGY_LANGUAGE, Constants.LANGUAGE);
+        params.put(JOPAPersistenceProperties.LANG, Constants.LANGUAGE);
         params.put(JOPAPersistenceProperties.SCAN_PACKAGE, "cz.cvut.kbss.jopa.eswc2016.model");
         params.put(JOPAPersistenceProperties.JPA_PERSISTENCE_PROVIDER, JOPAPersistenceProvider.class.getName());
         return params;
