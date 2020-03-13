@@ -18,6 +18,7 @@
         <module>jsonld</module>
         <module>example07-jopa-plural-dp-inheritance</module>
         <module>example08-jena-polymorphism</module>
+        <module>example09-soql</module>
     </modules>
 
     <name>JOPA Examples - parent</name>
@@ -28,9 +29,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <cz.cvut.kbss.jopa.version>0.13.5</cz.cvut.kbss.jopa.version>
-        <cz.cvut.kbss.jb4jsonld.version>0.4.0</cz.cvut.kbss.jb4jsonld.version>
-        <org.eclipse.rdf4j.version>3.1.0</org.eclipse.rdf4j.version>
+        <cz.cvut.kbss.jopa.version>0.14.0</cz.cvut.kbss.jopa.version>
+        <cz.cvut.kbss.jb4jsonld.version>0.5.0</cz.cvut.kbss.jb4jsonld.version>
+        <org.eclipse.rdf4j.version>3.1.1</org.eclipse.rdf4j.version>
         <ch.qos.logback.version>1.2.3</ch.qos.logback.version>
         <com.github.galigator.openllet.version>2.6.4</com.github.galigator.openllet.version>
         <com.github.ledsoft.jopa-spring-transactions.version>0.0.7</com.github.ledsoft.jopa-spring-transactions.version>
@@ -89,12 +90,12 @@
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjtools</artifactId>
-                        <version>1.9.4</version>
+                        <version>1.9.5</version>
                     </dependency>
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjrt</artifactId>
-                        <version>1.9.4</version>
+                        <version>1.9.5</version>
                     </dependency>
                 </dependencies>
                 <executions>
