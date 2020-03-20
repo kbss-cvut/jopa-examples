@@ -20,7 +20,7 @@ public class Game implements Serializable {
     @OWLAnnotationProperty(iri = RDFS.COMMENT)
     private String comment;
 
-    @OWLObjectProperty(iri = "dbo:developer")
+    @OWLObjectProperty(iri = "dbo:developer", fetch = FetchType.EAGER)
     private Developer developer;
 
     @OWLDataProperty(iri = "dbo:releaseDate")
