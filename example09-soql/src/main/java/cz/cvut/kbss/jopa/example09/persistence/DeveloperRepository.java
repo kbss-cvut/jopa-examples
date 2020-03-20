@@ -23,18 +23,19 @@ public class DeveloperRepository {
     }
 
     public List<Developer> findAll() {
-        return em.createQuery("SELECT d FROM Developer d ORDER BY d.name", Developer.class).getResultList();
+        return em.createQuery("SELECT DISTINCT d FROM Developer d ORDER BY d.name", Developer.class).getResultList();
     }
 
     public List<Developer> findByName(String name) {
         return em
-                .createQuery("SELECT d FROM Developer d WHERE d.name LIKE :name ORDER BY d.name", Developer.class)
+                .createQuery("SELECT DISTINCT d FROM Developer d WHERE d.name LIKE :name ORDER BY d.name",
+                        Developer.class)
                 .setParameter("name", name).getResultList();
     }
 
     public List<Developer> findSmallDevelopers() {
-        return em.createQuery("SELECT d FROM Developer d WHERE d.employeeCount < :count ORDER BY d.name",
-                Developer.class).setParameter("count", SMALL_DEVELOPER_SIZE).getResultList();
+        return em.createQuery("SELECT DISTINCT d FROM Developer d WHERE d.employeeCount < :threshold ORDER BY d.name",
+                Developer.class).setParameter("threshold", SMALL_DEVELOPER_SIZE).getResultList();
     }
 
     public Optional<Developer> findById(String localName) {

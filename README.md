@@ -1,6 +1,7 @@
 # JOPA Examples
 
-This repository contains some usage examples of the [JOPA framework](https://github.com/kbss-cvut/jopa).
+This repository contains some usage examples of the [JOPA framework](https://github.com/kbss-cvut/jopa) - a persistence library
+for Semantic Web data (both RDF and OWL).
 
 ### Examples
 
@@ -18,6 +19,8 @@ serialization/deserialization of POJOs into/from JSON-LD. Also showcases declara
 9. **Example07** - JOPA demonstrating support for single inheritance and plural data properties.
 10. **Example08** - JOPA using the Jena OntoDriver and demonstrating support for polymorphism in the object model. 
 It is a Spring Boot application, uses declarative transactions and JSON-LD.
+11. **Example09** - JOPA with the [Semantic Object Query Language](https://github.com/kbss-cvut/jopa/wiki/Semantic-Object-Query-Language)
+ support. It is a Spring Boot application, uses autowiring of JOPA `EntityManager`, and produces JSON-LD.
 
 Each example has its own README file with a more detailed description. Note that JOPA requires Java 8.
 

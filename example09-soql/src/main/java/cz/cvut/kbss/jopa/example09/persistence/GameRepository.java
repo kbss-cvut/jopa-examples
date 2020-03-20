@@ -31,20 +31,20 @@ public class GameRepository {
     public List<Game> findAll(LocalDate from, LocalDate to) {
         // TODO JOPA does not translate LocalDate query parameters to xsd:dateTime
         return em.createQuery(
-                "SELECT g FROM Game g WHERE g.releaseDate >= :from AND g.releaseDate < :to ORDER BY g.releaseDate DESC",
+                "SELECT DISTINCT g FROM Game g WHERE g.releaseDate >= :from AND g.releaseDate < :to ORDER BY g.releaseDate DESC",
                 Game.class)
                  .setParameter("from", from)
                  .setParameter("to", to).getResultList();
     }
 
     public List<Game> findAll(Developer developer) {
-        return em.createQuery("SELECT g FROM Game g WHERE g.developer = :developer ORDER BY g.releaseDate DESC",
+        return em.createQuery("SELECT DISTINCT g FROM Game g WHERE g.developer = :developer ORDER BY g.releaseDate DESC",
                 Game.class).setParameter("developer", developer).getResultList();
     }
 
     public List<Game> findAllBySmallDevelopers() {
         return em.createQuery(
-                "SELECT g FROM Game g WHERE g.developer.employeeCount < :maxCount ORDER BY g.releaseDate DESC",
+                "SELECT DISTINCT g FROM Game g WHERE g.developer.employeeCount < :maxCount ORDER BY g.releaseDate DESC",
                 Game.class)
                  .setParameter("maxCount", SMALL_DEVELOPER_THRESHOLD).getResultList();
     }

@@ -44,15 +44,15 @@ public class DeveloperController {
         return gameRepository.findAllBySmallDevelopers();
     }
 
-    @RequestMapping(value = "/{name}", produces = JsonLd.MEDIA_TYPE)
-    public Developer getDeveloper(@PathVariable String name) {
-        return developerRepository.findById(name).orElseThrow(
-                () -> new NotFoundException("Developer with name " + name + " not found!"));
+    @RequestMapping(value = "/{localName}", produces = JsonLd.MEDIA_TYPE)
+    public Developer getDeveloper(@PathVariable String localName) {
+        return developerRepository.findById(localName).orElseThrow(
+                () -> new NotFoundException("Developer with name " + localName + " not found!"));
     }
 
-    @RequestMapping(value = "/{name}/games", produces = JsonLd.MEDIA_TYPE)
-    public List<Game> getDevelopersGames(@PathVariable String name) {
-        final Developer dev = getDeveloper(name);
+    @RequestMapping(value = "/{localName}/games", produces = JsonLd.MEDIA_TYPE)
+    public List<Game> getDevelopersGames(@PathVariable String localName) {
+        final Developer dev = getDeveloper(localName);
         return gameRepository.findAll(dev);
     }
 }
