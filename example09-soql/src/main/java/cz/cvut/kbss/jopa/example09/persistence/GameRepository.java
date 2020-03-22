@@ -29,7 +29,6 @@ public class GameRepository {
     }
 
     public List<Game> findAll(LocalDate from, LocalDate to) {
-        // TODO JOPA does not translate LocalDate query parameters to xsd:dateTime
         return em.createQuery(
                 "SELECT DISTINCT g FROM Game g WHERE g.releaseDate >= :from AND g.releaseDate < :to ORDER BY g.releaseDate DESC",
                 Game.class)
