@@ -1,16 +1,14 @@
 /**
  * Copyright (C) 2019 Czech Technical University in Prague
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any
- * later version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details. You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * <p>
+ * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+ * License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * <p>
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+ * details. You should have received a copy of the GNU General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 package cz.cvut.kbss.jopa.eswc2016.persistence.dao;
 
@@ -37,7 +35,7 @@ public class ReportDao extends BaseDao<Report> {
 
     @Override
     protected Report findByUri(String uri, EntityManager em) {
-        return em.find(Report.class, uri, getDescriptor());
+        return em.find(Report.class, uri, getDescriptor(em));
     }
 
     protected Report findByKey(Long key, EntityManager em) {
@@ -55,16 +53,13 @@ public class ReportDao extends BaseDao<Report> {
     @Override
     protected void persist(Report entity, EntityManager em) {
         entity.setIdentifier(KeyGenerator.generateKey());
-        em.persist(entity, getDescriptor());
+        em.persist(entity, getDescriptor(em));
     }
 
-    private EntityDescriptor getDescriptor() {
+    private EntityDescriptor getDescriptor(EntityManager em) {
         final EntityDescriptor descriptor = new EntityDescriptor();
-        try {
-            descriptor.addAttributeDescriptor(Report.class.getDeclaredField("hasAuthor"), PersonDao.PERSON_DESCRIPTOR);
-        } catch (NoSuchFieldException e) {
-            LOG.error("Unable to set person context for report.", e);
-        }
+        descriptor.addAttributeDescriptor(em.getMetamodel().entity(Report.class).getAttribute("hasAuthor"),
+                PersonDao.PERSON_DESCRIPTOR);
         return descriptor;
     }
 

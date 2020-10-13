@@ -1,16 +1,14 @@
 /**
  * Copyright (C) 2019 Czech Technical University in Prague
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any
- * later version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details. You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * <p>
+ * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+ * License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * <p>
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+ * details. You should have received a copy of the GNU General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 package cz.cvut.kbss.jopa.example03;
 
@@ -57,7 +55,7 @@ public class Example {
         }
     }
 
-    private void execute() throws Exception {
+    private void execute() {
         final Flight flight = createFlight();
         final Accident accident = createAccident(flight);
 
@@ -106,7 +104,7 @@ public class Example {
 
     /**
      * This won't work, because the referenced flight is in a different context, which the descriptor does not specify.
-     *
+     * <p>
      * Thus, JOPA sees the flight as unpersisted instance and throws an exception on commit.
      */
     private void tryPersistingWithoutContext(Accident accident) {
@@ -123,11 +121,11 @@ public class Example {
     /**
      * This will work, because we specify the context in which the referenced flight is persisted.
      */
-    private void persistCorrectly(Accident accident) throws Exception {
+    private void persistCorrectly(Accident accident) {
         System.out.println("Persisting accident into context " + ACCIDENT_CONTEXT);
         em.getTransaction().begin();
         final Descriptor descriptor = new EntityDescriptor(ACCIDENT_CONTEXT);
-        descriptor.addAttributeDescriptor(accident.getClass().getDeclaredField("flightsAffected"),
+        descriptor.addAttributeDescriptor(em.getMetamodel().entity(Accident.class).getAttribute("flightsAffected"),
                 new EntityDescriptor(AIRCRAFT_CONTEXT));
         em.persist(accident, descriptor);
         em.getTransaction().commit();
@@ -158,9 +156,9 @@ public class Example {
     /**
      * Now explicitly specify that flight info should be read from the aircraft context.
      */
-    private void readFromBothContexts(Accident accident) throws Exception {
+    private void readFromBothContexts(Accident accident) {
         final Descriptor descriptor = new EntityDescriptor(ACCIDENT_CONTEXT);
-        descriptor.addAttributeDescriptor(accident.getClass().getDeclaredField("flightsAffected"),
+        descriptor.addAttributeDescriptor(em.getMetamodel().entity(Accident.class).getAttribute("flightsAffected"),
                 new EntityDescriptor(AIRCRAFT_CONTEXT));
 
         final Accident result = em.find(Accident.class, accident.getUri(), descriptor);
