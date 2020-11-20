@@ -10,12 +10,17 @@
     </appender>
 
     <!-- Logger for our app -->
-    <logger name="cz.cvut.kbss" level="TRACE" additivity="false">
+    <logger name="cz.cvut.kbss.jopa.example08" level="TRACE" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
 
     <!-- Spring logging -->
     <logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <!-- Apache HTTP client logging, used by Jena -->
+    <logger name="org.apache.http" level="WARN" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
 

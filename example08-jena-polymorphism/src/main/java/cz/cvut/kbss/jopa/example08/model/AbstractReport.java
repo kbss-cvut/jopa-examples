@@ -24,7 +24,7 @@ import java.util.Date;
 @OWLClass(iri = Vocabulary.C_REPORT)
 public abstract class AbstractReport extends AbstractEntity {
 
-    @OWLDataProperty(iri = Vocabulary.P_KEY)
+    @OWLDataProperty(iri = Vocabulary.P_KEY, simpleLiteral = true)
     @ParticipationConstraints(nonEmpty = true)
     private String key;
 
