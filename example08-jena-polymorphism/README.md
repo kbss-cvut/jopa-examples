@@ -1,6 +1,6 @@
 # JOPA + Jena Driver + Polymorphism
 
-This example showcases usage of JOPA with the Jena OntoDriver working on top of Jena TDB.
+This example showcases usage of JOPA with the Jena OntoDriver working on top of Jena TDB/Fuseki server.
 It also uses a polymorphic object model.
 
 ## Features
@@ -8,7 +8,7 @@ It also uses a polymorphic object model.
 * Spring boot application with REST services,
 * Publishing data in JSON-LD,
 * Consuming data in JSON-LD,
-* Jena TDB storage,
+* Jena TDB/Fuseki storage,
 * Declarative transactions,
 * Polymorphic object model,
 * Basic RDFS inference.
@@ -22,8 +22,8 @@ REST API to work with [Jackson](https://github.com/FasterXML/jackson) as most Sp
 
 ### Persistence Setup
 
-The persistence is set up in `cz.cvut.kbss.jopa.example08.persistence.PersistenceFactory`. We are using Jena TDB repository.
-Its location is set up in `application.properties`.
+The persistence is set up in `cz.cvut.kbss.jopa.example08.persistence.PersistenceFactory`. Repository type and location is specified
+in `application.properties` - either Fuseki or TDB storage can be selected.
 
 ### Declarative Transactions
 

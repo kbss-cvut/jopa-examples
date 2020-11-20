@@ -1,16 +1,14 @@
 /**
  * Copyright (C) 2019 Czech Technical University in Prague
- *
- * This program is free software: you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any
- * later version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
- * details. You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * <p>
+ * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+ * License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * <p>
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+ * details. You should have received a copy of the GNU General Public License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 package cz.cvut.kbss.jopa.example08.rest;
 
@@ -28,6 +26,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/reports")
@@ -42,23 +41,46 @@ public class ReportController {
         this.reportService = reportService;
     }
 
-    @RequestMapping(method = RequestMethod.GET, produces = JsonLd.MEDIA_TYPE)
+    @GetMapping(produces = JsonLd.MEDIA_TYPE)
     public List<AbstractReport> findAll() {
         return reportService.findAll();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{key}", produces = JsonLd.MEDIA_TYPE)
-    public AbstractReport find(@PathVariable("key") String key) {
+    @GetMapping(value = "/{key}", produces = JsonLd.MEDIA_TYPE)
+    public AbstractReport find(@PathVariable String key) {
         return reportService.findByKey(key)
                             .orElseThrow(() -> new NotFoundException("Report with key " + key + " not found."));
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = JsonLd.MEDIA_TYPE)
+    @PostMapping(consumes = JsonLd.MEDIA_TYPE)
     public ResponseEntity<Void> create(@RequestBody AbstractReport report) {
         reportService.persist(report);
         LOG.debug("Report {} successfully persisted.", report.getUri());
         final HttpHeaders headers = createLocationHeaderFromCurrentUri("/{key}", report.getKey());
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
+    }
+
+    @PutMapping(value = "/{key}", consumes = JsonLd.MEDIA_TYPE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@PathVariable String key, @RequestBody AbstractReport report) {
+        final Optional<AbstractReport> existing = reportService.findByKey(key);
+        if (!existing.isPresent()) {
+            throw new NotFoundException("Report with key " + key + " not found!");
+        }
+        if (!existing.get().getUri().equals(report.getUri())) {
+            throw new IllegalArgumentException("Invalid report to update!");
+        }
+        reportService.update(report);
+        LOG.debug("Report {} successfully updated.", report);
+    }
+
+    @DeleteMapping("/{key}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void remove(@PathVariable String key) {
+        reportService.findByKey(key).ifPresent(r -> {
+            reportService.remove(r);
+            LOG.debug("Report {} successfully removed.", r);
+        });
     }
 
     /**

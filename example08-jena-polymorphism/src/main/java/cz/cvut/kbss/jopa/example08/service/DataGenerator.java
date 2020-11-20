@@ -31,7 +31,7 @@ public class DataGenerator {
             "I am too lazy to generate report summary so I just reuse the same text and add a " +
                     "random number at the end. Here it is: ";
 
-    private static String[] OCCURRENCE_TYPES = {
+    private static final String[] OCCURRENCE_TYPES = {
             "http://onto.fel.cvut.cz/ontologies/eccairs/aviation-3.4.0.2/vl-a-430/v-1",
             "http://onto.fel.cvut.cz/ontologies/eccairs/aviation-3.4.0.2/vl-a-430/v-10",
             "http://onto.fel.cvut.cz/ontologies/eccairs/aviation-3.4.0.2/vl-a-430/v-100",
@@ -50,7 +50,7 @@ public class DataGenerator {
             "http://onto.fel.cvut.cz/ontologies/aviation-safety/Sabotage"
     };
 
-    private static String[] AUDIT_TYPES = {
+    private static final String[] AUDIT_TYPES = {
             "http://onto.fel.cvut.cz/ontologies/aviation/cz/caa/cat/audit/checklist/C01",
             "http://onto.fel.cvut.cz/ontologies/aviation/cz/caa/cat/audit/checklist/C02",
             "http://onto.fel.cvut.cz/ontologies/aviation/cz/caa/cat/audit/checklist/C03",
@@ -70,13 +70,12 @@ public class DataGenerator {
     private final ReportService reportService;
     private final SchemaExporter schemaExporter;
 
-    private Random random;
+    private final Random random = new Random();
 
     @Autowired
     public DataGenerator(ReportService reportService, SchemaExporter schemaExporter) {
         this.reportService = reportService;
         this.schemaExporter = schemaExporter;
-        this.random = new Random();
     }
 
     @PostConstruct
