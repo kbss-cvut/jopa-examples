@@ -6,7 +6,7 @@
 
     <groupId>cz.cvut.kbss.jopa</groupId>
     <artifactId>jopa-examples-parent</artifactId>
-    <version>0.16.2</version>
+    <version>0.16.3</version>
     <modules>
         <module>example01-jopa-sesame-owl2java</module>
         <module>example02-jopa-owlapi</module>
@@ -30,15 +30,15 @@
         <jdk.version>1.8</jdk.version>
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <maven.compiler.target>${jdk.version}</maven.compiler.target>
-        <cz.cvut.kbss.jopa.version>0.16.2</cz.cvut.kbss.jopa.version>
-        <cz.cvut.kbss.jb4jsonld.version>0.8.2</cz.cvut.kbss.jb4jsonld.version>
-        <org.eclipse.rdf4j.version>3.4.4</org.eclipse.rdf4j.version>
+        <cz.cvut.kbss.jopa.version>0.16.3</cz.cvut.kbss.jopa.version>
+        <cz.cvut.kbss.jb4jsonld.version>0.8.4</cz.cvut.kbss.jb4jsonld.version>
+        <org.eclipse.rdf4j.version>3.5.1</org.eclipse.rdf4j.version>
         <ch.qos.logback.version>1.2.3</ch.qos.logback.version>
         <com.github.galigator.openllet.version>2.6.4</com.github.galigator.openllet.version>
         <com.github.ledsoft.jopa-spring-transactions.version>0.0.10</com.github.ledsoft.jopa-spring-transactions.version>
 
-        <org.springframework.version>5.3.1</org.springframework.version>
-        <org.springframework.boot.version>2.4.0</org.springframework.boot.version>
+        <org.springframework.version>5.3.3</org.springframework.version>
+        <org.springframework.boot.version>2.4.2</org.springframework.boot.version>
     </properties>
 
     <dependencies>
