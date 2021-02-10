@@ -15,10 +15,12 @@
 package cz.cvut.kbss.jopa.example04.model;
 
 import cz.cvut.kbss.jopa.model.annotations.*;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.net.URI;
 
+@Data
 @NamedNativeQueries({
         @NamedNativeQuery(name = "Student.findAll", query = "SELECT ?x WHERE { ?x a <" + Vocabulary.Student + "> . }"),
         @NamedNativeQuery(name = "Student.findByKey", query = "SELECT ?x WHERE {?x <" + Vocabulary.p_key + "> ?key . }")
@@ -30,7 +32,7 @@ public class Student implements Serializable {
     private URI uri;
 
     @ParticipationConstraints(nonEmpty = true)
-    @OWLDataProperty(iri = Vocabulary.p_key)
+    @OWLDataProperty(iri = Vocabulary.p_key, simpleLiteral = true)
     private String key;
 
     @ParticipationConstraints(nonEmpty = true)
@@ -44,62 +46,12 @@ public class Student implements Serializable {
     @OWLDataProperty(iri = Vocabulary.p_emailAddress)
     private String email;
 
-    public URI getUri() {
-        return uri;
-    }
-
-    public void setUri(URI uri) {
-        this.uri = uri;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public void generateUri() {
         if (uri != null) {
             return;
         }
         assert firstName != null;
         assert lastName != null;
-        this.uri = URI.create(Vocabulary.URI_BASE + firstName + "+" + lastName);
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "uri=" + uri +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        this.uri = URI.create(Vocabulary.URI_BASE + firstName + '+' + lastName);
     }
 }

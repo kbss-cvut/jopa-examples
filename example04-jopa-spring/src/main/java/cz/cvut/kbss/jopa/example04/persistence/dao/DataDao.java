@@ -47,7 +47,7 @@ public class DataDao {
             final RDFHandler rdfHandler = getHandler(format, bos);
             connection.export(rdfHandler);
             connection.close();
-            return new String(bos.toByteArray());
+            return bos.toString();
         } catch (RepositoryException | RDFHandlerException e) {
             LOG.error("Unable to read data from repository.", e);
             return "";

@@ -39,7 +39,7 @@ public class PersistenceFactory {
     private static final String URL_PROPERTY = "repositoryUrl";
     private static final String DRIVER_PROPERTY = "driver";
 
-    private static final Map<String, String> PARAMS = initParams();
+    public static final Map<String, String> PARAMS = initParams();
 
     @Autowired
     private Environment environment;

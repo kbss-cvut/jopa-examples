@@ -55,7 +55,7 @@ public class SesamePersistenceProvider {
     @PostConstruct
     private void initializeStorage() {
         forceRepoInitialization();
-        final String repoUrl = environment.getProperty(URL_PROPERTY);
+        final String repoUrl = environment.getRequiredProperty(URL_PROPERTY);
         try {
             this.repository = RepositoryProvider.getRepository(repoUrl);
             assert repository.isInitialized();

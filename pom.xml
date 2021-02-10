@@ -80,6 +80,11 @@
                     <complianceLevel>${jdk.version}</complianceLevel>
                     <source>${jdk.version}</source>
                     <target>${jdk.version}</target>
+                    <forceAjcCompile>true</forceAjcCompile>
+                    <sources/><!-- this is important!-->
+                    <weaveDirectories>
+                        <weaveDirectory>${project.build.directory}/classes</weaveDirectory>
+                    </weaveDirectories>
                     <aspectLibraries>
                         <aspectLibrary>
                             <groupId>cz.cvut.kbss.jopa</groupId>
