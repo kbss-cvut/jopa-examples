@@ -16,7 +16,7 @@ package cz.cvut.kbss.jopa.example04.model;
 
 public class Vocabulary {
 
-    public static final String URI_BASE = "http://onto.fel.cvut.cz/ontologies/example04#";
+    public static final String URI_BASE = "http://onto.fel.cvut.cz/ontologies/example04/";
 
     public static final String Student = URI_BASE + "Student";
     public static final String p_firstName = URI_BASE + "firstName";
