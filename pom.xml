@@ -30,6 +30,7 @@
         <jdk.version>1.8</jdk.version>
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <maven.compiler.target>${jdk.version}</maven.compiler.target>
+        <org.aspectj.version>1.9.6</org.aspectj.version>
         <cz.cvut.kbss.jopa.version>0.16.3</cz.cvut.kbss.jopa.version>
         <cz.cvut.kbss.jb4jsonld.version>0.8.4</cz.cvut.kbss.jb4jsonld.version>
         <org.eclipse.rdf4j.version>3.5.1</org.eclipse.rdf4j.version>
@@ -80,11 +81,6 @@
                     <complianceLevel>${jdk.version}</complianceLevel>
                     <source>${jdk.version}</source>
                     <target>${jdk.version}</target>
-                    <forceAjcCompile>true</forceAjcCompile>
-                    <sources/><!-- this is important!-->
-                    <weaveDirectories>
-                        <weaveDirectory>${project.build.directory}/classes</weaveDirectory>
-                    </weaveDirectories>
                     <aspectLibraries>
                         <aspectLibrary>
                             <groupId>cz.cvut.kbss.jopa</groupId>
@@ -96,12 +92,12 @@
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjtools</artifactId>
-                        <version>1.9.6</version>
+                        <version>${org.aspectj.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjrt</artifactId>
-                        <version>1.9.6</version>
+                        <version>${org.aspectj.version}</version>
                     </dependency>
                 </dependencies>
                 <executions>
