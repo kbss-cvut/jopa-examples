@@ -20,7 +20,7 @@
     "babelify": "^7.2.0",
     "browserify": "^12.0.1",
     "envify": "^3.4.0",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.19",
     "reactify": "^0.15.2",
     "uglify-js": "^2.6.1",
     "watchify": "^3.7.0",
