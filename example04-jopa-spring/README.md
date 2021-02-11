@@ -1,14 +1,17 @@
-# JOPA Example 04 - JOPA + Spring
+# JOPA Example 04 - JOPA + Spring + Lombok
 
-This example shows integration of JOPA with a CDI framework (Spring in this case).
+This example shows integration of JOPA with a dependency injection (DI) framework (Spring in this case).
+
+In addition, usage of [Lombok](https://projectlombok.org/) is demonstrated here.
 
 ### Features
 
 - Named native queries
 - Spring integration
+- Lombok
 
 This example does not show any other significant JOPA features. To see more features, consult the other examples. This
-demo mainly shows integration of JOPA with CDI frameworks like Spring.
+demo mainly shows integration of JOPA with DI frameworks like Spring.
 
 #### Named native queries
 
@@ -32,6 +35,14 @@ closed correctly.
 
 Thanks to the [JOPA-Spring-transaction](https://github.com/ledsoft/jopa-spring-transaction) library, it is possible to use
 declarative transaction demarcation (`@Transactional`) with JOPA. See `StudentService` for an example.
+
+#### Lombok
+
+Lombok, a library used to generate boilerplate code (getters, setters, equals/hashCode etc.), is utilized to make the JOPA entities shorter and
+easier to read. Using Lombok with AspectJ is often problematic, so this project provides an example working configuration. The most important
+changes are in the configuration of the AspectJ Maven plugin in `pom.xml`. More information can be found on the corresponding 
+JOPA [wiki page](https://github.com/kbss-cvut/jopa/wiki/Using-Lombok).
+
 
 ## Persistence Setup
 

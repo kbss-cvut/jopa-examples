@@ -9,7 +9,7 @@ for Semantic Web data (both RDF and OWL).
 2. **Example02** - JOPA using OWLAPI-accessed files as storage.
 3. **Example03** - JOPA with a native Sesame storage utilizing its contexts to store and access data in different RDF named graphs.
 4. **Example04** - Full-blown Java web application with Spring, REST services, ReactJS-based UI and JOPA with Sesame native storage. 
-Declarative transactions included.
+Declarative transactions included. Lombok is used to generate boilerplate entity code.
 5. **Example05** - JOPA utilizing [OWL2Query](https://kbss.felk.cvut.cz/web/portal/owl2query) - a SPARQL-DL query engine for OWLAPI.
 6. **eswc2016** - JOPA demo for the ESWC 2016 conference. A running version can be found at 
 [http://kbss.felk.cvut.cz/jopa-eswc-demo/](http://kbss.felk.cvut.cz/jopa-eswc-demo/).
