@@ -1,0 +1,10 @@
+const ActionType = {
+    SELECT_DATA_FORMAT: "SELECT_DATA_FORMAT",
+    LOAD_DATA: "LOAD_DATA",
+
+    LOAD_STUDENTS: "LOAD_STUDENTS",
+    CREATE_STUDENT: "CREATE_STUDENT",
+    DELETE_STUDENT: "DELETE_STUDENT",
+};
+
+export default ActionType;

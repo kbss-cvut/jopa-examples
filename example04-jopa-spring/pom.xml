@@ -229,13 +229,15 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.2.3</version>
                 <configuration>
-
                     <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <packagingExcludes>
-                        **/js/actions/,**/js/components/,**/js/constants/,**/js/stores/,
-                        **/js/app.js,**/js/.bundle.js,node_modules/,
-                        package.json,.babelrc
-                    </packagingExcludes>
+                    <warSourceExcludes>
+                        node_modules/**,config/**,public/**,scripts/**,src/**,package.json,package-lock.json,build/**
+                    </warSourceExcludes>
+                    <webResources>
+                        <resource>
+                            <directory>${project.basedir}/src/main/webapp/build/</directory>
+                        </resource>
+                    </webResources>
                 </configuration>
             </plugin>
         </plugins>
