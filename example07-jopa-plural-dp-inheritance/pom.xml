@@ -15,10 +15,6 @@
         Demo showcasing JOPA's support for plural data properties and single inheritance.
     </description>
 
-    <properties>
-        <org.springframework.boot.version>2.1.8.RELEASE</org.springframework.boot.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>cz.cvut.kbss.jopa</groupId>
