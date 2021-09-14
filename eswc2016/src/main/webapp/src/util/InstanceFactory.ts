@@ -10,7 +10,7 @@ export function createReport(audit?: object) {
     if (audit) {
         report.documents = audit;
     } else {
-        report.documents = this.createAudit();
+        report.documents = createAudit();
     }
     return report;
 }

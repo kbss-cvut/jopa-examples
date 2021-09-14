@@ -105,7 +105,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.12.1</version>
+            <version>2.11.4</version>
         </dependency>
     </dependencies>
 
@@ -178,9 +178,7 @@
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <packagingExcludes>
-                        **/js/actions/,**/js/components/,**/js/constants/,**/js/stores/,**/js/util/,
-                        **/js/app.js,**/js/.bundle.js,node_modules/,
-                        package.json,.babelrc
+                        node_modules/**
                     </packagingExcludes>
                     <warName>eswc2016</warName>
                 </configuration>
