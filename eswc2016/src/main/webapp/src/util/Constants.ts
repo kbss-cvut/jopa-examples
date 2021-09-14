@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = {
+const Constants = {
     REPOSITORY_TYPE_PARAM: 'repositoryType',
 
     RECORD_TYPES: {
@@ -26,3 +24,5 @@ module.exports = {
         'NOT Supported:\n - contexts,\n - SPARQL count (due to OWL2Query engine, so record count in reports is always 0)\n'
     }
 };
+
+export default Constants;

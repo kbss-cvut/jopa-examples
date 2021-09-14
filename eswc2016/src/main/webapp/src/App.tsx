@@ -1,34 +1,22 @@
-'use strict';
-
-import React from 'react';
-import ReactDOM from 'react-dom';
-import createHashHistory from 'history/lib/createHashHistory';
-import {IndexRoute, Router, Route} from 'react-router';
+import * as ReactDOM from 'react-dom';
+import {Route, Router, Switch} from 'react-router';
 
 import MainView from './components/MainView';
 import AuditsController from './components/AuditsController';
 import AuditController from './components/AuditController';
 import ReportsController from './components/ReportsController';
 import ReportController from './components/ReportController';
-import Data from './components/Data';
-import Settings from './components/Settings';
+import Data from './component/Data';
+import Settings from './component/Settings';
 import Routing from './util/Routing';
+import {Provider} from "react-redux";
+import AppStore from "./store/AppStore";
 
-/**
- * This is the application's entry point.
- *
- * The application is written using the new ES6 syntax (for the most part).
- */
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <Router history={Routing.getHistory()}>
+const App = () => {
+    return <Provider store={AppStore}>
+        <Router history={Routing.history}>
+            <Switch>
                 <Route path='/' component={MainView}>
-                    <IndexRoute component={AuditsController}/>
                     <Route path='audits' component={AuditsController}/>
                     <Route path='audits/create' component={AuditController}/>
                     <Route path='audits/:auditKey' component={AuditController}/>
@@ -38,8 +26,9 @@ class App extends React.Component {
                     <Route path='data' component={Data}/>
                     <Route path='settings' component={Settings}/>
                 </Route>
-            </Router>);
-    }
-}
+            </Switch>
+        </Router>
+    </Provider>
+};
 
 ReactDOM.render(<App/>, document.getElementById('content'));
