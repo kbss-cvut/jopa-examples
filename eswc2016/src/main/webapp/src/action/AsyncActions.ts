@@ -1,6 +1,7 @@
 import ActionType from "./ActionType";
-import {ThunkDispatch} from "../util/Util";
+import Util, {ThunkDispatch} from "../util/Util";
 import {asyncActionFailure, asyncActionRequest, asyncActionSuccess, asyncActionSuccessWithPayload} from "./SyncActions";
+import Event from "../model/Event";
 import axios from "axios";
 
 const URL = `${process.env.REACT_APP_SERVER_URL || ""}/rest`;
@@ -86,6 +87,42 @@ export function loadAudit(id: number) {
                 dispatch(asyncActionSuccess(action));
                 return Promise.resolve(resp.data);
             })
+            .catch(err => dispatch(asyncActionFailure(action, err)));
+    };
+}
+
+export function createAudit(audit: Event) {
+    const action = {type: ActionType.CREATE_AUDIT};
+    return (dispatch: ThunkDispatch) => {
+        dispatch(asyncActionRequest(action));
+        return axios.post(`${URL}/events`, audit)
+            .then(resp => {
+                dispatch(asyncActionSuccess(action));
+                const id = Util.extractKeyFromLocationHeader(resp);
+                return dispatch(loadAudit(id));
+            })
+            .catch(err => dispatch(asyncActionFailure(action, err)));
+    };
+}
+
+export function updateAudit(audit: Event) {
+    const action = {type: ActionType.UPDATE_AUDIT};
+    return (dispatch: ThunkDispatch) => {
+        dispatch(asyncActionRequest(action));
+        return axios.put(`${URL}/events/${audit.identifier!}`, audit)
+            .then(() => dispatch(asyncActionSuccess(action)))
+            .then(() => dispatch(loadAudit(audit.identifier!)))
+            .catch(err => dispatch(asyncActionFailure(action, err)));
+    };
+}
+
+export function removeAudit(id: Number) {
+    const action = {type: ActionType.DELETE_AUDIT};
+    return (dispatch: ThunkDispatch) => {
+        dispatch(asyncActionRequest(action));
+        return axios.delete(`${URL}/events/${id}`)
+            .then(() => dispatch(asyncActionSuccess(action)))
+            .then(() => dispatch(loadAudits))
             .catch(err => dispatch(asyncActionFailure(action, err)));
     };
 }

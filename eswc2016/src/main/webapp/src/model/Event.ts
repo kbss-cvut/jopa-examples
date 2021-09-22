@@ -1,9 +1,13 @@
-export default interface Event {
-    id: string;
+import {BaseEntity, Properties} from "./Types";
+import {Report} from "./Report";
+
+export default interface Event extends BaseEntity {
     identifier?: number;
     title?: string;
-    start: number;
-    end: number;
-    parts?: Event[];
+    date: number;
     types?: string[];
+    properties?: Properties;
+    isDocumentedBy?: Report[];
+
+    isNew?: boolean;
 }

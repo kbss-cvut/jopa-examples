@@ -8,7 +8,7 @@ import PropertyEditRow from "./PropertyEditRow";
 import PropertyRow from "./PropertyRow";
 
 interface PropertiesProps {
-    properties: PropertiesType;
+    properties?: PropertiesType;
     onChange: (v: PropertiesType) => void;
 }
 
@@ -17,8 +17,11 @@ export interface PropertyRecord {
     value?: string;
 }
 
-function flattenProperties(properties: PropertiesType) {
+function flattenProperties(properties?: PropertiesType) {
     const rows: PropertyRecord[] = [];
+    if (!properties) {
+        return rows;
+    }
     for (let property in properties) {
         const values = properties[property];
         for (let i = 0, len = values.length; i < len; i++) {
@@ -39,7 +42,7 @@ function consolidateProperties(rows: PropertyRecord[]): PropertiesType {
     return result;
 }
 
-const Properties:React.FC<PropertiesProps> = props => {
+const Properties: React.FC<PropertiesProps> = props => {
     const dispatch: ThunkDispatch = useDispatch();
     useEffect(() => {
         dispatch(loadProperties());
@@ -64,26 +67,27 @@ const Properties:React.FC<PropertiesProps> = props => {
         <Card>
             <Card.Header>Additional properties</Card.Header>
             <Card.Body>
-            <Table striped={true} hover={true}>
-                <thead>
-                <tr>
-                    <td className='col-xs-4 centered'>Property</td>
-                    <td className='col-xs-5 centered'>Value</td>
-                    <td className='col-xs-3 centered'>Actions</td>
-                </tr>
-                </thead>
-                <tbody>
-                {properties.map((p, index) => {
-                    if (index === editedIndex) {
-                        return <PropertyEditRow record={p} onSave={onSave} onCancel={() => setEditedIndex(null)}/>
-                    } else {
-                        return <PropertyRow record={p} onEdit={() => setEditedIndex(index)} onRemove={onRemove}/>
-                    }
-                })}
-                {editedIndex && editedIndex === -1 && <PropertyEditRow record={{}} onSave={onSave} onCancel={() => setEditedIndex(null)}/>}
-                </tbody>
-            </Table>
-            <Button variant='info' onClick={onAdd}>Add</Button>
+                <Table striped={true} hover={true}>
+                    <thead>
+                    <tr>
+                        <td className='col-xs-4 centered'>Property</td>
+                        <td className='col-xs-5 centered'>Value</td>
+                        <td className='col-xs-3 centered'>Actions</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {properties.map((p, index) => {
+                        if (index === editedIndex) {
+                            return <PropertyEditRow record={p} onSave={onSave} onCancel={() => setEditedIndex(null)}/>
+                        } else {
+                            return <PropertyRow record={p} onEdit={() => setEditedIndex(index)} onRemove={onRemove}/>
+                        }
+                    })}
+                    {editedIndex && editedIndex === -1 &&
+                    <PropertyEditRow record={{}} onSave={onSave} onCancel={() => setEditedIndex(null)}/>}
+                    </tbody>
+                </Table>
+                <Button variant='info' onClick={onAdd}>Add</Button>
             </Card.Body>
         </Card>
     );

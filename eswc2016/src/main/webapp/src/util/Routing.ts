@@ -1,6 +1,6 @@
 import {createHashHistory, History} from 'history';
 
-class Routing {
+export class Routing {
 
     private readonly mHistory: History;
 
