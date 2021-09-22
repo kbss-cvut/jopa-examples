@@ -53,6 +53,22 @@ class Util {
     isIriValid(iri: string) {
         return VALID_IRI_REGEX.test(iri);
     }
+
+    sanitizeArray<T>(arr?: T[] | T | null) {
+        return Array.isArray(arr) ? arr : (arr ? [arr] : []);
+    }
+
+    /**
+     * Extracts query parameter value from the specified query string
+     * @param queryString String to extracts params from
+     * @param paramName Name of the parameter to extract
+     * @return extracted parameter value or undefined if the parameter is not present in the query
+     */
+    extractQueryParam(queryString: string, paramName: string): string | undefined {
+        queryString = decodeURI(queryString);
+        const reqexpMatch = queryString.match(new RegExp(paramName + "=([^&]*)"));
+        return reqexpMatch ? reqexpMatch[1] : undefined;
+    }
 }
 
 /**
