@@ -113,31 +113,3 @@ export default class ReportRecords extends React.Component {
         return (<RecordDetail show={true} record={currentRow} actions={actions}/>);
     }
 }
-
-class RecordRow extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    _onEdit() {
-        this.props.edit(this.props.record);
-    }
-
-    _onRemove() {
-        this.props.remove(this.props.record);
-    }
-
-    render() {
-        var record = this.props.record,
-            classification = record.types ? record.types[0] : '',
-            className = 'record-classification ' + Util.getClassificationClassName(classification);
-        return (<tr>
-            <td style={{verticalAlign: 'middle'}} className={className}>{record.has_question.has_data_value}</td>
-            <td style={{verticalAlign: 'middle'}} className={className}>{record.has_answer.has_data_value}</td>
-            <td className={'actions ' + className}>
-                <Button bsStyle='info' bsSize='small' onClick={this._onEdit.bind(this)}>Edit</Button>
-                <Button bsStyle='warning' bsSize='small' onClick={this._onRemove.bind(this)}>Remove</Button>
-            </td>
-        </tr>);
-    }
-}

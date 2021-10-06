@@ -3,7 +3,8 @@ import AppModel from "../model/AppModel";
 import ActionType, {AsyncActionSuccess} from "../action/ActionType";
 import AsyncActionStatus from "../action/AsyncActionStatus";
 import {Report} from "../model/Report";
-import Audit from "../model/Audit";
+import Event from "../model/Event";
+import {Question} from "../model/Record";
 
 function settings(state: { [key: string]: string } = {}, action: AsyncActionSuccess<{ [key: string]: string }>): { [key: string]: string } {
     switch (action.type) {
@@ -35,13 +36,20 @@ function reports(state: Report[] = [], action: AsyncActionSuccess<Report[]>) {
     }
 }
 
-function audits(state: Audit[] = [], action: AsyncActionSuccess<Audit[]>) {
+function audits(state: Event[] = [], action: AsyncActionSuccess<Event[]>) {
     if (action.type === ActionType.LOAD_AUDITS && action.status === AsyncActionStatus.SUCCESS) {
         return action.payload;
     }
     return state;
 }
 
-const rootReducer = combineReducers<AppModel>({audits, properties, reports, settings});
+function questions(state: Question[] = [], action: AsyncActionSuccess<Question[]>) {
+    if (action.type === ActionType.LOAD_QUESTIONS && action.status === AsyncActionStatus.SUCCESS) {
+        return action.payload;
+    }
+    return state;
+}
+
+const rootReducer = combineReducers<AppModel>({audits, properties, questions, reports, settings});
 
 export default rootReducer;

@@ -1,0 +1,74 @@
+import React, {useState} from "react";
+import Record, {Answer, Question} from "../../model/Record";
+import {Button, ButtonToolbar, Col, Form, Modal, Row} from "react-bootstrap";
+import QuestionSelector from "./QuestionSelector";
+import CreateQuestion from "./CreateQuestion";
+import {useDispatch} from "react-redux";
+import {ThunkDispatch} from "../../util/Util";
+import {createQuestion} from "../../action/AsyncActions";
+import {GoPlus} from "react-icons/all";
+import AnswerForm from "./Answer";
+
+interface RecordDetailProps {
+    record: Record;
+    show: boolean;
+    onClose: () => void;
+    onSave: (r: Record) => void;
+    onRemove: (r: Record) => void;
+}
+
+function isValid(question: Question | null, answer: Answer | null) {
+    return question !== null && answer !== null && answer.has_data_value !== undefined && answer.has_data_value.trim().length !== 0;
+}
+
+const RecordDetail: React.FC<RecordDetailProps> = props => {
+    const {record, show, onClose, onRemove, onSave} = props;
+    const [question, setQuestion] = useState<Question | null>(null);
+    const [answer, setAnswer] = useState<Answer | null>(null);
+    const [showCreateQuestion, setShowCreateQuestion] = useState(false);
+    const dispatch:ThunkDispatch = useDispatch();
+    const onCreateQuestion = (q:Question) => {
+        dispatch(createQuestion(q));
+        setShowCreateQuestion(false);
+    };
+    const onSaveClick = () => {
+
+    };
+
+
+    return <Modal show={show} onHide={onClose}>
+        <CreateQuestion show={showCreateQuestion} onClose={() => setShowCreateQuestion(false)} onCreate={onCreateQuestion}/>
+        <Modal.Header closeButton>
+            <Modal.Title>Create record</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <Row>
+                <Col>
+                    <Form.Label>Question</Form.Label>
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={10}>
+                    <Form.Group>
+                    <QuestionSelector question={question} onSelect={setQuestion}/>
+                    </Form.Group>
+                </Col>
+                <Col className="align-bottom">
+                    <Button variant="primary" onClick={() => setShowCreateQuestion(true)}>
+                        <GoPlus/>
+                    </Button>
+                </Col>
+            </Row>
+            <AnswerForm show={question !== null} answer={answer} onChange={setAnswer}/>
+        </Modal.Body>
+        <Modal.Footer>
+            <ButtonToolbar>
+                <Button variant='success' onClick={onSaveClick} disabled={!isValid(question, answer)}>Save</Button>
+                <Button onClick={onClose}>Cancel</Button>
+                {!record.isNew && <Button variant='warning' onClick={() => onRemove(record)}>Remove</Button>}
+            </ButtonToolbar>
+        </Modal.Footer>
+    </Modal>
+};
+
+export default RecordDetail;

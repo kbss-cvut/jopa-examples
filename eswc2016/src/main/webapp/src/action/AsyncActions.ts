@@ -3,6 +3,7 @@ import Util, {ThunkDispatch} from "../util/Util";
 import {asyncActionFailure, asyncActionRequest, asyncActionSuccess, asyncActionSuccessWithPayload} from "./SyncActions";
 import Event from "../model/Event";
 import axios from "axios";
+import {Question} from "../model/Record";
 
 const URL = `${process.env.REACT_APP_SERVER_URL || ""}/rest`;
 
@@ -123,6 +124,27 @@ export function removeAudit(id: Number) {
         return axios.delete(`${URL}/events/${id}`)
             .then(() => dispatch(asyncActionSuccess(action)))
             .then(() => dispatch(loadAudits))
+            .catch(err => dispatch(asyncActionFailure(action, err)));
+    };
+}
+
+export function loadQuestions() {
+    const action = {type: ActionType.LOAD_QUESTIONS};
+    return (dispatch: ThunkDispatch) => {
+        dispatch(asyncActionRequest(action));
+        return axios.get(`${URL}/questions`)
+            .then(questions => dispatch(asyncActionSuccessWithPayload(action, questions)))
+            .catch(err => dispatch(asyncActionFailure(action, err)));
+    }
+}
+
+export function createQuestion(question: Question) {
+    const action = {type: ActionType.CREATE_QUESTION};
+    return (dispatch: ThunkDispatch) => {
+        dispatch(asyncActionRequest(action));
+        return axios.post(`${URL}/questions`, question)
+            .then(() => dispatch(asyncActionSuccess(action)))
+            .then(() => loadQuestions())
             .catch(err => dispatch(asyncActionFailure(action, err)));
     };
 }
