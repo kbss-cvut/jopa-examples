@@ -1,5 +1,6 @@
 import {BaseEntity} from "./Types";
 import Person from "./Person";
+import Record from "./Record";
 
 export interface Report extends BaseEntity {
     identifier?: number;
@@ -8,4 +9,5 @@ export interface Report extends BaseEntity {
     recordCount?: number;
     hasAuthor?: Person;
     created?: number;
+    has_documentation_part?: Record[];
 }

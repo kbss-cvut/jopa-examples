@@ -1,6 +1,6 @@
 export default interface Record {
-    id: string;
-    name: string;
+    id?: string;
+    name?: string;
     types?: string[];
 
     has_question?: Question;
@@ -16,6 +16,6 @@ export interface Question {
 }
 
 export interface Answer {
-    id: string;
-    has_data_value: string;
+    id?: string;
+    has_data_value?: string;
 }
