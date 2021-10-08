@@ -3,10 +3,9 @@ import AsyncActionStatus from "./AsyncActionStatus";
 import {AsyncAction, AsyncActionSuccess, AsyncFailureAction} from "./ActionType";
 
 export function asyncActionRequest(
-    a: Action,
-    ignoreLoading: boolean = false
+    a: Action
 ): AsyncAction {
-    return {...a, status: AsyncActionStatus.REQUEST, ignoreLoading};
+    return {...a, status: AsyncActionStatus.REQUEST};
 }
 
 export function asyncActionFailure(

@@ -4,7 +4,7 @@ import BasicAuditInfo from "./BasicAuditInfo";
 import Event from "../../model/Event";
 import Properties from "../property/Properties";
 import AuditReports from "./AuditReports";
-import {Report} from "../../model/Report";
+import {ReportItem} from "../../model/Report";
 import Util, {ThunkDispatch} from "../../util/Util";
 import {useDispatch} from "react-redux";
 import {loadAudit, removeReport} from "../../action/AsyncActions";
@@ -21,7 +21,7 @@ interface AuditDetailProps {
 const AuditDetail: React.FC<AuditDetailProps> = props => {
     const {audit, addReport, onChange, onSave, onCancel} = props;
     const dispatch: ThunkDispatch = useDispatch();
-    const onRemove = (r: Report) => {
+    const onRemove = (r: ReportItem) => {
         dispatch(removeReport(r.identifier!)).then(() => dispatch(loadAudit(audit.identifier!)));
     };
 

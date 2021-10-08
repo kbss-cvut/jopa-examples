@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 import {Route, Switch} from "react-router";
 import Data from "./Data";
 import Settings from "./Settings";
+import ReportsController from "./report/ReportsController";
 
 const MainView: React.FC = (props) => {
     const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const MainView: React.FC = (props) => {
                 <Switch>
                     <Route path='/data' component={Data}/>
                     <Route path='/settings' component={Settings}/>
+                    <Route path="/reports" component={ReportsController}/>
                 </Switch>
             </Container>
         </section>

@@ -1,5 +1,5 @@
 import {BaseEntity, Properties} from "./Types";
-import {Report} from "./Report";
+import {ReportItem} from "./Report";
 
 export default interface Event extends BaseEntity {
     identifier?: number;
@@ -7,7 +7,7 @@ export default interface Event extends BaseEntity {
     date: number;
     types?: string[];
     properties?: Properties;
-    isDocumentedBy?: Report[];
+    isDocumentedBy?: ReportItem[];
 
     isNew?: boolean;
 }

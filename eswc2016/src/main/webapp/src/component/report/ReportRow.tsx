@@ -1,12 +1,12 @@
 import {Button} from "react-bootstrap";
 import React from "react";
 import Util from "../../util/Util";
-import {Report} from "../../model/Report";
+import {ReportItem} from "../../model/Report";
 import Routing from "../../util/Routing";
 
 interface ReportRowProps {
-    report: Report;
-    onRemove: (r: Report) => void;
+    report: ReportItem;
+    onRemove: (r: ReportItem) => void;
 }
 
 const ReportRow: React.FC<ReportRowProps> = props => {

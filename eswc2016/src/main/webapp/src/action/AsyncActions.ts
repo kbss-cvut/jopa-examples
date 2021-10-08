@@ -4,6 +4,7 @@ import {asyncActionFailure, asyncActionRequest, asyncActionSuccess, asyncActionS
 import Event from "../model/Event";
 import axios from "axios";
 import {Question} from "../model/Record";
+import Report from "../model/Report";
 
 const URL = `${process.env.REACT_APP_SERVER_URL || ""}/rest`;
 
@@ -66,6 +67,63 @@ export function removeReport(id: number) {
         return axios.delete(`${URL}/reports/${id}`)
             .then(() => dispatch(asyncActionSuccess(action)))
             .catch(err => dispatch(asyncActionFailure(action, err)));
+    };
+}
+
+export function loadReport(id: number) {
+    const action = {type: ActionType.LOAD_REPORT};
+    return (dispatch: ThunkDispatch) => {
+        dispatch(asyncActionRequest(action));
+        return axios.get(`${URL}/reports/${id}`)
+            .then(resp => {
+                dispatch(asyncActionSuccess(action));
+                return Promise.resolve(resp.data as Report);
+            })
+            .catch(err => {
+                dispatch(asyncActionFailure(action, err));
+                return Promise.reject(err);
+            });
+    }
+}
+
+export function saveReport(report: Report) {
+    if (report.isNew) {
+        delete report.isNew;
+        return createReport(report);
+    } else {
+        return updateReport(report);
+    }
+}
+
+function createReport(report: Report) {
+    const action = {type: ActionType.CREATE_REPORT};
+    return (dispatch: ThunkDispatch) => {
+        dispatch(asyncActionRequest(action));
+        return axios.post(`${URL}/reports`, report)
+            .then(resp => {
+                asyncActionSuccess(action);
+                const key = Util.extractKeyFromLocationHeader(resp);
+                dispatch(loadReports);
+                return dispatch(loadReport(Number(key)));
+            })
+            .catch(err => {
+                dispatch(asyncActionFailure(action, err));
+                return Promise.reject(err);
+            });
+    };
+}
+
+function updateReport(report: Report) {
+    const action = {type: ActionType.UPDATE_REPORT};
+    return (dispatch: ThunkDispatch) => {
+        dispatch(asyncActionRequest(action));
+        return axios.put(`${URL}/reports/${report.identifier}`, report)
+            .then(() => asyncActionSuccess(action))
+            .then(() => dispatch(loadReport(report.identifier!)))
+            .catch(err => {
+                dispatch(asyncActionFailure(action, err));
+                return Promise.reject(err);
+            });
     };
 }
 

@@ -1,4 +1,4 @@
-import Audit from "../../model/Audit";
+import Event from "../../model/Event";
 import React, {useEffect} from "react";
 import {Button, Col, Modal, Row} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
@@ -11,7 +11,7 @@ import {SelectOption} from "../../model/Types";
 interface CreateReportDialogProps {
     show: boolean;
     onClose: () => void;
-    onSelect: (audit: Audit | null) => void;
+    onSelect: (audit: Event | null) => void;
 }
 
 const CreateReportDialog: React.FC<CreateReportDialogProps> = props => {

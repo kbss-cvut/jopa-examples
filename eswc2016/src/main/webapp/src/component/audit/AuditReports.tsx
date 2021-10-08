@@ -1,4 +1,4 @@
-import {Report} from "../../model/Report";
+import {ReportItem} from "../../model/Report";
 import React, {useState} from "react";
 import {Button, ButtonToolbar, Card, Col, Row, Table} from "react-bootstrap";
 import DeleteDialog from "../DeleteDialog";
@@ -8,15 +8,15 @@ import {Routing} from "../../util/Routing";
 
 interface AuditReportsProps {
     addReport: () => void;
-    removeReport: (r: Report) => void;
-    reports: Report[];
+    removeReport: (r: ReportItem) => void;
+    reports: ReportItem[];
 }
 
 const AuditReports: React.FC<AuditReportsProps> = props => {
     const {addReport, removeReport, reports} = props;
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-    const [toRemove, setToRemove] = useState<Report | null>(null);
-    const onRemove = (r: Report) => {
+    const [toRemove, setToRemove] = useState<ReportItem | null>(null);
+    const onRemove = (r: ReportItem) => {
         setToRemove(r);
         setShowDeleteDialog(true);
     };
@@ -63,8 +63,8 @@ const AuditReports: React.FC<AuditReportsProps> = props => {
 export default AuditReports;
 
 interface ReportRowProps {
-    report: Report;
-    onRemove: (r: Report) => void;
+    report: ReportItem;
+    onRemove: (r: ReportItem) => void;
 }
 
 const ReportRow: React.FC<ReportRowProps> = props => {

@@ -1,13 +1,13 @@
 import React from "react";
-import {Report} from "../../model/Report";
+import {ReportItem} from "../../model/Report";
 import Util from "../../util/Util";
 import {Button, Card, Col, Row, Table} from "react-bootstrap";
 import ReportRow from "./ReportRow";
 
 interface ReportsProps {
-    reports: Report[];
+    reports: ReportItem[];
     createReport: () => void;
-    removeReport: (report: Report) => void;
+    removeReport: (report: ReportItem) => void;
 }
 
 const Reports: React.FC<ReportsProps> = props => {

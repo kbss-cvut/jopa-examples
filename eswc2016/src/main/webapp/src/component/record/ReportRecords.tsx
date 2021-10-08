@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Report} from "../../model/Report";
+import Report from "../../model/Report";
 import Record from "../../model/Record";
 import Util from "../../util/Util";
 import {Button, Card, Col, Row, Table} from "react-bootstrap";

@@ -2,7 +2,7 @@ import {combineReducers} from "redux";
 import AppModel from "../model/AppModel";
 import ActionType, {AsyncActionSuccess} from "../action/ActionType";
 import AsyncActionStatus from "../action/AsyncActionStatus";
-import {Report} from "../model/Report";
+import {ReportItem} from "../model/Report";
 import Event from "../model/Event";
 import {Question} from "../model/Record";
 
@@ -25,7 +25,7 @@ function properties(state: string[] = [], action: AsyncActionSuccess<string[]>) 
     return state;
 }
 
-function reports(state: Report[] = [], action: AsyncActionSuccess<Report[]>) {
+function reports(state: ReportItem[] = [], action: AsyncActionSuccess<ReportItem[]>) {
     switch (action.type) {
         case ActionType.SAVE_SETTINGS:
             return [];

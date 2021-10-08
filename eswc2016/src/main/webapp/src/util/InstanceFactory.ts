@@ -1,5 +1,5 @@
 import Event from "../model/Event";
-import {Report} from "../model/Report";
+import Report from "../model/Report";
 
 export function createAudit(): Event {
     return {
@@ -9,7 +9,7 @@ export function createAudit(): Event {
 }
 
 export function createReport(audit?: object): Report {
-    var report: any = {isNew: true, has_documentation_part: []};
+    const report: any = {isNew: true, has_documentation_part: []};
     if (audit) {
         report.documents = audit;
     } else {
