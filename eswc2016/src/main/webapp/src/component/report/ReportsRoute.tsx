@@ -4,6 +4,7 @@ import ReportsController from "./ReportsController";
 
 const ReportsRoute = () => {
     return <Switch>
+        <Route path="/reports/create" component={ReportDetail}/>
         <Route path="/reports/:reportKey" component={ReportDetail}/>
         <Route exact={true} component={ReportsController}/>
     </Switch>

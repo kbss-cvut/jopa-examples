@@ -38,9 +38,9 @@ const AuditDetail: React.FC<AuditDetailProps> = props => {
 
                 <Row>
                     <Col>
-                        <ButtonToolbar>
-                            <Button variant='primary' onClick={onSave}>{audit.isNew ? 'Create' : 'Save'}</Button>
-                            <Button onClick={onCancel}>Cancel</Button>
+                        <ButtonToolbar className="float-end">
+                            <Button variant='success' onClick={onSave} className="me-2">{audit.isNew ? 'Create' : 'Save'}</Button>
+                            <Button variant="outline-primary" onClick={onCancel}>Cancel</Button>
                         </ButtonToolbar>
                     </Col>
                 </Row>

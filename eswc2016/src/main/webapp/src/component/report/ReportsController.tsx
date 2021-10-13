@@ -22,7 +22,7 @@ const ReportsController: React.FC = () => {
     const onSelectAudit = (audit: Event | null) => {
         setShowCreateDialog(false);
         if (audit) {
-            Routing.transitionTo('reports/create', {query: new Map<string, string>([["auditId", audit.identifier!.toString()]])});
+            Routing.transitionTo('reports/create', {query: new Map<string, string>([["auditKey", audit.identifier!.toString()]])});
         } else {
             Routing.transitionTo('audits/create');
         }

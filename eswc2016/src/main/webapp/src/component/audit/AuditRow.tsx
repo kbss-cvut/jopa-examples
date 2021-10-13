@@ -16,10 +16,10 @@ const AuditRow: React.FC<AuditRowProps> = props => {
     return <tr>
         <td className="align-middle">{audit.title}</td>
         <td className='text-center align-middle'>{Util.formatDate(new Date(audit.date))}</td>
-        <td className='actions'>
+        <td className='text-center'>
             <Link
-                to={Routing.buildUrl("/audits/:auditId", {params: new Map<string, string>([["auditId", audit.identifier!.toString()]])})}>
-                <Button variant='info' size='sm'>Edit</Button>
+                to={Routing.buildUrl("/audits/:auditKey", {params: new Map<string, string>([["auditKey", audit.identifier!.toString()]])})}>
+                <Button variant='info' className="me-2" size='sm'>Edit</Button>
             </Link>
             <Button variant='warning' size='sm' onClick={() => onRemove(audit)}>Remove</Button>
         </td>

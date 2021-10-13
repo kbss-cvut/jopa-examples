@@ -1,7 +1,9 @@
 import React from "react";
 import {Col, Form, Row} from "react-bootstrap";
 import Datetime from "react-datetime";
+import "react-datetime/css/react-datetime.css";
 import Event from "../../model/Event";
+import {Moment} from "moment";
 
 interface BasicAuditInfoProps {
     audit: Event;
@@ -11,6 +13,11 @@ interface BasicAuditInfoProps {
 
 const BasicAuditInfo: React.FC<BasicAuditInfoProps> = props => {
     const {audit, disabled, onChange} = props;
+    const onDateChange = (v: string | Moment) => {
+        if ((v as any).date) {
+            onChange({date: (v as Moment).valueOf()});
+        }
+    };
 
     return <>
         <Row className="mb-3">
@@ -23,10 +30,10 @@ const BasicAuditInfo: React.FC<BasicAuditInfoProps> = props => {
             </Col>
         </Row>
         <Row className='mb-3'>
-            <Col>
+            <Col xs={6}>
                 <Form.Group>
                     <Form.Label>Audit date</Form.Label>
-                    <Datetime value={new Date(audit.date)} onChange={() => {}}
+                    <Datetime value={new Date(audit.date)} onChange={onDateChange}
                               inputProps={{disabled}}/>
                 </Form.Group>
             </Col>

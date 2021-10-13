@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react";
 import Report from "../../model/Report";
 import {useDispatch} from "react-redux";
 import Util, {ThunkDispatch} from "../../util/Util";
-import {useParams} from "react-router";
-import {loadReport, saveReport} from "../../action/AsyncActions";
+import {useLocation, useParams} from "react-router";
+import {loadAudit, loadReport, saveReport} from "../../action/AsyncActions";
 import {createReport} from "../../util/InstanceFactory";
 import {Button, ButtonToolbar, Card, Col, Row} from "react-bootstrap";
 import BasicAuditInfo from "../audit/BasicAuditInfo";
@@ -16,15 +16,21 @@ function empty() {
 
 const ReportDetail: React.FC = () => {
     const {reportKey} = useParams<{ reportKey?: string }>();
+    const location = useLocation();
     const [report, setReport] = useState<Report>();
     const dispatch = useDispatch<ThunkDispatch>();
     useEffect(() => {
         if (reportKey) {
             dispatch(loadReport(Number(reportKey))).then((r: Report) => setReport(r));
         } else {
-            setReport(createReport());
+            const auditKey = Util.extractQueryParam(location.search, "auditKey");
+            if (auditKey) {
+                dispatch(loadAudit(Number(auditKey))).then((a: Event) => setReport(createReport(a)));
+            } else {
+                setReport(createReport());
+            }
         }
-    }, [reportKey, dispatch, setReport]);
+    }, [reportKey, dispatch, location, setReport]);
     const onChange = (change: Partial<Report>) => {
         setReport(Object.assign({}, report, change));
     };
@@ -38,7 +44,7 @@ const ReportDetail: React.FC = () => {
     return <Card id="report">
         <Card.Header>Report</Card.Header>
         <Card.Body>
-            <Card>
+            <Card className="mb-3">
                 <Card.Header>Audit info</Card.Header>
                 <Card.Body>
                     <BasicAuditInfo audit={report!.documents} onChange={empty} disabled={true}/>
@@ -54,13 +60,12 @@ const ReportDetail: React.FC = () => {
             <ReportRecords report={report!} onChange={onChange}/>
 
             <Properties properties={report!.properties} onChange={onChange}/>
-        </Card.Body>
-        <Card.Footer>
-            <ButtonToolbar>
-                <Button variant='success' onClick={onSave}>Save</Button>
+
+            <ButtonToolbar className="float-end">
+                <Button variant='success' className="me-2" onClick={onSave}>Save</Button>
                 <Button variant="outline-primary" onClick={() => Routing.transitionTo('reports')}>Cancel</Button>
             </ButtonToolbar>
-        </Card.Footer>
+        </Card.Body>
     </Card>;
 };
 

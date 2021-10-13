@@ -29,8 +29,8 @@ const CreateQuestion: React.FC<CreateQuestionProps> = props => {
             </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-            <ButtonToolbar className="pull-right">
-                <Button variant="success" onClick={onSaveClick}>Create</Button>
+            <ButtonToolbar className="float-end">
+                <Button variant="success" className="me-2" onClick={onSaveClick}>Create</Button>
                 <Button variant="outline-primary" onClick={onClose}>Cancel</Button>
             </ButtonToolbar>
         </Modal.Footer>

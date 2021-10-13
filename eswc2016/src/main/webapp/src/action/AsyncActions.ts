@@ -13,7 +13,9 @@ export function loadSettings(key: string) {
     return (dispatch: ThunkDispatch) => {
         dispatch(asyncActionRequest(action));
         return axios.get(`${URL}/configuration?key=${key}`).then(resp => {
-            dispatch(asyncActionSuccessWithPayload(action, resp.data));
+            const payload = {};
+            payload[key] = resp.data;
+            dispatch(asyncActionSuccessWithPayload(action, payload));
             return Promise.resolve(resp.data);
         }).catch(err => dispatch(asyncActionFailure(action, err)));
     };
@@ -57,7 +59,7 @@ export function loadReports() {
     const action = {type: ActionType.LOAD_REPORTS};
     return (dispatch: ThunkDispatch) => {
         dispatch(asyncActionRequest(action));
-        return axios.get(`${URL}/reports}`)
+        return axios.get(`${URL}/reports`)
             .then(resp => dispatch(asyncActionSuccessWithPayload(action, resp.data)))
             .catch(err => dispatch(asyncActionFailure(action, err)));
     };
@@ -134,7 +136,7 @@ export function loadAudits() {
     const action = {type: ActionType.LOAD_AUDITS};
     return (dispatch: ThunkDispatch) => {
         dispatch(asyncActionRequest(action));
-        return axios.get(`${URL}/events}`)
+        return axios.get(`${URL}/events`)
             .then(resp => dispatch(asyncActionSuccessWithPayload(action, resp.data)))
             .catch(err => dispatch(asyncActionFailure(action, err)));
     };
@@ -194,7 +196,7 @@ export function loadQuestions() {
     return (dispatch: ThunkDispatch) => {
         dispatch(asyncActionRequest(action));
         return axios.get(`${URL}/questions`)
-            .then(questions => dispatch(asyncActionSuccessWithPayload(action, questions)))
+            .then(resp => dispatch(asyncActionSuccessWithPayload(action, resp.data)))
             .catch(err => dispatch(asyncActionFailure(action, err)));
     }
 }

@@ -9,18 +9,18 @@ import Event from "../../model/Event";
 import {createAudit} from "../../util/InstanceFactory";
 
 const AuditController = () => {
-    const {auditId} = useParams<{ auditId: string }>();
+    const {auditKey} = useParams<{ auditKey: string }>();
     const dispatch: ThunkDispatch = useDispatch();
     const [audit, setAudit] = useState<Event | null>(null);
     useEffect(() => {
-        if (auditId) {
-            dispatch(loadAudit(Number(auditId))).then(audit => setAudit(audit));
+        if (auditKey) {
+            dispatch(loadAudit(Number(auditKey))).then(audit => setAudit(audit));
         } else {
             setAudit(createAudit())
         }
-    }, [auditId, dispatch, setAudit]);
+    }, [auditKey, dispatch, setAudit]);
     const onAddReport = (auditId: number) => {
-        Routing.transitionTo("/reports/create", {query: new Map<string, string>([["auditId", auditId.toString()]])});
+        Routing.transitionTo("/reports/create", {query: new Map<string, string>([["auditKey", auditId.toString()]])});
     };
     const onCancel = () => {
         Routing.transitionTo("/audits");

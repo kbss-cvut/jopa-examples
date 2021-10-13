@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 import {PropertyRecord} from "./Properties";
-import {Button, Form} from "react-bootstrap";
+import {Button, ButtonToolbar, Form} from "react-bootstrap";
 import Select from "react-select";
 import {SelectOption} from "../../model/Types";
 import {useSelector} from "react-redux";
 import AppModel from "../../model/AppModel";
+import Util from "../../util/Util";
 
 interface PropertyEditRowProps {
     record: PropertyRecord;
@@ -19,25 +20,27 @@ const PropertyEditRow: React.FC<PropertyEditRowProps> = props => {
         setData(Object.assign({}, data, {property: opt!.value}));
     };
     const properties = useSelector((state: AppModel) => state.properties);
-    const options = properties.map(p => ({value: p, label: p}));
+    const options = Util.sanitizeArray(properties).map(p => ({value: p, label: p}));
 
     return <tr>
-        <td className='properties'>
+        <td className='align-middle'>
             <Select isMulti={false} onChange={onOptionSelect} options={options}
                     value={options.find(o => o.value === data.property)}/>
         </td>
-        <td className='properties'>
+        <td className='align-middle'>
             <div>
                 <Form.Group>
-                    <Form.Control type="text" size="sm" value={data.value}
+                    <Form.Control type="text" value={data.value}
                                   onChange={e => setData(Object.assign({}, data, {value: e.currentTarget.value}))}/>
                 </Form.Group>
             </div>
         </td>
-        <td className='actions align-middle'>
-            <Button variant='primary' size='sm' onClick={() => onSave(data)}
-                    disabled={!data.property || (data.value || "").trim().length === 0}>Save</Button>
-            <Button variant="outline-primary" size='sm' onClick={onCancel}>Cancel</Button>
+        <td className='text-center align-middle'>
+            <ButtonToolbar>
+                <Button variant='primary' size='sm' className="me-1" onClick={() => onSave(data)}
+                        disabled={!data.property || (data.value || "").trim().length === 0}>Save</Button>
+                <Button variant="outline-primary" size='sm' onClick={onCancel}>Cancel</Button>
+            </ButtonToolbar>
         </td>
     </tr>;
 };

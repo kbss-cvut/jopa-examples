@@ -24,12 +24,12 @@ const QuestionSelector: React.FC<QuestionSelectorProps> = props => {
         value: q.id
     })), [questions]);
     const onOptionSelect = (o: SelectOption | null) => {
-        const q = o != null ? questions.find(q => q.id === o.value) : null;
+        const q = o != null ? Util.sanitizeArray(questions).find(q => q.id === o.value) : null;
         onSelect(q !== undefined ? q : null);
     };
     const value = question ? options.find(q => q.value === question.id) : undefined;
 
-    return <Select options={options} placeholder='Type question or select an existing one' onChange={onOptionSelect}
+    return <Select options={options} placeholder='Select a question or create one' onChange={onOptionSelect}
                    value={value}/>
 };
 

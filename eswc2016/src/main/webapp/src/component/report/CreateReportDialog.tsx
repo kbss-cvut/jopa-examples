@@ -21,12 +21,13 @@ const CreateReportDialog: React.FC<CreateReportDialogProps> = props => {
         dispatch(loadAudits());
     }, [dispatch]);
     const audits = useSelector((state: AppModel) => state.audits);
-    const options = audits.map(a => ({label: a.title, value: a.id}));
+    const options = audits.map(a => ({label: a.title, value: a.identifier!.toString()}));
     const onOptionSelect = (opt: SelectOption | null) => {
         if (opt == null) {
             onSelect(null);
         }
-        onSelect(audits.find(a => a.id = opt!.value) || null);
+        const id = Number(opt!.value);
+        onSelect(audits.find(a => a.identifier === id) || null);
     };
 
     return <Modal show={show} onHide={onClose}>

@@ -18,8 +18,8 @@ const RecordRow: React.FC<RecordRowProps> = props => {
     return <tr>
         <td className={classNames(className, "align-middle")}>{record!.has_question!.has_data_value}</td>
         <td className={classNames(className, "align-middle")}>{record!.has_answer!.has_data_value}</td>
-        <td className={classNames(className, "align-middle actions")}>
-            <Button variant='info' onClick={() => onEdit(record)}>Edit</Button>
+        <td className={classNames(className, "align-middle text-center")}>
+            <Button variant='info' className="me-2" onClick={() => onEdit(record)}>Edit</Button>
             <Button variant='warning' onClick={() => onRemove(record)}>Remove</Button>
         </td>
     </tr>;

@@ -21,7 +21,7 @@ const Answer: React.FC<AnswerProps> = props => {
 
     return <Row>
         <Col>
-            <Form.Group>
+            <Form.Group className="mb-3">
                 <Form.Label>Answer</Form.Label>
                 <Form.Control type="textarea" value={answer ? answer.has_data_value : ""} onChange={onAnswerChange}/>
             </Form.Group>

@@ -1,4 +1,4 @@
-import {Col, Container, Nav, Navbar, NavItem, NavLink, Row} from "react-bootstrap";
+import {Container, Nav, Navbar, NavItem, NavLink} from "react-bootstrap";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import AppModel from "../model/AppModel";
@@ -9,6 +9,7 @@ import {Route, Switch} from "react-router";
 import Data from "./Data";
 import Settings from "./Settings";
 import ReportsRoute from "./report/ReportsRoute";
+import AuditsRoute from "./audit/AuditsRoute";
 
 const MainView = () => {
     const dispatch = useDispatch();
@@ -17,37 +18,37 @@ const MainView = () => {
         dispatch(loadSettings(Constants.REPOSITORY_TYPE_PARAM));
     }, [dispatch]);
 
-    return <div>
-        <header>
+    return <>
+        <header className="mb-5">
             <Navbar bg="light" expand="lg">
-                <Navbar.Brand>JOPA ESWC 2016</Navbar.Brand>
-                <Nav>
-                    <NavItem><NavLink href="#/audits">Audits</NavLink></NavItem>
-                    <NavItem><NavLink href="#/reports">Reports</NavLink></NavItem>
-                    <NavItem><NavLink href="#/data">Data</NavLink></NavItem>
-                    <NavItem><NavLink href="#/settings">Settings</NavLink></NavItem>
-                </Nav>
+                <Container>
+                    <Navbar.Brand href="#/reports">JOPA ESWC 2016</Navbar.Brand>
+                    <Nav className="me-auto">
+                        <NavItem><NavLink href="#/audits">Audits</NavLink></NavItem>
+                        <NavItem><NavLink href="#/reports">Reports</NavLink></NavItem>
+                        <NavItem><NavLink href="#/data">Data</NavLink></NavItem>
+                        <NavItem><NavLink href="#/settings">Settings</NavLink></NavItem>
+                    </Nav>
+                </Container>
             </Navbar>
         </header>
-        <section>
+        <main className="flex-shrink-0 mb-5">
             <Container fluid={true}>
                 <Switch>
                     <Route path='/data' component={Data}/>
                     <Route path='/settings' component={Settings}/>
+                    <Route path="/audits" component={AuditsRoute}/>
                     <Route path="/reports" component={ReportsRoute}/>
+                    <Route exact={true} component={ReportsRoute}/>
                 </Switch>
             </Container>
-        </section>
-        <footer>
-            <Row>
-                <Col>
-                    <div>
-                        <Link to="settings" title='View repository type information'>{storage}</Link>
-                    </div>
-                </Col>
-            </Row>
+        </main>
+        <footer className="footer mt-auto py-3 bg-light">
+            <Container fluid={true} className="text-end">
+                <Link to="settings" title='View repository type information'>{storage}</Link>
+            </Container>
         </footer>
-    </div>;
+    </>;
 };
 
 export default MainView;

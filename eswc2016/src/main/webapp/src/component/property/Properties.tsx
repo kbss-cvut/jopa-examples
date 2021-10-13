@@ -64,7 +64,7 @@ const Properties: React.FC<PropertiesProps> = props => {
     }
 
     return (
-        <Card>
+        <Card className="mb-3">
             <Card.Header>Additional properties</Card.Header>
             <Card.Body>
                 <Table striped={true} hover={true}>

@@ -23,20 +23,22 @@ const Audits: React.FC = () => {
 
     return <Card>
         <Card.Header>Audits</Card.Header>
-        <Table striped bordered hover>
-            <thead>
-            <tr>
-                <td className="col-xs-7 centered">Title</td>
-                <td className="col-xs-3 centered">Date</td>
-                <td className="col-xs-2 centered">Actions</td>
-            </tr>
-            </thead>
-            <tbody>
-            {audits.map(a => <AuditRow audit={a} onRemove={(a: Event) => setToRemove(a)}/>)}
-            </tbody>
-        </Table>
-        <Link to="/audits/create" className="btn btn-info">New Audit</Link>
-        <DeleteDialog show={toRemove !== null} onSubmit={onSubmitRemove} onClose={() => setToRemove(null)}/>
+        <Card.Body>
+            <Table striped bordered hover>
+                <thead>
+                <tr>
+                    <td className="col-xs-7 fw-bold text-center">Title</td>
+                    <td className="col-xs-3 fw-bold text-center">Date</td>
+                    <td className="col-xs-2 fw-bold text-center">Actions</td>
+                </tr>
+                </thead>
+                <tbody>
+                {audits.map(a => <AuditRow key={a.identifier} audit={a} onRemove={(a: Event) => setToRemove(a)}/>)}
+                </tbody>
+            </Table>
+            <Link to="/audits/create" className="btn btn-info">New Audit</Link>
+            <DeleteDialog show={toRemove !== null} onSubmit={onSubmitRemove} onClose={() => setToRemove(null)}/>
+        </Card.Body>
     </Card>;
 };
 

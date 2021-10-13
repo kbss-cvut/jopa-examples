@@ -50,19 +50,15 @@ const RecordDetail: React.FC<RecordDetailProps> = props => {
             <Modal.Title>Create record</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <Row>
-                <Col>
-                    <Form.Label>Question</Form.Label>
-                </Col>
-            </Row>
-            <Row>
+            <Row className="mb-3">
                 <Col xs={10}>
                     <Form.Group>
+                        <Form.Label>Question</Form.Label>
                         <QuestionSelector question={question} onSelect={setQuestion}/>
                     </Form.Group>
                 </Col>
-                <Col className="align-bottom">
-                    <Button variant="primary" onClick={() => setShowCreateQuestion(true)}>
+                <Col className="align-self-end">
+                    <Button variant="primary" className="align-bottom" onClick={() => setShowCreateQuestion(true)}>
                         <GoPlus/>
                     </Button>
                 </Col>
@@ -71,9 +67,9 @@ const RecordDetail: React.FC<RecordDetailProps> = props => {
             <RecordClassification onChange={setClassification} show={question !== null} types={classification}/>
         </Modal.Body>
         <Modal.Footer>
-            <ButtonToolbar>
-                <Button variant='success' onClick={onSaveClick} disabled={!isValid(question, answer)}>Save</Button>
-                <Button onClick={onClose}>Cancel</Button>
+            <ButtonToolbar className="float-end">
+                <Button variant='success' className="me-2" onClick={onSaveClick} disabled={!isValid(question, answer)}>Save</Button>
+                <Button variant="outline-primary" onClick={onClose}>Cancel</Button>
                 {!record.isNew && <Button variant='warning' onClick={() => onRemove(record)}>Remove</Button>}
             </ButtonToolbar>
         </Modal.Footer>

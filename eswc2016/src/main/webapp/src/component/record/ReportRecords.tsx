@@ -20,14 +20,14 @@ const ReportRecords: React.FC<ReportRecordsProps> = props => {
         copy.splice(copy.indexOf(r), 1);
         onChange({has_documentation_part: copy});
     };
-    const onSave = () => {
+    const onSave = (record: Record) => {
         const copy = [...records];
-        if (currentRecord!.isNew) {
-            delete currentRecord!.isNew;
-            copy.push(currentRecord!);
+        if (record.isNew) {
+            delete record!.isNew;
+            copy.push(record);
         } else {
-            const index = records.findIndex(r => r.id === currentRecord!.id);
-            copy.splice(index, 1, currentRecord!);
+            const index = records.findIndex(r => r.id === record.id);
+            copy.splice(index, 1, record);
         }
         onChange({has_documentation_part: copy});
         setCurrentRecord(null);
@@ -37,7 +37,7 @@ const ReportRecords: React.FC<ReportRecordsProps> = props => {
     };
     const hasRecords = currentRecord !== null || records.length > 0;
 
-    return <Card>
+    return <Card className="mb-3">
         <Card.Header>Records</Card.Header>
         <Card.Body>
             {currentRecord &&
@@ -54,7 +54,7 @@ const ReportRecords: React.FC<ReportRecordsProps> = props => {
                 <tbody>
                 {records.map(r => <RecordRow key={r.id} record={r} onEdit={setCurrentRecord} onRemove={onRemove}/>)}
                 </tbody>
-            </Table> : <div className='italics form-group'>There are no records, yet.</div>}
+            </Table> : <div className='mb-3 fst-italic'>There are no records, yet.</div>}
             <Row>
                 <Col>
                     <Button variant='info' onClick={onAdd}>Add Record</Button>

@@ -3,6 +3,7 @@ import Report from "../model/Report";
 
 export function createAudit(): Event {
     return {
+        title: "",
         isNew: true,
         date: (Date.now() / 1000) * 1000
     };

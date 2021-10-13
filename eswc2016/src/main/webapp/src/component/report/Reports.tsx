@@ -15,7 +15,7 @@ const Reports: React.FC<ReportsProps> = props => {
 
     let content: JSX.Element;
     if (Util.sanitizeArray(reports).length === 0) {
-        content = <div className="form-group italics">There are no reports, yet.</div>;
+        content = <div className="mb-3 fst-italic">There are no reports, yet.</div>;
     } else {
         content = <Table striped={true} responsive={true}>
             <thead>
