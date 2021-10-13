@@ -1,11 +1,11 @@
 import React, {ChangeEvent} from "react";
-import {Answer} from "../../model/Record";
+import {Answer as AnswerModel} from "../../model/Record";
 import {Col, Form, Row} from "react-bootstrap";
 
 interface AnswerProps {
     show: boolean;
-    answer: Answer;
-    onChange: (a: Answer) => void;
+    answer: AnswerModel;
+    onChange: (a: AnswerModel) => void;
 }
 
 const Answer: React.FC<AnswerProps> = props => {

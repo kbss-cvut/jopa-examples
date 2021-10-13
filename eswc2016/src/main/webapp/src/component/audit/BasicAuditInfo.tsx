@@ -26,7 +26,7 @@ const BasicAuditInfo: React.FC<BasicAuditInfoProps> = props => {
             <Col>
                 <Form.Group>
                     <Form.Label>Audit date</Form.Label>
-                    <Datetime value={new Date(audit.date)} onChange={v => onChange({date: v})}
+                    <Datetime value={new Date(audit.date)} onChange={() => {}}
                               inputProps={{disabled}}/>
                 </Form.Group>
             </Col>

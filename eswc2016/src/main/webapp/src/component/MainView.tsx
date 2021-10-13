@@ -1,5 +1,5 @@
 import {Col, Container, Nav, Navbar, NavItem, NavLink, Row} from "react-bootstrap";
-import React, {useEffect} from "react";
+import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import AppModel from "../model/AppModel";
 import {loadSettings} from "../action/AsyncActions";
@@ -8,9 +8,9 @@ import {Link} from "react-router-dom";
 import {Route, Switch} from "react-router";
 import Data from "./Data";
 import Settings from "./Settings";
-import ReportsController from "./report/ReportsController";
+import ReportsRoute from "./report/ReportsRoute";
 
-const MainView: React.FC = (props) => {
+const MainView = () => {
     const dispatch = useDispatch();
     const storage = useSelector((state: AppModel) => state.settings[Constants.REPOSITORY_TYPE_PARAM]);
     useEffect(() => {
@@ -34,7 +34,7 @@ const MainView: React.FC = (props) => {
                 <Switch>
                     <Route path='/data' component={Data}/>
                     <Route path='/settings' component={Settings}/>
-                    <Route path="/reports" component={ReportsController}/>
+                    <Route path="/reports" component={ReportsRoute}/>
                 </Switch>
             </Container>
         </section>

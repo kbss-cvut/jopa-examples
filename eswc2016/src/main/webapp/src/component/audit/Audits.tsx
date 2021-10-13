@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from "react";
 import {ThunkDispatch} from "../../util/Util";
 import {useDispatch, useSelector} from "react-redux";
-import {loadAudits} from "../../action/AsyncActions";
+import {loadAudits, removeAudit} from "../../action/AsyncActions";
 import AppModel from "../../model/AppModel";
 import Event from "../../model/Event";
 import {Card, Table} from "react-bootstrap";
 import AuditRow from "./AuditRow";
 import DeleteDialog from "../DeleteDialog";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
-const Audits:React.FC = () => {
+const Audits: React.FC = () => {
     const dispatch: ThunkDispatch = useDispatch();
     useEffect(() => {
         dispatch(loadAudits());
@@ -17,7 +17,8 @@ const Audits:React.FC = () => {
     const audits = useSelector((state: AppModel) => state.audits);
     const [toRemove, setToRemove] = useState<Event | null>(null);
     const onSubmitRemove = () => {
-
+        dispatch(removeAudit(toRemove!.identifier!));
+        setToRemove(null);
     };
 
     return <Card>

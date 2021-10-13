@@ -37,7 +37,10 @@ export function loadData(format: string) {
         return axios.get(`${URL}/data`, {params: {format}, headers: {"accept": "text/plain"}}).then(resp => {
             dispatch(asyncActionSuccess(action));
             return Promise.resolve(resp.data as string);
-        }).catch(err => dispatch(asyncActionFailure(action, err)));
+        }).catch(err => {
+            dispatch(asyncActionFailure(action, err));
+            return Promise.resolve("");
+        });
     };
 }
 
@@ -181,7 +184,7 @@ export function removeAudit(id: Number) {
         dispatch(asyncActionRequest(action));
         return axios.delete(`${URL}/events/${id}`)
             .then(() => dispatch(asyncActionSuccess(action)))
-            .then(() => dispatch(loadAudits))
+            .then(() => dispatch(loadAudits()))
             .catch(err => dispatch(asyncActionFailure(action, err)));
     };
 }

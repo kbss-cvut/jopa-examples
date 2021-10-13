@@ -36,7 +36,7 @@ const PropertyEditRow: React.FC<PropertyEditRowProps> = props => {
         </td>
         <td className='actions align-middle'>
             <Button variant='primary' size='sm' onClick={() => onSave(data)}
-                    disabled={!data.property || data.value.trim().length === 0}>Save</Button>
+                    disabled={!data.property || (data.value || "").trim().length === 0}>Save</Button>
             <Button variant="outline-primary" size='sm' onClick={onCancel}>Cancel</Button>
         </td>
     </tr>;

@@ -76,6 +76,6 @@ class Util {
  *
  * Action can be specified.
  */
-export type ThunkDispatch<A extends Action = Action> = TDispatch<AppModel, null, Action>;
+export type ThunkDispatch<A extends Action = Action> = TDispatch<AppModel, null, A>;
 
 export default new Util();
