@@ -17,13 +17,13 @@ const Reports: React.FC<ReportsProps> = props => {
     if (Util.sanitizeArray(reports).length === 0) {
         content = <div className="mb-3 fst-italic">There are no reports, yet.</div>;
     } else {
-        content = <Table striped={true} responsive={true}>
+        content = <Table striped bordered hover>
             <thead>
             <tr>
-                <th className='col-xs-3 centered'>Audit title</th>
-                <th className='col-xs-3 centered'>Audit date</th>
-                <th className='col-xs-3 centered'>Records</th>
-                <th className='col-xs-3 centered'>Actions</th>
+                <th className='col-xs-3 text-center'>Audit title</th>
+                <th className='col-xs-3 text-center'>Audit date</th>
+                <th className='col-xs-3 text-center'>Records</th>
+                <th className='col-xs-3 text-center'>Actions</th>
             </tr>
             </thead>
             <tbody>
