@@ -51,8 +51,8 @@ const ReportDetail: React.FC = () => {
                 </Card.Body>
             </Card>
 
-            {!report.isNew && <Row className='mb-3'>
-                <Col className='italics'>
+            {report.hasAuthor && <Row className='mb-3'>
+                <Col className='fst-italic'>
                     {`Created on ${Util.formatDate(new Date(report.created!))} by ${report.hasAuthor!.firstName} ${report.hasAuthor!.lastName}.`}
                 </Col>
             </Row>}

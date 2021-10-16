@@ -163,7 +163,7 @@ export function createAudit(audit: Event) {
             .then(resp => {
                 dispatch(asyncActionSuccess(action));
                 const id = Util.extractKeyFromLocationHeader(resp);
-                return dispatch(loadAudit(id));
+                return Promise.resolve(id);
             })
             .catch(err => dispatch(asyncActionFailure(action, err)));
     };
@@ -207,7 +207,7 @@ export function createQuestion(question: Question) {
         dispatch(asyncActionRequest(action));
         return axios.post(`${URL}/questions`, question)
             .then(() => dispatch(asyncActionSuccess(action)))
-            .then(() => loadQuestions())
+            .then(() => dispatch(loadQuestions()))
             .catch(err => dispatch(asyncActionFailure(action, err)));
     };
 }

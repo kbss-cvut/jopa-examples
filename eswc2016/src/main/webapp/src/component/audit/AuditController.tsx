@@ -30,7 +30,7 @@ const AuditController = () => {
     };
     const onSave = () => {
         if (audit!.isNew) {
-            dispatch(createAuditAction(audit!));
+            dispatch(createAuditAction(audit!)).then((id: string) => Routing.transitionTo("/audits"));
         } else {
             dispatch(updateAudit(audit!));
         }

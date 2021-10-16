@@ -17,7 +17,7 @@ const ReportRow: React.FC<ReportRowProps> = props => {
         <td className='text-center align-middle'>{Util.formatDate(new Date(report.auditDate!))}</td>
         <td className="text-right align-middle">{report.recordCount ? report.recordCount : '?'}</td>
         <td className='actions'>
-            <Button variant="info" onClick={() => Routing.transitionTo("#/reports/" + report.identifier)}>Edit</Button>
+            <Button variant="info" className="me-1" onClick={() => Routing.transitionTo("#/reports/" + report.identifier)}>Edit</Button>
             <Button variant='warning' onClick={() => onRemove(report)}>Remove</Button>
         </td>
     </tr>;

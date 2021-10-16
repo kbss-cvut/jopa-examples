@@ -19,6 +19,7 @@ import cz.cvut.kbss.jopa.eswc2016.util.KeyGenerator;
 import cz.cvut.kbss.jopa.exceptions.NoResultException;
 import cz.cvut.kbss.jopa.model.EntityManager;
 import cz.cvut.kbss.jopa.model.descriptors.EntityDescriptor;
+import cz.cvut.kbss.ontodriver.model.LangString;
 import org.springframework.stereotype.Repository;
 
 import java.net.URI;
@@ -41,9 +42,9 @@ public class ReportDao extends BaseDao<Report> {
     protected Report findByKey(Long key, EntityManager em) {
         try {
             final Object uri = em.createNativeQuery("SELECT ?x WHERE { ?x <" + Vocabulary.s_p_identifier + "> ?key ;" +
-                    "a ?type }")
-                                 .setParameter("key", key).setParameter("type", typeUri)
-                                 .getSingleResult();
+                            "a ?type }")
+                    .setParameter("key", key).setParameter("type", typeUri)
+                    .getSingleResult();
             return findByUri(uri.toString(), em);
         } catch (NoResultException e) {
             return null;
@@ -54,6 +55,14 @@ public class ReportDao extends BaseDao<Report> {
     protected void persist(Report entity, EntityManager em) {
         entity.setIdentifier(KeyGenerator.generateKey());
         em.persist(entity, getDescriptor(em));
+        if (entity.getHas_documentation_part() != null) {
+            entity.getHas_documentation_part().forEach(r -> {
+                em.persist(r);
+                if (r.getHas_answer() != null) {
+                    em.persist(r.getHas_answer());
+                }
+            });
+        }
     }
 
     private EntityDescriptor getDescriptor(EntityManager em) {
@@ -87,7 +96,7 @@ public class ReportDao extends BaseDao<Report> {
                 final ReportDto dto = new ReportDto();
                 dto.setId(row[0].toString());
                 dto.setIdentifier((Long) row[1]);
-                dto.setAuditTitle((String) row[2]);
+                dto.setAuditTitle(((LangString) row[2]).getValue());
                 dto.setAuditDate((Date) row[3]);
                 dto.setRecordCount((Integer) row[4]);
                 return dto;

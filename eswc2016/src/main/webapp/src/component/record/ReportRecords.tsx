@@ -5,6 +5,7 @@ import Util from "../../util/Util";
 import {Button, Card, Col, Row, Table} from "react-bootstrap";
 import RecordRow from "./RecordRow";
 import RecordDetail from "./RecordDetail";
+import "./ReportRecords.scss";
 
 interface ReportRecordsProps {
     report: Report;

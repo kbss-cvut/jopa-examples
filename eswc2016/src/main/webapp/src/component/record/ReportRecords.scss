@@ -1,0 +1,11 @@
+.record-classification.valid, select.record-classification option.valid {
+  background: rgba(92, 184, 82, 0.2);
+}
+
+.record-classification.part-valid, select.record-classification option.part-valid {
+  background: rgba(240, 173, 78, 0.2);
+}
+
+.record-classification.invalid, select.record-classification option.invalid {
+  background: rgba(217, 83, 79, 0.2);
+}
