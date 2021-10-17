@@ -8,6 +8,7 @@ import {createAudit as createAuditAction, loadAudit, updateAudit} from "../../ac
 import Event from "../../model/Event";
 import {createAudit} from "../../util/InstanceFactory";
 import {publishMessage} from "../../action/SyncActions";
+import {trackPromise} from "react-promise-tracker";
 
 const AuditController = () => {
     const {auditKey} = useParams<{ auditKey: string }>();
@@ -31,12 +32,12 @@ const AuditController = () => {
     };
     const onSave = () => {
         if (audit!.isNew) {
-            dispatch(createAuditAction(audit!)).then(() => {
+            trackPromise(dispatch(createAuditAction(audit!)), "main-view").then(() => {
                 dispatch(publishMessage({message: "Audit created.", type: "success"}));
                 Routing.transitionTo("/audits");
             });
         } else {
-            dispatch(updateAudit(audit!)).then(() => dispatch(publishMessage({
+            trackPromise(dispatch(updateAudit(audit!)), "main-view").then(() => dispatch(publishMessage({
                 message: "Audit saved.",
                 type: "success"
             })));

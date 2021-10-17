@@ -11,6 +11,7 @@ import Settings from "./Settings";
 import ReportsRoute from "./report/ReportsRoute";
 import AuditsRoute from "./audit/AuditsRoute";
 import Messages from "./message/Messages";
+import PromiseTrackingMask from "./PromiseTrackingMask";
 
 const MainView = () => {
     const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const MainView = () => {
     }, [dispatch]);
 
     return <>
+        <PromiseTrackingMask area="main-view" text="Please wait..." coverViewport={true}/>
         <header className="mb-5">
             <Navbar bg="light" expand="lg">
                 <Container>

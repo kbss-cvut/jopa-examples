@@ -8,11 +8,12 @@ import {Card, Table} from "react-bootstrap";
 import AuditRow from "./AuditRow";
 import DeleteDialog from "../DeleteDialog";
 import {Link} from "react-router-dom";
+import {trackPromise} from "react-promise-tracker";
 
 const Audits: React.FC = () => {
     const dispatch: ThunkDispatch = useDispatch();
     useEffect(() => {
-        dispatch(loadAudits());
+        trackPromise(dispatch(loadAudits()), "main-view");
     }, [dispatch]);
     const audits = useSelector((state: AppModel) => state.audits);
     const [toRemove, setToRemove] = useState<Event | null>(null);

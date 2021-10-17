@@ -9,16 +9,17 @@ import CreateReportDialog from "./CreateReportDialog";
 import Event from "../../model/Event";
 import Routing from "../../util/Routing";
 import {publishMessage} from "../../action/SyncActions";
+import {trackPromise} from "react-promise-tracker";
 
 const ReportsController: React.FC = () => {
     const dispatch: ThunkDispatch = useDispatch();
     useEffect(() => {
-        dispatch(loadReports());
+        trackPromise(dispatch(loadReports()), "main-view");
     }, [dispatch]);
     const [showCreateDialog, setShowCreateDialog] = useState(false);
     const reports = useSelector((state: AppModel) => state.reports);
     const onRemove = (report: ReportItem) => {
-        dispatch(removeReport(report.identifier!)).then(() => dispatch(publishMessage({
+        trackPromise(dispatch(removeReport(report.identifier!)), "main-view").then(() => dispatch(publishMessage({
             message: "Report removed.",
             type: "success"
         })));

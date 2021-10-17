@@ -11,6 +11,7 @@ import ReportRecords from "../record/ReportRecords";
 import Properties from "../property/Properties";
 import Routing from "../../util/Routing";
 import {publishMessage} from "../../action/SyncActions";
+import {trackPromise} from "react-promise-tracker";
 
 function empty() {
 }
@@ -36,7 +37,7 @@ const ReportDetail: React.FC = () => {
         setReport(Object.assign({}, report, change));
     };
     const onSave = () => {
-        dispatch(saveReport(report!)).then((r: Report) => {
+        trackPromise(dispatch(saveReport(report!)), "main-view").then((r: Report) => {
             dispatch(publishMessage({message: "Report saved.", type: "success"}));
             setReport(r);
         });
