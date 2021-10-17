@@ -22,8 +22,8 @@ It is a Spring Boot application, uses declarative transactions and JSON-LD.
 11. **Example09** - JOPA with the [Semantic Object Query Language](https://github.com/kbss-cvut/jopa/wiki/Semantic-Object-Query-Language)
  support. It is a Spring Boot application, uses autowiring of JOPA `EntityManager`, and produces JSON-LD.
 
-Each example has its own README file with a more detailed description. Note that JOPA requires Java 8. To be able to use
-later versions of Java, see branch [java-11](https://github.com/kbss-cvut/jopa-examples/tree/java-11).
+Each example has its own README file with a more detailed description. Note that JOPA requires at least Java 8. Switch version of Java
+in the root `pom.xml` via the `jdk.version` property to see how it runs with newer Java versions.
 
 #### Additional Examples
 
