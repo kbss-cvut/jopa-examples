@@ -10,6 +10,7 @@ import Data from "./Data";
 import Settings from "./Settings";
 import ReportsRoute from "./report/ReportsRoute";
 import AuditsRoute from "./audit/AuditsRoute";
+import Messages from "./message/Messages";
 
 const MainView = () => {
     const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const MainView = () => {
             </Navbar>
         </header>
         <main className="flex-shrink-0 mb-5">
+            <Messages/>
             <Container fluid={true}>
                 <Switch>
                     <Route path='/data' component={Data}/>

@@ -1,10 +1,11 @@
 import {combineReducers} from "redux";
 import AppModel from "../model/AppModel";
-import ActionType, {AsyncActionSuccess} from "../action/ActionType";
+import ActionType, {AsyncActionSuccess, MessageAction} from "../action/ActionType";
 import AsyncActionStatus from "../action/AsyncActionStatus";
 import {ReportItem} from "../model/Report";
 import Event from "../model/Event";
 import {Question} from "../model/Record";
+import {Message} from "../model/Types";
 
 function settings(state: { [key: string]: string } = {}, action: AsyncActionSuccess<{ [key: string]: string }>): { [key: string]: string } {
     switch (action.type) {
@@ -50,6 +51,19 @@ function questions(state: Question[] = [], action: AsyncActionSuccess<Question[]
     return state;
 }
 
-const rootReducer = combineReducers<AppModel>({audits, properties, questions, reports, settings});
+function messages(state: Message[] = [], action: MessageAction): Message[] {
+    switch (action.type) {
+        case ActionType.PUBLISH_MESSAGE:
+            return [...state, action.message];
+        case ActionType.DISMISS_MESSAGE:
+            const newArr = state.slice(0);
+            newArr.splice(newArr.indexOf(action.message), 1);
+            return newArr;
+        default:
+            return state;
+    }
+}
+
+const rootReducer = combineReducers<AppModel>({audits, messages, properties, questions, reports, settings});
 
 export default rootReducer;

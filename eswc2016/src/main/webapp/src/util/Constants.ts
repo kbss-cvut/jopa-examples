@@ -18,11 +18,14 @@ const Constants = {
 
     STORAGE_INFO: {
         sesame: 'Sesame storage.\nSupported:\n - contexts,\n - remote repository\n\n' +
-        'NOT Supported:\n - OWL inference (e.g. the isDocumentedBy property, so audit detail shows no reports)\n',
+            'NOT Supported:\n - OWL inference (e.g. the isDocumentedBy property, so audit detail shows no reports)\n',
 
         owlapi: 'OWL API storage.\nSupported:\n - inference (Pellet),\n\n' +
-        'NOT Supported:\n - contexts,\n - SPARQL count (due to OWL2Query engine, so record count in reports is always 0)\n'
-    }
+            'NOT Supported:\n - contexts,\n - SPARQL count (due to OWL2Query engine, so record count in reports is always 0)\n'
+    },
+
+    MESSAGE_DURATION: 5000,
+    MESSAGE_DISPLAY_COUNT: 5
 };
 
 export default Constants;

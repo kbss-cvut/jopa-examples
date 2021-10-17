@@ -8,6 +8,7 @@ import Reports from "./Reports";
 import CreateReportDialog from "./CreateReportDialog";
 import Event from "../../model/Event";
 import Routing from "../../util/Routing";
+import {publishMessage} from "../../action/SyncActions";
 
 const ReportsController: React.FC = () => {
     const dispatch: ThunkDispatch = useDispatch();
@@ -17,7 +18,10 @@ const ReportsController: React.FC = () => {
     const [showCreateDialog, setShowCreateDialog] = useState(false);
     const reports = useSelector((state: AppModel) => state.reports);
     const onRemove = (report: ReportItem) => {
-        dispatch(removeReport(report.identifier!));
+        dispatch(removeReport(report.identifier!)).then(() => dispatch(publishMessage({
+            message: "Report removed.",
+            type: "success"
+        })));
     };
     const onSelectAudit = (audit: Event | null) => {
         setShowCreateDialog(false);

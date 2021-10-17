@@ -9,6 +9,7 @@ import {createQuestion} from "../../action/AsyncActions";
 import {GoPlus} from "react-icons/all";
 import AnswerForm from "./Answer";
 import RecordClassification from "./RecordClassification";
+import {publishMessage} from "../../action/SyncActions";
 
 interface RecordDetailProps {
     record: Record;
@@ -30,7 +31,10 @@ const RecordDetail: React.FC<RecordDetailProps> = props => {
     const [showCreateQuestion, setShowCreateQuestion] = useState(false);
     const dispatch: ThunkDispatch = useDispatch();
     const onCreateQuestion = (q: Question) => {
-        dispatch(createQuestion(q));
+        dispatch(createQuestion(q)).then(() => dispatch(publishMessage({
+            message: "Question created.",
+            type: "success"
+        })));
         setShowCreateQuestion(false);
     };
     const onSaveClick = () => {
@@ -68,7 +72,8 @@ const RecordDetail: React.FC<RecordDetailProps> = props => {
         </Modal.Body>
         <Modal.Footer>
             <ButtonToolbar className="float-end">
-                <Button variant='success' className="me-2" onClick={onSaveClick} disabled={!isValid(question, answer)}>Save</Button>
+                <Button variant='success' className="me-2" onClick={onSaveClick}
+                        disabled={!isValid(question, answer)}>Save</Button>
                 <Button variant="outline-primary" onClick={onClose}>Cancel</Button>
                 {!record.isNew && <Button variant='warning' onClick={() => onRemove(record)}>Remove</Button>}
             </ButtonToolbar>

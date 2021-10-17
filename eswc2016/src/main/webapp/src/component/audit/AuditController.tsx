@@ -7,6 +7,7 @@ import {useDispatch} from "react-redux";
 import {createAudit as createAuditAction, loadAudit, updateAudit} from "../../action/AsyncActions";
 import Event from "../../model/Event";
 import {createAudit} from "../../util/InstanceFactory";
+import {publishMessage} from "../../action/SyncActions";
 
 const AuditController = () => {
     const {auditKey} = useParams<{ auditKey: string }>();
@@ -30,9 +31,15 @@ const AuditController = () => {
     };
     const onSave = () => {
         if (audit!.isNew) {
-            dispatch(createAuditAction(audit!)).then((id: string) => Routing.transitionTo("/audits"));
+            dispatch(createAuditAction(audit!)).then(() => {
+                dispatch(publishMessage({message: "Audit created.", type: "success"}));
+                Routing.transitionTo("/audits");
+            });
         } else {
-            dispatch(updateAudit(audit!));
+            dispatch(updateAudit(audit!)).then(() => dispatch(publishMessage({
+                message: "Audit saved.",
+                type: "success"
+            })));
         }
     };
 

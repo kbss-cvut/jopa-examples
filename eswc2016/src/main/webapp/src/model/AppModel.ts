@@ -1,6 +1,7 @@
 import {ReportItem} from "./Report";
 import Event from "./Event";
 import {Question} from "./Record";
+import {Message} from "./Types";
 
 export default class AppModel {
     public settings: { [key: string]: string };
@@ -8,6 +9,7 @@ export default class AppModel {
     public audits: Event[];
     public properties: string[];
     public questions: Question[];
+    public messages: Message[];
 
     constructor() {
         this.settings = {};
@@ -15,5 +17,6 @@ export default class AppModel {
         this.audits = [];
         this.properties = [];
         this.questions = [];
+        this.messages = [];
     }
 }

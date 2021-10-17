@@ -10,6 +10,7 @@ import BasicAuditInfo from "../audit/BasicAuditInfo";
 import ReportRecords from "../record/ReportRecords";
 import Properties from "../property/Properties";
 import Routing from "../../util/Routing";
+import {publishMessage} from "../../action/SyncActions";
 
 function empty() {
 }
@@ -35,7 +36,10 @@ const ReportDetail: React.FC = () => {
         setReport(Object.assign({}, report, change));
     };
     const onSave = () => {
-        dispatch(saveReport(report!)).then((r: Report) => setReport(r));
+        dispatch(saveReport(report!)).then((r: Report) => {
+            dispatch(publishMessage({message: "Report saved.", type: "success"}));
+            setReport(r);
+        });
     };
     if (!report) {
         return null;

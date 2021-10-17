@@ -1,5 +1,6 @@
 import {Action} from "redux";
 import AsyncActionStatus from "./AsyncActionStatus";
+import {Message} from "../model/Types";
 
 export interface AsyncAction extends Action {
     status: AsyncActionStatus;
@@ -10,10 +11,15 @@ export interface FailureAction extends Action {
     error: any;
 }
 
-export interface AsyncFailureAction extends AsyncAction, FailureAction {}
+export interface AsyncFailureAction extends AsyncAction, FailureAction {
+}
 
 export interface AsyncActionSuccess<T> extends AsyncAction {
     payload: T;
+}
+
+export interface MessageAction extends Action {
+    message: Message;
 }
 
 const ActionType = {
@@ -35,7 +41,10 @@ const ActionType = {
     LOAD_DATA: "LOAD_DATA",
     LOAD_SETTINGS: "LOAD_SETTINGS",
     SAVE_SETTINGS: "SAVE_SETTINGS",
-    LOAD_PROPERTIES: "LOAD_PROPERTIES"
+    LOAD_PROPERTIES: "LOAD_PROPERTIES",
+
+    PUBLISH_MESSAGE: "PUBLISH_MESSAGE",
+    DISMISS_MESSAGE: "DISMISS_MESSAGE"
 };
 
 export default ActionType;

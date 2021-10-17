@@ -1,6 +1,7 @@
 import {Action} from "redux";
 import AsyncActionStatus from "./AsyncActionStatus";
-import {AsyncAction, AsyncActionSuccess, AsyncFailureAction} from "./ActionType";
+import ActionType, {AsyncAction, AsyncActionSuccess, AsyncFailureAction} from "./ActionType";
+import {Message} from "../model/Types";
 
 export function asyncActionRequest(
     a: Action
@@ -29,3 +30,19 @@ export function asyncActionSuccessWithPayload<T>(
 export function asyncActionSuccess(a: Action): AsyncAction {
     return {...a, status: AsyncActionStatus.SUCCESS};
 }
+
+export function publishMessage(message: Message) {
+    const m = Object.assign({}, message, {timestamp: Date.now()});
+    return {
+        type: ActionType.PUBLISH_MESSAGE,
+        message: m
+    };
+}
+
+export function dismissMessage(message: Message) {
+    return {
+        type: ActionType.DISMISS_MESSAGE,
+        message
+    };
+}
+
