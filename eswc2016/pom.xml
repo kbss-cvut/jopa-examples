@@ -139,36 +139,21 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.4.0</version>
                 <executions>
-                    <!--<execution>-->
-                    <!--<id>npm-module-cleanup</id>-->
-                    <!--<goals>-->
-                    <!--<goal>exec</goal>-->
-                    <!--</goals>-->
-                    <!--<phase>compile</phase>-->
-                    <!--<configuration>-->
-                    <!--<workingDirectory>src/main/webapp/</workingDirectory>-->
-                    <!--<executable>rm</executable>-->
-                    <!--<arguments>-->
-                    <!--<argument>-Rf</argument>-->
-                    <!--<argument>node_modules</argument>-->
-                    <!--</arguments>-->
-                    <!--</configuration>-->
-                    <!--</execution>-->
-                    <!--<execution>-->
-                    <!--<id>ui-build</id>-->
-                    <!--<goals>-->
-                    <!--<goal>exec</goal>-->
-                    <!--</goals>-->
-                    <!--<phase>compile</phase>-->
-                    <!--<configuration>-->
-                    <!--<workingDirectory>src/main/webapp/</workingDirectory>-->
-                    <!--<executable>npm</executable>-->
-                    <!--<arguments>-->
-                    <!--<argument>run</argument>-->
-                    <!--<argument>build</argument>-->
-                    <!--</arguments>-->
-                    <!--</configuration>-->
-                    <!--</execution>-->
+                    <execution>
+                        <id>ui-build</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>compile</phase>
+                        <configuration>
+                            <workingDirectory>src/main/webapp/</workingDirectory>
+                            <executable>npm</executable>
+                            <arguments>
+                                <argument>run</argument>
+                                <argument>build</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -177,9 +162,14 @@
                 <version>3.2.3</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <packagingExcludes>
-                        node_modules/**
-                    </packagingExcludes>
+                    <warSourceExcludes>
+                        node_modules/**,config/**,public/**,scripts/**,src/**,package.json,package-lock.json,build/**,.env,.babelrc,tsconfig.json
+                    </warSourceExcludes>
+                    <webResources>
+                        <resource>
+                            <directory>${project.basedir}/src/main/webapp/build/</directory>
+                        </resource>
+                    </webResources>
                     <warName>eswc2016</warName>
                 </configuration>
             </plugin>

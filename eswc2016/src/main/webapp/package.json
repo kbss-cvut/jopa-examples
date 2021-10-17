@@ -2,6 +2,7 @@
   "name": "jopa-eswc2016",
   "version": "0.16.3",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@testing-library/jest-dom": "^5.11.4",
