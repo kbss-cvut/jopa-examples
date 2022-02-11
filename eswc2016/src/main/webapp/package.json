@@ -34,7 +34,7 @@
     "@types/react-redux": "^7.1.18",
     "@types/react-router-dom": "^5.1.8",
     "@types/react-select": "^4.0.17",
-    "node-sass": "^6.0.1",
+    "node-sass": "^7.0.0",
     "typescript": "^4.4.3"
   },
   "scripts": {
