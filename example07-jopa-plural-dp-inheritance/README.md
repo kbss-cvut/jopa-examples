@@ -16,7 +16,7 @@ of another entity and leverage polymorphic behavior, for instance by requesting 
 resolve which concrete implementation should the object be an instance of.
 
 This is shown by the `Report`, `OccurrenceReport`, `AuditReport` and `SafetyIssueReport` classes in the demo. `Report` is an abstract
-superclass of all of the other. When loading reports, the abstract `Report` class is given as return type. JOPA then has to determine
+superclass of all the others. When loading reports, the abstract `Report` class is given as return type. JOPA then has to determine
 for each loaded instance to which concrete subtype of `Report` it belongs.
 
 Notice also how `SafetyIssueReport` contains an attribute with references to other reports. This shows that polymorphic attribute values
@@ -32,11 +32,11 @@ which are plain string values.
 
 ### JSON-LD Support
 
-[JAXB JSON-LD](https://github.com/kbss-cvut/jaxb-jsonld) is a library for serialization and deserialization of POJOs into/from JSON-LD.
+[JB4JSON-LD](https://github.com/kbss-cvut/jb4jsonld) is a library for serialization and deserialization of POJOs into/from JSON-LD.
 
 It simplifies publishing data processed by business applications in Linked-Data format.
 
-The [JAXB JSON-LD Jackson](https://github.com/kbss-cvut/jaxb-jsonld-jackson) integration enables seamless integration of 
+The [JB4JSON-LD Jackson](https://github.com/kbss-cvut/jb4jsonld-jackson) library enables seamless integration of 
 the JSON-LD support in any application using [Jackson](https://github.com/FasterXML/jackson) as serialization/deserialization library.
 
 More information can be found in the [JSON-LD integration demo](https://github.com/kbss-cvut/jopa-examples/tree/master/jsonld).

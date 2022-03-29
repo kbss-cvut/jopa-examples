@@ -31,15 +31,15 @@
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <maven.compiler.target>${jdk.version}</maven.compiler.target>
         <org.aspectj.version>1.9.7</org.aspectj.version>
-        <cz.cvut.kbss.jopa.version>0.18.1</cz.cvut.kbss.jopa.version>
+        <cz.cvut.kbss.jopa.version>0.18.5</cz.cvut.kbss.jopa.version>
         <cz.cvut.kbss.jb4jsonld.version>0.8.9</cz.cvut.kbss.jb4jsonld.version>
-        <org.eclipse.rdf4j.version>3.7.4</org.eclipse.rdf4j.version>
-        <ch.qos.logback.version>1.2.10</ch.qos.logback.version>
+        <org.eclipse.rdf4j.version>3.7.6</org.eclipse.rdf4j.version>
+        <ch.qos.logback.version>1.2.11</ch.qos.logback.version>
         <com.github.galigator.openllet.version>2.6.4</com.github.galigator.openllet.version>
-        <com.github.ledsoft.jopa-spring-transactions.version>0.1.1</com.github.ledsoft.jopa-spring-transactions.version>
+        <com.github.ledsoft.jopa-spring-transactions.version>0.1.2</com.github.ledsoft.jopa-spring-transactions.version>
 
-        <org.springframework.version>5.3.9</org.springframework.version>
-        <org.springframework.boot.version>2.5.4</org.springframework.boot.version>
+        <org.springframework.version>5.3.17</org.springframework.version>
+        <org.springframework.boot.version>2.6.5</org.springframework.boot.version>
     </properties>
 
     <dependencies>
@@ -57,7 +57,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.32</version>
+            <version>1.7.36</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -163,7 +163,7 @@
 
     <organization>
         <name>Czech Technical University in Prague, Knowledge Based and Software Systems Group</name>
-        <url>http://kbss.felk.cvut.cz</url>
+        <url>https://kbss.felk.cvut.cz</url>
     </organization>
 
     <distributionManagement>

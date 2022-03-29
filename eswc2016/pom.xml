@@ -17,14 +17,6 @@
     </description>
     <packaging>war</packaging>
 
-    <repositories>
-        <repository>
-            <id>kbss</id>
-            <name>KBSS Maven 2 Repository</name>
-            <url>http://kbss.felk.cvut.cz/m2repo</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>cz.cvut.kbss.jopa</groupId>
@@ -105,7 +97,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.11.4</version>
+            <version>2.13.2.2</version>
         </dependency>
     </dependencies>
 

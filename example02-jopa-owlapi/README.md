@@ -1,6 +1,6 @@
 # JOPA Example 02 - JOPA + OWLAPI + Pellet
 
-This example shows usage of JOPA with OWLAPI-based OntoDriver implementation. We are using OWLAPI v4 in the driver.
+This example shows usage of JOPA with OWLAPI-based OntoDriver implementation. We are using OWLAPI v5 in the driver.
 
 ### Features
 
@@ -16,7 +16,7 @@ The demo features only a single class in the model, but this class contains an i
 Such fields are effectively read-only, so their value changes only based on some other knowledge asserted in the storage. In our case,
 the `hasFather` property is an inverse of the `hasChild` property.
 
-The demo uses Pellet for inference, however any other OWLAPI 4-compatible reasoner can be used. Reasoner factory class is specified in `PersistenceFactory`.
+The demo uses Openllet (open-source version of Pellet) for inference, however any other OWLAPI 5-compatible reasoner can be used. Reasoner factory class is specified in `PersistenceFactory`.
 
 #### Cascaded EntityManager Operations
 
@@ -45,4 +45,4 @@ thus stays reusable, the application copies the ontology into a separate file, w
 
 ## Running the Demo
 
-To run the demo, `mvn exec:java` can be used. Pellet is available in our maven repository, as is specified in `pom.xml`.
+To run the demo, `mvn exec:java` can be used.

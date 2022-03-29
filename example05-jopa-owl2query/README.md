@@ -9,7 +9,7 @@ This example shows query support when accessing OWL ontologies with JOPA. In add
 ### OWL2Query
 
 [OWL2Query](https://kbss.felk.cvut.cz/web/portal/owl2query) is a query engine with OWL 2 and SPARQL-DL with negation as failure support. 
-It is used by default by the OWLAPI OntoDriver. In this example, [Pellet](https://github.com/Complexible/pellet) is used to evaluate
+It is used by default by the OWLAPI OntoDriver. In this example, [Openllet](https://github.com/Galigator/openllet) is used to evaluate
 the queries.
 
 ### Unmapped Properties
@@ -30,4 +30,4 @@ thus stays reusable, the application copies the ontology into a separate file, w
 
 ## Running the Demo
 
-To run the demo, `mvn exec:java` can be used. Pellet is available in our maven repository, as is specified in `pom.xml`.
+To run the demo, `mvn exec:java` can be used.
