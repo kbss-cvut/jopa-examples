@@ -6,7 +6,7 @@ import CreateQuestion from "./CreateQuestion";
 import {useDispatch} from "react-redux";
 import {ThunkDispatch} from "../../util/Util";
 import {createQuestion} from "../../action/AsyncActions";
-import {GoPlus} from "react-icons/all";
+import {GoPlus} from "react-icons/go";
 import AnswerForm from "./Answer";
 import RecordClassification from "./RecordClassification";
 import {publishMessage} from "../../action/SyncActions";
