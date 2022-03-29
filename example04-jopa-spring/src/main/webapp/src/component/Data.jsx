@@ -30,7 +30,7 @@ const Data = () => {
                 </Form.Control>
             </Form.Group>
             <Form.Group>
-                <Form.Control as="textarea" rows={20} value={format === "json" ? JSON.stringify(data, null, 2) : data} size="sm"/>
+                <Form.Control as="textarea" rows={20} value={format === "json" ? JSON.stringify(data, null, 2) : data} size="sm" readOnly={true}/>
             </Form.Group>
         </Card.Body>
     </Card>
