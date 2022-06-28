@@ -12,9 +12,10 @@ import ReportsRoute from "./report/ReportsRoute";
 import AuditsRoute from "./audit/AuditsRoute";
 import Messages from "./message/Messages";
 import PromiseTrackingMask from "./PromiseTrackingMask";
+import {ThunkDispatch} from "../util/Util";
 
 const MainView = () => {
-    const dispatch = useDispatch();
+    const dispatch: ThunkDispatch = useDispatch();
     const storage = useSelector((state: AppModel) => state.settings[Constants.REPOSITORY_TYPE_PARAM]);
     useEffect(() => {
         dispatch(loadSettings(Constants.REPOSITORY_TYPE_PARAM));

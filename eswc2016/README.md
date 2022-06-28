@@ -47,20 +47,18 @@ executes only on demand. See `pom.xml` for more info.
 The persistence is set up in `cz.cvut.kbss.jopa.eswc2016.persistence.SesamePersistenceFactory` and `cz.cvut.kbss.jopa.eswc2016.persistence.OwlapiPersistenceFactory`.
 Sesame native storage location is specified in `sesame.properties` in `src/main/resources`. Note that the path expects that the application is running on Linux. Feel free to specify
 a different storage location (including remote repositories, just remember to adhere to the Sesame repository naming scheme).
-Similarly, OWL API-managed storage is configured in `owlapi.properties`, it specifies logical and physical URI of the ontologie and a mapping file for
+Similarly, OWL API-managed storage is configured in `owlapi.properties`, it specifies logical and physical URI of the ontology and a mapping file for
 resolving imports to local files.
 
 ## Running the Demo
 
-This demo is a web application with UI written in Javascript (using ReactJS). To run the application, run `mvn package` and deploy
-the resulting war file into any Java EE 7 Web Profile-compliant server (Apache Tomcat, Jetty, Glassfish etc.).
-The UI will use a prebuilt file `src/main/webapp/js/bundle.js`.
+This demo is a web application with UI written in TypeScript (using ReactJS). To run the application, run `mvn package` to build the WAR
+for deployment. Next, copy the `mapping` and all the `.owl` and `.rdf` files from the project root to a location configured 
+in `src/main/resources/owlapi.properties` (by default `/tmp/jopa`). Then WAR file into any Java EE 7 Web Profile-compliant server (Apache Tomcat, Jetty, Glassfish etc.).
 
-In order to modify the application, NodeJS has to be installed on the system. Go to `src/main/webapp` and run `npm install` to install the JS
-dependencies. By executing `npm start`, a watcher will be started which rebuilds the UI archive whenever a change is made to the JS files.
+In order to modify the application, NodeJS has to be installed on the system. Go to `src/main/webapp` and run `npm install` to install the frontend
+dependencies. By executing `npm start`, a watcher will be started which rebuilds the UI bundle whenever a change is made to the source files.
 
-The web UI is built with [ReactJS](https://facebook.github.io/react/) and uses its [Flux](https://facebook.github.io/flux/docs/overview.html)
-architecture (modified version, framework [Reflux](https://github.com/reflux/refluxjs)). 
-Individual JS files contain some additional explanatory comments.
+The web UI is written in TypeScript and uses [React](https://facebook.github.io/react/) with [Redux](https://redux.js.org/) to manage the state.
 
 The demo is also deployed and available at [http://kbss.felk.cvut.cz/jopa-eswc-demo/](http://kbss.felk.cvut.cz/jopa-eswc-demo/).

@@ -25,19 +25,19 @@ const CreateStudent = ({onSubmit}) => {
     return <Card>
         <Card.Header><h5>Add Student</h5></Card.Header>
         <Card.Body>
-            <Form.Group>
+            <Form.Group className="mb-3">
                 <Form.Label>First name</Form.Label>
                 <Form.Control name="firstName" value={student.firstName} onChange={onChange} size="sm"/>
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="mb-3">
                 <Form.Label>Last name</Form.Label>
                 <Form.Control name="lastName" value={student.lastName} onChange={onChange} size="sm"/>
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="mb-3">
                 <Form.Label>Email</Form.Label>
                 <Form.Control name="email" value={student.email} onChange={onChange} onKeyPress={onKeyPress} size="sm"/>
             </Form.Group>
-            <ButtonToolbar className="float-right mt-2">
+            <ButtonToolbar className="mt-2 d-flex d-grid justify-content-end">
                 <Button variant="success" onClick={onSave}>Submit</Button>
             </ButtonToolbar>
         </Card.Body>
