@@ -17,7 +17,7 @@ const Constants = {
     },
 
     STORAGE_INFO: {
-        sesame: 'Sesame storage.\nSupported:\n - contexts,\n - remote repository\n\n' +
+        rdf4j: 'RDF4J storage.\nSupported:\n - contexts,\n - remote repository\n\n' +
             'NOT Supported:\n - OWL inference (e.g. the isDocumentedBy property, so audit detail shows no reports)\n',
 
         owlapi: 'OWL API storage.\nSupported:\n - inference (Pellet),\n\n' +

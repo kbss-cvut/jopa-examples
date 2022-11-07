@@ -4,7 +4,7 @@
 **/results
 **/testResults
 **/example02-jopa-owlapi/repository.owl
-**/example03-jopa-sesame-contexts/repositories
+**/example03-jopa-rdf4j-contexts/repositories
 **/example05-jopa-owl2query/repository.owl
 **/node_modules
 **/generated-sources

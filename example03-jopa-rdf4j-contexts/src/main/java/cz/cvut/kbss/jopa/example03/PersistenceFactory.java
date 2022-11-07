@@ -12,13 +12,14 @@
  * details. You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package cz.cvut.kbss.jopa.example06;
+package cz.cvut.kbss.jopa.example03;
 
 import cz.cvut.kbss.jopa.Persistence;
 import cz.cvut.kbss.jopa.model.EntityManager;
 import cz.cvut.kbss.jopa.model.EntityManagerFactory;
 import cz.cvut.kbss.jopa.model.JOPAPersistenceProperties;
 import cz.cvut.kbss.jopa.model.JOPAPersistenceProvider;
+import cz.cvut.kbss.ontodriver.config.OntoDriverProperties;
 import cz.cvut.kbss.ontodriver.rdf4j.config.Rdf4jOntoDriverProperties;
 
 import java.util.HashMap;
@@ -34,20 +35,24 @@ public class PersistenceFactory {
         throw new AssertionError();
     }
 
-    static void init() {
+    public static void init(String repoPath) {
+        System.out.println("Using repository path: " + repoPath);
         final Map<String, String> props = new HashMap<>();
         // Here we set up basic storage access properties - driver class, physical location of the storage
-        props.put(JOPAPersistenceProperties.ONTOLOGY_PHYSICAL_URI_KEY, "JOPA-RDF4J-Demo");
+        props.put(JOPAPersistenceProperties.ONTOLOGY_PHYSICAL_URI_KEY, repoPath);
         props.put(JOPAPersistenceProperties.DATA_SOURCE_CLASS, "cz.cvut.kbss.ontodriver.rdf4j.Rdf4jDataSource");
-        // Use in-memory storage if not remote or local file path specified
-        props.put(Rdf4jOntoDriverProperties.USE_VOLATILE_STORAGE, Boolean.TRUE.toString());
+        // View transactional changes during transaction
+        props.put(OntoDriverProperties.USE_TRANSACTIONAL_ONTOLOGY, Boolean.TRUE.toString());
+        // Don't use inference
+        props.put(Rdf4jOntoDriverProperties.USE_INFERENCE, Boolean.FALSE.toString());
+        // Where to look for entities
+        props.put(JOPAPersistenceProperties.SCAN_PACKAGE, "cz.cvut.kbss.jopa.example03.model");
         // Ontology language
         props.put(JOPAPersistenceProperties.LANG, "en");
         // Persistence provider name
         props.put(JOPAPersistenceProperties.JPA_PERSISTENCE_PROVIDER, JOPAPersistenceProvider.class.getName());
-        props.put(JOPAPersistenceProperties.SCAN_PACKAGE, "cz.cvut.kbss.jopa.example06.model");
 
-        emf = Persistence.createEntityManagerFactory("jopaExample06PU", props);
+        emf = Persistence.createEntityManagerFactory("jopaExample03PU", props);
         initialized = true;
     }
 

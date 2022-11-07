@@ -46,9 +46,9 @@ JOPA [wiki page](https://github.com/kbss-cvut/jopa/wiki/Using-Lombok).
 
 ## Persistence Setup
 
-The persistence is set up in `cz.cvut.kbss.jopa.example04.persistence.PersistenceFactory`. Sesame native storage location is specified
+The persistence is set up in `cz.cvut.kbss.jopa.example04.persistence.PersistenceFactory`. RDF4J native storage location is specified
 in `config.properties` in `src/main/resources`. Note that the path expects that the application is running on Linux. Feel free to specify
-a different storage location (including remote repositories, just remember to adhere to the Sesame repository naming scheme).
+a different storage location (including remote repositories, just remember to adhere to the RDF4J repository naming scheme).
 
 ## Running the Demo
 

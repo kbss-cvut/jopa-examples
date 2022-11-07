@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cz.cvut.kbss.jopa</groupId>
+        <artifactId>jopa-examples-parent</artifactId>
+        <version>0.18.5</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>example-01</artifactId>
+    <name>Example01-JOPA-RDF4J-OWL2Java</name>
+    <description>
+        Basic demo of JOPA in connection with RDF4J driver.
+        This example uses the UOBM ontology (https://www.cs.ox.ac.uk/isg/tools/UOBMGenerator/) as base for its small
+        model.
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>cz.cvut.kbss.jopa</groupId>
+            <artifactId>ontodriver-rdf4j</artifactId>
+            <version>${cz.cvut.kbss.jopa.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <!-- Generate entity classes from OWL integrity constraints -->
+                <groupId>cz.cvut.kbss.jopa</groupId>
+                <artifactId>jopa-maven-plugin</artifactId>
+                <version>${cz.cvut.kbss.jopa.version}</version>
+                <configuration>
+                    <package>cz.cvut.kbss.jopa.example01.generated</package>
+                    <output-directory>${project.basedir}/src/main/generated-sources</output-directory>
+                    <ontology-iri>http://krizik.felk.cvut.cz/ontologies/2015/jopa-example01.owl</ontology-iri>
+                    <mapping-file>${project.basedir}/mapping</mapping-file>
+                    <context-name>jopa-example01</context-name>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>owl2java-transform</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Add generated sources to classpath -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/generated-sources</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Run the example -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <configuration>
+                            <mainClass>cz.cvut.kbss.jopa.example01.Example</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>manual</id>
+                        <configuration>
+                            <mainClass>cz.cvut.kbss.jopa.example01.Example</mainClass>
+                            <arguments>
+                                <argument>manual</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generated</id>
+                        <configuration>
+                            <mainClass>cz.cvut.kbss.jopa.example01.Example</mainClass>
+                            <arguments>
+                                <argument>generated</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

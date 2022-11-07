@@ -54,8 +54,8 @@ public class DataDao {
         final RepositoryType repoType = RepositoryType
                 .fromString(configurationService.get(ConfigParam.REPOSITORY_TYPE));
         switch (repoType) {
-            case SESAME:
-                return getSesameData(format);
+            case RDF4J:
+                return getRdf4jData(format);
             case OWLAPI:
                 return getOwlapiData();
             default:
@@ -63,7 +63,7 @@ public class DataDao {
         }
     }
 
-    private String getSesameData(DataFormat format) {
+    private String getRdf4jData(DataFormat format) {
         try {
             final RepositoryConnection connection = repository.getConnection();
             final ByteArrayOutputStream bos = new ByteArrayOutputStream();

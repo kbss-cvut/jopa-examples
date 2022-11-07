@@ -53,8 +53,8 @@ public abstract class BaseDao<T> {
     private ConfigurationService configurationService;
 
     @Autowired
-    @Qualifier("sesameEMF")
-    private EntityManagerFactory sesameEmf;
+    @Qualifier("rdf4jEMF")
+    private EntityManagerFactory rdf4jEmf;
 
     @Autowired
     @Qualifier("owlapiEMF")
@@ -192,8 +192,8 @@ public abstract class BaseDao<T> {
         final RepositoryType repoType = RepositoryType
                 .fromString(configurationService.get(ConfigParam.REPOSITORY_TYPE));
         switch (repoType) {
-            case SESAME:
-                return sesameEmf.createEntityManager();
+            case RDF4J:
+                return rdf4jEmf.createEntityManager();
             case OWLAPI:
                 return owlapiEmf.createEntityManager();
             default:
@@ -202,6 +202,6 @@ public abstract class BaseDao<T> {
     }
 
     final List<EntityManagerFactory> getAllEntityManagerFactories() {
-        return Arrays.asList(sesameEmf, owlapiEmf);
+        return Arrays.asList(rdf4jEmf, owlapiEmf);
     }
 }

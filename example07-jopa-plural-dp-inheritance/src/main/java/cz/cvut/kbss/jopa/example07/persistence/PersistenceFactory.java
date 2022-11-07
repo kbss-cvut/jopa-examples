@@ -18,7 +18,6 @@ import cz.cvut.kbss.jopa.Persistence;
 import cz.cvut.kbss.jopa.model.EntityManagerFactory;
 import cz.cvut.kbss.jopa.model.JOPAPersistenceProperties;
 import cz.cvut.kbss.jopa.model.JOPAPersistenceProvider;
-import cz.cvut.kbss.ontodriver.config.OntoDriverProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -70,7 +69,7 @@ public class PersistenceFactory {
 
     private static Map<String, String> initParams() {
         final Map<String, String> map = new HashMap<>();
-        map.put(OntoDriverProperties.ONTOLOGY_LANGUAGE, "en");
+        map.put(JOPAPersistenceProperties.LANG, "en");
         map.put(JOPAPersistenceProperties.SCAN_PACKAGE, "cz.cvut.kbss.jopa.example07.model");
         map.put(JOPAPersistenceProperties.JPA_PERSISTENCE_PROVIDER, JOPAPersistenceProvider.class.getName());
         return map;

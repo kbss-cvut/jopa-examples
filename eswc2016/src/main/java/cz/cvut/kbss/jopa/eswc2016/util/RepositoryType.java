@@ -18,7 +18,7 @@ import java.util.Objects;
 
 public enum RepositoryType {
 
-    SESAME("sesame"), OWLAPI("owlapi");
+    RDF4J("rdf4j"), OWLAPI("owlapi");
 
     private final String name;
 

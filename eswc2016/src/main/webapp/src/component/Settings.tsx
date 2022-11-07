@@ -5,8 +5,11 @@ import {loadSettings, saveSettings} from "../action/AsyncActions";
 import Constants from "../util/Constants";
 import {ThunkDispatch} from "../util/Util";
 
+const RDF4J_REPO_TYPE = "rdf4j";
+const OWLAPI_REPO_TYPE = "owlapi";
+
 const Settings = () => {
-    const [repoType, setRepoType] = useState<string>("sesame");
+    const [repoType, setRepoType] = useState<string>(RDF4J_REPO_TYPE);
     const dispatch: ThunkDispatch = useDispatch();
     React.useEffect(() => {
         dispatch(loadSettings(Constants.REPOSITORY_TYPE_PARAM)).then((type: string) => setRepoType(type));
@@ -29,14 +32,14 @@ const Settings = () => {
                 </Row>
                 <Row className="mb-3">
                     <Col xs={2}>
-                        <Form.Check type='radio' value='sesame'
-                                    checked={repoType === 'sesame'} label='Sesame'
-                                    onChange={() => onChange("sesame")}/>
+                        <Form.Check type='radio' value={RDF4J_REPO_TYPE}
+                                    checked={repoType === RDF4J_REPO_TYPE} label='RDF4J'
+                                    onChange={() => onChange(RDF4J_REPO_TYPE)}/>
                     </Col>
                     <Col xs={2}>
-                        <Form.Check type='radio' value='owlapi'
-                                    checked={repoType === 'owlapi'} label='OWL API'
-                                    onChange={() => onChange("owlapi")}/>
+                        <Form.Check type='radio' value={OWLAPI_REPO_TYPE}
+                                    checked={repoType === OWLAPI_REPO_TYPE} label='OWL API'
+                                    onChange={() => onChange(OWLAPI_REPO_TYPE)}/>
                     </Col>
                 </Row>
                 <Row className="mb-3">

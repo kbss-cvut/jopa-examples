@@ -24,7 +24,7 @@ range check is performed, as there is no knowledge about the target of the relat
 
 ## Persistence Setup
 
-The persistence is set up in `cz.cvut.kbss.jopa.example06.persistence.PersistenceFactory`. We are using an in-memory Sesame repository,
+The persistence is set up in `cz.cvut.kbss.jopa.example06.persistence.PersistenceFactory`. We are using an in-memory RDF4J repository,
 which is thrown away after the application exits.
 
 ## Running the Demo

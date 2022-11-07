@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @ComponentScan(basePackages = "cz.cvut.kbss.jopa.example04.persistence.dao")
-@Import({TestPersistenceFactory.class, TestSesamePersistenceProvider.class})
+@Import({TestPersistenceFactory.class, TestRdf4jPersistenceProvider.class})
 @EnableTransactionManagement
 public class TestPersistenceConfig {
 

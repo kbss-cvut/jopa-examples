@@ -190,7 +190,7 @@ only JSON-LD (it has to be registered first) and the other supporting any other 
 
 ## Persistence Setup
 
-The persistence is set up in `cz.cvut.kbss.jopa.jsonld.persistence.PersistenceFactory`. We are using a native Sesame repository, stored in `/tmp`.
+The persistence is set up in `cz.cvut.kbss.jopa.jsonld.persistence.PersistenceFactory`. We are using a native RDF4J repository, stored in `/tmp`.
 Of course, this setup can be changed. Target location is in `config.properties`.
 
 ### Declarative Transactions

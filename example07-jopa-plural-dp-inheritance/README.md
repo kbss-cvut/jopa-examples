@@ -43,7 +43,7 @@ More information can be found in the [JSON-LD integration demo](https://github.c
 
 ## Persistence Setup
 
-The persistence is set up in `cz.cvut.kbss.jopa.example07.persistence.PersistenceFactory`. We are using a native Sesame repository, stored in `/tmp`.
+The persistence is set up in `cz.cvut.kbss.jopa.example07.persistence.PersistenceFactory`. We are using a native RDF4J repository, stored in `/tmp`.
 Of course, this setup can be changed. Target location is in `config.properties`.
 
 ## Running the Demo

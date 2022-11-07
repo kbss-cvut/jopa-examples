@@ -35,6 +35,6 @@ public class ConfigurationService {
 
     @PostConstruct
     private void init() {
-        configuration.put(ConfigParam.REPOSITORY_TYPE, RepositoryType.SESAME.toString());
+        configuration.put(ConfigParam.REPOSITORY_TYPE, RepositoryType.RDF4J.toString());
     }
 }

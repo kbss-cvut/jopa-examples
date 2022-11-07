@@ -3,17 +3,17 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>cz.cvut.kbss.jopa</groupId>
         <artifactId>jopa-examples-parent</artifactId>
+        <groupId>cz.cvut.kbss.jopa</groupId>
         <version>0.18.5</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>example-06</artifactId>
-    <name>Example06-JOPA-RDF4J-MappedSuperclass</name>
+    <artifactId>example-03</artifactId>
+    <name>Example03-JOPA-RDF4J-Contexts</name>
     <description>
-        Demo showcasing mapped superclass support in JOPA.
+        JOPA with a RDF4J storage utilizing different contexts (named graphs in RDF terminology) in the storage.
     </description>
 
     <dependencies>
@@ -21,6 +21,12 @@
             <groupId>cz.cvut.kbss.jopa</groupId>
             <artifactId>ontodriver-rdf4j</artifactId>
             <version>${cz.cvut.kbss.jopa.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
         </dependency>
     </dependencies>
 
@@ -32,7 +38,10 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.4.0</version>
                 <configuration>
-                    <mainClass>cz.cvut.kbss.jopa.example06.Example</mainClass>
+                    <mainClass>cz.cvut.kbss.jopa.example03.Example</mainClass>
+                    <arguments>
+                        <argument>file:${project.basedir}/repositories/example03</argument>
+                    </arguments>
                 </configuration>
             </plugin>
         </plugins>

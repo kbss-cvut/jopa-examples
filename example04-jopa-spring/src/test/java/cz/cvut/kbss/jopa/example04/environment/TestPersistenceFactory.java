@@ -17,8 +17,8 @@ package cz.cvut.kbss.jopa.example04.environment;
 import cz.cvut.kbss.jopa.Persistence;
 import cz.cvut.kbss.jopa.example04.persistence.PersistenceFactory;
 import cz.cvut.kbss.jopa.model.EntityManagerFactory;
-import cz.cvut.kbss.ontodriver.sesame.SesameDataSource;
-import cz.cvut.kbss.ontodriver.sesame.config.SesameOntoDriverProperties;
+import cz.cvut.kbss.ontodriver.rdf4j.Rdf4jDataSource;
+import cz.cvut.kbss.ontodriver.rdf4j.config.Rdf4jOntoDriverProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -46,9 +46,9 @@ public class TestPersistenceFactory {
     private void init() {
         final Map<String, String> properties = new HashMap<>(PersistenceFactory.PARAMS);
         properties.put(ONTOLOGY_PHYSICAL_URI_KEY, "mem:test");
-        properties.put(SesameOntoDriverProperties.SESAME_USE_VOLATILE_STORAGE, Boolean.TRUE.toString());
-        properties.put(SesameOntoDriverProperties.SESAME_USE_INFERENCE, Boolean.TRUE.toString());
-        properties.put(DATA_SOURCE_CLASS, SesameDataSource.class.getName());
+        properties.put(Rdf4jOntoDriverProperties.USE_VOLATILE_STORAGE, Boolean.TRUE.toString());
+        properties.put(Rdf4jOntoDriverProperties.USE_INFERENCE, Boolean.TRUE.toString());
+        properties.put(DATA_SOURCE_CLASS, Rdf4jDataSource.class.getName());
         this.emf = Persistence.createEntityManagerFactory("example04TestPU", properties);
     }
 
