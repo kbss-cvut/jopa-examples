@@ -91,7 +91,7 @@ Some examples of the JSON-LD serialization follow. The resulting JSON-LD is vali
 ```
 
 **Multiple reference serialization**
-```
+```json
 {
   "@context": {
     "firstName": "http://xmlns.com/foaf/0.1/firstName",
@@ -172,57 +172,57 @@ _JB4JSON-LD_ is internally using [jsonld-java](https://github.com/jsonld-java/js
 of the JSON-LD formats supported by this library (compacted, expanded, flattened). 
 It can also handle reference serialization through IRIs described in the previous section.
 
-As an example, the following JSON-LD can be passed to the application to create a new study:
+As an example, the following JSON-LD can be passed to the application to create a new study (POST to `/rest/studies`):
 
-```
+```json
 {
-    "@type": [
-      "http://krizik.felk.cvut.cz/ontologies/study-manager/study"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": "LupusStudy",
-    "http://krizik.felk.cvut.cz/ontologies/study-manager/has-admin": [
-      {
+  "@type": [
+    "http://krizik.felk.cvut.cz/ontologies/study-manager/study"
+  ],
+  "http://www.w3.org/2000/01/rdf-schema#label": "LupusStudy",
+  "http://krizik.felk.cvut.cz/ontologies/study-manager/has-admin": [
+    {
+      "@type": [
+        "http://krizik.felk.cvut.cz/ontologies/study-manager/user"
+      ],
+      "http://purl.org/dc/terms/created": "2022-11-29T13:56:08Z",
+      "http://xmlns.com/foaf/0.1/mbox": "Lisa.Cuddy@jopaexample.org",
+      "http://xmlns.com/foaf/0.1/firstName": "Lisa",
+      "http://xmlns.com/foaf/0.1/lastName": "Cuddy",
+      "http://krizik.felk.cvut.cz/ontologies/study-manager/is-member-of": {
         "@type": [
-          "http://krizik.felk.cvut.cz/ontologies/study-manager/user"
+          "http://krizik.felk.cvut.cz/ontologies/study-manager/organization"
         ],
-        "http://purl.org/dc/terms/created": "Mon Oct 10 17:34:04 CEST 2016",
-        "http://xmlns.com/foaf/0.1/mbox": "Lisa.Cuddy@jopaexample.org",
-        "http://xmlns.com/foaf/0.1/firstName": "Lisa",
-        "http://xmlns.com/foaf/0.1/lastName": "Cuddy",
-        "http://krizik.felk.cvut.cz/ontologies/study-manager/is-member-of": {
-          "@type": [
-            "http://krizik.felk.cvut.cz/ontologies/study-manager/organization"
-          ],
-          "http://www.w3.org/2000/01/rdf-schema#label": "Princeton-Plainsboro Teaching Hospital",
-          "http://xmlns.com/foaf/0.1/mbox": "princetono-plainsboro@jopaexample.org",
-          "http://purl.org/dc/terms/created": "Mon Oct 10 17:34:04 CEST 2016",
-          "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/Organization-PrincetonPlainsboro",
-          "http://krizik.felk.cvut.cz/ontologies/study-manager/key": "1476113644121"
-        },
-        "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/Lisa+Cuddy",
-        "http://krizik.felk.cvut.cz/ontologies/study-manager/key": "1476113644169"
-      }
-    ],
-    "http://krizik.felk.cvut.cz/ontologies/study-manager/has-participant": [
-      {
-        "@type": [
-          "http://krizik.felk.cvut.cz/ontologies/study-manager/user"
-        ],
-        "http://purl.org/dc/terms/created": "Mon Oct 10 17:34:04 CEST 2016",
-        "http://xmlns.com/foaf/0.1/mbox": "Greg.House@jopaexample.org",
-        "http://xmlns.com/foaf/0.1/firstName": "Greg",
-        "http://xmlns.com/foaf/0.1/lastName": "House",
-        "http://krizik.felk.cvut.cz/ontologies/study-manager/is-member-of": {
-           "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/Organization-PrincetonPlainsboro"
-        },
-        "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/Greg+House",
-        "http://krizik.felk.cvut.cz/ontologies/study-manager/key": "1476113644168"
-      }
-    ],
-    "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/study#instance-1587729056",
-    "http://krizik.felk.cvut.cz/ontologies/study-manager/key": "1476113644225",
-    "http://purl.org/dc/terms/created": "Mon Oct 10 17:34:04 CEST 2016"
-  }
+        "http://www.w3.org/2000/01/rdf-schema#label": "Princeton-Plainsboro Teaching Hospital",
+        "http://xmlns.com/foaf/0.1/mbox": "princetono-plainsboro@jopaexample.org",
+        "http://purl.org/dc/terms/created": "2022-11-29T13:56:08Z",
+        "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/Organization-PrincetonPlainsboro",
+        "http://krizik.felk.cvut.cz/ontologies/study-manager/key": "1476113644121"
+      },
+      "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/Lisa+Cuddy",
+      "http://krizik.felk.cvut.cz/ontologies/study-manager/key": "1476113644169"
+    }
+  ],
+  "http://krizik.felk.cvut.cz/ontologies/study-manager/has-participant": [
+    {
+      "@type": [
+        "http://krizik.felk.cvut.cz/ontologies/study-manager/user"
+      ],
+      "http://purl.org/dc/terms/created": "2022-11-29T13:56:08Z",
+      "http://xmlns.com/foaf/0.1/mbox": "Greg.House@jopaexample.org",
+      "http://xmlns.com/foaf/0.1/firstName": "Greg",
+      "http://xmlns.com/foaf/0.1/lastName": "House",
+      "http://krizik.felk.cvut.cz/ontologies/study-manager/is-member-of": {
+         "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/Organization-PrincetonPlainsboro"
+      },
+      "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/Greg+House",
+      "http://krizik.felk.cvut.cz/ontologies/study-manager/key": "1476113644168"
+    }
+  ],
+  "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/study#instance-1587729056",
+  "http://krizik.felk.cvut.cz/ontologies/study-manager/key": "1476113644225",
+  "http://purl.org/dc/terms/created": "2022-11-29T13:56:08Z"
+}
 ```
 
 Notice how the Dr. House's organization membership references the previously declared Princeton Plainsboro hospital.
