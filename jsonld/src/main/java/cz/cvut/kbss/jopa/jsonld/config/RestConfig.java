@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import cz.cvut.kbss.jsonld.ConfigParam;
 import cz.cvut.kbss.jsonld.JsonLd;
 import cz.cvut.kbss.jsonld.jackson.JsonLdModule;
+import cz.cvut.kbss.jsonld.jackson.serialization.SerializationConstants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -41,6 +42,7 @@ public class RestConfig extends WebMvcConfigurationSupport {
         final JsonLdModule module = new JsonLdModule();
         // Package scan is important for polymorphic deserialization
         module.configure(ConfigParam.SCAN_PACKAGE, "cz.cvut.kbss.jopa.example08");
+        module.configure(SerializationConstants.FORM, SerializationConstants.FORM_COMPACT_WITH_CONTEXT);
         objectMapper.registerModule(module);
         return objectMapper;
     }

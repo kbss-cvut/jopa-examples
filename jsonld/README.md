@@ -5,7 +5,7 @@ This example showcases usage of JOPA model and Jackson integration of the [JB4JS
 ### Features
 
 * Spring boot application with REST services,
-* Publishing data in JSON-LD,
+* Publishing data in JSON-LD with context,
 * Consuming data in JSON-LD,
 * REST API supporting both JSON and JSON-LD.
 
@@ -27,94 +27,140 @@ Some examples of the JSON-LD serialization follow. The resulting JSON-LD is vali
 
 **Simple instance serialization**
 
-```
+```json
 {
+  "@context": {
+    "emailAddress": "http://xmlns.com/foaf/0.1/mbox",
+    "dateCreated": {
+      "@id": "http://purl.org/dc/terms/created",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "name": "http://www.w3.org/2000/01/rdf-schema#label",
+    "uri": "@id",
+    "key": "http://krizik.felk.cvut.cz/ontologies/study-manager/key"
+  },
+  "uri": "http://krizik.felk.cvut.cz/ontologies/study-manager/Organization-1048030208",
   "@type": [
     "http://krizik.felk.cvut.cz/ontologies/study-manager/organization"
   ],
-  "http://www.w3.org/2000/01/rdf-schema#label": "Organization-1038864046",
-  "http://xmlns.com/foaf/0.1/mbox": "organization-1038864046@jopaexample.org",
-  "http://purl.org/dc/terms/created": "Mon Oct 10 17:34:04 CEST 2016",
-  "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/Organization-1038864046",
-  "http://krizik.felk.cvut.cz/ontologies/study-manager/key": "1476113644121"
+  "name": "Organization-1048030208",
+  "emailAddress": "organization-1048030208@jopaexample.org",
+  "dateCreated": "2022-11-29T13:56:08.569Z",
+  "key": "1669730168569"
 }
 ```
 
 **Instance tree**
-```
+```json
 {
-    "@type": [
-      "http://krizik.felk.cvut.cz/ontologies/study-manager/user"
-    ],
-    "http://purl.org/dc/terms/created": "Mon Oct 10 17:34:04 CEST 2016",
-    "http://xmlns.com/foaf/0.1/mbox": "FirstName-1083869615.LastName1286581168@jopaexample.org",
-    "http://xmlns.com/foaf/0.1/firstName": "FirstName-1083869615",
-    "http://xmlns.com/foaf/0.1/lastName": "LastName1286581168",
-    "http://krizik.felk.cvut.cz/ontologies/study-manager/is-member-of": {
-      "@type": [
-        "http://krizik.felk.cvut.cz/ontologies/study-manager/organization"
-      ],
-      "http://www.w3.org/2000/01/rdf-schema#label": "Organization-902851551",
-      "http://xmlns.com/foaf/0.1/mbox": "organization-902851551@jopaexample.org",
-      "http://purl.org/dc/terms/created": "Mon Oct 10 17:34:04 CEST 2016",
-      "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/Organization-902851551",
-      "http://krizik.felk.cvut.cz/ontologies/study-manager/key": "1476113644114"
+  "@context": {
+    "firstName": "http://xmlns.com/foaf/0.1/firstName",
+    "lastName": "http://xmlns.com/foaf/0.1/lastName",
+    "types": "@type",
+    "emailAddress": "http://xmlns.com/foaf/0.1/mbox",
+    "dateCreated": {
+      "@id": "http://purl.org/dc/terms/created",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
     },
-    "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/FirstName-1083869615+LastName1286581168",
-    "http://krizik.felk.cvut.cz/ontologies/study-manager/key": "1476113644178"
-  }
+    "name": "http://www.w3.org/2000/01/rdf-schema#label",
+    "clinic": "http://krizik.felk.cvut.cz/ontologies/study-manager/is-member-of",
+    "uri": "@id",
+    "key": "http://krizik.felk.cvut.cz/ontologies/study-manager/key"
+  },
+  "uri": "http://krizik.felk.cvut.cz/ontologies/study-manager/FirstName-462003349+LastName1393253798",
+  "types": [
+    "http://krizik.felk.cvut.cz/ontologies/study-manager/user",
+    "http://krizik.felk.cvut.cz/ontologies/study-manager/doctor"
+  ],
+  "dateCreated": "2022-11-29T13:56:08.608Z",
+  "emailAddress": "FirstName-462003349.LastName1393253798@jopaexample.org",
+  "firstName": "FirstName-462003349",
+  "lastName": "LastName1393253798",
+  "clinic": {
+    "uri": "http://krizik.felk.cvut.cz/ontologies/study-manager/Organization847735561",
+    "@type": [
+      "http://krizik.felk.cvut.cz/ontologies/study-manager/organization"
+    ],
+    "name": "Organization847735561",
+    "emailAddress": "organization847735561@jopaexample.org",
+    "dateCreated": "2022-11-29T13:56:08.569Z",
+    "key": "1669730168589"
+  },
+  "key": "1669730168609"
+}
 ```
 
 **Multiple reference serialization**
 ```
-[
-  {
-    "@type": [
-      "http://krizik.felk.cvut.cz/ontologies/study-manager/study"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": "Study1912685962",
-    "http://krizik.felk.cvut.cz/ontologies/study-manager/has-participant": [
-      {
-        "@type": [
-          "http://krizik.felk.cvut.cz/ontologies/study-manager/user"
+{
+  "@context": {
+    "firstName": "http://xmlns.com/foaf/0.1/firstName",
+    "lastName": "http://xmlns.com/foaf/0.1/lastName",
+    "types": "@type",
+    "emailAddress": "http://xmlns.com/foaf/0.1/mbox",
+    "dateCreated": {
+      "@id": "http://purl.org/dc/terms/created",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "created": {
+      "@id": "http://purl.org/dc/terms/created",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "name": "http://www.w3.org/2000/01/rdf-schema#label",
+    "clinic": "http://krizik.felk.cvut.cz/ontologies/study-manager/is-member-of",
+    "uri": "@id",
+    "key": "http://krizik.felk.cvut.cz/ontologies/study-manager/key",
+    "participants": "http://krizik.felk.cvut.cz/ontologies/study-manager/has-participant"
+  },
+  "uri": "http://krizik.felk.cvut.cz/ontologies/study-manager/study/instance1205137700",
+  "@type": [
+    "http://krizik.felk.cvut.cz/ontologies/study-manager/study"
+  ],
+  "name": "Study-318205302",
+  "participants": [
+    {
+      "uri": "http://krizik.felk.cvut.cz/ontologies/study-manager/FirstName1206748040+LastName-675804197",
+        "types": [
+          "http://krizik.felk.cvut.cz/ontologies/study-manager/user",
+          "http://krizik.felk.cvut.cz/ontologies/study-manager/doctor"
         ],
-        "http://purl.org/dc/terms/created": "Mon Oct 10 17:34:04 CEST 2016",
-        "http://xmlns.com/foaf/0.1/mbox": "FirstName-1083869615.LastName1286581168@jopaexample.org",
-        "http://xmlns.com/foaf/0.1/firstName": "FirstName-1083869615",
-        "http://xmlns.com/foaf/0.1/lastName": "LastName1286581168",
-        "http://krizik.felk.cvut.cz/ontologies/study-manager/is-member-of": {
+        "dateCreated": "2022-11-29T13:56:08.608Z",
+        "emailAddress": "FirstName1206748040.LastName-675804197@jopaexample.org",
+        "firstName": "FirstName1206748040",
+        "lastName": "LastName-675804197",
+        "clinic": {
+          "uri": "http://krizik.felk.cvut.cz/ontologies/study-manager/Organization847735561",
           "@type": [
-            "http://krizik.felk.cvut.cz/ontologies/study-manager/organization"
+              "http://krizik.felk.cvut.cz/ontologies/study-manager/organization"
           ],
-          "http://www.w3.org/2000/01/rdf-schema#label": "Organization-902851551",
-          "http://xmlns.com/foaf/0.1/mbox": "organization-902851551@jopaexample.org",
-          "http://purl.org/dc/terms/created": "Mon Oct 10 17:34:04 CEST 2016",
-          "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/Organization-902851551",
-          "http://krizik.felk.cvut.cz/ontologies/study-manager/key": "1476113644114"
+          "name": "Organization847735561",
+          "emailAddress": "organization847735561@jopaexample.org",
+          "dateCreated": "2022-11-29T13:56:08.569Z",
+          "key": "1669730168589"
         },
-        "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/FirstName-1083869615+LastName1286581168",
-        "http://krizik.felk.cvut.cz/ontologies/study-manager/key": "1476113644178"
-      },
-      {
-        "@type": [
-          "http://krizik.felk.cvut.cz/ontologies/study-manager/user"
+        "key": "1669730168625"
+    },
+    {
+        "uri": "http://krizik.felk.cvut.cz/ontologies/study-manager/FirstName-462003349+LastName1393253798",
+        "types": [
+          "http://krizik.felk.cvut.cz/ontologies/study-manager/user",
+          "http://krizik.felk.cvut.cz/ontologies/study-manager/doctor"
         ],
-        "http://purl.org/dc/terms/created": "Mon Oct 10 17:34:04 CEST 2016",
-        "http://xmlns.com/foaf/0.1/mbox": "FirstName-1787715414.LastName1404380669@jopaexample.org",
-        "http://xmlns.com/foaf/0.1/firstName": "FirstName-1787715414",
-        "http://xmlns.com/foaf/0.1/lastName": "LastName1404380669",
-        "http://krizik.felk.cvut.cz/ontologies/study-manager/is-member-of": {
-          "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/Organization-902851551"
+        "dateCreated": "2022-11-29T13:56:08.608Z",
+        "emailAddress": "FirstName-462003349.LastName1393253798@jopaexample.org",
+        "firstName": "FirstName-462003349",
+        "lastName": "LastName1393253798",
+        "clinic": {
+          "uri": "http://krizik.felk.cvut.cz/ontologies/study-manager/Organization847735561"
         },
-        "@id": "http://krizik.felk.cvut.cz/ontologies/study-manager/FirstName-1787715414+LastName1404380669",
-        "http://krizik.felk.cvut.cz/ontologies/study-manager/key": "1476113644176"
-      }
-    ],
-    ... Other attributes omitted
-  }
-]
+        "key": "1669730168609"
+    }
+  ],
+  "key": "1669730168658",
+  "created": "2022-11-29T13:56:08.651Z"
+}
 ```
-Notice how attribute `http://krizik.felk.cvut.cz/ontologies/study-manager/is-member-of` of the user `http://krizik.felk.cvut.cz/ontologies/study-manager/FirstName-1787715414+LastName1404380669`
+Notice how attribute `clinic` of the user `http://krizik.felk.cvut.cz/ontologies/study-manager/FirstName-462003349+LastName1393253798`
 uses only the IRI of the organization it is a member of, because the organization itself has been already used in the document.
 
 This mechanism also naturally solves the issue of backward references, which has to be resolved using `JsonIdentityInfo` in Jackson. JSON-LD contains
