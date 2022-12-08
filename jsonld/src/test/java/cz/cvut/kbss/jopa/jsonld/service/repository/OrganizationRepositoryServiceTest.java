@@ -17,11 +17,11 @@ package cz.cvut.kbss.jopa.jsonld.service.repository;
 import cz.cvut.kbss.jopa.jsonld.environment.Generator;
 import cz.cvut.kbss.jopa.jsonld.model.Organization;
 import cz.cvut.kbss.jopa.jsonld.service.BaseServiceTestRunner;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class OrganizationRepositoryServiceTest extends BaseServiceTestRunner {
 

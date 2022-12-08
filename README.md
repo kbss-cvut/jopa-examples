@@ -42,3 +42,11 @@ It is the most complex JOPA-based application developed by us to-date.
 Sources are available on GitHub:
 * Backend: [https://github.com/kbss-cvut/termit](https://github.com/kbss-cvut/termit)
 * Frontend: [https://github.com/kbss-cvut/termit-ui](https://github.com/kbss-cvut/termit-ui)
+
+### Requirements
+
+All the examples are written in Java and built using [Maven](https://maven.apache.org/). To run them, the following is
+required:
+
+- Java 8 or later
+- Apache Maven 3.x

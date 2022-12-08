@@ -18,15 +18,15 @@ import cz.cvut.kbss.jopa.jsonld.environment.Generator;
 import cz.cvut.kbss.jopa.jsonld.model.Study;
 import cz.cvut.kbss.jopa.jsonld.model.User;
 import cz.cvut.kbss.jopa.model.EntityManager;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StudyDaoTest extends BaseDaoTestRunner {
 
@@ -38,8 +38,8 @@ public class StudyDaoTest extends BaseDaoTestRunner {
 
     private User author;
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeEach
+    public void setUp() {
         this.author = Generator.generateUser();
         author.generateUri();
         author.setKey(Long.toString(System.currentTimeMillis()));

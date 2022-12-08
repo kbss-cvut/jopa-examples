@@ -17,14 +17,14 @@ package cz.cvut.kbss.jopa.jsonld.persistence.dao;
 import cz.cvut.kbss.jopa.jsonld.environment.Generator;
 import cz.cvut.kbss.jopa.jsonld.model.Organization;
 import cz.cvut.kbss.jopa.model.EntityManager;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class OrganizationDaoTest extends BaseDaoTestRunner {
 
