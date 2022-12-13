@@ -14,6 +14,8 @@
  */
 package cz.cvut.kbss.jopa.jsonld.rest;
 
+import cz.cvut.kbss.jopa.jsonld.dto.StudyDto;
+import cz.cvut.kbss.jopa.jsonld.dto.mapper.DtoMapper;
 import cz.cvut.kbss.jopa.jsonld.model.Study;
 import cz.cvut.kbss.jopa.jsonld.rest.exception.NotFoundException;
 import cz.cvut.kbss.jopa.jsonld.service.StudyService;
@@ -28,6 +30,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("${apiPrefix}/studies")
@@ -37,18 +40,26 @@ public class StudyController {
 
     private final StudyService studyService;
 
+    private final DtoMapper dtoMapper;
+
     @Autowired
-    public StudyController(StudyService studyService) {
+    public StudyController(StudyService studyService, DtoMapper dtoMapper) {
         this.studyService = studyService;
+        this.dtoMapper = dtoMapper;
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
-    public List<Study> getStudies() {
-        return studyService.findAll();
+    public List<StudyDto> getStudies() {
+        return studyService.findAll().stream().map(dtoMapper::studyToDto).collect(Collectors.toList());
     }
 
-    @RequestMapping(value = "/{key}", method = RequestMethod.GET, produces = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
-    public Study getStudy(@PathVariable(name = "key") String key) {
+    @RequestMapping(value = "/{key}", method = RequestMethod.GET, produces = {JsonLd.MEDIA_TYPE,
+                                                                              MediaType.APPLICATION_JSON_VALUE})
+    public StudyDto getStudy(@PathVariable(name = "key") String key) {
+        return dtoMapper.studyToDto(findByKey(key));
+    }
+
+    private Study findByKey(String key) {
         final Study study = studyService.findByKey(key);
         if (study == null) {
             throw NotFoundException.create("Study", key);
@@ -57,7 +68,8 @@ public class StudyController {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Void> createStudy(@RequestBody Study study) {
+    public ResponseEntity<Void> createStudy(@RequestBody StudyDto dto) {
+        final Study study = dtoMapper.dtoToStudy(dto);
         studyService.persist(study);
         LOG.trace("Study {} successfully persisted.", study);
         final String key = study.getKey();
@@ -65,21 +77,22 @@ public class StudyController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{key}", method = RequestMethod.PUT, consumes = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/{key}", method = RequestMethod.PUT, consumes = {JsonLd.MEDIA_TYPE,
+                                                                              MediaType.APPLICATION_JSON_VALUE})
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateStudy(@PathVariable(name = "key") String key, @RequestBody Study study) {
-        if (!key.equals(study.getKey())) {
+    public void updateStudy(@PathVariable(name = "key") String key, @RequestBody StudyDto dto) {
+        if (!key.equals(dto.getKey())) {
             throw new IllegalArgumentException("The passed study's key is different from the specified one.");
         }
         getStudy(key);  // Check that the study exists
-        studyService.update(study);
-        LOG.trace("Study {} successfully updated.", study);
+        studyService.update(dtoMapper.dtoToStudy(dto));
+        LOG.trace("Study {} successfully updated.", dto);
     }
 
     @RequestMapping(value = "/{key}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteStudy(@PathVariable(name = "key") String key) {
-        final Study study = getStudy(key);
+        final Study study = findByKey(key);
         studyService.remove(study);
         LOG.trace("Study {} removed.", study);
     }

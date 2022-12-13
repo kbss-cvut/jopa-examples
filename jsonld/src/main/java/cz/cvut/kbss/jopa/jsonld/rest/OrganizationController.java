@@ -14,6 +14,8 @@
  */
 package cz.cvut.kbss.jopa.jsonld.rest;
 
+import cz.cvut.kbss.jopa.jsonld.dto.OrganizationDto;
+import cz.cvut.kbss.jopa.jsonld.dto.mapper.DtoMapper;
 import cz.cvut.kbss.jopa.jsonld.model.Organization;
 import cz.cvut.kbss.jopa.jsonld.rest.exception.NotFoundException;
 import cz.cvut.kbss.jopa.jsonld.service.OrganizationService;
@@ -28,6 +30,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("${apiPrefix}/organizations")
@@ -37,18 +40,26 @@ public class OrganizationController {
 
     private final OrganizationService organizationService;
 
+    private final DtoMapper dtoMapper;
+
     @Autowired
-    public OrganizationController(OrganizationService organizationService) {
+    public OrganizationController(OrganizationService organizationService, DtoMapper dtoMapper) {
         this.organizationService = organizationService;
+        this.dtoMapper = dtoMapper;
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
-    public List<Organization> getOrganizations() {
-        return organizationService.findAll();
+    public List<OrganizationDto> getOrganizations() {
+        return organizationService.findAll().stream().map(dtoMapper::organizationToDto).collect(Collectors.toList());
     }
 
-    @RequestMapping(value = "/{key}", method = RequestMethod.GET, produces = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
-    public Organization getOrganization(@PathVariable(name = "key") String key) {
+    @RequestMapping(value = "/{key}", method = RequestMethod.GET, produces = {JsonLd.MEDIA_TYPE,
+                                                                              MediaType.APPLICATION_JSON_VALUE})
+    public OrganizationDto getOrganization(@PathVariable(name = "key") String key) {
+        return dtoMapper.organizationToDto(findByKey(key));
+    }
+
+    private Organization findByKey(String key) {
         final Organization organization = organizationService.findByKey(key);
         if (organization == null) {
             throw NotFoundException.create("Organization", key);
@@ -57,7 +68,8 @@ public class OrganizationController {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Void> createOrganization(@RequestBody Organization organization) {
+    public ResponseEntity<Void> createOrganization(@RequestBody OrganizationDto data) {
+        final Organization organization = dtoMapper.dtoToOrganization(data);
         organizationService.persist(organization);
         LOG.trace("Organization {} successfully persisted.", organization);
         final String key = organization.getKey();
@@ -65,21 +77,22 @@ public class OrganizationController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/{key}", method = RequestMethod.PUT, consumes = {JsonLd.MEDIA_TYPE, MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/{key}", method = RequestMethod.PUT, consumes = {JsonLd.MEDIA_TYPE,
+                                                                              MediaType.APPLICATION_JSON_VALUE})
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateOrganization(@PathVariable(name = "key") String key, @RequestBody Organization organization) {
+    public void updateOrganization(@PathVariable(name = "key") String key, @RequestBody OrganizationDto organization) {
         if (!key.equals(organization.getKey())) {
             throw new IllegalArgumentException("The passed organization's key is different from the specified one.");
         }
         getOrganization(key);  // Check that the organization exists
-        organizationService.update(organization);
+        organizationService.update(dtoMapper.dtoToOrganization(organization));
         LOG.trace("Organization {} successfully updated.", organization);
     }
 
     @RequestMapping(value = "/{key}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteOrganization(@PathVariable(name = "key") String key) {
-        final Organization organization = getOrganization(key);
+        final Organization organization = findByKey(key);
         organizationService.remove(organization);
         LOG.trace("Organization {} removed.", organization);
     }
