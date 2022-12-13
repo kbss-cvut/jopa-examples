@@ -25,13 +25,11 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import java.util.Collections;
-import java.util.List;
 
 @Configuration
-public class RestConfig extends WebMvcConfigurationSupport {
+public class WebAppConfig {
 
     @Bean(name = "jsonLdMapper")
     public ObjectMapper jsonLdObjectMapper() {
@@ -56,13 +54,8 @@ public class RestConfig extends WebMvcConfigurationSupport {
         return objectMapper;
     }
 
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(createJsonLdMessageConverter());
-        super.addDefaultHttpMessageConverters(converters);
-    }
-
-    private HttpMessageConverter<?> createJsonLdMessageConverter() {
+    @Bean
+    public HttpMessageConverter<?> createJsonLdMessageConverter() {
         final MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter(
                 jsonLdObjectMapper());
         converter.setSupportedMediaTypes(Collections.singletonList(MediaType.valueOf(JsonLd.MEDIA_TYPE)));

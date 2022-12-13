@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/studies")
+@RequestMapping("${apiPrefix}/studies")
 public class StudyController {
 
     private static final Logger LOG = LoggerFactory.getLogger(StudyController.class);
