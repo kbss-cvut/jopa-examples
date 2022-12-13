@@ -7,7 +7,7 @@
     <parent>
         <groupId>cz.cvut.kbss.jopa</groupId>
         <artifactId>jopa-examples-parent</artifactId>
-        <version>0.19.2</version>
+        <version>0.19.3</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>example-02</artifactId>

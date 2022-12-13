@@ -6,7 +6,7 @@
 
     <groupId>cz.cvut.kbss.jopa</groupId>
     <artifactId>jopa-examples-parent</artifactId>
-    <version>0.19.2</version>
+    <version>0.19.3</version>
     <modules>
         <module>example01-jopa-rdf4j-owl2java</module>
         <module>example02-jopa-owlapi</module>
@@ -31,7 +31,7 @@
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <maven.compiler.target>${jdk.version}</maven.compiler.target>
         <org.aspectj.version>1.9.7</org.aspectj.version>
-        <cz.cvut.kbss.jopa.version>0.19.2</cz.cvut.kbss.jopa.version>
+        <cz.cvut.kbss.jopa.version>0.19.3</cz.cvut.kbss.jopa.version>
         <cz.cvut.kbss.jb4jsonld.version>0.10.0</cz.cvut.kbss.jb4jsonld.version>
         <org.eclipse.rdf4j.version>3.7.7</org.eclipse.rdf4j.version>
         <ch.qos.logback.version>1.2.11</ch.qos.logback.version>
