@@ -230,8 +230,15 @@ Notice how the Dr. House's organization membership references the previously dec
 ### JSON and JSON-LD
 
 The REST API of this application is configured to support both JSON and JSON-LD. To do so, two `ObjectMapper`s have to be created.
-One contains the JSON-LD module, the other has regular configuration. Two `HttpMessageConverters` are then registered, one supporting
-only JSON-LD (it has to be registered first) and the other supporting any other media type. The actual configuration can be found in `RestConfig`.
+One contains the JSON-LD module, the other has regular configuration. A new `HttpMessageConverter` is then registered,using the JSON-LD `ObjectMapper` supporting JSON-LD media type.
+The actual configuration can be found in `WebAppConfig`.
+
+### REST API Documentation
+
+OpenAPI documentation with Swagger UI is provided by the demo. Both are provided by the [SpringDoc](https://springdoc.org/) library.
+
+- http://localhost:18117/jsonld/v3/api-docs can be used to access the API docs.
+- http://localhost:18117/jsonld/swagger-ui/index.html then to access the Swagger UI with API documentation.
 
 
 ## Persistence Setup
