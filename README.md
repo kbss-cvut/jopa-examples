@@ -27,10 +27,16 @@ in the root `pom.xml` via the `jdk.version` property to see how it runs with new
 
 #### Additional Examples
 
+Several publicly available applications use JOPA, so if you are interested in a more complex showcase of the library, check
+out one of the following:
+
 ##### Reporting Tool
 
-An example of a more complex application using JOPA as its persistence provider can be found at 
-[https://github.com/kbss-cvut/reporting-tool](https://github.com/kbss-cvut/reporting-tool).
+The Reporting Tool is a safety occurrence reporting and investigation tool used for a project in the aviation safety domain.
+
+Its source code can be found at [https://github.com/kbss-cvut/reporting-tool](https://github.com/kbss-cvut/reporting-tool).
+
+_Note that the project is no longer actively developed and maintained._
 
 ##### TermIt
 

@@ -2,7 +2,11 @@
 
 This example showcases usage of JOPA model and Jackson integration of the [JB4JSON-LD](https://github.com/kbss-cvut/jb4jsonld-jackson) library.
 
-### Features
+## Running the Demo
+
+`mvn spring-boot:run` can be used to start the demo application.
+
+## Features
 
 * Spring boot application with REST services,
 * Publishing data in JSON-LD with context,
@@ -259,8 +263,4 @@ See `cz.cvut.kbss.jopa.jsonld.config.PersistenceConfig` for reference.
 Since JOPA does not understand SPARQL queries, uncommitted changes are not visible to queries during transaction. Therefore, 
 the whole tests cannot be executed in one transaction, as is common in Spring applications. Instead, methods modifying
 the state of the repository must be executed using the Spring's `TransactionTemplate`. See 
-`cz.cvut.kbss.jopa.jsonld.persistence.dao.BaseDaoTestRunner` for example and an explanation. 
-
-## Running the Demo
-
-To run the demo, `mvn spring-boot:run` can be used.
+`cz.cvut.kbss.jopa.jsonld.persistence.dao.BaseDaoTestRunner` for example and an explanation.
