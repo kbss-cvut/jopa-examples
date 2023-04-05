@@ -59,6 +59,6 @@ The UI will use a prebuilt file `src/main/webapp/js/bundle.js`.
 In order to modify the application, NodeJS has to be installed on the system. Go to `src/main/webapp` and run `npm install` to install the JS
 dependencies. By executing `npm start`, a watcher will be started which rebuilds the UI archive whenever a change is made to the JS files.
 
-The web UI is built with [ReactJS](https://facebook.github.io/react/) and uses its [Flux](https://facebook.github.io/flux/docs/overview.html)
-architecture (modified version, framework [Reflux](https://github.com/reflux/refluxjs)). 
+The web UI is built with [ReactJS](https://facebook.github.io/react/) and uses [Redux](https://redux.js.org/) to manage
+the frontend state. 
 Individual JS files contain some additional explanatory comments.
