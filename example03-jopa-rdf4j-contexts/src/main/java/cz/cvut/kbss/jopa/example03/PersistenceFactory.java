@@ -22,6 +22,7 @@ import cz.cvut.kbss.jopa.model.JOPAPersistenceProvider;
 import cz.cvut.kbss.ontodriver.config.OntoDriverProperties;
 import cz.cvut.kbss.ontodriver.rdf4j.config.Rdf4jOntoDriverProperties;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,10 +37,11 @@ public class PersistenceFactory {
     }
 
     public static void init(String repoPath) {
-        System.out.println("Using repository path: " + repoPath);
+        final File repoFile = new File(repoPath);
+        System.out.println("Using repository path: " + repoFile.getAbsoluteFile().toURI());
         final Map<String, String> props = new HashMap<>();
         // Here we set up basic storage access properties - driver class, physical location of the storage
-        props.put(JOPAPersistenceProperties.ONTOLOGY_PHYSICAL_URI_KEY, repoPath);
+        props.put(JOPAPersistenceProperties.ONTOLOGY_PHYSICAL_URI_KEY, repoFile.getAbsoluteFile().toURI().toString());
         props.put(JOPAPersistenceProperties.DATA_SOURCE_CLASS, "cz.cvut.kbss.ontodriver.rdf4j.Rdf4jDataSource");
         // View transactional changes during transaction
         props.put(OntoDriverProperties.USE_TRANSACTIONAL_ONTOLOGY, Boolean.TRUE.toString());
