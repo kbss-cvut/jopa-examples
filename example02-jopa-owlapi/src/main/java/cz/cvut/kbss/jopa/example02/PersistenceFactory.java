@@ -26,7 +26,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +35,6 @@ public class PersistenceFactory {
     private static final Logger LOG = LoggerFactory.getLogger(PersistenceFactory.class);
 
     private static final String REPOSITORY_FILE_NAME = "repository.owl";
-    private static final String FILE_SCHEMA = "file://";
 
     private static boolean initialized = false;
 
@@ -85,7 +83,7 @@ public class PersistenceFactory {
             LOG.error("Unable to copy ontology into the repository", e);
             System.exit(1);
         }
-        return URI.create(FILE_SCHEMA + repoFile.getAbsolutePath()).toString();
+        return repoFile.toURI().toString();
     }
 
     private static String resolveAbsolutePath(String ontologyFile) {
