@@ -10,3 +10,4 @@
 **/generated-sources
 **/generated/model
 **/build
+**/.vscode
