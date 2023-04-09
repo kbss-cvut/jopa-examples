@@ -24,7 +24,6 @@ import openllet.owlapi.OpenlletReasonerFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +31,6 @@ import java.util.Map;
 public class PersistenceFactory {
 
     private static final String REPOSITORY_FILE_NAME = "repository.owl";
-    private static final String FILE_SCHEMA = "file://";
 
     private static boolean initialized = false;
 
@@ -82,7 +80,7 @@ public class PersistenceFactory {
             e.printStackTrace();
             System.exit(1);
         }
-        return URI.create(FILE_SCHEMA + repoFile.getAbsolutePath()).toString();
+        return repoFile.toURI().toString();
     }
 
     private static String resolveAbsolutePath(String ontologyFile) {

@@ -96,7 +96,7 @@ public class SuperheroDao {
                      .setParameter("superhero", URI.create(Vocabulary.Superhero))
                      .setParameter("isGoodGuy", URI.create(Vocabulary.p_goodGuy))
                      // Unmapped properties are all saved as string literals, so we need to set the parameter accordingly
-                     .setParameter("goodGuy", Boolean.TRUE.toString(), "en").getResultList();
+                     .setParameter("goodGuy", Boolean.TRUE.toString()).getResultList();
         } finally {
             em.close();
         }
