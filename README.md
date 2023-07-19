@@ -54,5 +54,5 @@ Sources are available on GitHub:
 All the examples are written in Java and built using [Maven](https://maven.apache.org/). To run them, the following is
 required:
 
-- Java 8 or later
+- Java 11 or later
 - Apache Maven 3.x
