@@ -94,11 +94,6 @@
                         <artifactId>aspectjtools</artifactId>
                         <version>${org.aspectj.version}</version>
                     </dependency>
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjrt</artifactId>
-                        <version>${org.aspectj.version}</version>
-                    </dependency>
                 </dependencies>
                 <executions>
                     <execution>
@@ -111,6 +106,7 @@
                     </execution>
                     <execution>
                         <!-- Split into two executions to ensure AJC runs AFTER regular compile in tests as well -->
+                        <!-- This is necessary if there are entity classes declared in test sources -->
                         <id>test-compile</id>
                         <phase>process-test-classes</phase>
                         <goals>
