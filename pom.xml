@@ -6,7 +6,7 @@
 
     <groupId>cz.cvut.kbss.jopa</groupId>
     <artifactId>jopa-examples-parent</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.4</version>
     <modules>
         <module>example01-jopa-rdf4j-owl2java</module>
         <module>example02-jopa-owlapi</module>
