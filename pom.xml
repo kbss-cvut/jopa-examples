@@ -123,6 +123,9 @@
                 <artifactId>license-maven-plugin</artifactId>
                 <version>3.0</version>
                 <configuration>
+                    <mapping>
+                        <java>SLASHSTAR_STYLE</java>
+                    </mapping>
                     <header>header.txt</header>
                     <excludes>
                         <exclude>**/repositories/**</exclude>
