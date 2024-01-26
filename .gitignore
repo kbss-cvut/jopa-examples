@@ -11,3 +11,6 @@
 **/generated/model
 **/build
 **/.vscode
+
+# https://www.jenv.be
+**/.java-version

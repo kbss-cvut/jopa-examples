@@ -14,7 +14,13 @@
     <description>Example usage of a JOPA model with JSON-LD serialization.</description>
 
     <properties>
+        <!-- explicit control on source file encoding, and compiler version -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
+        <slf4j.version>1.7.32</slf4j.version>
+        <logback.version>1.2.11</logback.version>
     </properties>
 
     <dependencies>
@@ -76,6 +82,18 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>1.6.13</version>
+        </dependency>
+
+        <!-- explicit control on logging dependencies -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
         </dependency>
 
         <!-- Tests -->
