@@ -44,7 +44,7 @@ underlying RDf4J in-memory repositories.
 
 ## Running the Demo
 
-To run the demo, `mvn exec:java` can be used. The demo outputs the stored data into `withPersistenceUnitLanguage.ttl` and
+To run the demo, `mvn exec:java` or `gradle runApp` can be used. The demo outputs the stored data into `withPersistenceUnitLanguage.ttl` and
 `withoutPersistenceUnitLanguage.ttl` files so that you can verify what actually gets stored under different language-related
 configurations.
 
