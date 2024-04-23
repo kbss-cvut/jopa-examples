@@ -21,7 +21,7 @@ serialization/deserialization of POJOs into/from JSON-LD. Also, showcases declar
 It is a Spring Boot application, uses declarative transactions and JSON-LD.
 11. **Example09** - JOPA with the [Semantic Object Query Language](https://github.com/kbss-cvut/jopa/wiki/Semantic-Object-Query-Language)
  support. It is a Spring Boot application, uses autowiring of JOPA `EntityManager`, and produces JSON-LD.
-12. **Example10** - Treatment of strings and languages in JOPA.
+12. **Example10** - Treatment of strings and languages in JOPA. This example also contains a sample Gradle build configuration.
 
 Each example has its own README file with a more detailed description.
 
@@ -51,8 +51,8 @@ Sources are available on GitHub:
 
 ### Requirements
 
-All the examples are written in Java and built using [Maven](https://maven.apache.org/). To run them, the following is
-required:
+All the examples are written in Java and built using [Maven](https://maven.apache.org/) (Example10 also supports [Gradle](https://gradle.org/)). 
+To run them, the following is required:
 
 - Java 11 or later
 - Apache Maven 3.x
