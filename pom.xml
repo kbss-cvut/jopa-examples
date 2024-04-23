@@ -19,6 +19,7 @@
         <module>example07-jopa-plural-dp-inheritance</module>
         <module>example08-jena-polymorphism</module>
         <module>example09-soql</module>
+        <module>example10-strings-languages</module>
     </modules>
 
     <name>JOPA Examples - parent</name>

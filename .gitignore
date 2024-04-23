@@ -11,3 +11,5 @@
 **/generated/model
 **/build
 **/.vscode
+**/withoutPersistenceUnitLanguage.ttl
+**/withPersistenceUnitLanguage.ttl

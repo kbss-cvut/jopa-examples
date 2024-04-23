@@ -21,9 +21,9 @@ serialization/deserialization of POJOs into/from JSON-LD. Also, showcases declar
 It is a Spring Boot application, uses declarative transactions and JSON-LD.
 11. **Example09** - JOPA with the [Semantic Object Query Language](https://github.com/kbss-cvut/jopa/wiki/Semantic-Object-Query-Language)
  support. It is a Spring Boot application, uses autowiring of JOPA `EntityManager`, and produces JSON-LD.
+12. **Example10** - Treatment of strings and languages in JOPA.
 
-Each example has its own README file with a more detailed description. Note that JOPA requires at least Java 8. Switch version of Java
-in the root `pom.xml` via the `jdk.version` property to see how it runs with newer Java versions.
+Each example has its own README file with a more detailed description.
 
 #### Additional Examples
 
@@ -32,7 +32,7 @@ out one of the following:
 
 ##### Reporting Tool
 
-The Reporting Tool is a safety occurrence reporting and investigation tool used for a project in the aviation safety domain.
+Reporting Tool is a safety occurrence reporting and investigation tool used for a project in the aviation safety domain.
 
 Its source code can be found at [https://github.com/kbss-cvut/reporting-tool](https://github.com/kbss-cvut/reporting-tool).
 
@@ -40,8 +40,8 @@ _Note that the project is no longer actively developed and maintained._
 
 ##### TermIt
 
-TermIt is a Spring-based web application. It uses declarative transactions, heavily relies on repository contexts, and its 
-REST services consume/produce JSON-LD. JOPA is used as a persistence provider.
+TermIt is a Spring Boot-based web application. It uses declarative transactions, heavily relies on repository contexts, and its 
+REST services consume/produce JSON-LD. JOPA is used as the persistence provider.
 
 It is the most complex JOPA-based application developed by us to-date.
 
