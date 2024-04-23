@@ -1,0 +1,27 @@
+plugins {
+    id "java"
+    id "io.freefair.aspectj" version "8.6"
+}
+
+group "cz.cvut.kbss.jopa"
+version "1.2.2"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "cz.cvut.kbss.jopa:jopa-impl:1.2.2"
+    implementation "cz.cvut.kbss.jopa:ontodriver-rdf4j:1.2.2"
+    implementation "org.slf4j:slf4j-api:1.7.36"
+    implementation "ch.qos.logback:logback-classic:1.2.13"
+
+    aspect "cz.cvut.kbss.jopa:jopa-impl:1.2.2"
+}
+
+task runApp(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+
+    mainClass = 'cz.cvut.kbss.jopa.example10.Example'
+}
+
