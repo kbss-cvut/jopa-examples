@@ -14,7 +14,9 @@ Main JOPA features shown in this demo include:
 #### Persistence Unit Language
 
 It is possible to set a language for the whole persistence unit (using the `cz.cvut.jopa.lang` property). This will mean
-all String-valued attributes will be stored with the specified language tag (and read using this language tag as well).
+all String-valued attributes will be stored with the specified language tag (and read using this language tag as well). If 
+`cz.cvut.jopa.lang` is not set, all String-valued attributes will be stored without a language tag and read with and without 
+the language tag.
 
 This global language setting can be overridden using `Descriptor`s or by specifying individual attributes as _simple literals_.
 
