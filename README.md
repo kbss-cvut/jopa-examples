@@ -54,5 +54,5 @@ Sources are available on GitHub:
 All the examples are written in Java and built using [Maven](https://maven.apache.org/) (Example10 also supports [Gradle](https://gradle.org/)). 
 To run them, the following is required:
 
-- Java 11 or later
+- Java 17 or later
 - Apache Maven 3.x
