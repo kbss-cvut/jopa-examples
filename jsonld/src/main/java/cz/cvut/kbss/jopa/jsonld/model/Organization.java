@@ -86,7 +86,7 @@ public class Organization extends AbstractEntity implements HasDerivableUri {
         if (name == null) {
             throw new IllegalStateException("Cannot generate URI for organization without a name.");
         }
-        this.setUri(URI.create(Vocabulary.ONTOLOGY_IRI_study_manager + "/" + name));
+        this.setUri(URI.create(Vocabulary.ONTOLOGY_IRI_STUDY_MANAGER + "/" + name));
     }
 
     @Override

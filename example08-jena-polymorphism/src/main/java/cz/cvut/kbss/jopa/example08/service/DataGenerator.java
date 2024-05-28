@@ -19,10 +19,10 @@ package cz.cvut.kbss.jopa.example08.service;
 
 import cz.cvut.kbss.jopa.example08.model.*;
 import cz.cvut.kbss.jopa.example08.persistence.SchemaExporter;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.*;
 
 @Component

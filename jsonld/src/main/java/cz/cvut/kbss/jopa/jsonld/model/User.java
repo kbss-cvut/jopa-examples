@@ -115,7 +115,7 @@ public class User extends AbstractEntity implements HasDerivableUri {
         if (lastName == null || lastName.isEmpty()) {
             throw new IllegalStateException("Cannot generate URI without last name.");
         }
-        this.setUri(URI.create(Vocabulary.ONTOLOGY_IRI_study_manager + '/' + firstName + '+' + lastName));
+        this.setUri(URI.create(Vocabulary.ONTOLOGY_IRI_STUDY_MANAGER + '/' + firstName + '+' + lastName));
     }
 
     @Override

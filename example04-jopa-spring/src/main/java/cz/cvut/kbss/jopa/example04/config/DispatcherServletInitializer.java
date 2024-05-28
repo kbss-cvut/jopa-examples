@@ -17,11 +17,11 @@
  */
 package cz.cvut.kbss.jopa.example04.config;
 
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import org.springframework.lang.NonNull;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 
 public class DispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -35,10 +35,12 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
         return null;
     }
 
+    @NonNull
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/rest/*"};
     }
+
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {

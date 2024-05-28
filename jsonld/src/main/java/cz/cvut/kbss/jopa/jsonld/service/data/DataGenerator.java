@@ -23,10 +23,10 @@ import cz.cvut.kbss.jopa.jsonld.model.User;
 import cz.cvut.kbss.jopa.jsonld.service.repository.OrganizationRepositoryService;
 import cz.cvut.kbss.jopa.jsonld.service.repository.StudyRepositoryService;
 import cz.cvut.kbss.jopa.jsonld.service.repository.UserRepositoryService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

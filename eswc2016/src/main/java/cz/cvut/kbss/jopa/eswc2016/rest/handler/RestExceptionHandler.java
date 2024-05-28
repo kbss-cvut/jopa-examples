@@ -20,13 +20,12 @@ package cz.cvut.kbss.jopa.eswc2016.rest.handler;
 import cz.cvut.kbss.jopa.eswc2016.rest.exception.NotFoundException;
 import cz.cvut.kbss.jopa.eswc2016.rest.exception.ValidationException;
 import cz.cvut.kbss.jopa.eswc2016.rest.exception.WebServiceIntegrationException;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * Contains exception handlers for the REST controllers.

@@ -26,30 +26,23 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import java.nio.charset.Charset;
-import java.util.List;
+import java.nio.charset.StandardCharsets;
 
 @Configuration
 @EnableWebMvc
 @Import({RestConfig.class})
-public class WebAppConfig extends WebMvcConfigurerAdapter {
+public class WebAppConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
         registry.addResourceHandler("/js/**").addResourceLocations("/js/");
-    }
-
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
     }
 
     @Bean
@@ -61,16 +54,18 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
         return resolver;
     }
 
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+    @Bean
+    public HttpMessageConverter<?> stringMessageConverter() {
+        return new StringHttpMessageConverter(StandardCharsets.UTF_8);
+    }
+
+    @Bean
+    public HttpMessageConverter<?> jsonMessageConverter() {
         final MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
         final ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         converter.setObjectMapper(objectMapper);
-        converters.add(converter);
-        final StringHttpMessageConverter stringConverter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
-        converters.add(stringConverter);
-        super.configureMessageConverters(converters);
+        return converter;
     }
 }

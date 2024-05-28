@@ -19,8 +19,11 @@ package cz.cvut.kbss.jopa.jsonld.persistence.dao;
 
 import cz.cvut.kbss.jopa.jsonld.environment.TestPersistenceConfig;
 import cz.cvut.kbss.jopa.jsonld.environment.TestUtils;
+import cz.cvut.kbss.jopa.jsonld.service.data.DataGenerator;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -28,6 +31,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {TestPersistenceConfig.class})
+@ComponentScan(excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = DataGenerator.class))
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public abstract class BaseDaoTestRunner {
 

@@ -19,12 +19,10 @@ package cz.cvut.kbss.jopa.example04.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableAspectJAutoProxy
 @ComponentScan(basePackages = "cz.cvut.kbss.jopa.example04.service")
 public class ServiceConfig {
 }

@@ -22,12 +22,12 @@ import cz.cvut.kbss.jopa.jsonld.model.Vocabulary;
 import cz.cvut.kbss.jopa.jsonld.persistence.dao.BaseDao;
 import cz.cvut.kbss.jopa.jsonld.persistence.dao.UserDao;
 import cz.cvut.kbss.jopa.jsonld.service.UserService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import javax.annotation.PostConstruct;
 import java.net.URI;
 import java.util.Date;
 
@@ -35,7 +35,7 @@ import java.util.Date;
 public class UserRepositoryService extends BaseRepositoryService<User> implements UserService {
 
     private static final URI DEFAULT_USER_URI = URI
-            .create(Vocabulary.ONTOLOGY_IRI_study_manager + "/System+Administrator");
+            .create(Vocabulary.ONTOLOGY_IRI_STUDY_MANAGER + "/System+Administrator");
 
     private final PlatformTransactionManager txManager;
 

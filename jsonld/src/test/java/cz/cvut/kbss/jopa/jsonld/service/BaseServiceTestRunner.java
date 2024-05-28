@@ -33,7 +33,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {TestPersistenceConfig.class, TestServiceConfig.class})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class BaseServiceTestRunner {
+public abstract class BaseServiceTestRunner {
 
     @Autowired
     protected UserDao userDao;

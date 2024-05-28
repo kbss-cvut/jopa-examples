@@ -22,7 +22,9 @@ import cz.cvut.kbss.jopa.jsonld.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Collection;
+import java.util.Collections;
+import java.util.Objects;
+import java.util.Set;
 
 @Component
 public class StudyDao extends BaseDao<Study> {
@@ -37,28 +39,29 @@ public class StudyDao extends BaseDao<Study> {
 
     @Override
     public void persist(Study entity) {
-        persistUsersIfNecessary(entity.getAdministrators());
-        // Flush changes to prevent issues with repeated persist attempts for different instances of the same
-        // Organization (or User) created by DTO mapper
-        em.flush();
-        persistUsersIfNecessary(entity.getParticipants());
-        em.flush();
+        persistUsersIfNecessary(entity);
         assert entity.getAuthor() != null;
         super.persist(entity);
     }
 
-    private void persistUsersIfNecessary(Collection<User> users) {
-        if (users != null && !users.isEmpty()) {
-            users.stream().filter(user -> !userDao.exists(user.getUri())).forEach(userDao::persist);
+    private void persistUsersIfNecessary(Study entity) {
+        if (entity.getAdministrators() != null) {
+            entity.getAdministrators().stream().filter(u -> !userDao.exists(u.getUri())).forEach(userDao::persist);
+        }
+        // Ensure the participant does not exist or has not been just persisted as admin
+        // Prevents issues with repeated persists when multiple objects created by DTO mapper represent the same entity
+        if (entity.getParticipants() != null) {
+            final Set<User> admins =
+                    entity.getAdministrators() != null ? entity.getAdministrators() : Collections.emptySet();
+            entity.getParticipants().stream()
+                  .filter(u -> !userDao.exists(u.getUri()) && admins.stream().noneMatch(
+                          admin -> Objects.equals(u.getUri(), admin.getUri()))).forEach(userDao::persist);
         }
     }
 
     @Override
     public void update(Study entity) {
-        persistUsersIfNecessary(entity.getAdministrators());
-        em.flush();
-        persistUsersIfNecessary(entity.getParticipants());
-        em.flush();
+        persistUsersIfNecessary(entity);
         super.update(entity);
     }
 }
