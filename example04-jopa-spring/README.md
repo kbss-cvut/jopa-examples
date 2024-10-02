@@ -62,3 +62,5 @@ dependencies. By executing `npm start`, a watcher will be started which rebuilds
 The web UI is built with [ReactJS](https://facebook.github.io/react/) and uses [Redux](https://redux.js.org/) to manage
 the frontend state. 
 Individual JS files contain some additional explanatory comments.
+
+For testing purposes, a `docker-compose.yml` for running Tomcat server is provided. Simply build the application `mvn package` and run the container: `docker compose up`. War files are automatically injected to the container. Application is available at: [http://localhost:8080/example-04-2.0.0/](http://localhost:8080/example-04-2.0.0/).
