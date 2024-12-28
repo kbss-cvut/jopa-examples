@@ -1,4 +1,4 @@
-# JOPA Example 02 - JOPA + OWLAPI + Pellet
+# JOPA Example 02 - JOPA + OWLAPI + Openllet
 
 This example shows usage of JOPA with OWLAPI-based OntoDriver implementation. We are using OWLAPI v5 in the driver.
 

@@ -31,11 +31,10 @@
         <jdk.version>17</jdk.version>
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <maven.compiler.target>${jdk.version}</maven.compiler.target>
-        <org.aspectj.version>1.9.22</org.aspectj.version>
-        <cz.cvut.kbss.jopa.version>2.0.0</cz.cvut.kbss.jopa.version>
-        <cz.cvut.kbss.jb4jsonld.version>0.14.3</cz.cvut.kbss.jb4jsonld.version>
-        <org.eclipse.rdf4j.version>4.3.11</org.eclipse.rdf4j.version>
-        <ch.qos.logback.version>1.4.14</ch.qos.logback.version>
+        <cz.cvut.kbss.jopa.version>2.2.1</cz.cvut.kbss.jopa.version>
+        <cz.cvut.kbss.jb4jsonld.version>0.15.2</cz.cvut.kbss.jb4jsonld.version>
+        <org.eclipse.rdf4j.version>5.0.3</org.eclipse.rdf4j.version>
+        <ch.qos.logback.version>1.5.6</ch.qos.logback.version>
         <com.github.galigator.openllet.version>2.6.5</com.github.galigator.openllet.version>
         <com.github.ledsoft.jopa-spring-transactions.version>0.3.0</com.github.ledsoft.jopa-spring-transactions.version>
 
@@ -58,7 +57,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>2.0.13</version>
+            <version>2.0.16</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
