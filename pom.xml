@@ -31,15 +31,15 @@
         <jdk.version>17</jdk.version>
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <maven.compiler.target>${jdk.version}</maven.compiler.target>
-        <cz.cvut.kbss.jopa.version>2.2.1</cz.cvut.kbss.jopa.version>
-        <cz.cvut.kbss.jb4jsonld.version>0.15.2</cz.cvut.kbss.jb4jsonld.version>
-        <org.eclipse.rdf4j.version>5.0.3</org.eclipse.rdf4j.version>
-        <ch.qos.logback.version>1.5.6</ch.qos.logback.version>
+        <cz.cvut.kbss.jopa.version>2.9.0</cz.cvut.kbss.jopa.version>
+        <cz.cvut.kbss.jb4jsonld.version>0.16.0</cz.cvut.kbss.jb4jsonld.version>
+        <org.eclipse.rdf4j.version>5.2.2</org.eclipse.rdf4j.version>
+        <ch.qos.logback.version>1.5.29</ch.qos.logback.version>
         <com.github.galigator.openllet.version>2.6.5</com.github.galigator.openllet.version>
-        <com.github.ledsoft.jopa-spring-transactions.version>0.3.0</com.github.ledsoft.jopa-spring-transactions.version>
+        <com.github.ledsoft.jopa-spring-transactions.version>0.4.3</com.github.ledsoft.jopa-spring-transactions.version>
 
-        <org.springframework.version>6.1.6</org.springframework.version>
-        <org.springframework.boot.version>3.2.5</org.springframework.boot.version>
+        <org.springframework.version>6.2.15</org.springframework.version>
+        <org.springframework.boot.version>3.5.10</org.springframework.boot.version>
     </properties>
 
     <dependencies>
