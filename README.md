@@ -19,7 +19,7 @@ serialization/deserialization of POJOs into/from JSON-LD. Also, showcases declar
 9. **Example07** - JOPA demonstrating support for single inheritance and plural data properties.
 10. **Example08** - JOPA using the Jena OntoDriver and demonstrating support for polymorphism in the object model. 
 It is a Spring Boot application, uses declarative transactions and JSON-LD.
-11. **Example09** - JOPA with the [Semantic Object Query Language](https://github.com/kbss-cvut/jopa/wiki/Semantic-Object-Query-Language)
+11. **Example09** - Demonstrating various ways of querying data with JOPA.
  support. It is a Spring Boot application, uses autowiring of JOPA `EntityManager`, and produces JSON-LD.
 12. **Example10** - Treatment of strings and languages in JOPA. This example also contains a sample Gradle build configuration.
 

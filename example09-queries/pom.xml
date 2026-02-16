@@ -9,10 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>example09-soql</artifactId>
-    <name>Example09 - SOQL</name>
+    <artifactId>example09-queries</artifactId>
+    <name>Example09 - Queries</name>
     <description>
-        Demo showcasing usage of the Semantic Object Query Language (SOQL).
+        Demo showcasing the ways of querying data in JOPA.
     </description>
 
     <dependencies>
