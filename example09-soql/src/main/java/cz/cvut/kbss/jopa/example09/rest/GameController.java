@@ -18,7 +18,8 @@
 package cz.cvut.kbss.jopa.example09.rest;
 
 import cz.cvut.kbss.jopa.example09.model.Game;
-import cz.cvut.kbss.jopa.example09.persistence.GameRepository;
+import cz.cvut.kbss.jopa.example09.persistence.GameRepositories;
+import cz.cvut.kbss.jopa.example09.persistence.QueryMechanism;
 import cz.cvut.kbss.jsonld.JsonLd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -34,10 +35,10 @@ import java.util.List;
 @RequestMapping("/games")
 public class GameController {
 
-    private final GameRepository gameRepository;
+    private final GameRepositories gameRepository;
 
     @Autowired
-    public GameController(GameRepository gameRepository) {
+    public GameController(GameRepositories gameRepository) {
         this.gameRepository = gameRepository;
     }
 
@@ -45,13 +46,14 @@ public class GameController {
     public List<Game> getGames(@RequestParam(name = "from", required = false)
                                @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
                                @RequestParam(name = "to", required = false)
-                               @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to) {
+                               @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to,
+                               @RequestParam(name = "queryMechanism", required = false) String queryMechanism) {
         if (from != null) {
             if (to == null) {
                 to = LocalDate.now();
             }
-            return gameRepository.findAll(from, to);
+            return gameRepository.findAll(from, to, QueryMechanism.fromString(queryMechanism));
         }
-        return gameRepository.findAll();
+        return gameRepository.findAll(QueryMechanism.fromString(queryMechanism));
     }
 }

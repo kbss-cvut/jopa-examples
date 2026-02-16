@@ -19,8 +19,9 @@ package cz.cvut.kbss.jopa.example09.rest;
 
 import cz.cvut.kbss.jopa.example09.model.Developer;
 import cz.cvut.kbss.jopa.example09.model.Game;
-import cz.cvut.kbss.jopa.example09.persistence.DeveloperRepository;
-import cz.cvut.kbss.jopa.example09.persistence.GameRepository;
+import cz.cvut.kbss.jopa.example09.persistence.DeveloperRepositories;
+import cz.cvut.kbss.jopa.example09.persistence.GameRepositories;
+import cz.cvut.kbss.jopa.example09.persistence.QueryMechanism;
 import cz.cvut.kbss.jsonld.JsonLd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,42 +35,47 @@ import java.util.List;
 @RequestMapping("/developers")
 public class DeveloperController {
 
-    private final DeveloperRepository developerRepository;
-    private final GameRepository gameRepository;
+    private final DeveloperRepositories developerRepository;
+    private final GameRepositories gameRepository;
 
     @Autowired
-    public DeveloperController(DeveloperRepository developerRepository, GameRepository gameRepository) {
+    public DeveloperController(DeveloperRepositories developerRepository, GameRepositories gameRepository) {
         this.developerRepository = developerRepository;
         this.gameRepository = gameRepository;
     }
 
     @RequestMapping(produces = JsonLd.MEDIA_TYPE)
-    public List<Developer> getDevelopers(@RequestParam(name = "name", required = false) String name) {
+    public List<Developer> getDevelopers(@RequestParam(name = "name", required = false) String name,
+                                         @RequestParam(name = "queryMechanism", required = false) String queryMechanism) {
         if (name != null) {
-            return developerRepository.findByName(name);
+            return developerRepository.findByName(name, QueryMechanism.fromString(queryMechanism));
         }
-        return developerRepository.findAll();
+        return developerRepository.findAll(QueryMechanism.fromString(queryMechanism));
     }
 
     @RequestMapping(value = "/small", produces = JsonLd.MEDIA_TYPE)
-    public List<Developer> getSmallDevelopers() {
-        return developerRepository.findSmallDevelopers();
+    public List<Developer> getSmallDevelopers(
+            @RequestParam(name = "queryMechanism", required = false) String queryMechanism) {
+        return developerRepository.findSmallDevelopers(QueryMechanism.fromString(queryMechanism));
     }
 
     @RequestMapping(value = "/small/games", produces = JsonLd.MEDIA_TYPE)
-    public List<Game> getGamesBySmallDevelopers() {
-        return gameRepository.findAllBySmallDevelopers();
+    public List<Game> getGamesBySmallDevelopers(
+            @RequestParam(name = "queryMechanism", required = false) String queryMechanism) {
+        return gameRepository.findAllBySmallDevelopers(QueryMechanism.fromString(queryMechanism));
     }
 
     @RequestMapping(value = "/{localName}", produces = JsonLd.MEDIA_TYPE)
-    public Developer getDeveloper(@PathVariable String localName) {
-        return developerRepository.findById(localName).orElseThrow(
+    public Developer getDeveloper(@PathVariable String localName,
+                                  @RequestParam(name = "queryMechanism", required = false) String queryMechanism) {
+        return developerRepository.findById(localName, QueryMechanism.fromString(queryMechanism)).orElseThrow(
                 () -> new NotFoundException("Developer with name " + localName + " not found!"));
     }
 
     @RequestMapping(value = "/{localName}/games", produces = JsonLd.MEDIA_TYPE)
-    public List<Game> getDevelopersGames(@PathVariable String localName) {
-        final Developer dev = getDeveloper(localName);
-        return gameRepository.findAll(dev);
+    public List<Game> getDevelopersGames(@PathVariable String localName,
+                                         @RequestParam(name = "queryMechanism", required = false) String queryMechanism) {
+        final Developer dev = getDeveloper(localName, queryMechanism);
+        return gameRepository.findAll(dev, QueryMechanism.fromString(queryMechanism));
     }
 }
