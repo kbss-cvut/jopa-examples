@@ -61,8 +61,9 @@ public class DeveloperController {
 
     @RequestMapping(value = "/small/games", produces = JsonLd.MEDIA_TYPE)
     public List<Game> getGamesBySmallDevelopers(
-            @RequestParam(name = "queryMechanism", required = false) String queryMechanism) {
-        return gameRepository.findAllBySmallDevelopers(QueryMechanism.fromString(queryMechanism));
+            @RequestParam(name = "queryMechanism", required = false) String queryMechanism,
+            @RequestParam(name = "withFetchGraph", required = false) boolean withFetchGraph) {
+        return gameRepository.findAllBySmallDevelopers(withFetchGraph, QueryMechanism.fromString(queryMechanism));
     }
 
     @RequestMapping(value = "/{localName}", produces = JsonLd.MEDIA_TYPE)
@@ -74,8 +75,9 @@ public class DeveloperController {
 
     @RequestMapping(value = "/{localName}/games", produces = JsonLd.MEDIA_TYPE)
     public List<Game> getDevelopersGames(@PathVariable String localName,
-                                         @RequestParam(name = "queryMechanism", required = false) String queryMechanism) {
+                                         @RequestParam(name = "queryMechanism", required = false) String queryMechanism,
+                                         @RequestParam(name = "withFetchGraph", required = false) boolean withFetchGraph) {
         final Developer dev = getDeveloper(localName, queryMechanism);
-        return gameRepository.findAll(dev, QueryMechanism.fromString(queryMechanism));
+        return gameRepository.findAll(dev, withFetchGraph, QueryMechanism.fromString(queryMechanism));
     }
 }

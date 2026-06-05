@@ -7,9 +7,11 @@ import cz.cvut.kbss.jopa.example09.persistence.DeveloperRepository;
 import cz.cvut.kbss.jopa.example09.persistence.GameRepository;
 import cz.cvut.kbss.jopa.example09.persistence.QueryMechanism;
 import cz.cvut.kbss.jopa.model.EntityManager;
+import cz.cvut.kbss.jopa.model.query.TypedQuery;
 import cz.cvut.kbss.jopa.model.query.criteria.CriteriaBuilder;
 import cz.cvut.kbss.jopa.model.query.criteria.CriteriaQuery;
 import cz.cvut.kbss.jopa.model.query.criteria.Root;
+import cz.cvut.kbss.jopa.query.QueryHints;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -25,16 +27,20 @@ public class CriteriaGameRepository implements GameRepository {
     }
 
     @Override
-    public List<Game> findAll() {
+    public List<Game> findAll(boolean withFetchGraph) {
         final CriteriaBuilder cb = em.getCriteriaBuilder();
         final CriteriaQuery<Game> query = cb.createQuery(Game.class);
         final Root<Game> root = query.from(Game.class);
         query.select(query.from(Game.class)).orderBy(cb.desc(root.getAttr("releaseDate")));
-        return em.createQuery(query).getResultList();
+        final TypedQuery<Game> typedQuery = em.createQuery(query);
+        if (withFetchGraph) {
+            typedQuery.setHint(QueryHints.FETCH_GRAPH, em.getEntityGraph("Game.findAll"));
+        }
+        return typedQuery.getResultList();
     }
 
     @Override
-    public List<Game> findAll(LocalDate from, LocalDate to) {
+    public List<Game> findAll(LocalDate from, LocalDate to, boolean withFetchGraph) {
         final CriteriaBuilder cb = em.getCriteriaBuilder();
         final CriteriaQuery<Game> query = cb.createQuery(Game.class);
         final Root<Game> root = query.from(Game.class);
@@ -42,22 +48,30 @@ public class CriteriaGameRepository implements GameRepository {
              .where(cb.greaterThan(root.getAttr(Game_.releaseDate), from),
                     cb.lessThan(root.getAttr(Game_.releaseDate), to))
              .orderBy(cb.desc(root.getAttr(Game_.releaseDate)));
-        return em.createQuery(query).getResultList();
+        final TypedQuery<Game> typedQuery = em.createQuery(query);
+        if (withFetchGraph) {
+            typedQuery.setHint(QueryHints.FETCH_GRAPH, em.getEntityGraph("Game.findAll"));
+        }
+        return typedQuery.getResultList();
     }
 
     @Override
-    public List<Game> findAll(Developer developer) {
+    public List<Game> findAll(Developer developer, boolean withFetchGraph) {
         final CriteriaBuilder cb = em.getCriteriaBuilder();
         final CriteriaQuery<Game> query = cb.createQuery(Game.class);
         final Root<Game> root = query.from(Game.class);
         query.select(root)
              .where(cb.equal(root.getAttr(Game_.developer), developer))
              .orderBy(cb.desc(root.getAttr(Game_.releaseDate)));
-        return em.createQuery(query).getResultList();
+        final TypedQuery<Game> typedQuery = em.createQuery(query);
+        if (withFetchGraph) {
+            typedQuery.setHint(QueryHints.FETCH_GRAPH, em.getEntityGraph("Game.findAll"));
+        }
+        return typedQuery.getResultList();
     }
 
     @Override
-    public List<Game> findAllBySmallDevelopers() {
+    public List<Game> findAllBySmallDevelopers(boolean withFetchGraph) {
         final CriteriaBuilder cb = em.getCriteriaBuilder();
         final CriteriaQuery<Game> query = cb.createQuery(Game.class);
         final Root<Game> root = query.from(Game.class);
@@ -65,7 +79,11 @@ public class CriteriaGameRepository implements GameRepository {
              .where(cb.lessThan(root.getAttr("developer").getAttr("employeeCount"),
                                 DeveloperRepository.SMALL_DEVELOPER_SIZE))
              .orderBy(cb.desc(root.getAttr("releaseDate")));
-        return em.createQuery(query).getResultList();
+        final TypedQuery<Game> typedQuery = em.createQuery(query);
+        if (withFetchGraph) {
+            typedQuery.setHint(QueryHints.FETCH_GRAPH, em.getEntityGraph("Game.findAll"));
+        }
+        return typedQuery.getResultList();
     }
 
     @Override

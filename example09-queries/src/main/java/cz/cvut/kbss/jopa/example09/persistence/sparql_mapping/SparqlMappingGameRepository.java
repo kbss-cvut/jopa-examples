@@ -11,6 +11,11 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Maps SPARQL query results directly to entities using variable - attribute name correspondence.
+ *
+ * @implNote {@code withFetchGraph} is ignored in this implementation as it is not relevant
+ */
 @Repository
 public class SparqlMappingGameRepository implements GameRepository {
 
@@ -21,7 +26,7 @@ public class SparqlMappingGameRepository implements GameRepository {
     }
 
     @Override
-    public List<Game> findAll() {
+    public List<Game> findAll(boolean withFetchGraph) {
         return em.createNativeQuery("""
                                             PREFIX dbo: <http://dbpedia.org/ontology/>
                                             PREFIX foaf: <http://xmlns.com/foaf/0.1/>
@@ -39,7 +44,7 @@ public class SparqlMappingGameRepository implements GameRepository {
     }
 
     @Override
-    public List<Game> findAll(LocalDate from, LocalDate to) {
+    public List<Game> findAll(LocalDate from, LocalDate to, boolean withFetchGraph) {
         return em.createNativeQuery("""
                                             PREFIX dbo: <http://dbpedia.org/ontology/>
                                             PREFIX foaf: <http://xmlns.com/foaf/0.1/>
@@ -60,7 +65,7 @@ public class SparqlMappingGameRepository implements GameRepository {
     }
 
     @Override
-    public List<Game> findAll(Developer developer) {
+    public List<Game> findAll(Developer developer, boolean withFetchGraph) {
         return em.createNativeQuery("""
                                             PREFIX dbo: <http://dbpedia.org/ontology/>
                                             PREFIX foaf: <http://xmlns.com/foaf/0.1/>
@@ -79,7 +84,7 @@ public class SparqlMappingGameRepository implements GameRepository {
     }
 
     @Override
-    public List<Game> findAllBySmallDevelopers() {
+    public List<Game> findAllBySmallDevelopers(boolean withFetchGraph) {
         return em.createNativeQuery("""
                                             PREFIX dbo: <http://dbpedia.org/ontology/>
                                             PREFIX foaf: <http://xmlns.com/foaf/0.1/>

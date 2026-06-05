@@ -24,6 +24,15 @@ import java.io.Serializable;
 import java.net.URI;
 import java.time.LocalDate;
 
+@NamedEntityGraph(name = "Game.findAll", attributeNodes = {
+        @NamedAttributeNode("name"),
+        @NamedAttributeNode(value = "developer", subgraph = "Developer"),
+        @NamedAttributeNode("releaseDate")
+}, subgraphs = {
+        @NamedSubgraph(name = "Developer", attributeNodes = {
+                @NamedAttributeNode("name")
+        })
+})
 @OWLClass(iri = "dbo:VideoGame")
 public class Game implements Serializable {
 

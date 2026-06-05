@@ -24,19 +24,19 @@ public class GameRepositories {
                                       "No implementation found for mechanism: " + mechanism));
     }
 
-    public List<Game> findAll(QueryMechanism queryMechanism) {
-        return resolveImplementation(queryMechanism).findAll();
+    public List<Game> findAll(boolean withFetchGraph, QueryMechanism queryMechanism) {
+        return resolveImplementation(queryMechanism).findAll(withFetchGraph);
     }
 
-    public List<Game> findAll(LocalDate from, LocalDate to, QueryMechanism queryMechanism) {
-        return resolveImplementation(queryMechanism).findAll(from, to);
+    public List<Game> findAll(LocalDate from, LocalDate to, boolean withFetchGraph, QueryMechanism queryMechanism) {
+        return resolveImplementation(queryMechanism).findAll(from, to, withFetchGraph);
     }
 
-    public List<Game> findAll(Developer developer, QueryMechanism queryMechanism) {
-        return resolveImplementation(queryMechanism).findAll(developer);
+    public List<Game> findAll(Developer developer, boolean withFetchGraph, QueryMechanism queryMechanism) {
+        return resolveImplementation(queryMechanism).findAll(developer, withFetchGraph);
     }
 
-    public List<Game> findAllBySmallDevelopers(QueryMechanism queryMechanism) {
-        return resolveImplementation(queryMechanism).findAllBySmallDevelopers();
+    public List<Game> findAllBySmallDevelopers(boolean withFetchGraph, QueryMechanism queryMechanism) {
+        return resolveImplementation(queryMechanism).findAllBySmallDevelopers(withFetchGraph);
     }
 }

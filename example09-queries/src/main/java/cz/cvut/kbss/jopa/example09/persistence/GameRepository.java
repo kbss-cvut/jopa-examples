@@ -7,13 +7,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface GameRepository {
-    List<Game> findAll();
+    List<Game> findAll(boolean withFetchGraph);
 
-    List<Game> findAll(LocalDate from, LocalDate to);
+    List<Game> findAll(LocalDate from, LocalDate to, boolean withFetchGraph);
 
-    List<Game> findAll(Developer developer);
+    List<Game> findAll(Developer developer, boolean withFetchGraph);
 
-    List<Game> findAllBySmallDevelopers();
+    List<Game> findAllBySmallDevelopers(boolean withFetchGraph);
 
     QueryMechanism getQueryMechanism();
 }

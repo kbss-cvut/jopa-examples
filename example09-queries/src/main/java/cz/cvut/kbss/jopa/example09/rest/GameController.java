@@ -47,13 +47,14 @@ public class GameController {
                                @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
                                @RequestParam(name = "to", required = false)
                                @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to,
-                               @RequestParam(name = "queryMechanism", required = false) String queryMechanism) {
+                               @RequestParam(name = "queryMechanism", required = false) String queryMechanism,
+                               @RequestParam(name = "withFetchGraph", required = false) boolean withFetchGraph) {
         if (from != null) {
             if (to == null) {
                 to = LocalDate.now();
             }
-            return gameRepository.findAll(from, to, QueryMechanism.fromString(queryMechanism));
+            return gameRepository.findAll(from, to, withFetchGraph, QueryMechanism.fromString(queryMechanism));
         }
-        return gameRepository.findAll(QueryMechanism.fromString(queryMechanism));
+        return gameRepository.findAll(withFetchGraph, QueryMechanism.fromString(queryMechanism));
     }
 }

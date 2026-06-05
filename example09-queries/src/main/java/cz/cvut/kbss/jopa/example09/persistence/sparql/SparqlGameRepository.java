@@ -6,6 +6,8 @@ import cz.cvut.kbss.jopa.example09.persistence.DeveloperRepository;
 import cz.cvut.kbss.jopa.example09.persistence.GameRepository;
 import cz.cvut.kbss.jopa.example09.persistence.QueryMechanism;
 import cz.cvut.kbss.jopa.model.EntityManager;
+import cz.cvut.kbss.jopa.model.query.TypedQuery;
+import cz.cvut.kbss.jopa.query.QueryHints;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -21,20 +23,23 @@ public class SparqlGameRepository implements GameRepository {
     }
 
     @Override
-    public List<Game> findAll() {
-        return em.createNativeQuery("""
+    public List<Game> findAll(boolean withFetchGraph) {
+        final TypedQuery<Game> query = em.createNativeQuery("""
                                             PREFIX dbo: <http://dbpedia.org/ontology/>
                                             SELECT ?g WHERE {
                                               ?g a dbo:VideoGame ;
                                                  dbo:releaseDate ?releaseDate .
                                             } ORDER BY DESC(?releaseDate)""",
-                                    Game.class)
-                 .getResultList();
+                                    Game.class);
+        if (withFetchGraph) {
+            query.setHint(QueryHints.FETCH_GRAPH, em.getEntityGraph("Game.findAll"));
+        }
+        return query.getResultList();
     }
 
     @Override
-    public List<Game> findAll(LocalDate from, LocalDate to) {
-        return em.createNativeQuery("""
+    public List<Game> findAll(LocalDate from, LocalDate to, boolean withFetchGraph) {
+        final TypedQuery<Game> query = em.createNativeQuery("""
                                             PREFIX dbo: <http://dbpedia.org/ontology/>
                                             SELECT ?g WHERE {
                                               ?g a dbo:VideoGame ;
@@ -43,13 +48,16 @@ public class SparqlGameRepository implements GameRepository {
                                             } ORDER BY DESC(?releaseDate)""",
                                     Game.class)
                  .setParameter("from", from)
-                 .setParameter("to", to)
-                 .getResultList();
+                 .setParameter("to", to);
+        if (withFetchGraph) {
+            query.setHint(QueryHints.FETCH_GRAPH, em.getEntityGraph("Game.findAll"));
+        }
+        return query.getResultList();
     }
 
     @Override
-    public List<Game> findAll(Developer developer) {
-        return em.createNativeQuery("""
+    public List<Game> findAll(Developer developer, boolean withFetchGraph) {
+        final TypedQuery<Game> query = em.createNativeQuery("""
                                             PREFIX dbo: <http://dbpedia.org/ontology/>
                                             SELECT ?g WHERE {
                                               ?g a dbo:VideoGame ;
@@ -57,13 +65,16 @@ public class SparqlGameRepository implements GameRepository {
                                                  dbo:developer ?developer .
                                             } ORDER BY DESC(?releaseDate)""",
                                     Game.class)
-                 .setParameter("developer", developer)
-                 .getResultList();
+                 .setParameter("developer", developer);
+        if (withFetchGraph) {
+            query.setHint(QueryHints.FETCH_GRAPH, em.getEntityGraph("Game.findAll"));
+        }
+        return query.getResultList();
     }
 
     @Override
-    public List<Game> findAllBySmallDevelopers() {
-        return em.createNativeQuery("""
+    public List<Game> findAllBySmallDevelopers(boolean withFetchGraph) {
+        final TypedQuery<Game> query = em.createNativeQuery("""
                                             PREFIX dbo: <http://dbpedia.org/ontology/>
                                             SELECT ?g WHERE {
                                               ?g a dbo:VideoGame ;
@@ -73,8 +84,11 @@ public class SparqlGameRepository implements GameRepository {
                                               FILTER (?employeeCount < ?smallDeveloperThreshold)
                                             } ORDER BY DESC(?releaseDate)""",
                                     Game.class)
-                 .setParameter("smallDeveloperThreshold", DeveloperRepository.SMALL_DEVELOPER_SIZE)
-                 .getResultList();
+                 .setParameter("smallDeveloperThreshold", DeveloperRepository.SMALL_DEVELOPER_SIZE);
+        if (withFetchGraph) {
+            query.setHint(QueryHints.FETCH_GRAPH, em.getEntityGraph("Game.findAll"));
+        }
+        return query.getResultList();
     }
 
     @Override

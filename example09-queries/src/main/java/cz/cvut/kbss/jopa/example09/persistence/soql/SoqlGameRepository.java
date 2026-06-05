@@ -23,6 +23,8 @@ import cz.cvut.kbss.jopa.example09.persistence.DeveloperRepository;
 import cz.cvut.kbss.jopa.example09.persistence.GameRepository;
 import cz.cvut.kbss.jopa.example09.persistence.QueryMechanism;
 import cz.cvut.kbss.jopa.model.EntityManager;
+import cz.cvut.kbss.jopa.model.query.TypedQuery;
+import cz.cvut.kbss.jopa.query.QueryHints;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -42,32 +44,48 @@ public class SoqlGameRepository implements GameRepository {
     }
 
     @Override
-    public List<Game> findAll() {
-        return em.createQuery("SELECT g FROM Game g ORDER BY g.releaseDate DESC", Game.class).getResultList();
+    public List<Game> findAll(boolean withFetchGraph) {
+        final TypedQuery<Game> query = em.createQuery("SELECT g FROM Game g ORDER BY g.releaseDate DESC", Game.class);
+        if (withFetchGraph) {
+            query.setHint(QueryHints.FETCH_GRAPH, em.getEntityGraph("Game.findAll"));
+        }
+        return query.getResultList();
     }
 
     @Override
-    public List<Game> findAll(LocalDate from, LocalDate to) {
-        return em.createQuery(
+    public List<Game> findAll(LocalDate from, LocalDate to, boolean withFetchGraph) {
+        final TypedQuery<Game> query = em.createQuery(
                          "SELECT DISTINCT g FROM Game g WHERE g.releaseDate >= :from AND g.releaseDate < :to ORDER BY g.releaseDate DESC",
                          Game.class)
                  .setParameter("from", from)
-                 .setParameter("to", to).getResultList();
+                 .setParameter("to", to);
+        if (withFetchGraph) {
+            query.setHint(QueryHints.FETCH_GRAPH, em.getEntityGraph("Game.findAll"));
+        }
+        return query.getResultList();
     }
 
     @Override
-    public List<Game> findAll(Developer developer) {
-        return em.createQuery(
-                "SELECT DISTINCT g FROM Game g WHERE g.developer = :developer ORDER BY g.releaseDate DESC",
-                Game.class).setParameter("developer", developer).getResultList();
+    public List<Game> findAll(Developer developer, boolean withFetchGraph) {
+        final TypedQuery<Game> query = em.createQuery(
+                         "SELECT DISTINCT g FROM Game g WHERE g.developer = :developer ORDER BY g.releaseDate DESC",
+                         Game.class).setParameter("developer", developer);
+        if (withFetchGraph) {
+            query.setHint(QueryHints.FETCH_GRAPH, em.getEntityGraph("Game.findAll"));
+        }
+        return query.getResultList();
     }
 
     @Override
-    public List<Game> findAllBySmallDevelopers() {
-        return em.createQuery(
+    public List<Game> findAllBySmallDevelopers(boolean withFetchGraph) {
+        final TypedQuery<Game> query = em.createQuery(
                          "SELECT DISTINCT g FROM Game g WHERE g.developer.employeeCount < :maxCount ORDER BY g.releaseDate DESC",
                          Game.class)
-                 .setParameter("maxCount", DeveloperRepository.SMALL_DEVELOPER_SIZE).getResultList();
+                 .setParameter("maxCount", DeveloperRepository.SMALL_DEVELOPER_SIZE);
+        if (withFetchGraph) {
+            query.setHint(QueryHints.FETCH_GRAPH, em.getEntityGraph("Game.findAll"));
+        }
+        return query.getResultList();
     }
 
     @Override
