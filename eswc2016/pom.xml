@@ -7,7 +7,7 @@
     <parent>
         <groupId>cz.cvut.kbss.jopa</groupId>
         <artifactId>jopa-examples-parent</artifactId>
-        <version>2.10.0</version>
+        <version>2.12.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>eswc2016</artifactId>
@@ -103,11 +103,12 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.14.2</version>
+            <version>2.21.2</version>
         </dependency>
     </dependencies>
 
     <build>
+        <finalName>eswc2016</finalName>
         <plugins>
             <plugin>
                 <!-- Generate entity classes from OWL integrity constraints -->
@@ -168,7 +169,6 @@
                             <directory>${project.basedir}/src/main/webapp/build/</directory>
                         </resource>
                     </webResources>
-                    <warName>eswc2016</warName>
                 </configuration>
             </plugin>
         </plugins>

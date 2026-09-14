@@ -6,7 +6,7 @@
 
     <groupId>cz.cvut.kbss.jopa</groupId>
     <artifactId>jopa-examples-parent</artifactId>
-    <version>2.10.0</version>
+    <version>2.12.0</version>
     <modules>
         <module>example01-jopa-rdf4j-owl2java</module>
         <module>example02-jopa-owlapi</module>
@@ -31,9 +31,9 @@
         <jdk.version>17</jdk.version>
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <maven.compiler.target>${jdk.version}</maven.compiler.target>
-        <cz.cvut.kbss.jopa.version>2.10.0</cz.cvut.kbss.jopa.version>
+        <cz.cvut.kbss.jopa.version>2.12.0</cz.cvut.kbss.jopa.version>
         <cz.cvut.kbss.jb4jsonld.version>0.16.0</cz.cvut.kbss.jb4jsonld.version>
-        <org.eclipse.rdf4j.version>5.3.1</org.eclipse.rdf4j.version>
+        <org.eclipse.rdf4j.version>5.3.2</org.eclipse.rdf4j.version>
         <ch.qos.logback.version>1.5.34</ch.qos.logback.version>
         <com.github.galigator.openllet.version>2.6.5</com.github.galigator.openllet.version>
         <com.github.ledsoft.jopa-spring-transactions.version>0.5.0</com.github.ledsoft.jopa-spring-transactions.version>
